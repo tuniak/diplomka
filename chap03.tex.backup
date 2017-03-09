@@ -1,0 +1,31 @@
+\chapter{Statistical limit}
+First, we will formalize knowledge we have of FHP already in this chapter.
+\\
+Then, we will state 
+
+\section{Formalization of FHP}
+
+
+
+$c_i$ will denote the velocity of the particle in the ith node.
+
+We see the distance of the cells is uniform over the latice, so the absolute value of velocity will be same for all particles.
+We may normalize it: $\mid{c_i}\mid = 1$ \\
+
+And we naturally define suradnicovu representation of $c_i$ to be:\\
+
+$ c_i = (cos(i\pi/3) , sin(i\pi/3))$ for $i = 1,...,6 $
+
+The first three moments of lattice velocity $c_i$ read: \\ 
+$\sum_{i=1}^{6} c_i = 0$  \\
+$\sum_{i=1}^{6} c_{i\alpha}c_{i\beta} = \delta_{\alpha\beta}$ \\
+$\sum_{i=1}^{6} c_{i\alpha}c_{i\beta}c_{i\gamma} \\ $
+
+Streaming, or propagation, is defined as:\\
+$ n_i(t + 1, r + c_i) = \textit{S}n_i(t, r) $
+
+\\
+
+bude nasledovat definicia koliznej funkcie 
+
+

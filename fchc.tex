@@ -1,0 +1,235 @@
+\chapter{FCHC}
+
+In two dimensions, we are lucky to find hexagon -- a symmetric polygon that covers whole 2D plane and possesses sufficient rotational symmetry to make a good lattice for FHP.
+
+In three dimensions, we have five symmetric candidates for LGCA but none of them works.
+They are so-called Plato solids. Out of them, dodecahedron or icosahedron might have sufficient rotational symmetry (interestingly, they have the same group of symmetries)
+but they do not cover whole 3D space uniformly. Only the cube does but LGCA build on a cubic grid would suffer from the same problem as HPP -- insufficient rotational symmetry and insufficient degrees of freedom in the nodes.
+
+Short analysis would show (see [1] for example) that, in 5 and more dimensions, we have only three symmetric solids -- simplex, hypercube and its dual solid. None of them fits.
+
+\bigskip
+
+Fortunately, in four dimensions, we have three extra symmetric solids and one of them actually works.
+
+\section{Face-centered hypercube}
+Face-centered hypercube (we will use the shortcut FCHC) is the suitable solid for LGCA in four dimensions. It can be defined by its 24 vertices with the Cartesian coordinates
+\begin{equation}
+\begin{split}
+(\pm 1,\pm 1, 0, 0),\\
+(\pm 1,0,\pm 1, 0),\\
+(\pm 1,0,0,\pm 1),\\
+(0, \pm 1,\pm 1, 0),\\
+(0, \pm 1,0,\pm 1),\\
+(0,0,\pm 1,\pm 1)\\
+\end{split}
+\end{equation}
+
+These 24 vertices correspond to 24 lattice vectors in four dimensions but if we project them into three dimensions (by "deleting" the fourth coordinate $q_4$) we get only 18 lattice vectors.
+
+\begin{figure}
+ \centering
+ \includegraphics[width=0.6\textwidth]{../obrazky/FCHC}
+ \label{fchc}
+ \caption{Projection of the lattice vectors into 3D. Red arrows are projections of vectors with $q_4 = 0$,
+ blue arrows with $q_4 = \pm 1$.}
+\end{figure}
+
+For $q_4 = 0$ we have 12 lattice vectors (dotted lines in Fig.\ \ref{fchc}), each vector corresponds to the single cell only. Hence, at most one particle propagates along each of these vectors.
+
+For both $q_4 = -1$ and $q_4 = 1$ we get the same set of six lattice vectors. Each vector corresponds to the two cells, hence two particles can propagate along each vector.
+
+
+It is possible and efficient to denote each node of the lattice by 3 Cartesian integer coordinates.
+
+
+In the resulting lattice, each node is connected to 18 neighbors by the lattice vectors of Fig.\ \ref{fchc}, and 24 particles can propagate along them in the single step.
+
+\section{Collision rules for FCHC}
+
+The FCHC lattice that we just described was proposed already by Frisch et.\ al.\ in 1986.
+However, they did not propose any recipe for a collision. It is easy to understand why it was not a simple task.
+
+There are 24 cells in each node, hence the node can acquire $2^{24} = 16~777~216$ different states (that can be represented by 24 bits). It was easy to specify the collision rule for FHP in one simple table, but how do you specify rules for millions of states?
+
+In the subsequent section we will show you how Henon answered to this challenge in his famous article \cite{henon}.
+
+\bigskip
+
+\subsection{Necessary conditions}
+
+Let us review what are the necessary conditions that collision rules must fulfill:
+
+\begin{enumerate}
+\item number of particles is preserved;
+\item total momentum is preserved;
+\item no other quantity is preserved;
+\item exclusion principle -- no two particles occupy one cell in the new state;
+\item collision rules are invariant with respect to rotations and reflections of the node;
+\item collisions satisfy the semi-detailed balance.
+\end{enumerate}
+
+Henon proposed his own conditions on the collisions and showed that all conditions above are automatically fulfilled.
+
+\begin{enumerate}
+\item All collisions are isometries of FCHC -- such transformations that preserve set of 24 lattice vectors above. It can be shown that this condition actually defines FHP collision set. For FCHC, this condition guarantees that conditions will be simple and leads us to the simple collision algorithm.
+
+\item The choice of isometry is restricted by the momentum conservation only.
+There are 7009 possible values of momentum. But considering that collision rules are invariant under isometries of FCHC, and due to first restriction that collisions are isometries, we can consider 37 momenta only.
+
+\item We want shear viscosity to be as low as possible, so that we can go to higher Reynolds numbers in our simulations. Suppressing the viscosity means is achieved by shortening the mean free path of the particles. In other words, we wish to change as many bits in the collision as possible. We will call such collisions "optimal isometries".
+
+\item The isometry is randomly chosen among optimal isometries.
+
+\end{enumerate}
+
+Having discussed the role of the isometries, let us define them properly.
+
+\section{Isometries of FCHC} 
+
+By $G$ we denote the group of isometries that preserve all 24 lattice vectors (or equivalently all vertexes of FCHC). Any isometry can be represented by $4 \times 4$ matrix
+\begin{align}
+M = 
+\begin{bmatrix}
+a_{11} & ... & a_{14} \\
+... & & ... \\
+a_{41} & ... & a_{44}
+\end{bmatrix}.
+\end{align}
+Although the group G is of order 1152, it can be generated by five elements only,
+but it will be more comfortable to employ the generating set consisting of 12 elements to be described in the following section.
+
+\subsection{Generating set}
+Isometries $S_{\alpha},~\alpha=1,2,3,4,$ are reflections over(?) plane $x_{\alpha} = 0$.
+For example, $S_{1}$ is represented by the matrix
+\begin{align}
+S_1 = 
+\left[\begin{array}{rrrr}
+-1 & 0 & 0 & 0 \\
+ 0 & 1 & 0 & 0 \\
+ 0 & 0 & 1 & 0 \\
+ 0 & 0 & 0 & 1
+\end{array}\right]
+\end{align} 
+that flips the sign of the first momentum coordinate $q_{1}$.
+
+\bigskip
+
+Another six isometries $P_{\alpha \beta}$ are reflections over plane $x_{\alpha} = x_{\beta}$.
+For example, $P_{12}$ can be represented by matrix
+\begin{align}
+P_{12} =
+\begin{bmatrix}
+0 & 1 & 0 & 0 \\
+1 & 0 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1
+\end{bmatrix}.
+\end{align}
+that swaps the first and second coordinates of the momentum.
+
+Another isometry $\Sigma_1$ is reflection over plane $x_1 + x_4 = x_2 + x_3$ represented by matrix
+\begin{align}
+\Sigma_1 = \frac{1}{2}
+\left[\begin{array}{rrrr}
+1 & 1 & 1 & -1 \\
+1 & 1 & -1 & 1 \\
+1 & -1 & 1 & 1 \\
+-1 & 1 & 1 & 1
+\end{array}\right].
+\end{align}
+
+The last generating isometry $\Sigma_2$ is reflection over plane $x_1 = x_2 + x_3 + x_4$.
+In matrix representation it reads
+\begin{align}
+\Sigma_2 = \frac{1}{2}
+\left[\begin{array}{rrrr}
+1 & 1 & 1 & 1 \\
+1 & 1 & -1 & -1 \\
+1 & -1 & 1 & -1 \\
+1 & -1 & -1 & 1
+\end{array}\right]
+\end{align}
+
+Any isometry of FCHC can be composed from these 12 isometries,
+so it can be uniquely expressed by
+\begin{align}
+M = 
+\begin{pmatrix}
+I\\
+S_4
+\end{pmatrix}
+\begin{pmatrix}
+I\\
+S_3
+\end{pmatrix}
+\begin{pmatrix}
+I\\
+S_2
+\end{pmatrix}
+\begin{pmatrix}
+I\\
+S_1
+\end{pmatrix}
+\begin{pmatrix}
+I\\
+P_{34}
+\end{pmatrix}
+\begin{pmatrix}
+I\\
+P_{23}\\
+P_{24}
+\end{pmatrix}
+\begin{pmatrix}
+I\\
+P_{12}\\
+P_{13}\\
+P_{14}
+\end{pmatrix}
+\begin{pmatrix}
+I\\
+\Sigma_1\\
+\Sigma_2
+\end{pmatrix}
+\end{align} 
+where the brackets mean ``one of the isometries inside the bracket".
+
+
+\subsection{Normalized momenta}
+Normalized momenta are such momenta that their components fulfill the following two conditions:
+\begin{enumerate}
+\item $q_1 \geq q_2 \geq q_3 \geq q_4 \geq 0$,  \label{normMom}
+\item $q_0 = 0$ or $q_1+g_4 = q_2 + q_3$.
+\end{enumerate}
+
+
+Henon specified collision rules for normalized momenta only. There is 37 normalized momenta (out of 7009 total) so he significantly simplified the job.
+
+If the state has normalized momentum (i.e.\ fulfilling \ref{normMom}), we just look into table and pick any isometry that is offered for that momentum. However, if the state doesn't have normalized momentum,
+\begin{enumerate}
+\item we normalize it by applying an appropriate isometry on the state. Let us denote this isometry by $\Gamma$. In fact, this isometry is equivalent to the change of the coordinate system.
+
+\item Now that we have state with normalized momenta, search in the table and pick an optimal isometry.
+
+\item We go back to the previous coordinate system by applying isometry $\Gamma^{-1}$.
+\end{enumerate}
+
+\subsection{Optimal isometries}
+
+However, in the step 2, we do not want to use all the isometries that conserve the momentum.
+Optimally, we would like to change as many bits as possible (that minimizes mean free path of particles, and that leads to desired low viscosity).
+
+Although no further reduction then of 37 normalized momenta is possible,
+some of these momenta share same optimal isometries, that lead to minimal viscosity and preserve momentum.
+
+Based on that,  momenta can be divided into 12 classes, see Table.
+First column specifies momentum, second column specifies isometries that we can apply to this momentum.
+
+Now it is possible, although not easy, to resolve collisions in FCHC.
+
+\begin{figure}
+ \centering
+ \includegraphics[width=1\textwidth]{./img/Optimal}
+ \label{optimalies}
+ \caption{Optimal isometries for 12 momenta classes}
+\end{figure}

@@ -1,0 +1,67 @@
+\chapter{Statistical description of FHP}
+
+\section{From microcosmos to macroworld}
+So far, we formalized microdynamics of LGCA.
+However, this microdynamics is physically unrealistic, this model is not even approximation of physically valid microdynamics.
+However, in last section we proved, that our model obeys conservation of mass and momentum in the nodes.
+By employing aparatus of statistical mechanics we will show that these microscopic conservation laws leads to macroscopic physically valid popis.
+\\
+To do that, we will employ aparatus of statistical mechanics.
+
+\\
+\section{Liouville's theorem a.k.a. conservation of probabilities}
+We define phase space $\Gamma$ as set of all possible states of the lattice $n(.)$.\\
+Imagine we want to initialize cellular automaton with some macroscopic velocity $\bm{v_0}$, macroscopic pressure $p_0$, and macroscopic density $\rho_0$.
+We can realize this macrostate by very many microstates of lattice $n(.)$.
+We assign initial probability to each of these microstates: $P(0,s(.)) \geq 0$. Of course, probabilities over whole lattice are normed to one:\\
+$\sum_s(.) P(0,s(.)) = 1$.\\
+\\
+In statistical mechanics, Liouville's space state theorem holds valid.
+It says that density of the phase space is constant.\\
+Microdynamics of our model implies equivalent theorem for FHP:\\
+$P(t+1, \mathcal{E} s(.)) = P(t, s(.))$\\
+\\
+It is standard procedure in statistical mechanics that instead of considering mean values over time intervals.
+
+
+
+Lattice vectors $c_i,~i=1...6$ can also be interpreted as lattice velocities, if we consider that velocity of a particle is given by $\frac{c_i}{\Delta t}$, and $\Delta t = 1$, since time steps are discrete.
+\\
+
+We will try to keep formalism as simple as possible, but robust and general enough so the results will be portable to other types of cellular automata.\\
+\\
+
+The state of the whole node is determined by the occupation numbers $n_i\in {0,1},~i=1...6$. $n_i=1$ means there is an particle in the $i^{th}$ cell, $n_i = 0$ means the cell is empty. 
+
+$c_i$ will denote corresponding lattice vector, and it denotes the path along which is particle from the cell $i$ transported to the neighbouring node.\\
+\\
+The nice thing about FHP is that all lattice vectors are of equal length, therefore it make sense to normalize them to 1.\\
+Since the cellular automaton evolve in discrete time steps equal to 1,
+we may think of lattice velocities as equivalent to lattice vectors.\\
+\\
+It is easy to show that the lattice vectors $c_i$ obey several useful formulas:\\
+a) Their first moment is equal to zero due to symmetry of lattice:\\
+$\sum_{i=1}^{6} c_i = 0$  \\
+b) 
+
+
+
+
+We see the distance of the cells is uniform over the lattice, 
+so the absolute value of velocity will be same for all particles.
+We may normalize it: $\mid{c_i}\mid = 1$ \\
+
+And we naturally define coordinate representation of $c_i$ to be:\\
+
+$ c_i = (cos(i\pi/3) , sin(i\pi/3))$ for $i = 1,...,6 $
+
+The first three moments of lattice velocity $c_i$ read: \\ 
+\\
+
+$\sum_{i=1}^{6} c_{i\alpha}c_{i\beta} = \delta_{\alpha\beta}$ \\
+$\sum_{i=1}^{6} c_{i\alpha}c_{i\beta}c_{i\gamma} \\ $
+
+Streaming, or propagation, is defined as:\\
+$ n_i(t + 1, r + c_i) = \textit{S}n_i(t, r) $
+
+bude nasledovat definicia koliznej funkcie 

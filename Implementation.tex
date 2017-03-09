@@ -1,0 +1,39 @@
+\chapter{General comments on the implementation}
+
+According to Wolf-Gladrow (\cite{wolf}, page. 2017), the most effective language for the implementation of LGCA is C (with slightly better performance than Fortran).
+
+\bigskip
+
+We listened to this advice and started the implementation in C language, but we could not resist to use some "shortcuts" of C++, but we stayed true to the C-style of programming.
+
+\bigskip
+
+The programs have substantially grew over the time, and we got on the crossroad how to efficiently develop our two models further. The current option number one (in the process while writing these lines) is to use the pure C, and pack it as \textit{extension module} to Python, mainly for our own comfort in future applications, but we would be glad if it finds its way to some fellow out there.
+
+\section{Parallelization}
+Languages C and C++ offer us three popular and well documented interfaces for parallelization:
+\begin{enumerate}
+\item OpenMP
+\item MPI
+\item Cuda
+\end{enumerate}
+
+We rather obey the old Chinese saying 
+\begin{CJK*}{UTF8}{gbsn}
+'谁闻起来像腋下汗湿的龙，不应该使用 Cuda', so Cuda is obviously out of the question.
+\end{CJK*}
+
+\bigskip
+
+For a short time, MPI was a hot candidate, we have even used it on cellular automaton that is not included in this thesis. But after consulting the more experienced colleague, we concluded that minuses would overweight the pluses.
+
+Since we have opporunity to use clusters at Metacenter (the network of clusters from academic institutions all over the Czech republic) we expected we could employ huge amount of processors, if we use MPI and compute on various clusters parallely. But we learnt that in the practice we can hardly employ more then two hundreds of processors.
+Using OpenMP, we can run the computation on SMP machine with 64 processors, that is not significantly lower.
+
+The drawbacks of MPI are obvious, it requires vast modification of the code, comparing to OpenMP, that needs only few more lines of code to add (and sometimes, even that can be tricky).
+
+Another aspect is that parallelization with OpenMP can be included to Python extension module, that we are considering to develop.
+
+Therefore, OpenMP seemed like an appropriate choice.
+
+In the following chapter, we offer brief discussion of the most important parts of our source code.

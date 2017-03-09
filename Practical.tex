@@ -1,0 +1,21 @@
+
+
+\chapter{Practical part}
+
+%Short review of what follows:
+In the theoretical part of the thesis, we have introduced the notion of cellular automaton and basic models of lattice-gas cellular automata by which it is possible to mimic the flow of physical fluids governed by the Euler equations and, to certain extent, the Navier-Stokes equations.
+We have described the algorithms behind the microdynamics of these models and emphasized the importance of the symmetries of the lattice for reproducing correct macroscopic behavior.
+
+In this part, we implement the aforementioned algorithms in the language C++ and visualize the results using the \textit{GNU}plot software. The original results of this thesis are summarized in the points to follow.
+
+
+
+\begin{enumerate}
+\item We implemented Turing-complete 1D and 2D cellular automata to show their interesting properties and motivate theoretical part. These results were already included in the theoretical part and will not be discussed further.
+\item We implement FCHC and PI -- the two distinct 3D LGCA introduced in theoretical part.
+\item We inspect 3D flow around obstacles of various shapes.
+\item We study fully-developed turbulent flow and compare its statistical pro\-perties to the Kolmogorov--Obuchov K41 theory. \cite{wolf}.
+
+Unfortunately, this most original and scientifically most interesting part is not concluded, but it provides the basis for future research. 
+
+\end{enumerate}

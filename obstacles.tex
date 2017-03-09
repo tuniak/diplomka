@@ -1,0 +1,228 @@
+\chapter{Study of the flow around the obstacles}
+
+In previous chapter, we explained microdynamics of FCHC and PI, that is non-physical.
+However, if we avarage velocities of the particles over sufficiently large region, we obtain physical velocity field.
+
+The function that implements computation of velocity from LGCA lattice is simple and similar for FCHC and PI, so we comment only on FCHC implementation.
+
+\begin{lstlisting}
+
+void compute_velocity(int***grid, double****v, int X, int Y, int Z, int side, int I, int J, int K)
+{
+	// We compute mean velocity over the cube with the side of length 'side'.
+	// N is the number nodes in this cube.
+	double N = side*side*side;
+
+	int i, j, k, l, m, n;
+
+	int x, y, z;
+
+#pragma omp parallel for private (i,j,k,l,m,n,x,y,z)
+
+	for (i = 0; i < I; ++i)
+	{
+		for (j = 0; j < J; ++j)
+		{
+			for (k = 0; k < K; ++k)
+			{
+				for (x = i*side; x < (i + 1)*side; ++x)
+				{
+					for (y = j*side; y < (j + 1)*side; ++y)
+					{
+						for (z = k*side; z < (k + 1)*side; ++z)
+						{
+							n = grid[x][y][z];
+							for (m = 0; m < 24; ++m)
+							{
+								if (n & C[m])
+								{
+									for (l = 0; l < 3; ++l)
+									{
+										v[i][j][k][l] += c[m][l];
+									}
+								}
+							}
+						}
+					}
+				}
+				for (l = 0; l < 3; l++)
+					v[i][j][k][l] /= N;
+			}
+		}
+	}
+}
+\end{lstlisting}
+
+In the following section, we present the simulation of the flow around the spherical obstacle and round plate.
+
+\bigskip
+
+Particles with velocity in positive Z direction are created on a plain $z=1$, and at the plain $z = Z - 1$ they propagate freely out of the tunnel. 
+
+The flow is actually happening in the tunnel with the square intersection. This tunnel is made of same 'material' as the obstacle, meaning that same no-slip condition holds at the tunnel and obstacle.
+
+That no-slip condition holds at the obstacles can be seen from following excerpt of Propagation function (from FCHC, but same principle is applied in PI).
+\begin{lstlisting}
+
+/* Particle at the cell C[i] propagates along the lattice vector c[i] to a new node.  */
+if (n & C[i])
+{
+	new_x = PeriodicBC(x + c[i][0], X);
+	new_y = PeriodicBC(y + c[i][1], Y);
+	new_z = PeriodicBC(z + c[i][2], Z);
+	if (to[new_x][new_y][new_z] & OBS)	
+	/* However, if there is obstacle in that node, it gets to the cell Reverse[i], that is cell diagonal to the C[i]. Let's say it had velocity v1 = [1,0,-1,0], by reflection it gained velocity v2 = [-1,0,1,0]. In the next step, particle propagates back to the node where it came from. */
+	/* Hence, the velocity at the obstacle is v1 + v2 = 0, so we really fulfilled no-slip condition. */	
+		to[new_x][new_y][new_z] |= Reverse[i];
+	else
+		to[new_x][new_y][new_z] |= C[i];
+}
+\end{lstlisting}
+
+\section{Flow around the sphere}
+
+We emphasize that the vector field is the physical velocity field. 
+Each velocity vector is computed over $N = 80^3 / 8 = 64000$ nodes for PI and $N = 80^3 = 521 000$ for FCHC (by the function $compute_velocity$ above).
+
+\begin{figure}[htbp]
+ \centering 
+ \includegraphics[width=0.9\textwidth]{../PI_sphere_80/velocity_70}
+ \label{transitions}
+ \caption{PI - flow around sphere, time 70}
+\end{figure}
+
+
+\begin{figure}[htbp]
+ \centering 
+ \includegraphics[width=0.9\textwidth]{../PI_sphere_80/velocity_170}
+ \label{transitions}
+ \caption{PI - flow around sphere, time 170}
+\end{figure}
+
+
+\begin{figure}[htbp]
+ \centering 
+ \includegraphics[width=0.9\textwidth]{../PI_sphere_80/velocity_320}
+ \label{transitions}
+ \caption{PI - flow around sphere, time 320}
+\end{figure}
+
+
+\begin{figure}[htbp]
+ \centering 
+ \includegraphics[width=0.9\textwidth]{../PI_sphere_80/velocity_460}
+ \label{transitions}
+ \caption{PI - flow around sphere, time 460}
+\end{figure}
+
+
+\begin{figure}[htbp]
+ \centering 
+ \includegraphics[width=0.9\textwidth]{../PI_sphere_80/velocity_700}
+ \label{transitions}
+ \caption{PI - flow around sphere, time 700}
+\end{figure}
+
+
+\begin{figure}[htbp]
+ \centering 
+ \includegraphics[width=0.9\textwidth]{../PI_sphere_80/velocity_1000}
+ \label{transitions}
+ \caption{PI - flow around sphere, time 1000}
+\end{figure}
+
+
+\begin{figure}[htbp]
+ \centering 
+ \includegraphics[width=0.9\textwidth]{../PI_sphere_80/velocity_1500}
+ \label{transitions}
+ \caption{PI - flow around sphere, time 1500}
+\end{figure}
+
+
+\begin{figure}[htbp]
+ \centering 
+ \includegraphics[width=0.9\textwidth]{../PI_sphere_80/velocity_2300}
+ \label{transitions}
+ \caption{PI - flow around sphere, time 2300}
+\end{figure}
+
+
+\section{Flow around the disk}
+Flow around the disk was performed on the Pair-interaction model only, the macroscopic velocity field was obtained by averaging over $N = 40^3 /8 = 8000$ nodes.
+
+\begin{figure}[htbp]
+ \centering 
+ \includegraphics[width=0.9\textwidth]{../PI_plate_40/velocity_50}
+ \label{transitions}
+ \caption{PI - flow around plate, time 50}
+\end{figure}
+
+\begin{figure}[htbp]
+ \centering 
+ \includegraphics[width=0.9\textwidth]{../PI_plate_40/velocity_150}
+ \label{transitions}
+ \caption{PI - flow around plate, time 150}
+\end{figure}
+
+\begin{figure}[htbp]
+ \centering 
+ \includegraphics[width=0.9\textwidth]{../PI_plate_40/velocity_250}
+ \label{transitions}
+ \caption{PI - flow around plate, time 250}
+\end{figure}
+
+
+\begin{figure}[htbp]
+ \centering 
+ \includegraphics[width=0.9\textwidth]{../PI_plate_40/velocity_350}
+ \label{transitions}
+ \caption{PI - flow around plate, time 350}
+\end{figure}
+
+\begin{figure}[htbp]
+ \centering 
+ \includegraphics[width=0.9\textwidth]{../PI_plate_40/velocity_350}
+ \label{transitions}
+ \caption{PI - flow around plate, time 350}
+\end{figure}
+
+\begin{figure}[htbp]
+ \centering 
+ \includegraphics[width=0.9\textwidth]{../PI_plate_40/velocity_550}
+ \label{transitions}
+ \caption{PI - flow around plate, time 550}
+\end{figure}
+
+\begin{figure}[htbp]
+ \centering 
+ \includegraphics[width=0.9\textwidth]{../PI_plate_40/velocity_750}
+ \label{transitions}
+ \caption{PI - flow around plate, time 750}
+\end{figure}
+
+\begin{figure}[htbp]
+ \centering 
+ \includegraphics[width=0.9\textwidth]{../PI_plate_40/velocity_1000}
+ \label{transitions}
+ \caption{PI - flow around plate, time 1000}
+\end{figure}
+
+\begin{figure}[htbp]
+ \centering 
+ \includegraphics[width=0.9\textwidth]{../PI_plate_40/velocity_1500}
+ \label{transitions}
+ \caption{PI - flow around plate, time 1500}
+\end{figure}
+
+\begin{figure}[htbp]
+ \centering 
+ \includegraphics[width=0.9\textwidth]{../PI_plate_40/velocity_2000}
+ \caption{PI - flow around plate, time 2000}
+\end{figure}
+
+\begin{figure}[htbp]
+ \centering 
+ \includegraphics[width=0.9\textwidth]{../PI_plate_40/velocity_2500}
+ \caption{PI - flow around plate, time 2500}
+\end{figure}

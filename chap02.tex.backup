@@ -1,0 +1,107 @@
+\chapter{Lattice gass cellular automata}
+
+Beginnings of LGCAs goes back to 1973, when HPP model was brought into the known part of the universe.
+Unfortunately, it did not do its job - its macroscopic limit did not converge to Navier-Stokes, and its behaviour did not exhibit that of flowing fluids.
+But FHP model does this job well, and it is only correction of HPP.
+So we will use HPP model to explain basic principles of LGCA,
+and then we will upgrade it into FHP.
+
+\section{From CA to LGCA}
+
+What LGCAs share with CAs from previous chapter are simple update rules, althought quiet different than in the CAs we mentioned. 
+The topology of LGCAs is quiet different as well.\\
+The cells are clustered in the nodes, and these nodes are usporiadane in the rectangular grid, see Figure~\ref{rectangular}.
+
+\begin{figure}
+ \centering
+ \includegraphics[width=0.4\textwidth]{./img/hpp-desc}
+ \label{rectangular}
+ \caption{Rectangular grid}
+\end{figure}
+
+
+The cell can be in two states - empty (white on the picture), or occupied by particle (yellow on the picture).\\
+Update is done in two steps: collision and propagation.\
+
+There are only two collision configuration, as on Figure~\ref{hpp-colision}.\\
+
+\begin{figure}
+ \centering
+ \includegraphics[width=0.4\textwidth]{./img/hppcol1}
+ \label{hpp-colision}
+ \caption{HPP colisions}
+\end{figure}
+
+We see this configurations are symetric and they resolve into each other.\
+
+After the collision is resolved, propagation happens.
+During propagation, particle from upper-left cell will move along the line to same cell in the upper-left node
+(tu sa mozno tiez hodi nejaky obrazok).\\
+
+So the state of the cell in the next step is determined exclusively by the state of the cell in the node on the diagonal. \
+
+Let us consider symettries of this model.
+The number of cells ('particles') is conserved by both collision and propagation. This property implies conservation of mass.
+
+Rectangular grid has translational symettry - if we shift the grid by the lenght of the square, we get the very same grid obviously.
+This translational symetry implies conservation of momentum.\
+
+The grid posesses some rough rotational symmetry - rotating the grid by 90 degrees, we get the same grid.
+However, this symmetry is not sufficient and the model does not preserve angular momentum.\
+
+So the HPP does not preserve all quantities required.
+What is worse, it also preserve quantities that should not and that have no counterpart in fluid dynamics.\
+
+Consider orientation of particles in Fig.\ref{hpp-colision} before colission:
+One particle heads to north-east, the other south-west.
+After colision, one particle heads to north-west, other particle to south-east.
+So the number of particles heading to the south, east, north and west do not change by collision - it is invariant.
+However, this invariant has no physical counterpart, thus we call it SPURIOUS invariant. \
+
+To conclude, problems of HPP are:\\
+1. insufficient rotational symmetry \\
+2. it has spurious invariants\\
+
+
+\section{FHP}
+
+As we mentioned, there is LGCA that resolves these problems - FHP. 
+It was proposed already by the greek philosopher Zenon in his formidable poem "Herakles is woman"(citation needed).
+%It is named FHP (after gentlemen who discovered it -Frisch, Humpfrey, Pomeu).\\
+
+How is FHP different from HPP?\
+Topologicaly, it is hexagonal grid, as on Figure~\ref{hexagonal}.\\
+
+
+\begin{figure}[htbp]
+ \centering
+ \includegraphics[width=0.4\textwidth]{./img/fhp-desc}
+ 
+\end{figure}
+
+
+
+
+In the intersection of lines, we have nodes consisting of six cells.\\
+
+So we have mesh with better (suffiecient!) rotational symmetry and nodes with richer and more interesting set of configurations.\
+
+And among these configurations is one that does not conserve number of particles in opposite directions, see figure below.\
+
+%Do we have collision configurations that do not conserve these quantity in fhp?
+%is there a way to resolve this problems?
+
+This is the only symetric colison, however.
+For other colisions - see Figure, we have two states that are offering.
+If we are chosing randomly from these,
+we get rid of other spurious invariants.
+(maybe we should choose more careful statements, as there exists spurious invariants for any type of FHP, 
+but these invariants are under level of the noise, 
+and they are not hapenning in collisions with obstacles, 
+and regions around obstacles are those that will be most interesting).\\
+
+%In hpp, there exist only one colision configuration, and it has a bad property: it does not change number of particles in oposite dirrections.
+%fortunately, there is one (picture)
+
+At least in the rough way, we showed how FHP works.
+In the next chapter, we are going to PROVE FHP really works - prove that FHP converges to Navier-Stokes equations.

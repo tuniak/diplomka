@@ -1,0 +1,187 @@
+\chapter{Cellular automata - simply clever}
+
+%Nejaka citacia od Feynmana o CA, neznali CA budu prekvapeni: \cite{Andel07}
+\section{One concrete example}
+Well known and interesting example of CA is Game of Life(citation needed).
+For the purposes of this thesis, we have written a simple program implementing this game.
+Let us have a rectangular grid, with black and white squares. 
+White squares represent dead cells, black cells represent living cells.
+On Fig.\ref{gol1} we see such grid, that we chose for initial state of 'Life'.
+\\
+
+\begin{figure}[htbp]
+ \centering
+ \includegraphics[width=0.7\textwidth]{./img/gol1}
+ \label{gol1}
+ \caption{Initial state of 'Life' (at t=0)}
+\end{figure}
+
+
+
+%The evolution of grid for our particular initial state is shown in figure blabla.\\  
+
+Now we press 'Pokracuj' button and let the the Life evolve.
+
+\begin{figure}
+ \centering
+ \includegraphics[width=0.7\textwidth]{./img/gol2}
+ \label{gol2}
+ \caption{t=1}
+\end{figure}
+
+\begin{figure}
+ \centering
+ \includegraphics[width=0.7\textwidth]{./img/gol2}
+ \label{gol2}
+ \caption{t=2}
+\end{figure}
+
+In the discrete time steps, the grid is changing.
+We see some cells dying, but some cells getting alive. 
+What is the rule for the cell to die or live? 
+It depends on the state of the cell itself and state of 8 neighbouring cells\todo{prerobit, hrozna veta}:\\
+1. If the cell is alive, and 2 or 3 neighbouring cells are alive, cell will stay alive in the next step, otherwise it will die.\\
+2. If the cell is dead, and EXACTLY 3 neighbouring cells are alive, the cell will get alive in the next step.\\
+3. All other configurations do not change state of the cell.\\
+
+Let us proceed from this simple example to more general approach.
+In the next chapter, we will generalize main features of 'Life' to the formal definition of cellular automaton.
+%In the next chapter, we will generalize main feature of 'Life'
+%Let us generalize this example into formal definition of cellular automaton.
+
+\section{Formal definition}
+\textbf{Position of cells:}\\
+Instead of 2D rectangular grid from 'Life',
+cells might be arranged in arbitrary N dimensional
+regular grid, not necessary rectangular. 
+(Regularity follows from definition of Kubrid. In general, cells might be positioned really wildly,
+e.g. on Penrose lattice, or arbritrary as proposed by Richard P. Feynman).\\
+
+\textbf{Set of cell states Q:}\\
+In 'Life' cells can be dead or alive (set of states has cardinality 2). 
+In general CA, set of states can be any finite set Q of cardinality K.\\
+%cell can be in one of K states from the finiteset of states. 
+%We will mark set of states Q, and use this in definition of upgrade rule later.
+
+
+\textbf{Neighborhood:}
+In 'Life', state of the cell in the next step was determined
+by 8 neighbouring cells. We call these cells neighborhood of range r = 1 (in the distance of 1 cell).
+For general CA, we might consider neighborhood
+with arbitrary range.
+(Neighborhood with r = 2 in 'Life' would involve 9+16=25 cells).\\
+
+\textbf{Update rule:}\\
+Update rule is an arbitrary bounded mapping U from Neighborhood to the set of states Q.
+Since the state of the Cell is determined only by the state of its Neighborhood, update rules in CA are local.
+
+\todo{nejake genialne premostenie do delsej sekcie}
+
+
+\section{The most basic cellular automaton} 
+
+The most basic CA is 1D CA with range r=1 and its cells can be in one of two states (alive or dead).
+
+1D CA means, that cells are arranged in the row, see Fig.~\ref{1d}
+
+\begin{figure}[htbp]
+ \centering 
+ \includegraphics[width=0.9\textwidth]{./img/1Dline}
+ \label{1d}
+ \caption{1D cellular automaton}
+\end{figure}
+
+
+Range r=1 means that in update rule, 
+we consider states of 3 cells. The cell itself, 
+1 neighbour to the left and 1 to the right.\\
+
+Example of an update rule is in the Table~\ref{rule90}.\\
+
+
+\begin{table}[htbp]
+ \centering
+ \includegraphics[width=0.4\textwidth]{./img/1Drule}
+ \caption{Rule 90}
+ \label{rule90}
+\end{table}
+
+
+
+
+How many different update rules ("how many different Tables~\ref{rule90}")
+exist for this type of CA?\\
+
+First three columns of the table will be always same. 
+They represent all possible combinations of the three neighbouring cells. 
+Changing will be only last column, that represents state of the middle cell after update.
+So in fact, we are asking how many different "last columns" there are. 
+We are asking: how many different chars in ANSI table there are.
+
+Of course, it is $2^{8}=256$ chars, sequences of 0 and 1. 256 different update rules for this type of CA.\\
+
+Let us take a look at some pictures of these cellular automata. We ploted by the simple program we coded for this purpose.
+These pictures are sequences of states of cellular automata with rules 90, 30, 45 and 73.
+The downer-most row is the initial configuration of CA, 
+the 2nd row is configuration after 1st update etc.\\
+
+\begin{figure}
+ \centering
+ \includegraphics[width=1\textwidth]{./img/rule90}
+ \caption{Rule 90}
+ \label{koberec}
+\end{figure}
+
+
+\begin{figure}
+ \centering
+ \includegraphics[width=1\textwidth]{./img/rule30}
+ \caption{Rule 30}
+\end{figure}
+
+
+\begin{figure}
+ \centering
+ \includegraphics[width=1\textwidth]{./img/rule45}
+ \caption{Rule 45}
+\end{figure}
+
+
+\begin{figure}
+ \centering
+ \includegraphics[width=1\textwidth]{./img/rule73}
+ \caption{Rule 73}
+\end{figure}
+
+First picture~\ref{koberec} is famous fractal known as Chaperognin carpet. Other pictures are unique among 1D CAs. 
+They contains regular parts (regular `grains``
+second one not so much, and the third one is completely chaotic. 
+(we used 4 examples for 4 categories, vytycenych Wolframom) Napisem to cele inak...
+\\
+The variety of behaviour even in these most primitive CA might be surprising, and rises suspitions (or encourage hope), 
+that in the infinitely large world of possible CAs, there is CA that model any complex phenomena you can imagine.
+
+Stephen Wolfram, one of the most important persona in the developement of CAs argues, that if there exists some 
+finite set of most fundamental physical laws, than it MUST be CA. 
+He contemplates very generally what properties should these CAs have.
+They need to be reversible, and only small fraction satisfies this constraint.
+He argues that in these CAs, no phenomena that are known to us would be obvious from the rule.
+
+If we sparked some interest in the reader, we recommend Wolfram's visionary book New kind of Science.
+%It needs to be...
+But we would diverge too far from our topic if we proceeded in his steps.
+Focus of our work is much more modest that CAs describing universe.
+Our focus is on CAs that model flows of the fluids (so it is not so modest after all :)).\\
+
+However, the principles for CAs that Wolfram mentions are valid for CAs we will use as well.
+The connection between studied problem (flow of fluids) and our CA is not obvious and straigh-forward.
+%It is not formal, but it is rooted in the very general, underlying laws,
+%that makes this method so exciting for a physicist.
+
+It is found on the very general level.
+
+What connects Navier-Stokes equations and LGCAs are their common symettries and conservation laws implied by these symettries.
+
+%Not only beauty of this method lies in these symetries, but their most razne advantages over well-established methods.
+In these symetries lies not only beauty of this method, but their strongest advantage over well-established methods.
+%The fundamental bound of NS equations with LGCA implies its most vyrazne advantages over other computation methods.

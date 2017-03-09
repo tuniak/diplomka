@@ -1,0 +1,304 @@
+\chapter{From Boltzmann to Navier-Stokes}
+
+Because microdynamics of LGCA lead to equilibrium occupation numbers give by Fermi-Dirac distribution, there is no way to improve them substantionally u
+
+In previous chapter we saw that microdynamics of LGCA lead to equilibrium occupation numbers give by Fermi-Dirac distribution.
+Treatment of the symptoms resulting from this flaw is imperfect.
+
+In this chapter we will show what statistical properties would be desirable for better computational model.
+We will show that microdynamics of physical fluid lead to Boltzmann distribution, and starting there, we will derive Navier-Stokes equations in its most general form.
+ 
+Indeed, the new generation of LGCA, the Lattice-Boltzmann models, were pushed one ladder of abstraction higher to meet the Boltzmann distribution of real fluids.
+But since these models do not have discrete microdynamics anymore, they are not CA in its true sense, and they are beyond the scope of this thesis.
+However, we would like to show some light at the tunnel and motivate the method, that is an efficient competitor to other CFD methods.
+
+\bigskip
+The name of the chapter is shamelessly stollen from \cite{wolf}. In the original piece, it precedes chapter on Lattice-Boltzman model and is full of technicalities (we have seen Chapman - Enskog expansion already), we rather follow approach of \cite{astro}, that offers better physical insight.
+
+In Wolf-Gladrow, the derivation of Navier-Stokes is performed by the means of Chapman-Enskog expansion.
+We chose approach from \cite{astro}, as it offers us better physical insight with less technicalities then \cite{wolf}, where the derivation of Navier-Stokes is performed by the means of Chapman-Enskog expansion.
+
+\section{Boltzmann equation}
+
+Let us consider an enslable of identical particles. Quantum effects, such as internal degrees of freedom in particles will be neglected. The state of the ensamble will be given by distribution function $f(\bm{x}, \bm{u}, t)$, that is defined by
+\begin{equation} \label{hust}
+dN = f(\bm{x}, \bm{u}, t) \bm{dx \, du}
+\end{equation} 
+where $dN$ is the number of particles in the infinitesimal phase element $[x, x+ dx].[u, u +du]$.
+It must be emphasized that statistical description is appropriate only if $dN$ is sufficiently large number.
+
+Let us suppose that external force field $\bm{F} = (F_1, F_2, F_3)$ is affecting the system such that it is same for all particles in volume element $[x, x+ dx]$ (it is reasonable assumption, since particles are infinitesimally close).
+
+Then, at any time $t$ the velocity of the particles in the element $[x, x + dx]$ will change from (let's say) $\bm{u'}$ to $\bm{u'} + \bm{F}dt$.
+
+\begin{align} \label{boltzmanEq}
+\pd_t f + \bm{v}.\nabla f + \frac{\bm{K}}{m}\pd_{\bm{v}} f = Q(f,f)
+\end{align}
+
+Thus, if we neglect the collisions between particles, we can say, that number of particles 
+$f(\bm{x}, \bm{u}, t)$ is equal to $f(\bm{x + u}dt, \bm{u + F}dt, t + dt)$, or 
+\begin{align}
+f(\bm{x}, \bm{u}, t) - f(\bm{x + u}dt, \bm{u + F}dt, t + dt) = 0.
+\end{align}
+If we consider the collisions between particles, we need to write
+\begin{align}
+f(\bm{x}, \bm{u}, t) - f(\bm{x + u}dt, \bm{u + F}dt, t + dt) = [\Delta f]_{coll},
+\end{align}
+where right hand side stands for change of $f$ in a time interval $dt$ due to collisions.
+
+Since the left hand side is the difference of function values in infinitesimal time $dt$,
+we can write it in differential form
+\begin{align} \label{BoltzmannE}
+\frac{\pd f}{\pd t} + u_i \frac{\pd f}{\pd x_i} + F_i \frac{\pd f}{\pd u_i} = \big[\frac{\pd f}{\pd t} \big]_{coll}.
+\end{align}
+
+This is the famous Boltzmann equation and we derived it in very intuitive way. We need to mention three subtle assumptions that Boltzmann used to derive it.
+\begin{enumerate}
+\item Only one-particle collisions are considered (so it would apply only to diluted gas)
+\item \textit{Molecular chaos hypothesis} - velocities of colliding particles are uncorrelated
+\item External forces do not influence dynamics of collisions 
+\end{enumerate}
+
+\section{Macroscopic quantities}
+By equation \ref{hust} we defined distribution function as the density probability, or density of particles in the phase space.
+Hence the number of particles over some region of phase space is obtained by
+\begin{align}
+n(\bm{x},t) = \int f(\bm{x,u},t) \dd \bm{x} \dd \bm{u}.
+\end{align}
+
+Note that by integrating only by $\dd \bm{u}$, not by volume element $\dd \bm{x}$, the quantities that we obtain are densities over unit volume.
+
+Hence we define mass density
+\begin{align} \label{densb}
+\rho(\bm{x},t) = \int m \, f(\bm{x,u},t) \dd \bm{u},
+\end{align}
+and the mean velocity of the flow
+\begin{align} \label{meanv}
+\bm{v}(\bm{x},t) = \int \bm{u} \, m \, f(\bm{x,u},t) \dd \bm{u}.
+\end{align}
+
+For the low densities we can neglect many-particle collisions and  consider only two-particle collisions that are elastic (preserving energy and momentum of the colliding pair).
+Then, the density function $f$ is the famous Maxwell function
+\begin{equation} \label{Maxwell}
+f^M(\bm{x,v,}t) = n(\frac{m}{2 \pi k_B T})^{3/2} e^{-\frac{m}{2k_B T}(\bm{v-u})^2}.
+\end{equation}
+
+\section{Hydrodynamic equations}
+The right hand side of \ref{boltzmanE} is often referred to as collision integral and it is so ugly expression we do not to state it explicitly. However, its general properties can be analyzed anyway.
+
+Since the collisions among particles should preserve the number of particles in the system, then
+\begin{align} \label{consm}
+\int \Big[\frac{\pd f}{\pd t} \Big]_{coll} \dd \bm{u} = 0.
+\end{align}
+The total momentum is also preserved by the collisions, so
+\begin{align} \label{consmm}
+\int \bm{u} \Big[\frac{\pd f}{\pd t} \Big]_{coll} \dd \bm{u} = 0,
+\end{align}
+and finally, the total energy is conserved by the collisions, hence
+\begin{align} \label{conse}
+\int u^2 \Big[\frac{\pd f}{\pd t} \Big]_{coll} \dd \bm{u} = 0.
+\end{align}
+
+And because total energy of the system is finite, it must be true that
+\begin{align} \label{lime}
+\lim_{u \rightarrow \infty} u^2 f = 0.
+\end{align}
+
+Using equation \ref{lime} and performing integration by parts leads to
+\begin{align} \label{due}
+\int \frac{\pd f}{\pd u_i} \dd \bm{u} = 0,
+\end{align}
+\begin{align} \label{due2}
+\int u_i \frac{\pd f}{\pd u_i} \dd \bm{u} = -\delta_{ij} \frac{\rho}{m},
+\end{align}
+\begin{align}
+\frac{1}{2} \int u^2 \frac{\pd f}{\pd u_i} \dd \bm{u} = - v_i \frac{\rho}{m} \, 
+\end{align} 
+where we used definition of mean velocity and mass density (equations \ref{consmm} and \ref{lime}.
+
+Now that we are equipped with equations above, let us multiply the Boltzmann equation by $m$ and integrate over the whole domain. We obtain
+\begin{align}
+m \int \frac{\pd f}{\pd t} \dd \bm{u} + m \int u_i \frac{\pd f}{\pd x_i} \dd \bm{u} + m F_i \int \frac{\pd f}{\pd u_i} \dd \bm{u} = 0,
+\end{align}
+where right-hand side is zero due to equation \ref{consmm}.
+
+We can delete the third term due to \ref{due}, and since $\bm{u}$ and $\bm{x}$ are considered to be independent variables in the phase space, we can swap the integration by $u_i$ and derivation by $x_i$ and $t$. Hence we get
+\begin{align}
+\frac{\pd }{\pd t} \int m \, f \dd \bm{u} + \frac{\pd}{\pd x_i} \int u_i \, m \, f \, \dd \bm{u} = 0,
+\end{align}
+and applying definition of density \ref{denb} and mean velocity \ref{meanv}
+we can write in the form
+\begin{align}
+\frac{\pd \rho}{\pd t} + \frac{\pd}{\pd x_i}(\rho v_i) = 0.
+\end{align}
+This is the common form of continuity equation, or law of mass conservation.
+
+If we multiply the Boltzmann equation by the mass $m$ and integrate over the whole domain again, we get
+\begin{align} \label{primeul}
+\frac{\pd}{\pd t} (\rho \, v_i) + \frac{\pd }{\pd x_j} \int m \, u_i \, u_j \, f \, \dd \bm{u} - \rho \, F_i = 0,
+\end{align}
+where we used equality \ref{due2}.
+
+We can break down the second term into
+\begin{align} 
+\int m \, u_i \, u_j \, f \, \dd \bm{u} = \int m \, v_i \, v_j \, f \dd \bm{u} + \int (v_i - u_i) (v_j - u_j) \, f \, \dd \bm{u} = \rho \, v_i \, v_j + P_{ij}
+\end{align}
+where we define 
+\begin{align}
+P_{ij} = \int m (v_i - u_i) (v_j - u_j) \, f \, \dd \bm{u}.
+\end{align}
+In case that pressure is isotropic, it is proportional to Kronecker delta
+\begin{align}
+P_{ij} = P \, \delta_{ij}
+\end{align}
+with 
+\begin{align}
+P = \frac{1}{3}P_{ii}.
+\end{align}
+Hence equation \ref{primeul} simplifies to
+\begin{align}
+\frac{\pd}{\pd t} (\rho \, v_i) + \frac{\pd }{\pd x_j} (\rho v_i v_j) =  - \frac{\pd P}{\pd x_i}+ \rho \, F_i
+\end{align}
+
+or in the vector form
+\begin{align}
+\frac{\pd }{\pd t} (\rho \bm{v}) + \nabla . \pi = \rho \bm{F}
+\end{align}
+where
+\begin{align}
+\pi_{ij} = \rho \, v_i \, v_j + P \delta_{ij}
+\end{align}
+This is the second hydrodynamic equation, expressing the conservation of momentum.
+
+
+%This force K will be neglected in the subsequent text, because external force is not supposed to influence dynamics of collisions.
+
+
+%
+%
+%The right hand side of Boltzmann equation, the $Q(f,f)$, is the collision integral.
+%It is quite complicated expression
+%and it is the major difficulty in dealing with Boltzmann equation.
+%
+%But we do not need it that precisely, as two-particle collisions do not significantly influence experimentally measured quantities.
+%Therefore, it is often approximated.
+%
+%Before we show the standard way to approximate it (so called BGK approximation), we need to present the properties of $Q(f,f)$ that need to be preserved.
+%
+%\section{Collision invariants}
+%Collision invariants are the five functions that are orthogonal on $Q(f,f)$. In other words
+%\begin{align} \label{invariance}
+%\int Q(f,f) \psi_k(\bm{v}) d^3v = 0.
+%\end{align} 
+%These collision invariants read
+%\begin{align} \label{invariants}
+%\begin{split}
+%\psi_0 &= 1, \\
+%\psi_1 &= v_1, \\
+%\psi_2 &= v_2, \\
+%\psi_3 &= v_3, \\
+%\psi_4 &= v^2.
+%\end{split}
+%\end{align}
+%
+%Because of linearity of scalar product \ref{invariance}, any function 
+%\begin{align}
+%\psi = a + \bm{b}.\bm{v} + c \, v^2
+%\end{align}
+%is the collision invariant of $Q(f,f)$.
+%
+%Interestingly, function 
+%\begin{align} \label{nulling}
+%\phi = \exp (a + \bm{b}. \bm{v} + c \, v^2)
+%\end{align}
+%is the solution of
+%\begin{align}
+%Q(f,f) = 0,
+%\end{align}
+%if $c$ is negative. Notice, that famous Maxwell function (or Maxwell distribution, or simply Maxwellian) is the spacial kind of such function \ref{nulling} 
+%\begin{equation} \label{Maxwell}
+%f^M(\bm{x,v,}t) = n(\frac{m}{2 \pi k_B T})^{3/2} e^{-\frac{m}{2k_B T}(\bm{v-u})^2}.
+%\end{equation}
+%
+%Now we are ready to state what is BGK approximation of collision integral $Q(f,f)$.
+%\section{BGK approximation}
+%Instead of $Q(f,f)$, that is so complicated we do not even state it, we will use simpler operator 
+%\begin{align}
+%J(f) = w[f^M(\bm{x,v}) - f(\bm{x,v}]
+%p\end{align}
+%
+%We can easily see that this approximation have two properties:
+%\begin{enumerate}
+%\item It expresses the tendency of $f$ towards Maxwellian distribution \ref{Maxwell} (because the time derivative of $f$ has sign towards $f^M$).
+%\item It conserves the collision invariants \ref{invariants}
+%\begin{align}
+%\int \psi_k J(f) d^3 x d^3 v = 0
+%\end{align}
+%\end{enumerate}
+%
+%
+%\section{Chapman-Enskog series}
+%We are already familiar with this kind of expansion, now we will show it in the general context.
+%In some respect this expansion is quite peculiar and deserves few comments before we suck the life out of it.
+%
+%\bigskip
+%
+%The distribution function f, that is explicitly time-dependent, will be expanded in the series of $f^{(n)}$, that have only implicit time-dependence. However, gas relaxes very fast, in time of order $10^{-11}$ seconds, towards time-independent distributions, hence this expansion is generally valid.
+%
+%
+%The expansion parameter $\epsilon$ depended on the peculiarities of our model in previous chapters. 
+%In this section, we will take $\epsilon$ equal to Knudsen number
+%\begin{align}
+%K_n = \frac{\lambda}{L},
+%\end{align}
+%that is ratio of $\lambda$, the mean free path of particle (the mean distance between two successive collisions) and spatial characteristic scale $L$ (for example, size of the obstacle in the flow, diameter of the flow etc.).
+%
+%\bigskip
+%
+%And the most interesting point comes last - the Chapman-Enskog series diverges.
+%
+%We are interested only in first two orders of the expansion, but higher order-approximation that lead to Burnett equations are problematic and were never applied systematically (for further details see Cercignani 1988 and 1990).
+%
+%
+%\section{Conservation laws}
+%What happens if we multiply Boltzmann equation with the collision invariants \ref{invariants} and integrate it?
+%
+%Since the collision integral in the right-hand side gets killed-off (by definition of invariants), 
+%the equation reads
+%\begin{equation}
+%\int \psi_k(\partial_t + v_{\alpha}\partial_{\alpha}) f(\bm{x},\bm{v},t) d^3v = 0.
+%\end{equation}
+%Substituting $\psi_0 = 1$, $(\psi_1,\psi_2,\psi_3) = \bm{v}$ and $\psi_4 = v^2$, we get the general form of conservation laws:
+%
+%\begin{align}
+%\begin{split}
+%\partial_t\rho + \partial_{\alpha}(\rho u_{\alpha}) &= 0 \\
+%\rho \partial_t u_{\alpha} + \rho u_{\beta}\partial_{\beta}u_{\alpha} &= - \partial_{\alpha}\hat{P}_{\alpha\beta} \\
+%\rho \partial_t \Theta + \rho u_{\beta}\partial_{\beta}\Theta &= -\frac{2}{3} \partial_{\alpha}q_{\alpha} - \frac{2}{3} \hat{P}_{\alpha\beta} \Lambda_{\alpha\beta}
+%\end{split}
+%\end{align}
+%where
+%\begin{align}
+%\begin{split}
+%n(\bm{x}, t) &= \int f(\bm{x},\bm{v},t) \, d^3 v  \\
+%p(\bm{x},t) &= m \, n(\bm{x},t) \\
+%\rho u_{\alpha}(\bm{x},t) &= m \int v_{\alpha} f(\bm{x},\bm{v},t) \, d^3 v \\
+%\Theta(\bm{x},t) &= k_B \, T(\bm{x},t) = \frac{m}{3n} \int (v_{\alpha} - u_{\alpha})(v_{\alpha} - u_{\alpha}) \, f(\bm{x},\bm{v},t) \, d^3 v \\
+%\Lambda_{\alpha\beta} &= \frac{m}{2} (\pd_{\beta}u_{\alpha} + \pd_{\alpha} u_{\beta}) \\
+%\hat{P}_{\alpha\beta} &= m \int (v_{\alpha} - u_{\alpha})(v_{\beta} - u_{\beta}) \, f(\bm{x}, \bm{v}, t) \, d^3v \\
+%q_{\alpha}(\bm{x},t) &= \frac{m^2}{2} \int (v_{\alpha} - u_{\alpha})(v_{\beta} - u_{\beta}) (v_{\beta} - u_{\beta}) \, f(\bm{x}, \bm{v}, t) \, d^3v
+%\end{split}
+%\end{align}
+%
+%\section{Euler equation}
+%
+%$f^M$ into conservation laws:
+%$\partial_t \rho + \partial_{\alpha}(\rho u_{\alpha}) = 0$ ... continuity equation\\
+%$\rho \partial_t u_{\alpha} + \rho u_{\beta}\partial_{\beta}u_{\alpha} = - \partial_{\alpha}P$ ... Euler equation,\\
+%where $P = n\Theta = n k_B T$\\
+%$\rho \partial_t \Theta + \rho u_{\beta}\partial_{\beta}\Theta = -\frac{1}{c_V} \Theta \partial_{\alpha} u_{\alpha}$\\
+%
+%Chapman-Enskog:\\
+%$f = f^0 + \epsilon f^1 + \epsilon^2 f^2 + ... = $
+%
+%It is special in every sense of word, we will introduce some of its useful properties:
