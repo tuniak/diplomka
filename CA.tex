@@ -13,13 +13,13 @@ and layed basis for the "New kind of science" \cite{wolfram}.
 
 \section{Game of Life}
 
-John Conway, by significant simplification of von Neumann ideas, conceived the Game of Life in 1970, that renewed general interest in cellular automata.
+John Conway, by significant simplification of von Neumann ideas, introduced the Game of Life in 1970 that renewed general interest in cellular automata.
 
 Depending on the initial conditions, evolution of this automaton can be chaotic, periodic or it can lead to the stable configurations.
 
-The reason for this complexity and diversity hides in the fundamental property that Game of Life posses - it is the Turing-complete, so in principle any program or computation that can be run on a computer can be simulated in Game of Life.   
+The reason for this complexity hides in the fundamental property of Game of Life - it is the Turing-complete, so in principle any computer program can be simulated in the Game of Life.
 
-For the purposes of this thesis, we have written a simple program implementing this game, as it easily expresses basic principles of cellular automata.
+For the purposes of this thesis, we have written a simple program implementing this game, since we can easily express the basic principles of cellular automata on it. ( as it easily expresses basic principles of cellular automata.)
 
 Let us have a rectangular grid, with black and white squares. 
 White squares represent dead cells, black cells represent living cells.
@@ -35,7 +35,6 @@ On Fig.\ref{gol1} we see such grid, that we chose for initial state of 'Life'.
 
 %The evolution of grid for our particular initial state is shown in figure blabla.\\  
 
-Now we press 'Pokracuj' button and let the the Life evolve.
 
 \begin{figure}
  \centering
@@ -51,34 +50,36 @@ Now we press 'Pokracuj' button and let the the Life evolve.
  \caption{t=2}
 \end{figure}
 
+Now we press 'Pokracuj' button and let the the Life evolve.
 In the discrete time steps, the grid is changing.
-We see some that cells are dying, but some cells are getting alive. 
+We see that some cells are dying, but some cells are getting alive. 
 What is the rule that kills the cell or leave it be? 
-It depends on the state of the cell itself and state of it eight neighbouring cells.
+
 \begin{enumerate}
-\item If the cell is alive, and 2 or 3 neighbouring cells are alive, cell will stay alive in the next step, otherwise it will die.
-\item If the cell is dead, and EXACTLY 3 neighbouring cells are alive, the cell will get alive in the next step.
-\item All other configurations do not change state of the cell.
+\item If the cell is alive, and 2 or 3 neighbouring cells are alive, the cell will stay alive in the next step. Otherwise it will die.
+\item If the cell is dead, and \textbf{exactly} 3 neighboring cells are alive, the cell will get alive in the next step. Otherwise, it stays dead.
 
 \end{enumerate}
+We see that the rule involves only the state of the certain cell and the states of its eight neighboring cells.
 
 
-Let us proceed from this simple example to more general approach.
+Let us proceed from this simple example to more general setting.
 In the next chapter, we will generalize main features of 'Life' and formally define the cellular automaton.
 %In the next chapter, we will generalize main feature of 'Life'
 %Let us generalize this example into formal definition of cellular automaton.
 
-\section{Formal definition}
-\textbf{Position of cells:}
+\section{Cellular automaton in general}
 
-Instead of 2D rectangular grid from 'Life',
+\begin{enumerate}
+\item \textbf{Position of cells:}
+
+Instead of 2D rectangular grid of 'Life',
 cells might be arranged in arbitrary N dimensional
 regular grid, not necessary rectangular. 
 (Regularity follows from definition of Kubrid. In general, cells might be positioned really wildly,
 e.g. on Penrose lattice, or arbritrary as proposed by Richard P. Feynman).
-\bigskip
 
-\textbf{Set of cell states Q:}
+\item \textbf{Set of cell states Q:}
 
 In 'Life' cells can be dead or alive (set of states has cardinality 2). 
 In general CA, set of states can be any finite set Q of cardinality K.
@@ -86,7 +87,7 @@ In general CA, set of states can be any finite set Q of cardinality K.
 %We will mark set of states Q, and use this in definition of upgrade rule later.
 \bigskip
 
-\textbf{Neighborhood:}
+\item \textbf{Neighborhood:}
 
 In 'Life', state of the cell in the next step was determined
 by 8 neighbouring cells. We call these cells neighborhood of range r = 1 (in the distance of 1 cell).
@@ -94,35 +95,33 @@ For general CA, we might consider neighborhood
 with arbitrary range.
 (Neighborhood with r = 2 in 'Life' would involve 9+16=25 cells).
 
-\bigskip
-
-\textbf{Update rule:}
+\item \textbf{Update rule:}
 
 Update rule is an arbitrary bounded mapping U from Neighborhood to the set of states Q.
 Since the state of the Cell is determined only by the state of its Neighborhood, update rules in CA are local.
 
+\end{enumerate}
+
+
 \section{The most basic cellular automaton} 
 
-In middle 1980s, on the prestigious Princeton institute,
-Stephen Wolfram and his assistants were performing unusual computer experiments \cite{levy} and analyzing the patterns by 1D cellular automata (to a despair of their senior colleagues)\cite{levy}.
+In middle 1980s on the prestigious Princeton institute,
+Stephen Wolfram and his assistants were performing unusual computer experiments. They were simulating the evolution of the $1D$ cellular automata and they were analyzing the patterns they obtained \cite{levy} (to a despair of their senior colleagues, who did not understand this "new kind of science")\cite{wolfram}.
 
-The most basic CA is 1D CA with range r=1 and its cells can be in one of two states (alive or dead).
+The most basic, one dimension cellular automaton we can imagine, is the two state automaton with range $r=1$.
 
-1D CA means, that cells are arranged in the row, see Fig.~\ref{1d}
+One dimensional indicates that the cells are arranged in the row, see Figure \ref{1d}
 
 \begin{figure}[htbp]
  \centering 
  \includegraphics[width=0.9\textwidth]{./img/1Dline}
  \label{1d}
- \caption{1D cellular automaton}
+ \caption{A time-step of one dimensional cellular automaton}
 \end{figure}
 
-Range r=1 means that in update rule, 
-we consider states of 3 cells. The cell itself, 
-1 neighbour to the left and 1 to the right.\\
+Range r=1 means that in update rule, we consider only the closest neighbors of the cell (one cell to the left, and one cell to the right).
 
-Example of an update rule is in the Table~\ref{rule90}.\\
-
+Example of an update rule is shown the Table~\ref{rule90}.\\
 
 \begin{table}[htbp]
  \centering
@@ -134,16 +133,13 @@ Example of an update rule is in the Table~\ref{rule90}.\\
 %How many different update rules ("how many different Tables~\ref{rule90}")
 %exist for this type of CA?
 
-First three columns of the table denotes state of the three cells, $a_t^i$ is the middle cell and the other two are its left and right neighbor.
+The three columns represent the state of a cell ($a_t^i$) and its left and right neighbor ($a_t^{i-1}$ and $a_t^{i+1}$ respectively). A living cell is denoted by 1, a dead cell is denoted by 0. The last column denotes the state of the middle cell ($a_i$) in the next step $t+1$. The sequence of $one$s and $zero$s in the last column is the binary $zapis$ of a number. In this particular case, the number is 90, hence the table specifies the Rule 90.
+Since there is $2^8=256$ combinations for the last columns, there is $256$ rules for this most basic cellular automaton.
+%For an automaton with $n$ states and range $r$, the rule involves $2r + 1$ cells, 
 
-The rule specifies the state of the middle cell after update, based on the configuration of these three cells.
-The number of possible configurations of the three cells is $2^3 = 8$.
-So the rule must specify 8 bits (for each configuration one bit).
-It means there are $2^8 = 256$ different rules for this most basic cellular automaton.
+Let us take a look at some pictures of these cellular automata (the implementation of this automaton is simple, and these pictures were plotted by our program).
 
-Let us take a look at some pictures of these cellular automata. These pictures were ploted by the simple program that we programmed for this purpose.
-
-These pictures represent the sequences of states of cellular automata with rules 90, 30, 45 and 73.
+These pictures represent the evolution of cellular automata with rules 90, 30, 45 and 73.
 The downer-most row is the initial configuration of CA, 
 the 2nd row is configuration after 1st update etc.
 
