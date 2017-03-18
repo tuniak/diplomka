@@ -2,19 +2,17 @@
 Pair-interaction automata (PI) constitute another branch that successfully evolved from HPP model, somewhat in contrast to FHP.
 To put it in a nutshell, FHP changed the rectangular grid for hexagonal, and thus obtained better rotational symmetry, increased the degree of freedom of the nodes and added new collision states. 
 
-The pair-interaction model preserves the HPP rectangular lattice, and the degree of freedom in the node is incremented by the artificial definition of momentum.
-In FHP and HPP, momentum of the particle corresponds to its lattice velocity, or equivalently, to the cell that the particle occupies.
-In PI, the momentum is the independent of the lattice velocity, it is the inner degree of the particle, that might change in the collision. 
+The pair-interaction model preserves the HPP rectangular lattice, and the degrees of freedom in the node are incremented by the artificial definition of momentum.
+%In FHP and HPP, momentum of the particle corresponds to its lattice velocity, or equivalently, to the cell that the particle occupies.
+Momenta has no longer same direction as the lattice velocities, but they constitute another degree of freedom of the particle, that might change in the collision, independently of lattice velocity. 
 Although the differentiation in momentum and velocity might seem odd at the first glance, we will show that it leads to the correct microdynamics and offers us very efficient algorithm for implementation.
 
 \bigskip
 We will explore theory of Pair Interaction automaton in arbitrary dimension later on, but to get good understanding of PI algorithm, we start with its $2$D version, so we can explain the theory in graphically.
 
-We acknowledge that some of the pictures we are using are copy-pasted from the \cite{wolf}.
+\section{User-friendly guide to Pair interactions}
 
-\section{User-friendly guide to 2D PI}
-
-\subsection{Pair-interaction}
+\subsection{Pair-interactions automaton in two dimensions}
 
 Geometry of the lattice is same as for HPP model. It consists of nodes arranged in rectangular grid:
 

@@ -222,14 +222,100 @@ Optimally, we would like to change as many bits as possible (that minimizes mean
 Although no further reduction then of 37 normalized momenta is possible,
 some of these momenta share same optimal isometries, that lead to minimal viscosity and preserve momentum.
 
-Based on that,  momenta can be divided into 12 classes, see Table.
-First column specifies momentum, second column specifies isometries that we can apply to this momentum.
+Based on that,  momenta can be divided into 12 classes, see table below.
+First column specifies momentum, second column specifies isometries that we can apply to this momentum. Using this table, it is possible to resolve collisions in FCHC.
 
-Now it is possible, although not easy, to resolve collisions in FCHC.
+%\begin{tabular}{ |p{1cm}||p{1cm}||p{0.5cm}|p{7cm}|  }
+% \hline
+% Class& $w_{min}$&\multicolumn{2}{|c|}{Optimal isometries} \\
+% \hline
+% \hline
+% $1$	&	$1/2$	&	$1$	&	$P_{12}$\\
+% $2$	&	$1/4$	&	$2$	&	$P_{23}P_{12},\,P_{23}P_{13}$\\
+% $3$	&	$1/4$	&	$2$	&	$S_4\Sigma_1,\,S_4\Sigma_2$\\
+% $4$	&	$1/2$	&	$1$	&	$S_4$\\
+% $5$	&	$1/3$	&	$1$	&	$S_4P_{12}$\\
+% $6$	&	$1/4$	&	$4$	&	$S_4\Sigma_1,\,S_4\Sigma_2,\,S_4P_{23}\Sigma_1,S_4P_{23}\Sigma_2$\\
+% $7$	&	$1/3$	&	$1$	&	$S_4P_{23}$\\
+% $8$	&	$1/4$	&	$4$	&	$P_{23}P_{12},\,P_{23}P_{13},\,S_4P_{23}P_{12},\,S_4P_{23}P_{12}$\\
+% $9$	&	$1/3$	&	$3$	&	$S_4S_3,\,S_3P_{34},\,S_4P_{34}$\\
+% $10$	&	$1/6$	&	$6$	&	$S_3P_{34}P_{12},\,S_4P_{34}P_{12},\,S_4S_3\Sigma_1,$\\
+%		&			&			&	$S_4S_3P_{34}P_{12}\Sigma_1,\,S_4S_3\Sigma_2,\,P_{34}P_{12}\Sigma_2$\\
+% $11$	&	$1/6$	&	$6$	&	$S_4S_2P_{23},\,S_4S_3P_{23},\,S_3S_2P_{24},$\\
+% 		&			&			&	$S_4S_3P_{24},\,S_3S_2P_{34},\,S_4S_2P_{34}$\\
+% $12$	&	$0$	&	$12$	&	$S_3S_1P_{34}P_{12},\,S_4S_1P_{34}P_{12},\,S_3S_2P_{34}P_{12},$\\
+% 		&			&			&	$S_4S_2P_{34}P_{12},\,S_2S_1P_{24}P_{13},\,S_4S_1P_{13}P_{13},$\\
+% 		&			&			&	$S_3S_2P_{24}P_{13},\,S_4S_3P_{24}P_{13},\,S_2S_1P_{23}P_{14},$\\
+% 		&			&			&	$S_3S_1P_{23}P_{14},\,S_4S_2P_{23}P_{14},\,S_4S_3P_{23}P_{14}$\\ 
+%\hline 
+%\end{tabular}
 
-\begin{figure}
- \centering
- \includegraphics[width=1\textwidth]{./img/Optimal}
- \label{optimalies}
- \caption{Optimal isometries for 12 momenta classes}
-\end{figure}
+%\begin{tabular}{ |p{1cm}||p{1cm}||p{0.5cm}|p{9cm}|  }
+% \hline
+% Class& $w_{min}$&\multicolumn{2}{|c|}{Optimal isometries} \\
+% \hline
+% \hline
+% $1$	&	$1/2$	&	$1$	&	$P_{12}$\\
+% $2$	&	$1/4$	&	$2$	&	$P_{23}P_{12},\,P_{23}P_{13}$\\
+% $3$	&	$1/4$	&	$2$	&	$S_4\Sigma_1,\,S_4\Sigma_2$\\
+% $4$	&	$1/2$	&	$1$	&	$S_4$\\
+% $5$	&	$1/3$	&	$1$	&	$S_4P_{12}$\\
+% $6$	&	$1/4$	&	$4$	&	$S_4\Sigma_1,\,S_4\Sigma_2,\,S_4P_{23}\Sigma_1,S_4P_{23}\Sigma_2$\\
+% $7$	&	$1/3$	&	$1$	&	$S_4P_{23}$\\
+% $8$	&	$1/4$	&	$4$	&	$P_{23}P_{12},\,P_{23}P_{13},\,S_4P_{23}P_{12},\,S_4P_{23}P_{12}$\\
+% $9$	&	$1/3$	&	$3$	&	$S_4S_3,\,S_3P_{34},\,S_4P_{34}$\\
+% $10$	&	$1/6$	&	$6$	&	$S_3P_{34}P_{12},\,S_4P_{34}P_{12},\,S_4S_3\Sigma_1,\,S_4S_3P_{34}P_{12}\Sigma_1,$\\
+%		&			&			&	$S_4S_3\Sigma_2,\,P_{34}P_{12}\Sigma_2$\\
+% $11$	&	$1/6$	&	$6$	&	$S_4S_2P_{23},\,S_4S_3P_{23},\,S_3S_2P_{24},\,S_4S_3P_{24},$\\
+% 		&			&			&	$S_3S_2P_{34},\,S_4S_2P_{34}$\\
+% $12$	&	$0$	&	$12$	&	$S_3S_1P_{34}P_{12},\,S_4S_1P_{34}P_{12},\,S_3S_2P_{34}P_{12},\,S_4S_2P_{34}P_{12},$\\
+% 		&			&			&	$S_2S_1P_{24}P_{13},\,S_4S_1P_{13}P_{13},\,S_3S_2P_{24}P_{13},\,S_4S_3P_{24}P_{13},$\\
+% 		&			&			&	$S_2S_1P_{23}P_{14},\,S_3S_1P_{23}P_{14},\,S_4S_2P_{23}P_{14},\,S_4S_3P_{23}P_{14}$\\ 
+%\hline 
+%\end{tabular}
+
+\begin{tabular}{ |p{4cm}||p{8.8cm}|  }
+ \hline
+ Normalized momenta	&	Optimal isometries \\
+ \hline
+ \hline
+ $q_1=q_2>q_3>q_4>0$	&	$P_{12}$\\
+ \hline
+ $q_1=q_2=q_3>q_4>0$	&	$P_{23}P_{12},\,P_{23}P_{13}$\\
+ \hline
+ $q_1>q_2>q_3>q_4=0,$	&	$S_4\Sigma_1,\,S_4\Sigma_2$\\
+ $q_1=q_2+q_3$				&	\\
+ \hline
+ $q_1>q_2>q_3>q_4=0,$	&	$S_4$\\
+ $q_1 \neq q_2+q_3$		&	\\
+ \hline
+ $q_1=q_2>q_3>q_4=0$	&	$S_4P_{12}$\\
+ \hline
+ $q_1>q_2=q_3>q_4=0$	&	$S_4\Sigma_1,\,S_4\Sigma_2,\,S_4P_{23}\Sigma_1,S_4P_{23}\Sigma_2$\\
+ \hline
+ $q_1>q_2=q_3>q_4=0,$	&	$S_4P_{23}$\\
+ $q_q=2q_2$					&	\\
+ \hline
+ $q_1>q_2=q_3>q_4=0,$	&	$P_{23}P_{12},\,P_{23}P_{13},\,S_4P_{23}P_{12},\,S_4P_{23}P_{12}$\\
+ $q_1 \neq 2q_2$				&	\\
+ \hline
+ $q_1=q_2=q_3>q_4=0$	&	$S_4S_3,\,S_3P_{34},\,S_4P_{34}$\\
+ \hline
+ $q_1>q_2=q_3=q_4=0$	&	$S_3P_{34}P_{12},\,S_4P_{34}P_{12},\,S_4S_3\Sigma_1,\,S_4S_3P_{34}P_{12}\Sigma_1,$\\
+									&	$S_4S_3\Sigma_2,\,P_{34}P_{12}\Sigma_2$\\
+ \hline
+ $q_1>q_2=q_3=q_4=0$	&	$S_4S_2P_{23},\,S_4S_3P_{23},\,S_3S_2P_{24},\,S_4S_3P_{24},$\\
+									&	$S_3S_2P_{34},\,S_4S_2P_{34}$\\
+\hline
+ $q_1=q_2=q_3=q_4=0$	&	$S_3S_1P_{34}P_{12},\,S_4S_1P_{34}P_{12},\,S_3S_2P_{34}P_{12},\,S_4S_2P_{34}P_{12},$\\
+									&	$S_2S_1P_{24}P_{13},\,S_4S_1P_{13}P_{13},\,S_3S_2P_{24}P_{13},\,S_4S_3P_{24}P_{13},$\\
+									&	$S_2S_1P_{23}P_{14},\,S_3S_1P_{23}P_{14},\,S_4S_2P_{23}P_{14},\,S_4S_3P_{23}P_{14}$\\ 
+\hline 
+\end{tabular}
+
+%\begin{figure}
+% \centering
+% \includegraphics[width=1\textwidth]{./img/Optimal}
+%% \label{optimalies}
+% \caption{Optimal isometries for 12 momenta classes}
+%\end{figure}
