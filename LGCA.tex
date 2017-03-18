@@ -1,21 +1,15 @@
 \chapter{Lattice gass cellular automata}
+The first lattice gass cellular automaton was proposed in 1973 by Hardy, Pomeau and de Pazis, hence it is generally known as HPP model.
 
-History of Lattice Gass Cellular Automata began in 1973, when HPP model was proposed by Humphry, Pica and Picus.
-
-Unfortunately, it could not do its job properly. For the reasons that we will explore in this chapter, its macroscopic limit did not converge to Navier-Stokes equations.
+Unfortunately, it could not do its job sufficiently well. For the reasons that we will explore in this chapter, its macroscopic limit does not converge to Navier-Stokes equations.
 
 \bigskip
 
-As we will see later, there came two different approaches how to make functioning LGCA and their common role model is this imperfect HPP.
+In the subsequent chapters we will explore two different approaches how to make functional LGCA. They both build on the idea this imperfect HPP.
 
-Hence we will explain basic principles of LGCA on this model, and in subsequent chapters, we will "simply" upgrade it - either to FHP, Pair-interaction or their multi-dimensional variants.
+Therefore, it is worthwhile to explain the basic principles of HPP first, and later on, we will upgrade it - either to FHP, Pair-interaction or their multi-dimensional variants.
 
 \section{From CA to LGCA}
-
-LGCA share many similarities with calular automata that we already saw,
-but we need to be aware of the differences.
-
-In general, LGCA is composed of regular clusters of cells - so called nodes. They are arranged in N-dimensional regular lattice.
 
 Lattice of HPP is the simple rectangular 2D grid. At every point of a grid, there is node sitting in, and this node is composed of 4 cells, see Figure~\ref{rectangular}.
 
@@ -26,14 +20,16 @@ Lattice of HPP is the simple rectangular 2D grid. At every point of a grid, ther
  \caption{Rectangular grid}
 \end{figure}
 
-Each cell of the node can be in two states - empty (white square on the figure~\ref{rectangular}), or occupied by particle (yellow square on figure~\ref{rectangular}).
-We see that particle in the upper-left square head to the upper-left node.
-
+Each cell of the node can be in two states -- empty (white square) or occupied by the particle (yellow square on the figure \ref{rectangular}).
+The particles are heading to the diagonal nodes.
 
 \section{Update rule}
-For any LGCA model, update is done in two subsequent steps, collision and propagation.
+The update rule should be design in such a manner, that is conserve physically relevant quantities, namely mass and momentum.
 
-In HPP, there are only two collision configuration, and one collision rule that guide them, see Figure~\ref{hpp-colision}.
+So far we have the grid full of particles.
+For any LGCA model, update is done in two subsequent steps -- collision and propagation.
+
+In the collision step, In HPP, there are only two collision configurations, and one collision rule that guides them, see Figure~\ref{hpp-colision}.
 
 \begin{figure}
  \centering
@@ -60,9 +56,9 @@ During propagation, particle from the upper-left cell moves to the upper-left no
 
 \bigskip
 
-\textbf{Conservation laws:}
+\section{Conservation laws}
 
-We already made a note, that collision and propagation conserve momentum, and they obviously conserve mass, since particles are neither created, nor anihilated in these processes. 
+We already noted that collision and propagation conserve momentum, and they obviously conserve mass, since particles are neither created, nor anihilated in these processes. 
 Let us inspect these conservation laws in the more depth by considering symmetries of this model.
 
 Suppose we are using periodic boundary condition. Then, the finite rectangular grid of HPP is actually a torus. It is easy to imagine that if we shift the grid by the discrete step (of length 1), we get the very same torus.
@@ -82,7 +78,7 @@ One particle heads to north-east, the other south-west.
 After the collision, one particle heads to north-west, other particle to south-east.
 So the number of particles heading to the south, east, north and west do not change by collision (and neither by propagation). It is invariant as the time goes by.
 
-To assert it more scientifistically, let us rozlozit the total momentum into the directions of lattice velocities
+To assert it more formally, let us decompose the total momentum into the cardinal directions:
 \begin{align} 
 P = P_N + P_S + P_E + P_W.
 \end{align}
@@ -104,4 +100,4 @@ To conclude this chapter and finish-off the HPP, it is physically implausible be
 \item other non-physical quantities, so called \textit{spurious invariants} are conserved.
 \end{enumerate}
 
-Although it is flawed model, it sparked interest of many bright minds and various successful LGCAs evolved from HPP. In the next chapter, we will introduce first successful branch of physically relevant LGCAs, the FHP model.
+Although it is flawed model, it sparked interest of the wider community and various successful LGCAs evolved from HPP. In the next chapter, we will introduce the first physically relevant branch of LGCAs -- the FHP model.
