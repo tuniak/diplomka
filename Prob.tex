@@ -1,43 +1,49 @@
 \chapter{Probabilistic tools in turbulence}
+In this chapter, we will remind basic concepts of probability and statistics, and introduce more advanced tools, that are frequently used in probabilistic description of turbulence. 
 
 
-So far, the most successful approach in turbulence research is by the means of statistical analysis.
-
-And life-long research of Frisch et. al., who conceived LGCA.
-
-As we saw the previous chapters, it wanted statistical physics to explain how LGCA works.
-
-LGCA and Turbulence are such a nice couple.
-
-Our thesis thrives to be a little .
-So far, the most successful approach in turbulence research is statistical analysis.
-
-\bigskip
-
-In this chapter, we introduce some basic and more advanced concepts of probability that will be handy in our research. 
-
-Following text requires prior knowledge of some probability and statistics. Basic concepts will be slightly reminded and will explain more interesting and advanced stuff in detail.
+%So far, the most successful approach in turbulence research is by the means of statistical analysis.
+%
+%And life-long research of Frisch et. al., who conceived LGCA.
+%
+%As we saw the previous chapters, it wanted statistical physics to explain how LGCA works.
+%
+%LGCA and Turbulence are such a nice couple.
+%
+%Our thesis thrives to be a little .
+%So far, the most successful approach in turbulence research is statistical analysis.
+%
+%\bigskip
+%
+%In this chapter, we introduce some basic and more advanced concepts of probability that will be handy in our research. 
+%
+%Following text requires prior knowledge of some probability and statistics. Basic concepts will be slightly reminded and will explain more interesting and advanced stuff in detail.
 \section{Random variable}
 
-Random variable is a map from the space of the initial conditions to real numbers:
+Let us define random variable as a map
 \begin{align}
 v: \Omega \rightarrow \mathbb{R}
 \end{align}
-A good example would be the x-component of a velocity at the time $t$ and the position $\bm{r}$ in the turbulent flow.
+from the probability space to the real numbers.
+
+A good example of random variable is the x-component of a velocity at the specific point, in the specific time. This is example of continuous random variable. In the whole section, we will consider only continuous variables and functions, as all the physical quantities of our interest are continuous.
 
 \bigskip
+To define the central concept of \textit{probability density function}.
 
-It is useful to define cumulative probability function
+It is useful to define a cumulative probability function
 \begin{align}
 F(x) = \mathrm{Prob}\left\{v(\omega) < x\right\}
 \end{align}
 which describes the probability that random variable $v$ takes a value smaller than $x$. Since probability is non-negative measure, $F(x)$ is non-decreasing function. 
 
+The famous \textit{probability density
 Hence, its derivative is a non-negative function,
 \begin{align}
 p(x) = \frac{\dd F(x)}{\dd x} \geq 0.
 \end{align}
 
+The famous 
 And it happens to be the famous $probability~density~function$
 
 Loosely speaking, $p(x)dx$ is the probability that random variable takes value between $x$ and $x+dx$.
@@ -55,15 +61,21 @@ variance of $v$
 \begin{align}
 \sigma^2 = \langle v^2 \rangle = \int_{\mathbb{R}} x^2 \, p(x) \, dx ,
 \end{align}
-or any other moment of $v$
+or any other statistical moment of $v$
 \begin{align}
 \langle v^m \rangle = \int_{\mathbb{R}} x^m \, p(x) \, dx.
 \end{align}
 
-In the following text, we consider $v$ to be centered. It means
+The centered
+In the following text, we suppose that
 \begin{align*}
-\langle v \rangle = 0.
+\langle v \rangle = 0,
 \end{align*}
+so the statistical moments are actually central statistical moments
+\begin{align*}
+\langle v^m_{central} \rangle = \langle v^m - \langle v \rangle \rangle = \langle v^m \rangle
+\end{align*}
+
 For non-centered variables $w$, all statements will be valid for $w' = w - \langle w \rangle$.
 
 \section{Characteristic function}
@@ -151,9 +163,7 @@ For example, for correlation function we have
 \end{align}
 
 Hence, variance $\langle v(t)^2 \rangle = \Gamma(0)$ does not depend on time at all.
-
 But be careful, difference of stationary function is not necessarily stationary. 
-
 For example, if $v(t)$ is stationary, then $v(2t)$ is also stationary, because its variance
 \begin{align}
 \langle v(2t)^2 \rangle = \Gamma(2t - 2t) = \Gamma(0)
