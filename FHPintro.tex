@@ -5,26 +5,25 @@ They proposed it in 1986 together with its three dimensional variant - the FCHC.
 In following section, we will graphically explain the basic principles of FHP, the other sections will be more general and the obtained results will be valid for arbitrary dimensional FHP-like automaton (most importantly FCHC).
 
 \section{The lattice of FHP}
-All the improvements of FHP are result of one simple change - instead of square grid, FHP builds on hexagonal grid. 
+All the improvements of FHP are result of one simple change - instead of square grid, FHP builds on hexagonal grid. All other properties are implied by its hexagonal layout.
+%
+%The two dimensional plane can be uniformly covered by squares, but also by hexagon, that . This is the main improvement of FHP, all other properties are implied by the properties of the hexagonal grid.
 
-The two dimensional plane can be uniformly covered by squares, but also by hexagon, that . This is the main improvement of FHP, all other properties are implied by the properties of the hexagonal grid.
-
-On the Figure \ref{FHPgrid}, we see part of this hexagonal lattice. The dots represent the nodes.
 On the figure \ref{FHPgrid}, we have a part of hexagonal grid, and from one of the node, six lattice vectors points to the neighboring nodes.
 \begin{figure}[htbp] \label{FHPgrid}
  \centering
  \includegraphics[width=0.6\textwidth]{./img/fhp_desc}
 \end{figure}
 
-Therefore, every node consists of the six cells corresponding to these six lattice vectors. Each of these cells can be occupied by a particle, and we identify velocities of the particles with the lattice vectors.
+Therefore, every node consists of the six cells corresponding to these lattice vectors. Each of these cells can be occupied by one particle, with the velocity corresponding to the lattice vector. We can actually identify lattice velocities of the particles with lattice vectors, as we are free to set their norm to be the same.
 
 \section{Update rule}
-In all the LGCAs that we will present, update of the lattice consists of two subsequent steps - collision and propagation.
+In all LGCAs, the update of the lattice is happening in discrete time steps and consists of two subsequent steps - collision and propagation. Both of these steps are local, so they can be treated node by node.
 
 The role of the collision is to change the state of the node as much as possible, so that viscosity is minimized.
 The only constraint on the collision rule is to preserve the number of particles (conservation of mass) and to preserve the total momentum in the node (conservation of momentum).
 
-These requirements lead only to a handful of collision configurations, see figure \ref{FHPcol}. For the simplicity, we are considering the FHP-I model, that does not included the "rest particles", otherwise we would have to include few more collisions.
+These requirements lead only to a handful of collision configurations, see figure \ref{FHPcol}. For the simplicity, we are considering the FHP-I model, that does not included the "rest particles", otherwise we would have to add few more collisions.
 
 \begin{figure}[H]
  \centering
@@ -36,7 +35,7 @@ These requirements lead only to a handful of collision configurations, see figur
 We see that two and four particle configurations can be resolved in two different configurations. The resulting state need to be chosen randomly, with probability $1/2$ for each state (if there was a preferred configuration, the model would posses a non-physical invariant -- chirality).
 
 When the collision is resolved in every node, propagation follows.
-This phase is straigt-forward -- if the cell is occupied by a particle, it propagates along the corresponding lattice vector to the neighboring node, see figure \ref{FHPprop}.
+This phase is straigt-forward -- if the cell is occupied by a particle, it propagates along the corresponding lattice vector to the neighboring node, see the figure \ref{FHPprop}.
 
 
 \begin{figure}[H]
@@ -46,50 +45,28 @@ This phase is straigt-forward -- if the cell is occupied by a particle, it propa
  \label{FHPprop}
 \end{figure}
 
-Comparing it to HPP, we have a mesh with better rotational symmetry and nodes with richer  set of collisions.
+Comparing it to HPP, we have a lattice with better rotational symmetry and nodes with richer  set of collisions.
 
-Now that we presented the setting of FHP in two dimensions, let us explore the microdynamics of FHP in more formal way. This formal treatment enables us to derive the hydrodynamic equations for FHP-like automata in arbitrary dimension (although finding an appropriate multidimensional lattice is non-trivial and possible only in 4 dimensions, as we will see).
+Now that we presented the setting of FHP in two dimensions rather intuitively, let us explore the microdynamics of FHP in a more formal way. The formal treatment provides that the hydrodynamic equations that we derive are valid for FHP in arbitrary dimension (although finding an appropriate multidimensional lattice is non-trivial and possible only in 4 dimensions, as we will see).
 
+\section{Convention that we will use}
+State of the node will be denoted by $\bm{n} = (n_1,n_2,n_3,n_4,n_5,n_6)$, where $n_i = 0$ means that $i^{th}$ cell in the node is empty, and $n_i = 1$ means that there is a particle in the $i^{th}$ cell.
 
-Although we will form 
-In the previous chapters, we seen how FHP and HPP works in intuitive way. 
-In this chapter, we will treat this automata more analytically, hence we need to get more formal.
+State of the \textit{specific node} (with the position \textbf{r} on the lattice) will be denoted by $\bf{n(r)}$, whereas the state of the \textit{whole lattice} will be denoted by \textbf{n(.)}.
 
-We will try to make this chapter more general, so that the obtained statistical limit is applicable for all cellular automata from the same class as FHP - specifically its predecessor HPP and its 3D upgrade FCHC.
-
-\bigskip
-
-But since we already have concrete idea of how FHP works, it will be the good point to start.
-
-\section{FHP analytically}
-
-Now that we have good intuition about FHP model, we need to get more formal to treat LGCA analytically.
-
-State of the node will be denoted by $n = (n_1,n_2,n_3,n_4,n_5,n_6)$, where $n_i = 0$ means that $i^{th}$ cell in the node is empty, and $n_i = 1$ means that there is particle in the $i^{th}$ cell.
-
-State of the \textbf{specific node} (at the position \textbf{r} on the lattice) will be denoted by $\bf{n(r)}$, whereas state of \textbf{all the nodes} in the lattice will be denoted by \textbf{n(.)}.
-
-We already know that update of the whole lattice is local, hence we can treat it node by node.
-
-We also know that update happens in discrete time steps, and it can be divided into two sub-steps - collision, and propagation.
+As we know, the update happens in discrete time steps that we will denote by $t=1,2,3...$ and so forth.
 
 \section{Propagation}
-Propagation is straight-forward for all types of LGCA and can be captured by very simple equation
-\begin{equation}
+Propagation is the straight-forward step and can be captured by the simple equation
+\begin{align*}
 S n_i(\bf{r}) = n_i(\bf{r + c_i}). 
-\end{equation}
-This equation means that state of the $i^{th}$ cell in node \textbf{n(r)} propagates along the lattice vector $c_i$ to the neighboring node $\bf{n(r + c_i)}$, see figure below.\\
-\\
-To put it in the nutshell, propagation is completely determined by the geometry of the lattice. Once we know what the lattice vectors $c_i$ are, we know all about propagation (equation blabla).\\
-\\
-Where the dark magic of LGCAs hides is the collision step.\\
+\end{align*}
+This equation means that state of the $i^{th}$ cell in node \textbf{n(r)} \textit{propagates} along the lattice vector $c_i$ to the neighboring node $\bf{n(r + c_i)}$, the figure \ref{FHPprop}.
 
 \section{Collision}
-The purpose of collision is to change the configuration of the node as much as possible (it means to change as many bits of the node as possible), while we preserve mass and momentum.\\
-(if we change direction of the particle). 
+As we already sketched, the purpose of the collision is to swap as many particles in the node, as conservation of mass and momentum allows.
 
-For HPP, we have only $2^4 = 16$ possible states in node, and only two collision configurations among them. Since these configurations are symmetric, we have only one collision rule.\\
-For FHP, we have $2^6 = 64$ configurations, and whole bunch of collision configurations among them, but we can still draw the simple picture of these configurations:\\
+For FHP in two dimensions, we have $2^6 = 64$ configurations, and whole bunch of collision configurations among them, but we can still draw the simple picture of these configurations:\\
 \\
 As we see, head-on 2-particle collisions can result in two different states. If we wanted to preserve determinism, and we were systematically choosing only one of them, we would introduce additional, non-physical invariance - the model would become chiral. If we want to preserve the parity symmetry of the model, we need to assign equal probability to either of two final states.Hence, we are introducing non-determinism to the model.
 
@@ -153,3 +130,4 @@ Conservation laws can be equivalently expressed in the form
 \sum_i c_i n_i(t+1, r + c_i) &= \sum_i c_i n_i(t,r).
 \end{split}
 \end{align}
+
