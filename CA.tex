@@ -1,3 +1,4 @@
+
 \chapter{Cellular automata}
 
 %Nejaka citacia od Feynmana o CA, neznali CA budu prekvapeni: \cite{Andel07}
@@ -17,13 +18,13 @@ John Conway, by significant simplification of von Neumann ideas, introduced the 
 
 Depending on the initial conditions, evolution of this automaton can be chaotic, periodic or it can lead to the stable configurations.
 
-The reason for this complexity hides in the fundamental property of Game of Life - it is the Turing-complete, so in principle any computer program can be simulated in the Game of Life.
+The reason for this complexity hides in the fundamental property of Game of Life - because it is the Turing-complete, in principle any computer program can be simulated in the Game of Life, and thus any behavior can be observed.
 
-For the purposes of this thesis, we have written a simple desktop application implementing this game, since we can easily express the basic principles of cellular automata on it. ( as it easily expresses basic principles of cellular automata.)
+For the purposes of this thesis, we have written a simple desktop application implementing this game, since we can easily explain the basic principles of cellular automata on it.
 
 Let us have a rectangular grid, with black and white squares. 
 White squares represent dead cells, black cells represent living cells.
-On Fig.\ref{gol1} we see such grid, that we chose for initial state of 'Life'.
+On the figure \ref{gol1} we see such grid, that we chose for the initial state of 'Life'.
 
 
 \begin{figure}[htbp]
@@ -60,11 +61,12 @@ What is the rule that kills the cell or leave it be?
 \item If the cell is dead, and \textbf{exactly} 3 neighboring cells are alive, the cell will get alive in the next step. Otherwise, it stays dead.
 
 \end{enumerate}
-We see that the rule involves only the state of the certain cell and the states of its eight neighboring cells.
+We see that the rule involves only the state of \textbf{the cell} and the states of \textbf{its eight neighboring cells}.
 
+\bigskip
 
-Let us proceed from this simple example to more general setting.
-In the next chapter, we will generalize main features of 'Life' and formally define the cellular automaton.
+Let us proceed from this simple example to a more general setting.
+In the next section, we will generalize main features of 'Life' and formally define the cellular automaton.
 %In the next chapter, we will generalize main feature of 'Life'
 %Let us generalize this example into formal definition of cellular automaton.
 
@@ -73,32 +75,34 @@ In the next chapter, we will generalize main features of 'Life' and formally def
 \begin{enumerate}
 \item \textbf{Position of cells:}
 
-Instead of 2D rectangular grid of 'Life',
-cells might be arranged in arbitrary N dimensional
-regular grid, not necessary rectangular. 
+Instead of two dimensional, rectangular grid of 'Life',
+cells might be arranged on the regular grid of arbitrary dimensional. 
 (Regularity follows from definition of Kubrid. In general, cells might be positioned really wildly,
-e.g. on Penrose lattice, or arbritrary as proposed by Richard P. Feynman).
+e.g. on Penrose lattice, or arbritrary as proposed by Feynman).
 
 \item \textbf{Set of cell states Q:}
 
-In 'Life' cells can be dead or alive (set of states has cardinality 2). 
-In general CA, set of states can be any finite set Q of cardinality K.
-%cell can be in one of K states from the finiteset of states. 
-%We will mark set of states Q, and use this in definition of upgrade rule later.
+In 'Life' cells can be dead or alive, but generally, set of states $Q$ for the cell can have an arbitrary finite size.
 \bigskip
 
 \item \textbf{Neighborhood:}
 
 In 'Life', state of the cell in the next step was determined
-by 8 neighbouring cells. We call these cells neighborhood of range r = 1 (in the distance of 1 cell).
-For general CA, we might consider neighborhood
-with arbitrary range.
-(Neighborhood with r = 2 in 'Life' would involve 9+16=25 cells).
+by the nearest neighboring cells. We call these cells neighborhood of range r = 1 (in the distance of 1 cell).
+However, the rule might involve neighborhood with the arbitrary range, see figure \ref{neighbor}
+
+\begin{figure}
+ \centering
+ \includegraphics[width=1\textwidth]{./img/neighb}
+ \label{neighb}
+ \caption{Moore's and von Neumann's neighborhood}
+\end{figure}
+
 
 \item \textbf{Update rule:}
 
-Update rule is an arbitrary bounded mapping U from Neighborhood to the set of states Q.
-Since the state of the Cell is determined only by the state of its Neighborhood, update rules in CA are local.
+Update rule is an arbitrary bounded mapping $U$ from $neighborhood$ to the set of states $Q$.
+Since the state of the cell is determined only by the state of its neighborhood, update rules in cellular automata are local.
 
 \end{enumerate}
 
@@ -106,11 +110,12 @@ Since the state of the Cell is determined only by the state of its Neighborhood,
 \section{The most basic cellular automaton} 
 
 In middle 1980s on the prestigious Princeton institute,
-Stephen Wolfram and his assistants were performing unusual computer experiments. They were simulating the evolution of the $1D$ cellular automata and they were analyzing the patterns they obtained \cite{levy} (to a despair of their senior colleagues, who did not understand this "new kind of science")\cite{wolfram}.
+Stephen Wolfram and his assistants were performing unusual computer experiments. They were simulating the evolution of the one dimensional cellular automata and they were analyzing the obtained patterns \cite{levy} (to a despair of their senior colleagues, who did not understand this "new kind of science")\cite{wolfram}.
 
 The most basic, one dimension cellular automaton we can imagine, is the two state automaton with range $r=1$.
 
-One dimensional indicates that the cells are arranged in the row, see Figure \ref{1d}
+One dimensional indicates that the cells are arranged in the row (figure \ref{1d}), range $r=1$ indicates that the update rule involves only three cells.
+An example of an update rule is shown the table~\ref{rule90}.
 
 \begin{figure}[htbp]
  \centering 
@@ -119,9 +124,8 @@ One dimensional indicates that the cells are arranged in the row, see Figure \re
  \caption{A time-step of one dimensional cellular automaton}
 \end{figure}
 
-Range r=1 means that in update rule, we consider only the closest neighbors of the cell (one cell to the left, and one cell to the right).
 
-Example of an update rule is shown the Table~\ref{rule90}.\\
+
 
 \begin{table}[htbp]
  \centering
@@ -130,16 +134,40 @@ Example of an update rule is shown the Table~\ref{rule90}.\\
  \label{rule90}
 \end{table}
 
-%How many different update rules ("how many different Tables~\ref{rule90}")
-%exist for this type of CA?
 
-The three columns represent the state of a cell ($a_t^i$) and its left and right neighbor ($a_t^{i-1}$ and $a_t^{i+1}$ respectively). A living cell is denoted by 1, a dead cell is denoted by 0. The last column denotes the state of the middle cell ($a_i$) in the next step $t+1$. The sequence of $one$s and $zero$s in the last column is the binary $zapis$ of a number. In this particular case, the number is 90, hence the table specifies the Rule 90.
+The three columns represent the state of a cell $a_t^i$ and its left and right neighbor, $a_t^{i-1}$ and $a_t^{i+1}$ respectively. A living cell is denoted by 1, a dead cell is denoted by 0. The last column denotes the state of the middle cell $a_i$ in the next step $t+1$. The sequence of $one$s and $zero$s in the last column is the binary representation of a rule. In this particular case, of the Rule 90.
 Since there is $2^8=256$ combinations for the last columns, there is $256$ rules for this most basic cellular automaton.
-%For an automaton with $n$ states and range $r$, the rule involves $2r + 1$ cells, 
 
-Let us take a look at some pictures of these cellular automata (the implementation of this automaton is simple, and these pictures were plotted by our program).
+According to Wofram \cite{wolf}, these automata can be classified by their correspondence to the dynamical systems into three classes \cite{wolf}
+\begin{enumerate}
+\item \textbf{Limit point:}
 
-These pictures represent the evolution of cellular automata with rules 90, 30, 45 and 73.
+The final configuration is homogeneous. 
+
+Rules number $0,4,16,32,36,48,54,60,62$.
+
+\item \textbf{Limit cycles:}
+
+Simpe time-periodic patterns. 
+
+Rules number $8,24,40,56,58$.
+
+\item \textbf{Strange attractors:}
+
+Chaotic patterns, see the figure \ref{rule30}. 
+
+Rules number $2,6,10,12,14,18,22,26,28,30,34,38,42,44,46,50$.
+
+%
+%\item \textbf{No analogy to dynamical systems:}
+%
+%Rules number $20,52$.
+%
+\end{enumerate}
+
+
+The figures were plotted by our own implementation of this automaton.
+They represent the evolution of cellular automata with various rules.
 The downer-most row is the initial configuration of CA, 
 the 2nd row is configuration after 1st update etc.
 
@@ -147,6 +175,7 @@ the 2nd row is configuration after 1st update etc.
  \centering
  \includegraphics[trim = 40mm 0mm 0mm 0mm, width=1.7\textwidth]{./img/30_500}
  \caption{Rule 30}
+ \label{rule30}
 \end{figure}
 
 \begin{figure}[!b]
@@ -173,7 +202,7 @@ the 2nd row is configuration after 1st update etc.
 \begin{figure}
  \centering
  \includegraphics[trim = 40mm 0mm 0mm 0mm, width=1.7\textwidth]{./img/149_500}
- \caption{Sierpinski carpet - rule 149}
+ \caption{Rule 149}
  \label{koberec}
 \end{figure}
 
@@ -190,12 +219,16 @@ the 2nd row is configuration after 1st update etc.
 \end{figure}
 
 
+The rule 110 is special among these. Wolfram and blabla prove that this rule is equivalent to the Turing machine, that simplifies certain proves in theoretical informatics.
 
-First picture~\ref{koberec} is famous fractal known as Sierpinski carpet. Wolfram classified these 1D automata into four classes, based on the regularity of the pattern obtained.
+Because of turing-completness, this rule could be classified in all of the mentioned classes, depending on the initial conditions.
 
-Wolfram argues that variety of behavior seen even in these most simple CA rises suspitions, and encourage hope, that in the infinitely large world of possible CAs, there is CA that model any complex phenomena you can imagine.
+%First picture~\ref{koberec} is famous fractal known as Sierpinski carpet. Wolfram classified these 1D automata into four classes, based on the regularity of the pattern obtained.
 
-In his visionary book New kind of Science, Wolfram even proposes Cellular automaton that would constitute a unified theory of the fundamental physics.
+%Wolfram argues that variety of behavior seen even in these most simple CA rises suspitions, and encourage hope, that in the infinitely large world of possible CAs, there is CA that model any complex phenomena you can imagine.
+
+
+In his visionary book New kind of Science \cite{wolf}, Wolfram suggest possibility, that in the infinitely large world of cellular automata, there is an automaton that constitute a unified theory of the fundamental physics.
 Although his ideas met with rejection among theorists (see \cite{aaronson}),
 many other notable physicists are attempting to construct such cellular automaton \cite{hooft}).
 
@@ -203,7 +236,6 @@ Some of the basic construction principles for such automata are relevant also fo
 Focus of our work is much more modest that CAs describing universe.
 Our focus is on CAs that model flows of the fluids.
 
-The connection of the cellular automata with flow of fluids is not obvious or formal.
-It is found on the very general level.
-What connects Navier-Stokes equations and CAs are their common symettries and conservation laws implied by these symetries.
-In these symmetries lies not only beauty of this method, but their strongest advantage over other well-established CFD methods.
+The connection of the cellular automata with the fluid mechanics is not obvious or formal, it is grounded in the conservation laws implied by the common symmetries found in cellular automata and Navier-Stokes equations alike.
+
+In these symmetries lies not only beauty of this method, but their principal advantage over the better-established CFD methods.

@@ -1,7 +1,7 @@
 \chapter{Lattice gass cellular automata}
-The first lattice gass cellular automaton was proposed in 1973 by Hardy, Pomeau and de Pazis, hence it is called the HPP model.
+The first lattice gass cellular automaton was proposed in 1973 by Hardy, Pomeau and de Pazis, who named it -- the HPP model.
 
-Unfortunately, it could not do its job sufficiently well. For the reasons that we will explore in this chapter, its macroscopic limit does not converge to Navier-Stokes equations.
+Unfortunately, it could not do its job sufficiently well. For the reasons that we will sketch in this chapter, its macroscopic limit does not converge to Navier-Stokes equations close enough.
 
 \bigskip
 
@@ -11,29 +11,31 @@ Therefore, it is worthwhile to explain the basic principles of HPP first, and la
 
 \section{From CA to LGCA}
 
-Lattice of HPP is the simple rectangular 2D grid. At every point of a grid, there is node sitting in, and this node is composed of 4 cells, see Figure~\ref{rectangular}.
+Lattice of HPP is the simple rectangular 2D grid. At every point of a grid, there is a node sitting in, and this node is composed of 4 cells, see Figure~\ref{rectangular}.
 
 \begin{figure}[htbp]
  \centering
- \includegraphics[width=0.6\textwidth]{./img/hpp}
+ \includegraphics[width=0.6\textwidth]{./img/hppnode}
  \label{rectangular}
  \caption{Rectangular grid}
 \end{figure}
 
-Each cell of the node can be in two states -- empty (white square) or occupied by the particle (yellow square on the figure \ref{rectangular}).
-The particles are heading to the diagonal nodes.
+Each cell of the node can be in two states -- empty (white square) or occupied by the particle (yellow square).
+The particle in this cell is heading to the diagonal node along the corresponding lattice vector.
 
 \section{Update rule}
-The update rule should be design in such a manner, that is conserve physically relevant quantities, namely mass and momentum.
+%The update rule should be design in such a manner, that is conserve physically relevant quantities, namely mass and momentum.
 
 So far we have the grid full of particles.
-For any LGCA model, update is done in two subsequent steps -- collision and propagation.
+For all LGCA models, update is done in two subsequent steps -- collision and propagation.
 
-In the collision step, In HPP, there are only two collision configurations, and one collision rule that guides them, see Figure~\ref{hpp-colision}.
+In the collision step, particles are swapped inside the node respecting two constraints - conservation of mass and conservation of momentum in the node.
 
-\begin{figure}
+In HPP, there are only two collision configurations, and one collision rule that guides them, see Figure~\ref{hpp-colision}.
+
+\begin{figure}[H]
  \centering
- \includegraphics[width=0.6\textwidth]{./img/hpp_col}
+ \includegraphics[width=0.7\textwidth]{./img/hpp_col}
  \label{hpp-colision}
  \caption{HPP colisions}
 \end{figure}
@@ -47,9 +49,9 @@ It is easy to understand that there are no other collision configurations and co
 After the collision is resolved, propagation follows.
 During propagation, particle from the upper-left cell moves to the upper-left node, and will occupy they same cell (with the same velocity vector), so that momentum is also conserved by the propagation.
 
-\begin{figure} [h]
+\begin{figure} [H]
  \centering
- \includegraphics[width=0.3\textwidth]{./img/propleft}
+ \includegraphics[width=0.6\textwidth]{./img/HPPprop}
  \label{hpp-colision}
  \caption{Propagation of particle from upper-left cell}
 \end{figure}
@@ -61,22 +63,25 @@ During propagation, particle from the upper-left cell moves to the upper-left no
 We already noted that collision and propagation conserve momentum, and they obviously conserve mass, since particles are neither created, nor anihilated in these processes. 
 Let us inspect these conservation laws in the more depth by considering symmetries of this model.
 
-Suppose we are using periodic boundary condition. Then, the finite rectangular grid of HPP is actually a torus. It is easy to imagine that if we shift the grid by the discrete step (of length 1), we get the very same torus.
+Suppose we are using periodic boundary condition. Then, the finite rectangular grid of HPP is actually a torus. It is easy to imagine that if we shift the grid by the lattice vector, we get the very same torus.
 So this rectangular grid of HPP is symmetric with respect to translation.
 As we know by Norther's theorems, translational symmetry implies conservation of momentum.
 
 \bigskip
 
-Also, the grid possesses some rough rotational symmetry - rotating the grid by 90 degrees, we get the same grid.
+Also, the grid possesses a rough rotational symmetry - rotating the grid by 90 degrees, we get the same grid.
 
-However, this rotation by 90 degrees is too crude, and so HPP do not preserve the angular momentum. This is the flaw of the model that cannot be overlooked - HPP do not preserve all physical quantities that Navier-Stokes equation would suggest.
+However, this rotation by 90 degrees is too crude.
+In the following chapter, when we derive the hydrodynamic equations for this type of LGCA, we could see that four lattice vectors with rectangular symmetry leads to unrealistic equations, comparing to the better models.
 
-Its another flaw goes in the opposite direction. HPP preserves quantities that are non-physical - so called spurious invariant.
+\bigskip
+SU DOSLEDOK NEDOSTATOCNEJ SYMETRI
+Another flaw of HPP is the opposite - HPP preserves quantities that are non-physical - so called spurious invariant \footnote{The improved LGCA also posses spurious invariants - so-called Zanetti's invariants, but they are under level of noise, as opposed to HPP}.
 
-Consider orientation of particles in Fig.\ref{hpp-colision} before colission.
+Consider orientation of particles in figure \ref{hpp-colision} before the collision.
 One particle heads to north-east, the other south-west.
 After the collision, one particle heads to north-west, other particle to south-east.
-So the number of particles heading to the south, east, north and west do not change by collision (and neither by propagation). It is invariant as the time goes by.
+So the number of particles heading to the south, east, north and west do not change by collision (and neither by propagation). This is also the result of insufficient symmetry of the grid. For more symmetric LGCA, these invariants (so-called Zanetti's invariants) are under the level of noise.
 
 To assert it more formally, let us decompose the total momentum into the cardinal directions:
 \begin{align} 

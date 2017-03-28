@@ -14,18 +14,30 @@ Fortunately, in four dimensions, we have three extra symmetric solids and one of
 
 \section{Face-centered hypercube}
 Face-centered hypercube (we will use the shortcut FCHC) is the suitable solid for LGCA in four dimensions. It can be defined by its 24 vertices with the Cartesian coordinates
-\begin{equation}
-\begin{split}
-(\pm 1,\pm 1, 0, 0),\\
-(\pm 1,0,\pm 1, 0),\\
-(\pm 1,0,0,\pm 1),\\
-(0, \pm 1,\pm 1, 0),\\
-(0, \pm 1,0,\pm 1),\\
-(0,0,\pm 1,\pm 1)\\
-\end{split}
-\end{equation}
 
-These 24 vertices correspond to 24 lattice vectors in four dimensions but if we project them into three dimensions (by "deleting" the fourth coordinate $q_4$) we get only 18 lattice vectors.
+\begin{tabular}{cccc}
+\\
+($\pm 1$,& $\pm 1$,& $0$,& $0$),\\
+($\pm 1$,& $0$,& $\pm 1$,& $0$),\\
+($\pm 1$,& $0$,& $0$,& $\pm 1$),\\
+($0$,& $\pm 1$,& $\pm 1$,& $0$),\\
+($0$,& $\pm 1$,& $0$,& $\pm 1$),\\
+($0$,& $0$,& $\pm 1$,& $\pm 1$).\\
+\\
+\end{tabular}
+
+These 24 vertices correspond to 24 lattice vectors in four dimensions but if we project them into three dimensions (by "deleting" the fourth coordinate $q_4$) we get only 18 lattice vectors
+
+\begin{tabular}{cccc}
+\\
+($\pm 1$,& $\pm 1$,& $0$),\\
+($\pm 1$,& $0$,& $\pm 1$),\\
+($\pm 1$,& $0$,& $0$),\\
+( $0$,& $\pm 1$,& $\pm 1$),\\
+( $0$,& $\pm 1$,& $0$),\\
+( $0$,& $0$,& $\pm 1$).\\
+\\
+\end{tabular}
 
 \begin{figure}
  \centering
@@ -35,12 +47,12 @@ These 24 vertices correspond to 24 lattice vectors in four dimensions but if we 
  blue arrows with $q_4 = \pm 1$.}
 \end{figure}
 
-For $q_4 = 0$ we have 12 lattice vectors (dotted lines in Fig.\ \ref{fchc}), each vector corresponds to the single cell only. Hence, at most one particle propagates along each of these vectors.
+For $q_4 = 0$ we have 12 lattice vectors (red lines on the figure \ref{fchc}), each vector corresponds to the single cell only. Hence, at most one particle propagates along each of these vectors.
 
-For both $q_4 = -1$ and $q_4 = 1$ we get the same set of six lattice vectors. Each vector corresponds to the two cells, hence two particles can propagate along each vector.
+For both $q_4 = -1$ and $q_4 = 1$ we get the same set of six lattice vectors (blue lines on the figure \ref{fchc}). Each vector corresponds to the two cells, hence two particles can propagate along each vector.
 
 
-It is possible and efficient to denote each node of the lattice by 3 Cartesian integer coordinates.
+It is efficient to denote each node of the lattice by 3 Cartesian integer coordinates.
 
 
 In the resulting lattice, each node is connected to 18 neighbors by the lattice vectors of Fig.\ \ref{fchc}, and 24 particles can propagate along them in the single step.

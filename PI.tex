@@ -4,17 +4,17 @@ To put it in a nutshell, FHP changed the rectangular grid for hexagonal, and thu
 
 The pair-interaction model preserves the HPP rectangular lattice, and the degrees of freedom in the node are incremented by the artificial definition of momentum.
 %In FHP and HPP, momentum of the particle corresponds to its lattice velocity, or equivalently, to the cell that the particle occupies.
-Momenta has no longer same direction as the lattice velocities, but they constitute another degree of freedom of the particle, that might change in the collision, independently of lattice velocity. 
-Although the differentiation in momentum and velocity might seem odd at the first glance, we will show that it leads to the correct microdynamics and offers us very efficient algorithm for implementation.
+Momenta has no longer same direction as the lattice velocities, but they constitute another degree of freedom of the particle, that might change in the collision, independently of the lattice velocity. 
+Although the differentiation in momentum and velocity might seem odd at the first glance, we will show that it leads to the physically correct microdynamics and offers us very efficient algorithm for implementation.
 
 \bigskip
-We will explore theory of Pair Interaction automaton in arbitrary dimension later on, but to get good understanding of PI algorithm, we start with its $2$D version, so we can explain the theory in graphically.
+We will explore theory of Pair Interaction automaton in arbitrary dimension later on, but to get good understanding of the pair-interactions, we start with its $2$D version, so we can explain the theory graphically.
 
 \section{User-friendly guide to Pair interactions}
 
 \subsection{Pair-interactions automaton in two dimensions}
 
-Geometry of the lattice is same as for HPP model. It consists of nodes arranged in rectangular grid:
+Geometry of the lattice is same as for HPP model. It consists of nodes arranged in the rectangular grid:
 
 \begin{figure}[htbp]
  \centering 
@@ -35,7 +35,9 @@ If we look on the node in more detail, it looks like this:
 \end{figure}
 
 \newpage
-It consists of 4 cells, \textbf{a,b,c,d} on the picture. Each cell is represented by 3 bits: one mass bit (a big circle) and two momentum bits (small circles).
+It consists of 4 cells ( \textbf{a,b,c,d} ) that are represented by 3 bits:
+% on the picture. Each cell is represented by 3 bits:
+one mass bit (a big circle) and two momentum bits (small circles).
 
 The node on the picture above is empty (all bits are set to zero).
 
@@ -54,7 +56,7 @@ Particle in the cell \textbf{a} is standing (both momentum bits are 0).
 Particle in the cell \textbf{b} has momentum in direction [1,1] and particle in the cell \textbf{d} has momentum in direction [0,1].
 
 \subsection{Update rules}
-First two rules are true of every cellular automaton, the third rule is specific for lattice-gas cellular automata.
+Following rules are true of every lattice-gas cellular automaton.
 
 \begin{enumerate}
 \item Lattice is changing in discrete time steps
@@ -68,7 +70,7 @@ Update of the lattice is done in two steps, collision and propagation.
 \subsection{Collision}
 Collision changes configuration inside the single nodes. We require that momentum and mass is preserved in this step.
 
-1) First, we make pairs of the cells in X direction:
+1) First, the cells are paired in X direction:
 \begin{figure}[htbp]
  \centering 
  \includegraphics[width=0.3\textwidth]{../obrazky/x-interaction}
@@ -76,16 +78,16 @@ Collision changes configuration inside the single nodes. We require that momentu
  \caption{Pairs in X-direction}
 \end{figure}
 
-Then we swap the bits in this pairs so that total momentum in the pair is preserved. Therefore, node in \ref{pre_collision} changes to this:
+Then we swap the bits in the pairs so that total momentum in the pair is preserved. Therefore, node in \ref{pre_collision} changes to
 
-\begin{figure}[htbp]
+\begin{figure}[H]
  \centering 
  \includegraphics[width=0.5\textwidth]{./img/node_2}
  \label{colision1}
  \caption{State of the node after pair-interaction in X direction}
 \end{figure}
 
-2) Second, we make pairs of the cells in Y direction:
+2) Then, the cells are paired in Y direction:
 \begin{figure}[htbp]
  \centering 
  \includegraphics[width=0.3\textwidth]{../obrazky/y-interaction}
