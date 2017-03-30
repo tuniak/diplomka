@@ -7,12 +7,11 @@ Now that we presented the setting of FHP in two dimensions rather intuitively, l
 In following section, we will graphically explain the basic principles of FHP, the other sections will be more general and the obtained results will be valid for arbitrary dimensional FHP-like automaton (most importantly FCHC).
 
 \section{The lattice of FHP}
-All the improvements of FHP are result of one simple change - instead of square grid, FHP builds on hexagonal grid. All other properties are implied by its hexagonal layout.
-%
+All the improvements of FHP are results of the simple change - instead of square grid, FHP builds on a hexagonal grid. 
 %The two dimensional plane can be uniformly covered by squares, but also by hexagon, that . This is the main improvement of FHP, all other properties are implied by the properties of the hexagonal grid.
 
-On the figure \ref{FHPgrid}, we have a part of hexagonal grid, and from one of the node, six lattice vectors points to the neighboring nodes.
-Let us denote the set of these vectors by $c_i,~i=1,2,3,4,5,6$.
+On the figure \ref{FHPgrid}, we have a part of the hexagonal grid, and from one of the nodes, six lattice vectors point to the neighboring nodes.
+Let us denote the set of the lattice vectors by $c_i,~i=1,2,3,4,5,6$.
 
 
 \begin{figure}[htbp] \label{FHPgrid}
@@ -20,8 +19,7 @@ Let us denote the set of these vectors by $c_i,~i=1,2,3,4,5,6$.
  \includegraphics[width=0.6\textwidth]{./img/fhp_desc}
 \end{figure}
 
-To each of these vectors, there is corresponding cell in the node.
-The node is nothing else then a set of the six cells.
+The node is nothing else then a set of the six cells and each of the cells corresponds to one of the lattice vectors.
 Let us denote the state of the node by $\bm{n} = (n_1,n_2,n_3,n_4,n_5,n_6)$, where $n_i = 0$ stands form empty $i^{th}$ cell, and $n_i = 1$ implies that there is a particle in the $i^{th}$ cell. 
 
 State of a node with the position $\bf{r}$ on lattice will be denoted by $\bf{n(r)}$, whereas the state of the \textit{whole lattice} will be denoted by \textbf{n(.)}.
@@ -38,14 +36,20 @@ S n_i(\bf{r}) = n_i(\bf{r + c_i}).
 %This equation means that state of the $i^{th}$ cell in node \textbf{n(r)} \textit{propagates} along the lattice vector $c_i$ to the neighboring node $\bf{n(r + c_i)}$, the figure \ref{FHPprop}.
 If the cell is occupied by a particle -- $n_i(\bf{r})=1$, it propagates along the corresponding lattice vector to the neighboring node, see the figure \ref{FHPprop}.
 
-The propagation, however, is preceded by the more magical step -- the collision.
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=0.7\textwidth]{./img/FHPprop}
+ \caption{FHP collisions without rest particle.}
+ \label{FHPprop}
+\end{figure}
+The propagation, however, is preceded by the more interesting step -- the collision.
 
 \subsection{Collision}
 
 The purpose of the collision is to swap as many particles in the node as possible.
 The only constraint on the collision rule is to preserve the number of particles (conservation of the mass) and to preserve the total momentum in the node.
 
-These requirements lead only to a handful of collision configurations, see figure \ref{FHPcol}. For the simplicity, we are considering the FHP-I model, that does not included the "rest particles", otherwise we would had few more rules to add.
+These requirements lead only to a handful of collision configurations, see figure \ref{FHPcol}. For the simplicity, we are considering the FHP-I model, that does not included the "rest particles", otherwise we would have few more rules to add.
 
 \begin{figure}[H]
  \centering
@@ -73,7 +77,7 @@ For example, the cell of matrix A that governs the head-on collisions looks like
 \]
 Since the collisions are symmetric, matrix A is symmetric as well.
 
-Also, collisions are invariant to rotations or reflections of the node:
+Also, collisions are invariant to rotations and reflections of the node:
 \begin{align*}
 A(g(n) \rightarrow g(n')) = A(n \rightarrow n')
 \end{align*}
@@ -82,25 +86,25 @@ where $g \in G$, and G is the symmetry group of the node.
 
 \section{Collision operator}
 Interestingly, we can express the whole update step in one simple equation using collision operator $\Delta_i$:
-\begin{equation*}
+\begin{align} \label{withcol}
 n_i(t+1,r+c_i) = n_i(t,r) + \Delta_i(t,r)
-\end{equation*}
-If this equation works, then $\Delta_i$ must be
+\end{align}
+where $\Delta_i$ is
 \begin{enumerate}
 \item $\Delta_i = 0$ if no collision is happening in $n(t,r)$. Then state of the cell $n_i(t,r)$ only propagates to $n_i(t+1,r+c_i)$.
 \item $\Delta_i = 1$ if there is not particle in $n_i(t,r)$ yet, but gets there after collision. 
- \item $\Delta_i = -1$ if there is particle in the $n_i(t,r)$, but after collision, cell gets empty.
+\item $\Delta_i = -1$ if there is particle in the $n_i(t,r)$, but after collision, cell gets empty.
 \end{enumerate}
 
 \bigskip
-%
+
 %For example, $\Delta_i$ acquire very simple form for HPP
 %\begin{equation*}
 %\Delta_i = n_{i+1} n_{i+3}( 1 - n_i)(1 - n_{i+2}) - n_i n_{i+2}(1-n_{i+1})(1 - n_{i+3}).
 %\end{equation*}
 %As there are only 2 collision configuration in HPP, $\Delta_i$ has 2 terms.
 
-By this reasoning, we obtain collision operator for FHP model
+By this reasoning, we obtain the form of collision operator for FHP-I model
 \begin{align} \label{colop}
 \begin{split}
 \Delta_i = n_{i+1}n_{i+3}n_{i+5}(1-n_i)(1-n_{i+2})(1-n_{i+4})\\
@@ -112,19 +116,15 @@ By this reasoning, we obtain collision operator for FHP model
 \end{align}
 
 \section{Microscopic conservation laws}
-Using collision operator, conservation of mass and momentum can be expressed in the simple form
-
 We can easily prove that
 %By substituting \ref{colop} for the collision operator, we can prove that
-\begin{align}
+\begin{align*}
 \begin{split}
 \sum_i \Delta_i(t,r) &= 0,\\
 \sum_i c_i \Delta_i(t,r) &= 0.
 \end{split}
-\end{align}
-by substituting \ref{colop} into these equations.
-
-These impliy the simple form for the conservation of mass and momentum
+\end{align*}
+by substituting \ref{colop} into these equations. Combining with \ref{withcol}, they imply the simple form for the conservation of mass and momentum
 %Therefore, the laws of mass and momentum conservation acquire the simple form
 \begin{align} \label{cons1}
 \begin{split}
@@ -132,7 +132,7 @@ These impliy the simple form for the conservation of mass and momentum
 \sum_i c_i n_i(t+1, r + c_i) &= \sum_i c_i n_i(t,r).
 \end{split}
 \end{align}
-By employing aparatus of statistical mechanics we will show that these microscopic conservation laws lead to physically realistic macroscopic description.
+By employing the aparatus of the statistical physics we will show that these microscopic conservation laws lead to physically realistic macroscopic description.
 
 \section{Conservation of probabilities}
 Let us define the phase space $\Gamma$ as the set of all possible states of the lattice $n(.)$.
@@ -145,7 +145,7 @@ P(0,s(.)) \geq 0.
 Of course, probabilities over whole lattice are normalized so
 $\sum_s(.) P(0,s(.)) = 1$.
 
-In the statistical mechanics, Liouville's space state theorem postulates that the density of the phase space is constant. Microdynamics of our model implies equivalent theorem for LGCA.
+In the statistical mechanics, Liouville's space state theorem postulates that the density of the phase space is constant. Microdynamics of our model implies equivalent theorem for LGCA:
 \begin{align*}
 P(t+1, \mathcal{E} s(.)) = P(t, s(.))
 \end{align*}
@@ -182,7 +182,6 @@ Due to conservation of probabilities, the conservation laws \ref{cons1} implies 
 \begin{equation} \label{macro2}
 \sum_i c_i N_i(t+1,r+c_i) = \sum_i c_i N_i(t,r)
 \end{equation}
-
 
 \section{Equilibrium occupation numbers}
 After laborious definitions in previous sections, we are ready for one of the central theorems for FHP. It states that the equilibrium occupation numbers are given by Fermi-Dirac distribution. Its implications will haunt us until the last chapter.
@@ -240,7 +239,7 @@ G(\rho) = \frac{D^2}{2c^4b}\frac{b-2\rho}{b-\rho}.
 %\end{equation}
 
 \section{Chapman-Enskog expansion}
-Because relaxation towards equilibrium values happens in few updates of the automaton, it is standard procedure to expand occupation numbers $N_i(t,r)$ around equilibrium occupation numbers $N_i^{eq}(\rho,\bm{u})$:
+Because relaxation towards equilibrium values happens in a few updates of the automaton, it is standard procedure to expand the occupation numbers $N_i(t,r)$ around the equilibrium occupation numbers $N_i^{eq}(\rho,\bm{u})$:
 \begin{equation} \label{chap}
 N_i(t,r) = N_i^0(t,r) + \epsilon N_i^1(t,r) + \mathcal{O}(\epsilon^2) 
 \end{equation} 
@@ -271,16 +270,17 @@ N_i(t+1,r+c_i) = N_i(t,r) + \partial_t N_i(t,r) + c_{i\alpha} \partial_{\alpha} 
 \end{split}
 \end{equation}
 \bigskip
-The expression above is the mixture of various physical phenomena -- diffusion, advection, propagation of sound waves or relaxation towards local equilibria. Each phenomena has its typical spatial and temporal scale, that corresponds to different powers of $\epsilon$, see the Table \ref{scalings}.
+The expression above is the mixture of various physical phenomena -- diffusion, advection, propagation of the sound waves or relaxation towards local equilibria. Each phenomena has its typical spatial and temporal scale, that corresponds to different powers of $\epsilon$, see the tables below. %\ref{scalings}.
 
-\begin{center} \label{scalings}
+\begin{center} 
     \begin{tabular}{| l | l | l | l |}
     \hline
-    \multicolumn{3}{|c|}{TEMPORAL SCALES}\\ \hline
+    \multicolumn{3}{|c|}{ \label{scalings} TEMPORAL SCALES}\\ \hline
     \textbf{Scale} & \textbf{Rescaling of time} & \textbf{Phenomena} \\ \hline
     1 step & t & Relaxation towards local equilibrium \\ \hline
     100 steps & $t_1 = \frac{1}{100} t = \epsilon t$ & advection, sound waves (perturbation of mass and density) \\ \hline
     10 000 steps & $t_2 = \frac{1}{10000} t = \epsilon^2 t$ & diffusion \\ \hline
+    \label{scalings}
     \end{tabular}
 \end{center}
 

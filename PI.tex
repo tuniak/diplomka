@@ -24,8 +24,14 @@ Geometry of the lattice is same as for HPP model. It consists of nodes arranged 
 \end{figure}
 
 Every node (the cirlce on the picture above) is connected to 4 diagonal neighbors.
-Let us consider this interesting 
-If we look on the node in more detail, it looks like this:
+Let us consider that in the time-step $t$ only the black nodes are occupied. Then in the next step $t+1$, only the white nodes are occupied. Without loss of generality we can assert that nodes with even Cartesian coordinates, e.g. [0,2], [2,4] are occupied at even time steps, and vice versa. This property of the grid offers very efficient implementation, as  we need only one array for both even and odd time steps.
+
+\bigskip
+
+\textbf{The node:}
+
+Let us look at the node in more detail:
+%If we look on the node in more detail, it looks like this:
 
 \begin{figure}[htbp]
  \centering 

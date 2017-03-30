@@ -73,7 +73,7 @@ In the next section, we will generalize main features of 'Life' and formally def
 \section{Cellular automaton in general}
 
 \begin{enumerate}
-\item \textbf{Position of cells:}
+\item \textbf{Position of the cells:}
 
 Instead of two dimensional, rectangular grid of 'Life',
 cells might be arranged on the regular grid of arbitrary dimensional. 
@@ -94,25 +94,22 @@ However, the rule might involve neighborhood with the arbitrary range, see figur
 \begin{figure}
  \centering
  \includegraphics[width=1\textwidth]{./img/neighb}
- \label{neighb}
+ \label{neighbor}
  \caption{Moore's and von Neumann's neighborhood}
 \end{figure}
 
 
 \item \textbf{Update rule:}
 
-Update rule is an arbitrary bounded mapping $U$ from $neighborhood$ to the set of states $Q$.
+Update rule is an arbitrary bounded mapping from the $neighborhood$ to the set of states $Q$.
 Since the state of the cell is determined only by the state of its neighborhood, update rules in cellular automata are local.
-
-\end{enumerate}
-
 
 \section{The most basic cellular automaton} 
 
 In middle 1980s on the prestigious Princeton institute,
 Stephen Wolfram and his assistants were performing unusual computer experiments. They were simulating the evolution of the one dimensional cellular automata and they were analyzing the obtained patterns \cite{levy} (to a despair of their senior colleagues, who did not understand this "new kind of science")\cite{wolfram}.
 
-The most basic, one dimension cellular automaton we can imagine, is the two state automaton with range $r=1$.
+The most basic, one dimensional cellular automaton we can imagine, is the two state automaton with range $r=1$.
 
 One dimensional indicates that the cells are arranged in the row (figure \ref{1d}), range $r=1$ indicates that the update rule involves only three cells.
 An example of an update rule is shown the table~\ref{rule90}.
@@ -121,10 +118,8 @@ An example of an update rule is shown the table~\ref{rule90}.
  \centering 
  \includegraphics[width=0.9\textwidth]{./img/1Dline}
  \label{1d}
- \caption{A time-step of one dimensional cellular automaton}
+ \caption{A state of one dimensional cellular automaton}
 \end{figure}
-
-
 
 
 \begin{table}[htbp]
@@ -165,11 +160,18 @@ Rules number $2,6,10,12,14,18,22,26,28,30,34,38,42,44,46,50$.
 %
 \end{enumerate}
 
-
 The figures were plotted by our own implementation of this automaton.
-They represent the evolution of cellular automata with various rules.
-The downer-most row is the initial configuration of CA, 
-the 2nd row is configuration after 1st update etc.
+They represent the evolution of cellular automata with some of the mentioned rules.
+The downer-most row is the initial configuration of the cellular automaton with one cell alive in the middle, all other cells are dead.
+The $2^{nd}$ row is the configuration after the $1^{st}$ update and so forth.
+
+Formally, the update rule that we have described by the table, may be written in the form
+%The alternative formulation of the update rule that we just described can be written as \cite{wolf}
+\begin{align} \label{rule1}
+a_i^{(t)} = f \big[ \sum_{j=-r}^{j=r} \alpha_j a_{i+j}^{(t-1)} \big]
+\end{align}
+where $a_i$ refer to the state of the $j^{th}$ cell, $\alpha$s are the integer weights, and $f$ is the function that takes integer as the single argument, and $r$ is the range of the neighborhood.
+\end{enumerate}
 
 \begin{figure}[!t]
  \centering
@@ -219,9 +221,8 @@ the 2nd row is configuration after 1st update etc.
 \end{figure}
 
 
-The rule 110 is special among these. Wolfram and blabla prove that this rule is equivalent to the Turing machine, that simplifies certain proves in theoretical informatics.
-
-Because of turing-completness, this rule could be classified in all of the mentioned classes, depending on the initial conditions.
+\section{Rule 110}
+The rule 110 is special among them. Cook have proved \cite{cook} that this rule is equivalent to the Turing machine, so depending on the initial conditions, it could be classified in any of the mentioned classes.
 
 %First picture~\ref{koberec} is famous fractal known as Sierpinski carpet. Wolfram classified these 1D automata into four classes, based on the regularity of the pattern obtained.
 
@@ -229,13 +230,25 @@ Because of turing-completness, this rule could be classified in all of the menti
 
 
 In his visionary book New kind of Science \cite{wolf}, Wolfram suggest possibility, that in the infinitely large world of cellular automata, there is an automaton that constitute a unified theory of the fundamental physics.
-Although his ideas met with rejection among theorists (see \cite{aaronson}),
-many other notable physicists are attempting to construct such cellular automaton \cite{hooft}).
+Although the details of his idea met with rejection(see \cite{aaronson}),
+many notable physicists are attempting to construct such cellular automaton \cite{hooft}).
+%
+%Some of the basic construction principles for such automata are relevant also for our models, but mostly, we would diverge too far by further exploration.
+%However, in the field of computational physics, cellular automata have already recorded success. And the focus of our 
 
-Some of the basic construction principles for such automata are relevant also for our models, but mostly, we would diverge too far by further exploration.
-Focus of our work is much more modest that CAs describing universe.
-Our focus is on CAs that model flows of the fluids.
+However, focus of our work is much more modest that cellular automata describing universe.
+Our focus is on the cellular automata that model flows of the fluids.
 
-The connection of the cellular automata with the fluid mechanics is not obvious or formal, it is grounded in the conservation laws implied by the common symmetries found in cellular automata and Navier-Stokes equations alike.
+There is already a formal similarity between cellular automata we presented, and discrete partial differential equations. Consider the diffusion equation
+\begin{align*}
+\frac{\pd C}{\pd t} = \kappa \frac{\pd^2 C}{\pd x^2}.
+\end{align*}
+By discretization forward in time, it is transformed to
+\begin{align*}
+C_i^{(t)} = f\big[\sum_{j=-1}^{j=1}\alpha_j \, C_{i+j}^{(t-1)} \big]
+\end{align*}
+Formally, this equation corresponds to the rule of the one dimensional cellular automaton \ref{rule1}. However, $C_i$ is not from discrete finite set, but it is a continuous value, the $\alpha_i$ are not integers, but reals, and this would cause instability of this cellular automaton, as discussed in \cite{wolf} and the formal similarity leads to the dead end.
 
-In these symmetries lies not only beauty of this method, but their principal advantage over the better-established CFD methods.
+The connection of the cellular automata with the fluid mechanics is not straight-forward or formal, but it is grounded in the symmetries and conservation laws found in the hydrodynamic equations and the special class of cellular automata - the lattice gas cellular automata.
+
+In these symmetries lies not only beauty of this method and their attractiveness for physicists, but their principal advantage over the better-established CFD methods.
