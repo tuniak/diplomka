@@ -41,36 +41,38 @@
 \contentsline {subsection}{\numberline {5.5.1}Gibbs distribution}{45}{subsection.5.5.1}
 \contentsline {section}{\numberline {5.6}Hydrodynamic description}{47}{section.5.6}
 \contentsline {section}{\numberline {5.7}Hydrodynamic limiting cases}{49}{section.5.7}
-\contentsline {chapter}{\numberline {6}From Boltzmann to Navier-Stokes}{53}{chapter.6}
-\contentsline {section}{\numberline {6.1}Boltzmann equation}{53}{section.6.1}
-\contentsline {section}{\numberline {6.2}Macroscopic quantities}{54}{section.6.2}
-\contentsline {section}{\numberline {6.3}Hydrodynamic equations}{55}{section.6.3}
-\contentsline {part}{II\hspace {1em}Implementation and applications}{57}{part.2}
-\contentsline {chapter}{\numberline {7}Practical part}{58}{chapter.7}
-\contentsline {chapter}{\numberline {8}General comments on the implementation}{59}{chapter.8}
-\contentsline {section}{\numberline {8.1}Parallelization}{59}{section.8.1}
-\contentsline {chapter}{\numberline {9}Implementation of FCHC}{60}{chapter.9}
-\contentsline {section}{\numberline {9.1}Algorithm for the creation of the table}{60}{section.9.1}
-\contentsline {section}{\numberline {9.2}Algorithm for collision}{75}{section.9.2}
-\contentsline {section}{\numberline {9.3}Propagation in FCHC}{76}{section.9.3}
-\contentsline {chapter}{\numberline {10}Implementation of the Pair-Interaction LGCA in 3D}{78}{chapter.10}
-\contentsline {section}{\numberline {10.1}Implementation of the collision algorithm}{78}{section.10.1}
-\contentsline {section}{\numberline {10.2}Implementation of the Propagation}{83}{section.10.2}
-\contentsline {chapter}{\numberline {11}Non-deterministic PI}{86}{chapter.11}
-\contentsline {section}{\numberline {11.1}Exploding cube}{89}{section.11.1}
-\contentsline {chapter}{\numberline {12}Study of the flow around the obstacles}{103}{chapter.12}
-\contentsline {section}{\numberline {12.1}Flow around the sphere}{104}{section.12.1}
-\contentsline {section}{\numberline {12.2}Flow around the disk}{109}{section.12.2}
-\contentsline {chapter}{\numberline {13}Fully developed turbulence simulated on LGCA}{115}{chapter.13}
-\contentsline {section}{\numberline {13.1}Inward flow on the sphere}{115}{section.13.1}
-\contentsline {subsection}{\numberline {13.1.1}FCHC implementation of inward flow from the sphere}{116}{subsection.13.1.1}
-\contentsline {section}{\numberline {13.2}Statistical properties of the flow}{125}{section.13.2}
-\contentsline {subsection}{\numberline {13.2.1}First statistical moment - the mean velocity field}{125}{subsection.13.2.1}
-\contentsline {subsection}{\numberline {13.2.2}Second statistical moment -- the covariance tensor}{126}{subsection.13.2.2}
-\contentsline {subsection}{\numberline {13.2.3}Structure functions}{128}{subsection.13.2.3}
-\contentsline {section}{\numberline {13.3}Graphical representation of the obtained results}{131}{section.13.3}
-\contentsline {chapter}{Bibliography}{134}{chapter*.3}
-\contentsline {chapter}{List of Figures}{135}{chapter*.4}
-\contentsline {chapter}{List of Tables}{138}{chapter*.5}
-\contentsline {chapter}{List of Abbreviations}{139}{chapter*.6}
-\contentsline {chapter}{Attachments}{140}{chapter*.7}
+\contentsline {chapter}{\numberline {6}Hydrodynamic equations}{53}{chapter.6}
+\contentsline {section}{\numberline {6.1}The BBGKY hierarchy}{54}{section.6.1}
+\contentsline {chapter}{\numberline {7}From Boltzmann to Navier-Stokes}{56}{chapter.7}
+\contentsline {section}{\numberline {7.1}Boltzmann equation}{56}{section.7.1}
+\contentsline {section}{\numberline {7.2}Macroscopic quantities}{57}{section.7.2}
+\contentsline {section}{\numberline {7.3}Hydrodynamic equations}{58}{section.7.3}
+\contentsline {part}{II\hspace {1em}Implementation and applications}{60}{part.2}
+\contentsline {chapter}{\numberline {8}Practical part}{61}{chapter.8}
+\contentsline {chapter}{\numberline {9}General comments on the implementation}{62}{chapter.9}
+\contentsline {section}{\numberline {9.1}Parallelization}{62}{section.9.1}
+\contentsline {chapter}{\numberline {10}Implementation of FCHC}{63}{chapter.10}
+\contentsline {section}{\numberline {10.1}Algorithm for the creation of the table}{63}{section.10.1}
+\contentsline {section}{\numberline {10.2}Algorithm for collision}{78}{section.10.2}
+\contentsline {section}{\numberline {10.3}Propagation in FCHC}{79}{section.10.3}
+\contentsline {chapter}{\numberline {11}Implementation of the Pair-Interaction LGCA in 3D}{81}{chapter.11}
+\contentsline {section}{\numberline {11.1}Implementation of the collision algorithm}{81}{section.11.1}
+\contentsline {section}{\numberline {11.2}Implementation of the Propagation}{86}{section.11.2}
+\contentsline {chapter}{\numberline {12}Non-deterministic PI}{89}{chapter.12}
+\contentsline {section}{\numberline {12.1}Exploding cube}{92}{section.12.1}
+\contentsline {chapter}{\numberline {13}Study of the flow around the obstacles}{106}{chapter.13}
+\contentsline {section}{\numberline {13.1}Flow around the sphere}{107}{section.13.1}
+\contentsline {section}{\numberline {13.2}Flow around the disk}{112}{section.13.2}
+\contentsline {chapter}{\numberline {14}Fully developed turbulence simulated on LGCA}{118}{chapter.14}
+\contentsline {section}{\numberline {14.1}Inward flow on the sphere}{118}{section.14.1}
+\contentsline {subsection}{\numberline {14.1.1}FCHC implementation of inward flow from the sphere}{119}{subsection.14.1.1}
+\contentsline {section}{\numberline {14.2}Statistical properties of the flow}{128}{section.14.2}
+\contentsline {subsection}{\numberline {14.2.1}First statistical moment - the mean velocity field}{128}{subsection.14.2.1}
+\contentsline {subsection}{\numberline {14.2.2}Second statistical moment -- the covariance tensor}{129}{subsection.14.2.2}
+\contentsline {subsection}{\numberline {14.2.3}Structure functions}{131}{subsection.14.2.3}
+\contentsline {section}{\numberline {14.3}Graphical representation of the obtained results}{134}{section.14.3}
+\contentsline {chapter}{Bibliography}{137}{chapter*.3}
+\contentsline {chapter}{List of Figures}{138}{chapter*.4}
+\contentsline {chapter}{List of Tables}{141}{chapter*.5}
+\contentsline {chapter}{List of Abbreviations}{142}{chapter*.6}
+\contentsline {chapter}{Attachments}{143}{chapter*.7}

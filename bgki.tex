@@ -1,0 +1,266 @@
+\chapter{Hydrodynamic equations}
+Let us start by invoking hamiltonian for the N particle system
+\begin{align*}
+H = \frac{1}{2m} \sum_{i=1}^N p_i^2 + \sum_{i=1}^N V(r_i) + \sum_{i<j} U(r_i - r_j)
+\end{align*}
+where $V$ is the potential of the force $F=\nabla V$, that effects all the particles equally, and $U$ is the potential of the $2$-particle interactions. We require that $U$ is short-ranged, meaning $U(r) \approx 0$ for $r>>d$, where $d$ is the atomic distance scale.
+
+As usual in the framework of continuum mechanics, $N$ is a ridiculously large number, something like $N \approx 10^{23}$.
+
+Hence, we represent the state of the system by the probability density function $f(\bm{x},\bm{u},t)$. It specifies the probability that the system is found in the vicinity of point $(\bm{x},\bm{u})$.
+
+As usual, the probability is normalized:
+\begin{align*}
+\int f(\bm{x},\bm{u},t) \, \dd\bm{x} \, \dd\bm{u}
+\end{align*}
+
+Since the microdynamics under consideration of deterministic, the probability density function is locally conserved and we may write its continuum equation
+\begin{align} \label{protolui}
+\frac{\pd f}{\pd t} + \frac{\pd}{\pd \bm{x}} (\bm{\dot{x}} f) + \frac{\pd}{\pd \bm{u}} (\bm{\dot{u}} f) = 0
+\end{align}
+Notice that this equation can be written using the material derivative
+\begin{align*}
+\frac{D}{D\,t} = \frac{\pd}{\pd t} + \nabla
+\end{align*}
+By inserting the Hamilton's equations 
+\begin{align*}
+\frac{\pd \vec{p}_i}{\pd t} = - \frac{\pd H}{\pd \vec{r}_i},~ \frac{\pd \vec{r}_i}{\pd t} = \frac{\pd H}{\pd \vec{p}_i}
+\end{align*}
+into the equation \ref{protolui}, we obtain the Liouville's equation
+\begin{align*}
+\frac{\pd f}{\pd t} + \frac{\pd f}{\pd \bm{x}} \frac{\pd H}{\pd \bm{u}} - \frac{\pd f}{\pd \bm{u}}\frac{\pd H}{\pd \bm{x}} = 0.
+\end{align*}
+It can be written in the shorter form using the Poisson brackets
+\begin{align*}
+\frac{\pd f}{\pd t} = \big\{ H, \, f \big\}.
+\end{align*}
+
+Let us make a little side-step.
+
+The \textit{equilibrium distribution} is defined as not explicitly depending on time:
+\begin{align*}
+\frac{\pd f}{\pd t} = 0.
+\end{align*}
+That also means
+\begin{align*}
+\big\{ H, f \big\} = 0.
+\end{align*}
+This is automatically satisfied if $f$ is the function of $H$, for example the Boltzmann distribution
+\begin{align*}
+f \approx e^{-\beta H}.
+\end{align*}
+
+\section{The BBGKY hierarchy}
+So far, the transition to probability description did not simplified the problem much -- we are still dealing with the function of $N \approx 10^{23}$ variables.
+
+We need to limit our ambitions and we will focus on the one-particle distribution, defined by
+\begin{align*}
+f_1(\bm{x},\bm{u},t) = N \int \prod_{i=2}^N \dd \, x_i \dd \, u_i f(\bm{x},\bm{u},t).
+\end{align*}
+The choice of index $1$ was arbitrary, because all the particles are identical. This is also the reason why $f_1$ is normalized to $N$:
+\begin{align*}
+\int f_1(\bm{x},\bm{u},t) \dd \bm{x} \dd \bm{u} = N
+\end{align*}
+
+For many purposes, the function $f_1$ captures all we need to know.
+
+The average density of particles in the real space is
+\begin{align*}
+n(\bm{x},t) = \int f_1(\bm{x},\bm{u},t) \dd \bm{x},
+\end{align*}
+the average velocity of the particle is
+\begin{align*}
+n(\bm{x},t) = \int \bm{u} f_1(\bm{x},\bm{u},t) \dd \bm{u},
+\end{align*}
+and the energy flux is
+\begin{align*}
+\varepsilon(\bm{x},t) = \int \bm{u} E(\bm{u}) f_1(\bm{x},\bm{u},t) \dd \bm{u}.
+\end{align*}
+
+To derive the equation governing the evolution of $f_1$, let us see how it varies in time
+\begin{align*}
+\frac{\pd f_1}{\pd t} = N \int \prod_{i=2}^N \dd \, x_i \dd \, u_i \frac{\pd f}{\pd t} = N \int \prod_{i=2}^N \dd \, x_i \dd \, u_i \big\{ H, \, f \big\}.
+\end{align*}
+After some non-trivial arrangements we get
+\begin{align} \label{boltzman}
+\frac{\pd f_1}{\pd t} = \big\{ H_1, f_1 \big\} + \Big(\frac{\pd f_1}{\pd t} \Big)_{coll},
+\end{align}
+where
+\begin{align*}
+H_1 = \frac{p^2}{2m} + V(\bm{x}).
+\end{align*}
+We see that the evolution of $f_1$ is governed by the Liouville's equation plus the extra term, the \textit{collision integral}
+\begin{align*}
+\Big(\frac{\pd f_1}{\pd t} \Big)_{coll} = N(N-1) \int \dd \bm{x_2} \dd \bm{u_2} 
+\frac{\pd U(\bm{x} - \bm{x_2})}{\pd {\bm{x}}} . \frac{\pd}{\pd \bm{u}} \int \prod_{i=3}^N \dd \bm{x_i} \dd\bm{u_i} f(\bm{x},\bm{u},t).
+\end{align*}
+
+Not surprisingly, the collisions are not governed by one-particle distribution, since it does not contain the relation of one particle to all others. Some of that information is carried by the \textit{two-particle distribution}
+\begin{align*}
+f_2(\bm{x},\bm{u},t) := N(N-1)\int \prod_{i=3}^N f(\bm{x},\bm{u},t) \dd \bm{x_i} \dd \bm{u_i}.
+\end{align*}
+Using the two-particle distribution, the collision integral can be written as
+\begin{align*}
+\Big(\frac{\pd f_1}{\pd t} \Big)_{coll} = \int \dd \bm{x_2} \dd \bm{u_2} \frac{\pd U(\bm{x} - \bm{x_2})}{\pd \bm{x}} . \frac{\pd f_2}{\pd\bm{u}}.
+\end{align*}
+
+To conclude, if we want to follow the evolution of one-particle distribution $f_1$, we also need to know something about the two-particle distribution. And again, to know the evolution of the two-particle distribution, we repeat the same procedure as before and find the Liouville-like equation for $f_2$ with additional term containing the three-particle distribution.
+
+In general, the evolution of \textit{n-particle distribution} is described by
+\begin{align} \label{bgky}
+\frac{\pd f_n}{\pd t} = \big\{ H_n, f_n \big\} + \sum_{i=1}^n \int \dd \bm{u_{n+1}} \dd \bm{x_{n+1}} \frac{\pd U(\bm{x_i} - \bm{x_{n+1}}}{\pd \bm{x_i}}.\frac{\pd f_{n+1}}{\pd \bm{u_i}}.
+\end{align}
+The Hamiltonian 
+\begin{align*}
+H_n = \sum_{i=1}^n \Big(\frac{\bm{u_i}}{2m} + V(\bm{u_i})\Big) + \sum_{i<j\leq n} U(\bm{x_i} - \bm{x_j})
+\end{align*}
+includes external forces $V$ and interactions between the $n$ particles.
+
+The set of equations \ref{bgky} is called the \textit{BBGKY hierarchy}.
+So instead of the Liouville equation governing the function of $N \approx 10^{23}$ variables, we have the set of $10^{23}$ functions. 
+
+But it is really more advantageous to work with the hierarchy of equations \ref{bgky}, as it is ready to be approximated. Depending on the particular problem at hands, we decide which terms are important and which terms can be ignored, thus truncating the problem to something useful.
+
+The most simple and useful of these truncations is the Boltzmann equation -- the closed equation for the $f_1$ alone.
+
+We already saw its general form
+\begin{align*}
+\frac{\pd f_1}{\pd t} = \big\{ H_1, f_1 \big\} + \Big(\frac{\pd f_1}{\pd t} \Big)_{coll},
+\end{align*}
+but the collision integral was dependent on $f_2$.
+
+To proceed, let us define the two time scales:
+the time between particle collisions $\tau$, and the collision time $\tau_{coll}$, which is the time that the process of collision lasts. In dilute gas, we have
+\begin{align*}
+\tau >> \tau_{coll},
+\end{align*}
+so most of the time, the $f_1$ follows the Hamiltonina evolution, with occasional, but abrupt perturbatons by the collision, that reflects the collision integral.
+%This force K will be neglected in the subsequent text, because external force is not supposed to influence dynamics of collisions.
+%
+%The right hand side of Boltzmann equation, the $Q(f,f)$, is the collision integral.
+%It is quite complicated expression
+%and it is the major difficulty in dealing with Boltzmann equation.
+%
+%But we do not need it that precisely, as two-particle collisions do not significantly influence experimentally measured quantities.
+%Therefore, it is often approximated.
+%
+%Before we show the standard way to approximate it (so called BGK approximation), we need to present the properties of $Q(f,f)$ that need to be preserved.
+%
+%\section{Collision invariants}
+%Toto podla tonga.
+%Collision invariants are the five functions that are orthogonal on $Q(f,f)$. In other words
+%\begin{align} \label{invariance}
+%\int Q(f,f) \psi_k(\bm{v}) d^3v = 0.
+%\end{align} 
+%These collision invariants read
+%\begin{align} \label{invariants}
+%\begin{split}
+%\psi_0 &= 1, \\
+%\psi_1 &= v_1, \\
+%\psi_2 &= v_2, \\
+%\psi_3 &= v_3, \\
+%\psi_4 &= v^2.
+%\end{split}
+%\end{align}
+%
+%Because of linearity of scalar product \ref{invariance}, any function 
+%\begin{align}
+%\psi = a + \bm{b}.\bm{v} + c \, v^2
+%\end{align}
+%is the collision invariant of $Q(f,f)$.
+%
+%Interestingly, function 
+%\begin{align} \label{nulling}
+%\phi = \exp (a + \bm{b}. \bm{v} + c \, v^2)
+%\end{align}
+%is the solution of
+%\begin{align}
+%Q(f,f) = 0,
+%\end{align}
+%if $c$ is negative. Notice, that famous Maxwell function (or Maxwell distribution, or simply Maxwellian) is the spacial kind of such function \ref{nulling} 
+%\begin{equation} \label{Maxwell}
+%f^M(\bm{x,v,}t) = n(\frac{m}{2 \pi k_B T})^{3/2} e^{-\frac{m}{2k_B T}(\bm{v-u})^2}.
+%\end{equation}
+%
+%Now we are ready to state what is BGK approximation of collision integral $Q(f,f)$.
+%\section{BGK approximation}
+%Instead of $Q(f,f)$, that is so complicated we do not even state it, we will use simpler operator 
+%\begin{align}
+%J(f) = w[f^M(\bm{x,v}) - f(\bm{x,v}]
+%p\end{align}
+%
+%We can easily see that this approximation have two properties:
+%\begin{enumerate}
+%\item It expresses the tendency of $f$ towards Maxwellian distribution \ref{Maxwell} (because the time derivative of $f$ has sign towards $f^M$).
+%\item It conserves the collision invariants \ref{invariants}
+%\begin{align}
+%\int \psi_k J(f) d^3 x d^3 v = 0
+%\end{align}
+%\end{enumerate}
+%
+%
+%\section{Chapman-Enskog series}
+%We are already familiar with this kind of expansion, now we will show it in the general context.
+%In some respect this expansion is quite peculiar and deserves few comments before we suck the life out of it.
+%
+%\bigskip
+%
+%The distribution function f, that is explicitly time-dependent, will be expanded in the series of $f^{(n)}$, that have only implicit time-dependence. However, gas relaxes very fast, in time of order $10^{-11}$ seconds, towards time-independent distributions, hence this expansion is generally valid.
+%
+%
+%The expansion parameter $\epsilon$ depended on the peculiarities of our model in previous chapters. 
+%In this section, we will take $\epsilon$ equal to Knudsen number
+%\begin{align}
+%K_n = \frac{\lambda}{L},
+%\end{align}
+%that is ratio of $\lambda$, the mean free path of particle (the mean distance between two successive collisions) and spatial characteristic scale $L$ (for example, size of the obstacle in the flow, diameter of the flow etc.).
+%
+%\bigskip
+%
+%And the most interesting point comes last - the Chapman-Enskog series diverges.
+%
+%We are interested only in first two orders of the expansion, but higher order-approximation that lead to Burnett equations are problematic and were never applied systematically (for further details see Cercignani 1988 and 1990).
+%
+%
+%\section{Conservation laws}
+%What happens if we multiply Boltzmann equation with the collision invariants \ref{invariants} and integrate it?
+%
+%Since the collision integral in the right-hand side gets killed-off (by definition of invariants), 
+%the equation reads
+%\begin{equation}
+%\int \psi_k(\partial_t + v_{\alpha}\partial_{\alpha}) f(\bm{x},\bm{v},t) d^3v = 0.
+%\end{equation}
+%Substituting $\psi_0 = 1$, $(\psi_1,\psi_2,\psi_3) = \bm{v}$ and $\psi_4 = v^2$, we get the general form of conservation laws:
+%
+%\begin{align}
+%\begin{split}
+%\partial_t\rho + \partial_{\alpha}(\rho u_{\alpha}) &= 0 \\
+%\rho \partial_t u_{\alpha} + \rho u_{\beta}\partial_{\beta}u_{\alpha} &= - \partial_{\alpha}\hat{P}_{\alpha\beta} \\
+%\rho \partial_t \Theta + \rho u_{\beta}\partial_{\beta}\Theta &= -\frac{2}{3} \partial_{\alpha}q_{\alpha} - \frac{2}{3} \hat{P}_{\alpha\beta} \Lambda_{\alpha\beta}
+%\end{split}
+%\end{align}
+%where
+%\begin{align}
+%\begin{split}
+%n(\bm{x}, t) &= \int f(\bm{x},\bm{v},t) \, d^3 v  \\
+%p(\bm{x},t) &= m \, n(\bm{x},t) \\
+%\rho u_{\alpha}(\bm{x},t) &= m \int v_{\alpha} f(\bm{x},\bm{v},t) \, d^3 v \\
+%\Theta(\bm{x},t) &= k_B \, T(\bm{x},t) = \frac{m}{3n} \int (v_{\alpha} - u_{\alpha})(v_{\alpha} - u_{\alpha}) \, f(\bm{x},\bm{v},t) \, d^3 v \\
+%\Lambda_{\alpha\beta} &= \frac{m}{2} (\pd_{\beta}u_{\alpha} + \pd_{\alpha} u_{\beta}) \\
+%\hat{P}_{\alpha\beta} &= m \int (v_{\alpha} - u_{\alpha})(v_{\beta} - u_{\beta}) \, f(\bm{x}, \bm{v}, t) \, d^3v \\
+%q_{\alpha}(\bm{x},t) &= \frac{m^2}{2} \int (v_{\alpha} - u_{\alpha})(v_{\beta} - u_{\beta}) (v_{\beta} - u_{\beta}) \, f(\bm{x}, \bm{v}, t) \, d^3v
+%\end{split}
+%\end{align}
+%
+%\section{Euler equation}
+%
+%$f^M$ into conservation laws:
+%$\partial_t \rho + \partial_{\alpha}(\rho u_{\alpha}) = 0$ ... continuity equation\\
+%$\rho \partial_t u_{\alpha} + \rho u_{\beta}\partial_{\beta}u_{\alpha} = - \partial_{\alpha}P$ ... Euler equation,\\
+%where $P = n\Theta = n k_B T$\\
+%$\rho \partial_t \Theta + \rho u_{\beta}\partial_{\beta}\Theta = -\frac{1}{c_V} \Theta \partial_{\alpha} u_{\alpha}$\\
+%
+%Chapman-Enskog:\\
+%$f = f^0 + \epsilon f^1 + \epsilon^2 f^2 + ... = $
+%
+%It is special in every sense of word, we will introduce some of its useful properties:

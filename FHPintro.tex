@@ -93,7 +93,7 @@ where $\Delta_i$ is
 \begin{enumerate}
 \item $\Delta_i = 0$ if no collision is happening in $n(t,r)$. Then state of the cell $n_i(t,r)$ only propagates to $n_i(t+1,r+c_i)$.
 \item $\Delta_i = 1$ if there is not particle in $n_i(t,r)$ yet, but gets there after collision. 
-\item $\Delta_i = -1$ if there is particle in the $n_i(t,r)$, but after collision, cell gets empty.
+\item $\Delta_i = -1$ if there is particle in the $n_i(t,r)$, but after the collision, cell gets empty.
 \end{enumerate}
 
 \bigskip
@@ -124,7 +124,7 @@ We can easily prove that
 \sum_i c_i \Delta_i(t,r) &= 0.
 \end{split}
 \end{align*}
-by substituting \ref{colop} into these equations. Combining with \ref{withcol}, they imply the simple form for the conservation of mass and momentum
+by substituting \ref{colop} into these equations. Combining with \ref{withcol}, these equations imply the conservation of mass and momentum
 %Therefore, the laws of mass and momentum conservation acquire the simple form
 \begin{align} \label{cons1}
 \begin{split}
