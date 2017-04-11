@@ -1,5 +1,5 @@
 \chapter{FHP}
-This improved lattice gas cellular automaton is named after its inventors too -- Frisch, Humpfrey and Pomeu. 
+Again, his improved lattice gas cellular automaton is named after its inventors -- Frisch, Humpfrey and Pomeu. 
 They proposed it in 1986 together with its three dimensional variant - the FCHC. 
 %Comparing it to HPP, we have a lattice with better rotational symmetry and nodes with richer  set of collisions.
 %
@@ -7,8 +7,9 @@ Now that we presented the setting of FHP in two dimensions rather intuitively, l
 In following section, we will graphically explain the basic principles of FHP, the other sections will be more general and the obtained results will be valid for arbitrary dimensional FHP-like automaton (most importantly FCHC).
 
 \section{The lattice of FHP}
-All the improvements of FHP are results of the simple change - instead of square grid, FHP builds on a hexagonal grid. 
-%The two dimensional plane can be uniformly covered by squares, but also by hexagon, that . This is the main improvement of FHP, all other properties are implied by the properties of the hexagonal grid.
+The whole improvement of FHP is one simple change - instead of square grid, FHP builds on a hexagonal grid. 
+%The two dimensional plane can be uniformly covered by squares, but also by hexagon, that . This is the main improvement of FHP, 
+All other properties are implied by the increased symmetry of the hexagonal grid.
 
 On the figure \ref{FHPgrid}, we have a part of the hexagonal grid, and from one of the nodes, six lattice vectors point to the neighboring nodes.
 Let us denote the set of the lattice vectors by $c_i,~i=1,2,3,4,5,6$.
@@ -167,13 +168,13 @@ N_i = \langle n_i \rangle = \sum_{s(.) \in \Gamma} n(s(.)) P(t,s(.)) .n
 \end{equation*}
 
 This formula naturally suggests definition of the mean mass density
-\begin{equation*}
+\begin{equation} \label{ddens}
 \rho(t,r) = \sum_i N_i(t,r)
-\end{equation*}
+\end{equation}
 and the momentum density
-\begin{equation*}
+\begin{equation} \label{mmom}
 j(t,r) = \sum_i c_i N_i
-\end{equation*}
+\end{equation}
 
 Due to conservation of probabilities, the conservation laws \ref{cons1} implies conservation of the mean quantities
 \begin{equation} \label{macro1}
