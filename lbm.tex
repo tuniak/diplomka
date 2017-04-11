@@ -1,0 +1,100 @@
+\chapter{Lattice Boltzmann method}
+
+In the previous chapter, we showed that Boltzmann equation is superior to the Navier-Stokes and hydrodynamic equations -- if we solve the Boltzmann equation, we can indirectly obtain the solution for the Navier-Stokes (NSE).
+
+But since the distribution $f(\bm{x},\bm{u},t)$ is the function of seven variables, it is even more difficult to solve the Boltzmann equation then NSE. 
+Surprisingly, the numerical method for the Boltzmann equation turns out to be simple to implement and straight-forward to parallelise, and it results in the exact advection (as opposed to NSE solvers, that have major difficulty with the advection term). 
+
+This numerical scheme evolved from the lattice-gas cellular automata that are the primary focus of our thesis, so we will explain it along the lines with LGCA, although explanations from the various perspectives are possible.
+
+% Hence, we will explain it along the lines of LGCA, although it can be explained on its own just fine.
+
+%\section{Basics}
+%The basic quantity used in lattice Boltzmann method is the velocity distribution $f_i(\bm{r},t)$, and it represents the density of particles with the lattice velocities $c_{i\alpha}$.  at the discrete times, and at the discrete points of the lattice.
+%
+%The lattice of the LBM is often denoted by symbol $DdQq$, where $d$ stands for the dimension, and $q$ is the number of lattice velocities, e.g. $D3Q19$ is the $3D$ lattice using $19$ lattice velocities, and is the most commonly employed lattice for $3D$.
+\section{Basics}
+The basic quantity for LBM is the velocity distribution $f_i(\bm{r},t)$.
+Using the probability density function \ref{1pd}, it can be defined as
+\begin{align*}
+f_i(\bm{r},t) = f_1(\bm{r}, \bm{c_i}, t).
+\end{align*}
+and represents the density of the particles, but only at the discrete time steps and points of the lattice.
+
+The LBM lattice is often denoted by the symbol $DdQq$, where $d$ is the dimension of the lattice, and $q$ is the number of lattice vectors, e.g. $D1Q3$, $D2Q9$ or $D3Q19$, which is the most common 3D variant with $19$ lattice vectors. Interestingly, it is the projection of the four dimensional FCHC lattice that we already described, see figure \ref{fchc}.
+
+The mass and momentum density at the discrete point $(\bm{r},t)$ is given by
+\begin{align} \label{rho}
+\rho(\bm{r},t) = \sum_i f_i(\bm{r},t)
+\end{align}
+and
+\begin{align} \label{dzej}
+\bm{j}(\bm{r},t) = \sum_i c_i f_i(\bm{r},t),
+\end{align}
+which correspond to \ref{ddens} and \ref{mmom}, that we derived for the FHP model.
+
+For isotermal lattice Boltzmann equation, the speed of sound is determined by the simple formula
+\begin{align*}
+p = c_s^2 \rho,
+\end{align*}
+and for the lattice sets we introduced above, it is
+\begin{align*}
+c_s^2 = \frac{1}{3} \frac{\Delta x^2}{\Delta t^2},
+\end{align*}
+It is a good custom to set the lattice spacing $\Delta x = 1$  and time step $\Delta t = 1$.
+
+The Boltzmann equation, discretized in space, time and velocity space \ref{Boltz} reads
+\begin{align} \label{updt}
+f_i(\bm{x} + \bm{c_i}\Delta t, t + \Delta t) = f_i(\bm{x},t) + \Omega_i(\bm{x},t),
+\end{align}
+which states that particles from the population $f_i(\bm{x},t)$ with the velocity $\bm{c_i}$ move to the point $\bm{x + c_i}$ at the next time step. Before that, the particles are affected by the collision operator $\Omega$ that redistributes particles among the populations $f_i$.
+Notice that this corresponds to the equation \ref{withcol} with one major difference -- in FHP the respective quantities were boolean (empty cell or particle inside), in LBM, these are continuous values of particle densities that collide and propagate.
+
+The LBM version of the BGK collision operator \ref{bgk} is
+\begin{align*}
+\Omega_i(f) = - \frac{f_i - f_i^{eq}}{\tau} \Delta t,
+\end{align*}
+and gives us a good intuition about what collisions do -- the population numbers relax towards the equilibrium values at a rate given by $\tau$.
+The equilibrium distribution is given by
+\begin{align} \label{mbcomp}
+f_i^{eq}(\bm{x},t) = 
+\end{align}
+where $w_i$ are the weights specific to the LBM lattice used, $\bm{u} = \bm{j} / \rho$ with $\rho$ and $\bm{j}$ are given by \ref{rho} and \ref{dzej}.
+
+\bigskip
+
+In the previous chapter, we established the link between Boltzmann and Navier-Stokes equations, and derived the expressions for the shear viscosity \ref{shearv} and the stress tensor \ref{stresst}. Their discretized LBM variants are
+\begin{align*}
+\eta = c_s^2 \big( \tau - \frac{\Delta t}{2} \big)
+\end{align*}
+and
+\begin{align*}
+\Pi_{\alpha \beta} \approx - \big( 1 - \frac{\tau}{2 \tau} \big) \sum_i c_{i\alpha} c_{i\beta}(f_i - f_i^{eq}).
+\end{align*}
+
+\section{Collision and propagation}
+Analogously to lattice-gas cellular automata, the update given by the Boltzmann equation \ref{updt} can be decomposed in two subsequent steps:
+\begin{enumerate}
+\item \textbf{Collision}
+\begin{align*}
+f_i^*(\bm{x},t) = f_i(\bm{x},t) - \frac{\Delta t}{\tau}\big( f_i(\bm{x},t) - f_i^{eq}(\bm{x},t) \big)
+\end{align*}
+where $f_i^*$ is the particle distribution after the collision.
+\item \textbf{Propagation}
+\begin{align*}
+f_i(\bm{x} + \bm{c_i} \Delta t, t + \Delta t) = f_i^*(\bm{x},t).
+\end{align*}
+\end{enumerate}
+
+Less formally, the update step, which is the essence of the LBM computation, can be described in the few points:
+\begin{enumerate}
+\item Use $f_i$ to compute $\rho$ and $\bm{j}$ via \ref{rho} and \ref{dzej}.
+%\begin{align*}
+%\begin{split}
+%\rho = \sum_i f_i \\
+%\bm{j} = \sum_i \bm{c_i} f_i
+%\end{split}
+%\end{align*}
+\item Compute Maxwell-Boltzmann distribution $f_i^{eq}$ via \ref{mbcomp}.
+\item Carry out the collision and the propagation.
+\end{enumerate}
