@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.11.8)  10 APR 2017 19:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.11.8)  24 APR 2017 12:28
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -1863,8 +1863,8 @@ LaTeX Warning: Label `hpp-colision' multiply defined.
 
 LaTeX Warning: Label `scalings' multiply defined.
 
-) (fchc.aux) (PI.aux) (bgki.aux) (lbm.aux) (Practical.aux) (Implementation.aux)
-(FCHCimplem.aux) (PIImplem.aux) (nonPI.aux
+) (fchc.aux) (PI.aux) (bgki.aux) (lbm.aux) (scaling.aux) (Practical.aux)
+(Implementation.aux) (FCHCimplem.aux) (PIImplem.aux) (nonPI.aux
 
 LaTeX Warning: Label `transitions' multiply defined.
 
@@ -2095,7 +2095,7 @@ LaTeX Info: Redefining \nameref on input line 151.
  (title.tex
 Package hyperref Info: Option `pageanchor' set `false' on input line 6.
 
-<./img/logo.pdf, id=327, 371.3875pt x 366.36874pt>
+<./img/logo.pdf, id=351, 371.3875pt x 366.36874pt>
 File: ./img/logo.pdf Graphic file (type pdf)
  <use ./img/logo.pdf>
 Package pdftex.def Info: ./img/logo.pdf used on input line 23.
@@ -2151,19 +2151,19 @@ Overfull \hbox (3.47656pt too wide) in paragraph at lines 19--20
 u-toma-ton can be chaotic,|
  []
 
-<./img/gol1.png, id=450, 315.1775pt x 296.10625pt>
+<./img/gol1.png, id=480, 315.1775pt x 296.10625pt>
 File: ./img/gol1.png Graphic file (type png)
  <use ./img/gol1.png>
 Package pdftex.def Info: ./img/gol1.png used on input line 32.
 (pdftex.def)             Requested size: 288.7942pt x 271.33667pt.
 
-<./img/gol2.png, id=451, 315.1775pt x 296.10625pt>
+<./img/gol2.png, id=481, 315.1775pt x 296.10625pt>
 File: ./img/gol2.png Graphic file (type png)
  <use ./img/gol2.png>
 Package pdftex.def Info: ./img/gol2.png used on input line 42.
 (pdftex.def)             Requested size: 288.7942pt x 271.33667pt.
 
-<./img/gol3.png, id=453, 315.1775pt x 296.10625pt>
+<./img/gol3.png, id=483, 315.1775pt x 296.10625pt>
 File: ./img/gol3.png Graphic file (type png)
  <use ./img/gol3.png>
 Package pdftex.def Info: ./img/gol3.png used on input line 49.
@@ -2173,26 +2173,26 @@ Package pdftex.def Info: ./img/gol3.png used on input line 49.
 
 
  <./img/gol1.png (PNG copy)>] [7 <./img/gol2.png> <./img/gol3.png>]
-<./img/neighb.png, id=469, 2042.63126pt x 1267.73625pt>
+<./img/neighb.png, id=499, 2042.63126pt x 1267.73625pt>
 File: ./img/neighb.png Graphic file (type png)
  <use ./img/neighb.png>
 Package pdftex.def Info: ./img/neighb.png used on input line 96.
 (pdftex.def)             Requested size: 412.56496pt x 256.03815pt.
 
-<./img/1Dline.pdf, id=474, 514.32152pt x 32.5215pt>
+<./img/1Dline.pdf, id=504, 514.32152pt x 32.5215pt>
 File: ./img/1Dline.pdf Graphic file (type pdf)
  <use ./img/1Dline.pdf>
 Package pdftex.def Info: ./img/1Dline.pdf used on input line 119.
 (pdftex.def)             Requested size: 371.30594pt x 23.47847pt.
 
-[8] <./img/1Drule.pdf, id=487, 258.9675pt x 434.42299pt>
+[8] <./img/1Drule.pdf, id=517, 258.9675pt x 434.42299pt>
 File: ./img/1Drule.pdf Graphic file (type pdf)
 
 <use ./img/1Drule.pdf>
 Package pdftex.def Info: ./img/1Drule.pdf used on input line 127.
 (pdftex.def)             Requested size: 165.02345pt x 276.84322pt.
  [9 <./img/neighb.png (PNG copy)> <./img/1Dline.pdf>]
-<./img/30_500.pdf, id=508, 361.35pt x 216.81pt>
+<./img/30_500.pdf, id=538, 361.35pt x 216.81pt>
 File: ./img/30_500.pdf Graphic file (type pdf)
  <use ./img/30_500.pdf>
 Package pdftex.def Info: ./img/30_500.pdf used on input line 178.
@@ -2202,7 +2202,7 @@ Overfull \hbox (288.7942pt too wide) in paragraph at lines 178--179
  [][] |
  []
 
-<./img/45_500.pdf, id=509, 361.35pt x 216.81pt>
+<./img/45_500.pdf, id=539, 361.35pt x 216.81pt>
 File: ./img/45_500.pdf Graphic file (type pdf)
  <use ./img/45_500.pdf>
 Package pdftex.def Info: ./img/45_500.pdf used on input line 185.
@@ -2212,7 +2212,7 @@ Overfull \hbox (288.7942pt too wide) in paragraph at lines 185--186
  [][] |
  []
 
-<./img/73_500.pdf, id=510, 361.35pt x 216.81pt>
+<./img/73_500.pdf, id=540, 361.35pt x 216.81pt>
 File: ./img/73_500.pdf Graphic file (type pdf)
  <use ./img/73_500.pdf>
 Package pdftex.def Info: ./img/73_500.pdf used on input line 191.
@@ -2222,7 +2222,7 @@ Overfull \hbox (288.7942pt too wide) in paragraph at lines 191--192
  [][] |
  []
 
-<./img/90_500.pdf, id=511, 361.35pt x 216.81pt>
+<./img/90_500.pdf, id=541, 361.35pt x 216.81pt>
 File: ./img/90_500.pdf Graphic file (type pdf)
  <use ./img/90_500.pdf>
 Package pdftex.def Info: ./img/90_500.pdf used on input line 198.
@@ -2232,7 +2232,7 @@ Overfull \hbox (288.7942pt too wide) in paragraph at lines 198--199
  [][] |
  []
 
-<./img/149_500.pdf, id=512, 361.35pt x 216.81pt>
+<./img/149_500.pdf, id=542, 361.35pt x 216.81pt>
 File: ./img/149_500.pdf Graphic file (type pdf)
  <use ./img/149_500.pdf>
 Package pdftex.def Info: ./img/149_500.pdf used on input line 206.
@@ -2242,7 +2242,7 @@ Overfull \hbox (288.7942pt too wide) in paragraph at lines 206--207
  [][] |
  []
 
-<./img/110_500.pdf, id=513, 361.35pt x 216.81pt>
+<./img/110_500.pdf, id=543, 361.35pt x 216.81pt>
 File: ./img/110_500.pdf Graphic file (type pdf)
  <use ./img/110_500.pdf>
 Package pdftex.def Info: ./img/110_500.pdf used on input line 213.
@@ -2252,7 +2252,7 @@ Overfull \hbox (288.7942pt too wide) in paragraph at lines 213--214
  [][] |
  []
 
-<./img/110_2000.pdf, id=514, 361.35pt x 216.81pt>
+<./img/110_2000.pdf, id=544, 361.35pt x 216.81pt>
 File: ./img/110_2000.pdf Graphic file (type pdf)
  <use ./img/110_2000.pdf>
 Package pdftex.def Info: ./img/110_2000.pdf used on input line 219.
@@ -2269,13 +2269,13 @@ Overfull \hbox (288.7942pt too wide) in paragraph at lines 219--220
 
  (LGCA.tex
 Chapter 2.
-<./img/hppnode.png, id=662, 1703.36375pt x 932.48375pt>
+<./img/hppnode.png, id=692, 1703.36375pt x 932.48375pt>
 File: ./img/hppnode.png Graphic file (type png)
 
 <use ./img/hppnode.png>
 Package pdftex.def Info: ./img/hppnode.png used on input line 18.
 (pdftex.def)             Requested size: 247.54149pt x 135.51259pt.
- <./img/hpp_col.png, id=664, 777.65532pt x 880.79062pt>
+ <./img/hpp_col.png, id=694, 777.65532pt x 880.79062pt>
 File: ./img/hpp_col.png Graphic file (type png)
 
 <use ./img/hpp_col.png>
@@ -2286,7 +2286,7 @@ Package pdftex.def Info: ./img/hpp_col.png used on input line 38.
 
 
  <./img/hppnode.png (PNG copy)>]
-<./img/HPPprop.png, id=671, 1643.13875pt x 1643.13875pt>
+<./img/HPPprop.png, id=701, 1643.13875pt x 1643.13875pt>
 File: ./img/HPPprop.png Graphic file (type png)
 
 <use ./img/HPPprop.png>
@@ -2297,7 +2297,7 @@ Package pdftex.def Info: ./img/HPPprop.png used on input line 53.
 
  (FHPintro.tex
 Chapter 3.
-<./img/fhp_desc.png, id=701, 1474.50874pt x 1233.60875pt>
+<./img/fhp_desc.png, id=731, 1474.50874pt x 1233.60875pt>
 File: ./img/fhp_desc.png Graphic file (type png)
 
 <use ./img/fhp_desc.png>
@@ -2308,13 +2308,13 @@ Package pdftex.def Info: ./img/fhp_desc.png used on input line 20.
 
 
  <./img/fhp_desc.png (PNG copy)>]
-<./img/FHPprop.png, id=708, 1840.8775pt x 1918.16624pt>
+<./img/FHPprop.png, id=738, 1840.8775pt x 1918.16624pt>
 File: ./img/FHPprop.png Graphic file (type png)
 
 <use ./img/FHPprop.png>
 Package pdftex.def Info: ./img/FHPprop.png used on input line 42.
 (pdftex.def)             Requested size: 288.7942pt x 300.91277pt.
- <./img/FHPcol.png, id=710, 2377.88374pt x 4922.39pt>
+ <./img/FHPcol.png, id=740, 2377.88374pt x 4922.39pt>
 File: ./img/FHPcol.png Graphic file (type png)
 
 <use ./img/FHPcol.png>
@@ -2345,7 +2345,7 @@ LaTeX Warning: Citation `wol' on page 31 undefined on input line 368.
 
  (fchc.tex
 Chapter 4.
-<../obrazky/FCHC.png, id=807, 1090.0725pt x 1330.9725pt>
+<../obrazky/FCHC.png, id=837, 1090.0725pt x 1330.9725pt>
 File: ../obrazky/FCHC.png Graphic file (type png)
 
 <use ../obrazky/FCHC.png>
@@ -2367,7 +2367,7 @@ Overfull \hbox (2.5225pt too wide) in paragraph at lines 2--4
 at suc-cess-fully evolved|
  []
 
-<./img/pi_grid.png, id=857, 632.3625pt x 391.4625pt>
+<./img/pi_grid.png, id=887, 632.3625pt x 391.4625pt>
 File: ./img/pi_grid.png Graphic file (type png)
  <use ./img/pi_grid.png>
 Package pdftex.def Info: ./img/pi_grid.png used on input line 21.
@@ -2378,110 +2378,131 @@ Package pdftex.def Info: ./img/pi_grid.png used on input line 21.
 
 
  <./img/pi_grid.png (PNG copy)>]
-<./img/node_empty.png, id=863, 460.72125pt x 454.69875pt>
+<./img/node_empty.png, id=893, 460.72125pt x 454.69875pt>
 File: ./img/node_empty.png Graphic file (type png)
 
 <use ./img/node_empty.png>
-Package pdftex.def Info: ./img/node_empty.png used on input line 38.
+Package pdftex.def Info: ./img/node_empty.png used on input line 40.
 (pdftex.def)             Requested size: 123.77074pt x 122.1528pt.
  [38 <./img/node_empty.png>]
-<./img/node_1.png, id=870, 460.72125pt x 454.69875pt>
+<./img/node_1.png, id=900, 460.72125pt x 454.69875pt>
 File: ./img/node_1.png Graphic file (type png)
  <use ./img/node_1.png>
-Package pdftex.def Info: ./img/node_1.png used on input line 53.
+Package pdftex.def Info: ./img/node_1.png used on input line 55.
 (pdftex.def)             Requested size: 206.28247pt x 203.5857pt.
 
-<../obrazky/x-interaction.png, id=871, 342.5297pt x 371.13657pt>
+<../obrazky/x-interaction.png, id=901, 342.5297pt x 371.13657pt>
 File: ../obrazky/x-interaction.png Graphic file (type png)
 
 <use ../obrazky/x-interaction.png>
-Package pdftex.def Info: ../obrazky/x-interaction.png used on input line 82.
+Package pdftex.def Info: ../obrazky/x-interaction.png used on input line 84.
 (pdftex.def)             Requested size: 123.77074pt x 134.1074pt.
 
-<./img/node_2.png, id=873, 460.72125pt x 454.69875pt>
+<./img/node_2.png, id=903, 460.72125pt x 454.69875pt>
 File: ./img/node_2.png Graphic file (type png)
  <use ./img/node_2.png>
-Package pdftex.def Info: ./img/node_2.png used on input line 91.
+Package pdftex.def Info: ./img/node_2.png used on input line 93.
 (pdftex.def)             Requested size: 206.28247pt x 203.5857pt.
 
 [39 <./img/node_1.png>]
-<../obrazky/y-interaction.png, id=883, 370.38374pt x 347.04657pt>
+<../obrazky/y-interaction.png, id=913, 370.38374pt x 347.04657pt>
 File: ../obrazky/y-interaction.png Graphic file (type png)
 
 <use ../obrazky/y-interaction.png>
-Package pdftex.def Info: ../obrazky/y-interaction.png used on input line 99.
+Package pdftex.def Info: ../obrazky/y-interaction.png used on input line 101.
 (pdftex.def)             Requested size: 123.77074pt x 115.97139pt.
 
-<./img/node_3.png, id=885, 460.72125pt x 454.69875pt>
+<./img/node_3.png, id=915, 460.72125pt x 454.69875pt>
 File: ./img/node_3.png Graphic file (type png)
  <use ./img/node_3.png>
-Package pdftex.def Info: ./img/node_3.png used on input line 107.
+Package pdftex.def Info: ./img/node_3.png used on input line 109.
 (pdftex.def)             Requested size: 206.28247pt x 203.5857pt.
 
 [40 <../obrazky/x-interaction.png> <./img/node_2.png> <../obrazky/y-interaction
 .png>] [41 <./img/node_3.png>]
-<../obrazky/transitions.png, id=903, 743.02594pt x 1447.65843pt>
+<../obrazky/transitions.png, id=933, 743.02594pt x 1447.65843pt>
 File: ../obrazky/transitions.png Graphic file (type png)
 
 <use ../obrazky/transitions.png>
-Package pdftex.def Info: ../obrazky/transitions.png used on input line 116.
+Package pdftex.def Info: ../obrazky/transitions.png used on input line 118.
 (pdftex.def)             Requested size: 288.7942pt x 562.66273pt.
  [42] [43 <../obrazky/transitions.png>]
-[44] [45] [46] [47] [48] [49] [50]
-Overfull \hbox (0.70436pt too wide) in paragraph at lines 583--584
-[]\OT1/cmr/m/n/12 To see if it is isotropic or not, let us con-sider sim-ple ex
--am-ple of two-dimensional|
- []
-
-[51]) [52]
+[44] [45] [46] [47] [48] [49]) [50] [51]
 \openout2 = `bgki.aux'.
 
  (bgki.tex
 Chapter 6.
-[53
+[52
 
 
 
-] [54] [55]
-Overfull \hbox (101.48158pt too wide) in paragraph at lines 143--143
+]
+Overfull \hbox (46.21753pt too wide) in paragraph at lines 77--77
 [] |
  []
 
-
-Overfull \hbox (45.27904pt too wide) in paragraph at lines 157--157
+[53]
+Overfull \hbox (53.51521pt too wide) in paragraph at lines 139--139
 [] |
  []
 
-[56] [57]
-Overfull \hbox (70.34427pt too wide) in paragraph at lines 244--244
+[54]
+Overfull \hbox (45.27904pt too wide) in paragraph at lines 153--153
 [] |
  []
 
-[58] [59] [60] [61]) [62]
+[55] [56]
+Overfull \hbox (70.34427pt too wide) in paragraph at lines 239--239
+[] |
+ []
+
+[57] [58] [59] [60]) [61]
 \openout2 = `lbm.aux'.
 
  (lbm.tex
 Chapter 7.
-[63
+[62
 
 
 
-]) [64] [65
+]) [63] [64
 
 
 ]
+\openout2 = `scaling.aux'.
+
+ (scaling.tex
+Chapter 8.
+<./img/strongscalingg.pdf, id=1174, 433.62pt x 289.08pt>
+File: ./img/strongscalingg.pdf Graphic file (type pdf)
+
+<use ./img/strongscalingg.pdf>
+Package pdftex.def Info: ./img/strongscalingg.pdf used on input line 34.
+(pdftex.def)             Requested size: 412.56496pt x 275.0567pt.
+ [65
+
+
+]
+<./img/weakscaling.pdf, id=1179, 433.62pt x 289.08pt>
+File: ./img/weakscaling.pdf Graphic file (type pdf)
+
+<use ./img/weakscaling.pdf>
+Package pdftex.def Info: ./img/weakscaling.pdf used on input line 61.
+(pdftex.def)             Requested size: 412.56496pt x 275.0567pt.
+ [66 <./img/strongscalingg.pdf>]) [67 <./img/weakscaling.pdf>]
 \openout2 = `Practical.aux'.
 
  (Practical.tex
-Chapter 8.
-) [66
+Chapter 9.
+) [68
+
 
 
 ]
 \openout2 = `Implementation.aux'.
 
  (Implementation.tex
-Chapter 9.
+Chapter 10.
 ("C:\Users\Miro\AppData\Local\Programs\MiKTeX 2.9\tex\latex\cjk\UTF8\UTF8.bdg"
 File: UTF8.bdg 2015/04/18 4.8.4
 ) ("C:\Users\Miro\AppData\Local\Programs\MiKTeX 2.9\tex\latex\cjk\UTF8\UTF8.enc
@@ -2507,7 +2528,7 @@ Overfull \hbox (0.42947pt too wide) in paragraph at lines 35--36
  in-cluded to Python|
  []
 
-) [67
+) [69
 
 
 
@@ -2515,71 +2536,71 @@ Overfull \hbox (0.42947pt too wide) in paragraph at lines 35--36
 \openout2 = `FCHCimplem.aux'.
 
  (FCHCimplem.tex
-Chapter 10.
+Chapter 11.
 
-LaTeX Warning: Citation `Wolf' on page 68 undefined on input line 5.
+LaTeX Warning: Citation `Wolf' on page 70 undefined on input line 5.
 
-[68
+[70
 
 
 
-] [69] [70] [71] [72] [73] [74] [75] [76] [77] [78] [79] [80] [81] [82]
-[83] [84]) [85]
+] [71] [72] [73] [74] [75] [76] [77] [78] [79] [80] [81] [82] [83] [84]
+[85] [86]) [87]
 \openout2 = `PIImplem.aux'.
 
  (PIImplem.tex
-Chapter 11.
-[86
+Chapter 12.
+[88
 
 
 
-] [87] [88] [89] [90] [91] [92]) [93]
+] [89] [90] [91] [92] [93] [94]) [95]
 \openout2 = `nonPI.aux'.
 
  (nonPI.tex
-Chapter 12.
-<../nonPInode/node_1.png, id=2465, 693.59125pt x 753.81625pt>
+Chapter 13.
+<../nonPInode/node_1.png, id=2571, 693.59125pt x 753.81625pt>
 File: ../nonPInode/node_1.png Graphic file (type png)
 
 <use ../nonPInode/node_1.png>
 Package pdftex.def Info: ../nonPInode/node_1.png used on input line 13.
 (pdftex.def)             Requested size: 90.76479pt x 98.64368pt.
 
-<../nonPInode/node_2.png, id=2466, 697.60625pt x 754.82pt>
+<../nonPInode/node_2.png, id=2572, 697.60625pt x 754.82pt>
 File: ../nonPInode/node_2.png Graphic file (type png)
 
 <use ../nonPInode/node_2.png>
 Package pdftex.def Info: ../nonPInode/node_2.png used on input line 21.
 (pdftex.def)             Requested size: 90.76479pt x 98.19914pt.
 
-<../nonPInode/node_3.png, id=2467, 670.505pt x 754.82pt>
+<../nonPInode/node_3.png, id=2573, 670.505pt x 754.82pt>
 File: ../nonPInode/node_3.png Graphic file (type png)
 
 <use ../nonPInode/node_3.png>
 Package pdftex.def Info: ../nonPInode/node_3.png used on input line 30.
 (pdftex.def)             Requested size: 90.76479pt x 102.17273pt.
- [94
+ [96
 
 
 
  <../nonPInode/node_1.png (PNG copy)> <../nonPInode/node_2.png (PNG copy)> <../
 nonPInode/node_3.png (PNG copy)>]
-<../nonPInode/mom1.png, id=2476, 1132.23pt x 1022.82124pt>
+<../nonPInode/mom1.png, id=2581, 1132.23pt x 1022.82124pt>
 File: ../nonPInode/mom1.png Graphic file (type png)
 
 <use ../nonPInode/mom1.png>
 Package pdftex.def Info: ../nonPInode/mom1.png used on input line 42.
 (pdftex.def)             Requested size: 115.51767pt x 104.34824pt.
 
-<../nonPInode/mom2.png, id=2477, 1078.0275pt x 1145.27875pt>
+<../nonPInode/mom2.png, id=2582, 1078.0275pt x 1145.27875pt>
 File: ../nonPInode/mom2.png Graphic file (type png)
 
 <use ../nonPInode/mom2.png>
 Package pdftex.def Info: ../nonPInode/mom2.png used on input line 52.
 (pdftex.def)             Requested size: 115.51767pt x 122.71312pt.
- [95 <../nonPInode/mom1.png (PNG copy)> <../nonPInode/mom2.png (PNG copy)>] [96
+ [97 <../nonPInode/mom1.png (PNG copy)> <../nonPInode/mom2.png (PNG copy)>] [98
 ]
-<../kocka_utlm/velocity_0.png, id=2539, 642.4pt x 481.8pt>
+<../kocka_utlm/velocity_0.png, id=2644, 642.4pt x 481.8pt>
 File: ../kocka_utlm/velocity_0.png Graphic file (type png)
 
 <use ../kocka_utlm/velocity_0.png>
@@ -2589,7 +2610,7 @@ Package pdftex.def Info: ../kocka_utlm/velocity_0.png used on input line 145.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<../kocka_utlm/velocity_6.png, id=2540, 642.4pt x 481.8pt>
+<../kocka_utlm/velocity_6.png, id=2645, 642.4pt x 481.8pt>
 File: ../kocka_utlm/velocity_6.png Graphic file (type png)
 
 <use ../kocka_utlm/velocity_6.png>
@@ -2599,7 +2620,7 @@ Package pdftex.def Info: ../kocka_utlm/velocity_6.png used on input line 151.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<../kocka_utlm/velocity_12.png, id=2541, 642.4pt x 481.8pt>
+<../kocka_utlm/velocity_12.png, id=2646, 642.4pt x 481.8pt>
 File: ../kocka_utlm/velocity_12.png Graphic file (type png)
 
 <use ../kocka_utlm/velocity_12.png>
@@ -2609,7 +2630,7 @@ Package pdftex.def Info: ../kocka_utlm/velocity_12.png used on input line 158.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<../kocka_utlm/velocity_36.png, id=2542, 642.4pt x 481.8pt>
+<../kocka_utlm/velocity_36.png, id=2647, 642.4pt x 481.8pt>
 File: ../kocka_utlm/velocity_36.png Graphic file (type png)
 
 <use ../kocka_utlm/velocity_36.png>
@@ -2619,7 +2640,7 @@ Package pdftex.def Info: ../kocka_utlm/velocity_36.png used on input line 164.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<../kocka_utlm/velocity_84.png, id=2543, 642.4pt x 481.8pt>
+<../kocka_utlm/velocity_84.png, id=2648, 642.4pt x 481.8pt>
 File: ../kocka_utlm/velocity_84.png Graphic file (type png)
 
 <use ../kocka_utlm/velocity_84.png>
@@ -2629,7 +2650,7 @@ Package pdftex.def Info: ../kocka_utlm/velocity_84.png used on input line 170.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<../kocka_utlm/velocity_102.png, id=2544, 642.4pt x 481.8pt>
+<../kocka_utlm/velocity_102.png, id=2649, 642.4pt x 481.8pt>
 File: ../kocka_utlm/velocity_102.png Graphic file (type png)
 
 <use ../kocka_utlm/velocity_102.png>
@@ -2640,7 +2661,7 @@ Package pdftex.def Info: ../kocka_utlm/velocity_102.png used on input line 176.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<../kocka_utlm/velocity_126.png, id=2545, 642.4pt x 481.8pt>
+<../kocka_utlm/velocity_126.png, id=2650, 642.4pt x 481.8pt>
 File: ../kocka_utlm/velocity_126.png Graphic file (type png)
 
 <use ../kocka_utlm/velocity_126.png>
@@ -2651,7 +2672,7 @@ Package pdftex.def Info: ../kocka_utlm/velocity_126.png used on input line 182.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<../kocka_utlm/velocity_162.png, id=2546, 642.4pt x 481.8pt>
+<../kocka_utlm/velocity_162.png, id=2651, 642.4pt x 481.8pt>
 File: ../kocka_utlm/velocity_162.png Graphic file (type png)
 
 <use ../kocka_utlm/velocity_162.png>
@@ -2662,7 +2683,7 @@ Package pdftex.def Info: ../kocka_utlm/velocity_162.png used on input line 189.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<../kocka_utlm/velocity_174.png, id=2547, 642.4pt x 481.8pt>
+<../kocka_utlm/velocity_174.png, id=2652, 642.4pt x 481.8pt>
 File: ../kocka_utlm/velocity_174.png Graphic file (type png)
 
 <use ../kocka_utlm/velocity_174.png>
@@ -2673,7 +2694,7 @@ Package pdftex.def Info: ../kocka_utlm/velocity_174.png used on input line 196.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<../kocka_utlm/velocity_198.png, id=2548, 642.4pt x 481.8pt>
+<../kocka_utlm/velocity_198.png, id=2653, 642.4pt x 481.8pt>
 File: ../kocka_utlm/velocity_198.png Graphic file (type png)
 
 <use ../kocka_utlm/velocity_198.png>
@@ -2684,7 +2705,7 @@ Package pdftex.def Info: ../kocka_utlm/velocity_198.png used on input line 203.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<../kocka_utlm/velocity_234.png, id=2549, 642.4pt x 481.8pt>
+<../kocka_utlm/velocity_234.png, id=2654, 642.4pt x 481.8pt>
 File: ../kocka_utlm/velocity_234.png Graphic file (type png)
 
 <use ../kocka_utlm/velocity_234.png>
@@ -2695,7 +2716,7 @@ Package pdftex.def Info: ../kocka_utlm/velocity_234.png used on input line 210.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<../kocka_utlm/velocity_282.png, id=2550, 642.4pt x 481.8pt>
+<../kocka_utlm/velocity_282.png, id=2655, 642.4pt x 481.8pt>
 File: ../kocka_utlm/velocity_282.png Graphic file (type png)
 
 <use ../kocka_utlm/velocity_282.png>
@@ -2706,7 +2727,7 @@ Package pdftex.def Info: ../kocka_utlm/velocity_282.png used on input line 217.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<../kocka_utlm/velocity_312.png, id=2551, 642.4pt x 481.8pt>
+<../kocka_utlm/velocity_312.png, id=2656, 642.4pt x 481.8pt>
 File: ../kocka_utlm/velocity_312.png Graphic file (type png)
 
 <use ../kocka_utlm/velocity_312.png>
@@ -2717,7 +2738,7 @@ Package pdftex.def Info: ../kocka_utlm/velocity_312.png used on input line 224.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<../kocka_utlm/velocity_324.png, id=2552, 642.4pt x 481.8pt>
+<../kocka_utlm/velocity_324.png, id=2657, 642.4pt x 481.8pt>
 File: ../kocka_utlm/velocity_324.png Graphic file (type png)
 
 <use ../kocka_utlm/velocity_324.png>
@@ -2728,7 +2749,7 @@ Package pdftex.def Info: ../kocka_utlm/velocity_324.png used on input line 231.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<../kocka_utlm_1/velocity_6.png, id=2553, 642.4pt x 481.8pt>
+<../kocka_utlm_1/velocity_6.png, id=2658, 642.4pt x 481.8pt>
 File: ../kocka_utlm_1/velocity_6.png Graphic file (type png)
 
 <use ../kocka_utlm_1/velocity_6.png>
@@ -2739,7 +2760,7 @@ Package pdftex.def Info: ../kocka_utlm_1/velocity_6.png used on input line 240.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<../kocka_utlm_1/velocity_30.png, id=2554, 642.4pt x 481.8pt>
+<../kocka_utlm_1/velocity_30.png, id=2659, 642.4pt x 481.8pt>
 File: ../kocka_utlm_1/velocity_30.png Graphic file (type png)
 
 <use ../kocka_utlm_1/velocity_30.png>
@@ -2750,7 +2771,7 @@ Package pdftex.def Info: ../kocka_utlm_1/velocity_30.png used on input line 247
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<../kocka_utlm_1/velocity_48.png, id=2555, 642.4pt x 481.8pt>
+<../kocka_utlm_1/velocity_48.png, id=2660, 642.4pt x 481.8pt>
 File: ../kocka_utlm_1/velocity_48.png Graphic file (type png)
 
 <use ../kocka_utlm_1/velocity_48.png>
@@ -2761,7 +2782,7 @@ Package pdftex.def Info: ../kocka_utlm_1/velocity_48.png used on input line 254
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<../kocka_utlm_1/velocity_72.png, id=2556, 642.4pt x 481.8pt>
+<../kocka_utlm_1/velocity_72.png, id=2661, 642.4pt x 481.8pt>
 File: ../kocka_utlm_1/velocity_72.png Graphic file (type png)
 
 <use ../kocka_utlm_1/velocity_72.png>
@@ -2772,7 +2793,7 @@ Package pdftex.def Info: ../kocka_utlm_1/velocity_72.png used on input line 261
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<../kocka_utlm_1/velocity_90.png, id=2557, 642.4pt x 481.8pt>
+<../kocka_utlm_1/velocity_90.png, id=2662, 642.4pt x 481.8pt>
 File: ../kocka_utlm_1/velocity_90.png Graphic file (type png)
 
 <use ../kocka_utlm_1/velocity_90.png>
@@ -2783,7 +2804,7 @@ Package pdftex.def Info: ../kocka_utlm_1/velocity_90.png used on input line 268
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<../kocka_utlm_1/velocity_102.png, id=2558, 642.4pt x 481.8pt>
+<../kocka_utlm_1/velocity_102.png, id=2663, 642.4pt x 481.8pt>
 File: ../kocka_utlm_1/velocity_102.png Graphic file (type png)
 
 <use ../kocka_utlm_1/velocity_102.png>
@@ -2794,7 +2815,7 @@ Package pdftex.def Info: ../kocka_utlm_1/velocity_102.png used on input line 27
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<../kocka_utlm_1/velocity_138.png, id=2559, 642.4pt x 481.8pt>
+<../kocka_utlm_1/velocity_138.png, id=2664, 642.4pt x 481.8pt>
 File: ../kocka_utlm_1/velocity_138.png Graphic file (type png)
 
 <use ../kocka_utlm_1/velocity_138.png>
@@ -2805,7 +2826,7 @@ Package pdftex.def Info: ../kocka_utlm_1/velocity_138.png used on input line 28
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<../kocka_utlm_1/velocity_150.png, id=2560, 642.4pt x 481.8pt>
+<../kocka_utlm_1/velocity_150.png, id=2665, 642.4pt x 481.8pt>
 File: ../kocka_utlm_1/velocity_150.png Graphic file (type png)
 
 <use ../kocka_utlm_1/velocity_150.png>
@@ -2816,7 +2837,7 @@ Package pdftex.def Info: ../kocka_utlm_1/velocity_150.png used on input line 28
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<../kocka_utlm_1/velocity_162.png, id=2561, 642.4pt x 481.8pt>
+<../kocka_utlm_1/velocity_162.png, id=2666, 642.4pt x 481.8pt>
 File: ../kocka_utlm_1/velocity_162.png Graphic file (type png)
 
 <use ../kocka_utlm_1/velocity_162.png>
@@ -2827,7 +2848,7 @@ Package pdftex.def Info: ../kocka_utlm_1/velocity_162.png used on input line 29
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<../kocka_utlm_1/velocity_492.png, id=2562, 642.4pt x 481.8pt>
+<../kocka_utlm_1/velocity_492.png, id=2667, 642.4pt x 481.8pt>
 File: ../kocka_utlm_1/velocity_492.png Graphic file (type png)
 
 <use ../kocka_utlm_1/velocity_492.png>
@@ -2838,7 +2859,7 @@ Package pdftex.def Info: ../kocka_utlm_1/velocity_492.png used on input line 30
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<../kocka_utlm_1/velocity_570.png, id=2563, 642.4pt x 481.8pt>
+<../kocka_utlm_1/velocity_570.png, id=2668, 642.4pt x 481.8pt>
 File: ../kocka_utlm_1/velocity_570.png Graphic file (type png)
 
 <use ../kocka_utlm_1/velocity_570.png>
@@ -2849,7 +2870,7 @@ Package pdftex.def Info: ../kocka_utlm_1/velocity_570.png used on input line 30
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<../kocka_utlm_1/velocity_696.png, id=2564, 642.4pt x 481.8pt>
+<../kocka_utlm_1/velocity_696.png, id=2669, 642.4pt x 481.8pt>
 File: ../kocka_utlm_1/velocity_696.png Graphic file (type png)
 
 <use ../kocka_utlm_1/velocity_696.png>
@@ -2860,28 +2881,28 @@ Package pdftex.def Info: ../kocka_utlm_1/velocity_696.png used on input line 31
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-) [97] [98 <../kocka_utlm/velocity_0.png> <../kocka_utlm/velocity_6.png>]
-[99 <../kocka_utlm/velocity_12.png> <../kocka_utlm/velocity_36.png>] [100 <../k
-ocka_utlm/velocity_84.png> <../kocka_utlm/velocity_102.png>] [101 <../kocka_utl
-m/velocity_126.png> <../kocka_utlm/velocity_162.png>] [102 <../kocka_utlm/veloc
-ity_174.png> <../kocka_utlm/velocity_198.png>] [103 <../kocka_utlm/velocity_234
-.png> <../kocka_utlm/velocity_282.png>] [104 <../kocka_utlm/velocity_312.png> <
-../kocka_utlm/velocity_324.png>] [105 <../kocka_utlm_1/velocity_6.png> <../kock
-a_utlm_1/velocity_30.png>] [106 <../kocka_utlm_1/velocity_48.png> <../kocka_utl
-m_1/velocity_72.png>] [107 <../kocka_utlm_1/velocity_90.png> <../kocka_utlm_1/v
-elocity_102.png>] [108 <../kocka_utlm_1/velocity_138.png> <../kocka_utlm_1/velo
-city_150.png>] [109 <../kocka_utlm_1/velocity_162.png> <../kocka_utlm_1/velocit
-y_492.png>] [110 <../kocka_utlm_1/velocity_570.png> <../kocka_utlm_1/velocity_6
-96.png>]
+) [99] [100 <../kocka_utlm/velocity_0.png> <../kocka_utlm/velocity_6.png>]
+[101 <../kocka_utlm/velocity_12.png> <../kocka_utlm/velocity_36.png>] [102 <../
+kocka_utlm/velocity_84.png> <../kocka_utlm/velocity_102.png>] [103 <../kocka_ut
+lm/velocity_126.png> <../kocka_utlm/velocity_162.png>] [104 <../kocka_utlm/velo
+city_174.png> <../kocka_utlm/velocity_198.png>] [105 <../kocka_utlm/velocity_23
+4.png> <../kocka_utlm/velocity_282.png>] [106 <../kocka_utlm/velocity_312.png> 
+<../kocka_utlm/velocity_324.png>] [107 <../kocka_utlm_1/velocity_6.png> <../koc
+ka_utlm_1/velocity_30.png>] [108 <../kocka_utlm_1/velocity_48.png> <../kocka_ut
+lm_1/velocity_72.png>] [109 <../kocka_utlm_1/velocity_90.png> <../kocka_utlm_1/
+velocity_102.png>] [110 <../kocka_utlm_1/velocity_138.png> <../kocka_utlm_1/vel
+ocity_150.png>] [111 <../kocka_utlm_1/velocity_162.png> <../kocka_utlm_1/veloci
+ty_492.png>] [112 <../kocka_utlm_1/velocity_570.png> <../kocka_utlm_1/velocity_
+696.png>]
 \openout2 = `obstacles.aux'.
 
  (obstacles.tex
-Chapter 13.
-[111
+Chapter 14.
+[113
 
 
 
-] <../PI_sphere_80/velocity_70.png, id=2704, 642.4pt x 481.8pt>
+] <../PI_sphere_80/velocity_70.png, id=2810, 642.4pt x 481.8pt>
 File: ../PI_sphere_80/velocity_70.png Graphic file (type png)
 
 <use ../PI_sphere_80/velocity_70.png>
@@ -2889,7 +2910,7 @@ Package pdftex.def Info: ../PI_sphere_80/velocity_70.png used on input line 89.
 
 (pdftex.def)             Requested size: 371.30594pt x 278.48846pt.
 
-<../PI_sphere_80/velocity_170.png, id=2705, 642.4pt x 481.8pt>
+<../PI_sphere_80/velocity_170.png, id=2811, 642.4pt x 481.8pt>
 File: ../PI_sphere_80/velocity_170.png Graphic file (type png)
 
 <use ../PI_sphere_80/velocity_170.png>
@@ -2897,7 +2918,7 @@ Package pdftex.def Info: ../PI_sphere_80/velocity_170.png used on input line 97
 .
 (pdftex.def)             Requested size: 371.30594pt x 278.48846pt.
 
-<../PI_sphere_80/velocity_320.png, id=2706, 642.4pt x 481.8pt>
+<../PI_sphere_80/velocity_320.png, id=2812, 642.4pt x 481.8pt>
 File: ../PI_sphere_80/velocity_320.png Graphic file (type png)
 
 <use ../PI_sphere_80/velocity_320.png>
@@ -2905,7 +2926,7 @@ Package pdftex.def Info: ../PI_sphere_80/velocity_320.png used on input line 10
 5.
 (pdftex.def)             Requested size: 371.30594pt x 278.48846pt.
 
-<../PI_sphere_80/velocity_460.png, id=2707, 642.4pt x 481.8pt>
+<../PI_sphere_80/velocity_460.png, id=2813, 642.4pt x 481.8pt>
 File: ../PI_sphere_80/velocity_460.png Graphic file (type png)
 
 <use ../PI_sphere_80/velocity_460.png>
@@ -2913,7 +2934,7 @@ Package pdftex.def Info: ../PI_sphere_80/velocity_460.png used on input line 11
 3.
 (pdftex.def)             Requested size: 371.30594pt x 278.48846pt.
 
-<../PI_sphere_80/velocity_700.png, id=2708, 642.4pt x 481.8pt>
+<../PI_sphere_80/velocity_700.png, id=2814, 642.4pt x 481.8pt>
 File: ../PI_sphere_80/velocity_700.png Graphic file (type png)
 
 <use ../PI_sphere_80/velocity_700.png>
@@ -2921,7 +2942,7 @@ Package pdftex.def Info: ../PI_sphere_80/velocity_700.png used on input line 12
 1.
 (pdftex.def)             Requested size: 371.30594pt x 278.48846pt.
 
-<../PI_sphere_80/velocity_1000.png, id=2709, 642.4pt x 481.8pt>
+<../PI_sphere_80/velocity_1000.png, id=2815, 642.4pt x 481.8pt>
 File: ../PI_sphere_80/velocity_1000.png Graphic file (type png)
 
 <use ../PI_sphere_80/velocity_1000.png>
@@ -2929,7 +2950,7 @@ Package pdftex.def Info: ../PI_sphere_80/velocity_1000.png used on input line 1
 29.
 (pdftex.def)             Requested size: 371.30594pt x 278.48846pt.
 
-<../PI_sphere_80/velocity_1500.png, id=2710, 642.4pt x 481.8pt>
+<../PI_sphere_80/velocity_1500.png, id=2816, 642.4pt x 481.8pt>
 File: ../PI_sphere_80/velocity_1500.png Graphic file (type png)
 
 <use ../PI_sphere_80/velocity_1500.png>
@@ -2937,18 +2958,18 @@ Package pdftex.def Info: ../PI_sphere_80/velocity_1500.png used on input line 1
 37.
 (pdftex.def)             Requested size: 371.30594pt x 278.48846pt.
 
-<../PI_sphere_80/velocity_2300.png, id=2711, 642.4pt x 481.8pt>
+<../PI_sphere_80/velocity_2300.png, id=2817, 642.4pt x 481.8pt>
 File: ../PI_sphere_80/velocity_2300.png Graphic file (type png)
 
 <use ../PI_sphere_80/velocity_2300.png>
 Package pdftex.def Info: ../PI_sphere_80/velocity_2300.png used on input line 1
 45.
 (pdftex.def)             Requested size: 371.30594pt x 278.48846pt.
- [112] [113 <../PI_sphere_80/velocity_70.png> <../PI_sphere_80/velocity_170.png
->] [114 <../PI_sphere_80/velocity_320.png> <../PI_sphere_80/velocity_460.png>] 
-[115 <../PI_sphere_80/velocity_700.png> <../PI_sphere_80/velocity_1000.png>] [1
-16 <../PI_sphere_80/velocity_1500.png> <../PI_sphere_80/velocity_2300.png>]
-<../PI_plate_40/velocity_50.png, id=2764, 642.4pt x 481.8pt>
+ [114] [115 <../PI_sphere_80/velocity_70.png> <../PI_sphere_80/velocity_170.png
+>] [116 <../PI_sphere_80/velocity_320.png> <../PI_sphere_80/velocity_460.png>] 
+[117 <../PI_sphere_80/velocity_700.png> <../PI_sphere_80/velocity_1000.png>] [1
+18 <../PI_sphere_80/velocity_1500.png> <../PI_sphere_80/velocity_2300.png>]
+<../PI_plate_40/velocity_50.png, id=2870, 642.4pt x 481.8pt>
 File: ../PI_plate_40/velocity_50.png Graphic file (type png)
 
 <use ../PI_plate_40/velocity_50.png>
@@ -2956,7 +2977,7 @@ Package pdftex.def Info: ../PI_plate_40/velocity_50.png used on input line 156.
 
 (pdftex.def)             Requested size: 371.30594pt x 278.48846pt.
 
-<../PI_plate_40/velocity_150.png, id=2765, 642.4pt x 481.8pt>
+<../PI_plate_40/velocity_150.png, id=2871, 642.4pt x 481.8pt>
 File: ../PI_plate_40/velocity_150.png Graphic file (type png)
 
 <use ../PI_plate_40/velocity_150.png>
@@ -2964,7 +2985,7 @@ Package pdftex.def Info: ../PI_plate_40/velocity_150.png used on input line 163
 .
 (pdftex.def)             Requested size: 371.30594pt x 278.48846pt.
 
-<../PI_plate_40/velocity_250.png, id=2766, 642.4pt x 481.8pt>
+<../PI_plate_40/velocity_250.png, id=2872, 642.4pt x 481.8pt>
 File: ../PI_plate_40/velocity_250.png Graphic file (type png)
 
 <use ../PI_plate_40/velocity_250.png>
@@ -2972,7 +2993,7 @@ Package pdftex.def Info: ../PI_plate_40/velocity_250.png used on input line 170
 .
 (pdftex.def)             Requested size: 371.30594pt x 278.48846pt.
 
-<../PI_plate_40/velocity_350.png, id=2767, 642.4pt x 481.8pt>
+<../PI_plate_40/velocity_350.png, id=2873, 642.4pt x 481.8pt>
 File: ../PI_plate_40/velocity_350.png Graphic file (type png)
 
 <use ../PI_plate_40/velocity_350.png>
@@ -2985,7 +3006,7 @@ Package pdftex.def Info: ../PI_plate_40/velocity_350.png used on input line 185
 .
 (pdftex.def)             Requested size: 371.30594pt x 278.48846pt.
 
-<../PI_plate_40/velocity_550.png, id=2768, 642.4pt x 481.8pt>
+<../PI_plate_40/velocity_550.png, id=2874, 642.4pt x 481.8pt>
 File: ../PI_plate_40/velocity_550.png Graphic file (type png)
 
 <use ../PI_plate_40/velocity_550.png>
@@ -2993,7 +3014,7 @@ Package pdftex.def Info: ../PI_plate_40/velocity_550.png used on input line 192
 .
 (pdftex.def)             Requested size: 371.30594pt x 278.48846pt.
 
-<../PI_plate_40/velocity_750.png, id=2769, 642.4pt x 481.8pt>
+<../PI_plate_40/velocity_750.png, id=2875, 642.4pt x 481.8pt>
 File: ../PI_plate_40/velocity_750.png Graphic file (type png)
 
 <use ../PI_plate_40/velocity_750.png>
@@ -3001,7 +3022,7 @@ Package pdftex.def Info: ../PI_plate_40/velocity_750.png used on input line 199
 .
 (pdftex.def)             Requested size: 371.30594pt x 278.48846pt.
 
-<../PI_plate_40/velocity_1000.png, id=2770, 642.4pt x 481.8pt>
+<../PI_plate_40/velocity_1000.png, id=2876, 642.4pt x 481.8pt>
 File: ../PI_plate_40/velocity_1000.png Graphic file (type png)
 
 <use ../PI_plate_40/velocity_1000.png>
@@ -3009,7 +3030,7 @@ Package pdftex.def Info: ../PI_plate_40/velocity_1000.png used on input line 20
 6.
 (pdftex.def)             Requested size: 371.30594pt x 278.48846pt.
 
-<../PI_plate_40/velocity_1500.png, id=2771, 642.4pt x 481.8pt>
+<../PI_plate_40/velocity_1500.png, id=2877, 642.4pt x 481.8pt>
 File: ../PI_plate_40/velocity_1500.png Graphic file (type png)
 
 <use ../PI_plate_40/velocity_1500.png>
@@ -3017,7 +3038,7 @@ Package pdftex.def Info: ../PI_plate_40/velocity_1500.png used on input line 21
 3.
 (pdftex.def)             Requested size: 371.30594pt x 278.48846pt.
 
-<../PI_plate_40/velocity_2000.png, id=2772, 642.4pt x 481.8pt>
+<../PI_plate_40/velocity_2000.png, id=2878, 642.4pt x 481.8pt>
 File: ../PI_plate_40/velocity_2000.png Graphic file (type png)
 
 <use ../PI_plate_40/velocity_2000.png>
@@ -3025,35 +3046,35 @@ Package pdftex.def Info: ../PI_plate_40/velocity_2000.png used on input line 22
 0.
 (pdftex.def)             Requested size: 371.30594pt x 278.48846pt.
 
-<../PI_plate_40/velocity_2500.png, id=2773, 642.4pt x 481.8pt>
+<../PI_plate_40/velocity_2500.png, id=2879, 642.4pt x 481.8pt>
 File: ../PI_plate_40/velocity_2500.png Graphic file (type png)
 
 <use ../PI_plate_40/velocity_2500.png>
 Package pdftex.def Info: ../PI_plate_40/velocity_2500.png used on input line 22
 6.
 (pdftex.def)             Requested size: 371.30594pt x 278.48846pt.
-) [117 <../PI_plate_40/velocity_50.png>]
-[118 <../PI_plate_40/velocity_150.png> <../PI_plate_40/velocity_250.png>]
-[119 <../PI_plate_40/velocity_350.png>] [120 <../PI_plate_40/velocity_550.png> 
-<../PI_plate_40/velocity_750.png>] [121 <../PI_plate_40/velocity_1000.png> <../
-PI_plate_40/velocity_1500.png>] [122 <../PI_plate_40/velocity_2000.png> <../PI_
+) [119 <../PI_plate_40/velocity_50.png>]
+[120 <../PI_plate_40/velocity_150.png> <../PI_plate_40/velocity_250.png>]
+[121 <../PI_plate_40/velocity_350.png>] [122 <../PI_plate_40/velocity_550.png> 
+<../PI_plate_40/velocity_750.png>] [123 <../PI_plate_40/velocity_1000.png> <../
+PI_plate_40/velocity_1500.png>] [124 <../PI_plate_40/velocity_2000.png> <../PI_
 plate_40/velocity_2500.png>]
 \openout2 = `turbo.aux'.
 
  (turbo.tex
-Chapter 14.
-<../obrazky/cubosphere.png, id=2810, 791.89468pt x 671.95723pt>
+Chapter 15.
+<../obrazky/cubosphere.png, id=2916, 791.89468pt x 671.95723pt>
 File: ../obrazky/cubosphere.png Graphic file (type png)
 
 <use ../obrazky/cubosphere.png>
 Package pdftex.def Info: ../obrazky/cubosphere.png used on input line 26.
 (pdftex.def)             Requested size: 247.54149pt x 210.04764pt.
- [123
+ [125
 
 
 
  <../obrazky/cubosphere.png (PNG copy)>]
-<../fchc_inward_flow/velocity8.png, id=2821, 642.4pt x 481.8pt>
+<../fchc_inward_flow/velocity8.png, id=2927, 642.4pt x 481.8pt>
 File: ../fchc_inward_flow/velocity8.png Graphic file (type png)
 
 <use ../fchc_inward_flow/velocity8.png>
@@ -3061,7 +3082,7 @@ Package pdftex.def Info: ../fchc_inward_flow/velocity8.png used on input line 5
 4.
 (pdftex.def)             Requested size: 412.56496pt x 309.43164pt.
 
-<../fchc_inward_flow/velocity16.png, id=2822, 642.4pt x 481.8pt>
+<../fchc_inward_flow/velocity16.png, id=2928, 642.4pt x 481.8pt>
 File: ../fchc_inward_flow/velocity16.png Graphic file (type png)
 
 <use ../fchc_inward_flow/velocity16.png>
@@ -3069,7 +3090,7 @@ Package pdftex.def Info: ../fchc_inward_flow/velocity16.png used on input line
 61.
 (pdftex.def)             Requested size: 412.56496pt x 309.43164pt.
 
-<../fchc_inward_flow/velocity24.png, id=2823, 642.4pt x 481.8pt>
+<../fchc_inward_flow/velocity24.png, id=2929, 642.4pt x 481.8pt>
 File: ../fchc_inward_flow/velocity24.png Graphic file (type png)
 
 <use ../fchc_inward_flow/velocity24.png>
@@ -3077,7 +3098,7 @@ Package pdftex.def Info: ../fchc_inward_flow/velocity24.png used on input line
 68.
 (pdftex.def)             Requested size: 412.56496pt x 309.43164pt.
 
-<../fchc_inward_flow/velocity32.png, id=2824, 642.4pt x 481.8pt>
+<../fchc_inward_flow/velocity32.png, id=2930, 642.4pt x 481.8pt>
 File: ../fchc_inward_flow/velocity32.png Graphic file (type png)
 
 <use ../fchc_inward_flow/velocity32.png>
@@ -3085,7 +3106,7 @@ Package pdftex.def Info: ../fchc_inward_flow/velocity32.png used on input line
 75.
 (pdftex.def)             Requested size: 412.56496pt x 309.43164pt.
 
-<../fchc_inward_flow/velocity40.png, id=2825, 642.4pt x 481.8pt>
+<../fchc_inward_flow/velocity40.png, id=2931, 642.4pt x 481.8pt>
 File: ../fchc_inward_flow/velocity40.png Graphic file (type png)
 
 <use ../fchc_inward_flow/velocity40.png>
@@ -3093,7 +3114,7 @@ Package pdftex.def Info: ../fchc_inward_flow/velocity40.png used on input line
 82.
 (pdftex.def)             Requested size: 412.56496pt x 309.43164pt.
 
-<../PI_inward_flow/velocity8.png, id=2826, 642.4pt x 481.8pt>
+<../PI_inward_flow/velocity8.png, id=2932, 642.4pt x 481.8pt>
 File: ../PI_inward_flow/velocity8.png Graphic file (type png)
 
 <use ../PI_inward_flow/velocity8.png>
@@ -3101,7 +3122,7 @@ Package pdftex.def Info: ../PI_inward_flow/velocity8.png used on input line 89.
 
 (pdftex.def)             Requested size: 412.56496pt x 309.43164pt.
 
-<../PI_inward_flow/velocity16.png, id=2827, 642.4pt x 481.8pt>
+<../PI_inward_flow/velocity16.png, id=2933, 642.4pt x 481.8pt>
 File: ../PI_inward_flow/velocity16.png Graphic file (type png)
 
 <use ../PI_inward_flow/velocity16.png>
@@ -3109,7 +3130,7 @@ Package pdftex.def Info: ../PI_inward_flow/velocity16.png used on input line 96
 .
 (pdftex.def)             Requested size: 412.56496pt x 309.43164pt.
 
-<../PI_inward_flow/velocity24.png, id=2828, 642.4pt x 481.8pt>
+<../PI_inward_flow/velocity24.png, id=2934, 642.4pt x 481.8pt>
 File: ../PI_inward_flow/velocity24.png Graphic file (type png)
 
 <use ../PI_inward_flow/velocity24.png>
@@ -3117,7 +3138,7 @@ Package pdftex.def Info: ../PI_inward_flow/velocity24.png used on input line 10
 3.
 (pdftex.def)             Requested size: 412.56496pt x 309.43164pt.
 
-<../PI_inward_flow/velocity32.png, id=2829, 642.4pt x 481.8pt>
+<../PI_inward_flow/velocity32.png, id=2935, 642.4pt x 481.8pt>
 File: ../PI_inward_flow/velocity32.png Graphic file (type png)
 
 <use ../PI_inward_flow/velocity32.png>
@@ -3125,7 +3146,7 @@ Package pdftex.def Info: ../PI_inward_flow/velocity32.png used on input line 11
 0.
 (pdftex.def)             Requested size: 412.56496pt x 309.43164pt.
 
-<../PI_inward_flow/velocity40.png, id=2830, 642.4pt x 481.8pt>
+<../PI_inward_flow/velocity40.png, id=2936, 642.4pt x 481.8pt>
 File: ../PI_inward_flow/velocity40.png Graphic file (type png)
 
 <use ../PI_inward_flow/velocity40.png>
@@ -3137,19 +3158,19 @@ Overfull \hbox (17.28104pt too wide) in paragraph at lines 122--122
 []\OT1/cmr/bx/n/14.4 FCHC im-ple-men-ta-tion of in-ward flow from the sphere |
  []
 
-[124 <../fchc_inward_flow/velocity8.png>] [125 <../fchc_inward_flow/velocity16.
-png> <../fchc_inward_flow/velocity24.png>] [126 <../fchc_inward_flow/velocity32
-.png> <../fchc_inward_flow/velocity40.png>] [127 <../PI_inward_flow/velocity8.p
-ng> <../PI_inward_flow/velocity16.png>] [128 <../PI_inward_flow/velocity24.png>
- <../PI_inward_flow/velocity32.png>] [129 <../PI_inward_flow/velocity40.png>]
-[130] [131] [132] [133] [134] [135] [136] [137]
+[126 <../fchc_inward_flow/velocity8.png>] [127 <../fchc_inward_flow/velocity16.
+png> <../fchc_inward_flow/velocity24.png>] [128 <../fchc_inward_flow/velocity32
+.png> <../fchc_inward_flow/velocity40.png>] [129 <../PI_inward_flow/velocity8.p
+ng> <../PI_inward_flow/velocity16.png>] [130 <../PI_inward_flow/velocity24.png>
+ <../PI_inward_flow/velocity32.png>] [131 <../PI_inward_flow/velocity40.png>]
+[132] [133] [134] [135] [136] [137] [138] [139]
 Overfull \hbox (27.08925pt too wide) in paragraph at lines 554--555
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 [][][][][][][][][][][][][][][][]  |
  []
 
-[138] <../mathematica/det.png, id=3258, 361.35pt x 399.4925pt>
+[140] <../mathematica/det.png, id=3363, 361.35pt x 399.4925pt>
 File: ../mathematica/det.png Graphic file (type png)
 
 <use ../mathematica/det.png>
@@ -3159,7 +3180,7 @@ Package pdftex.def Info: ../mathematica/det.png used on input line 589.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<../mathematica/nondet.png, id=3259, 361.35pt x 399.4925pt>
+<../mathematica/nondet.png, id=3364, 361.35pt x 399.4925pt>
 File: ../mathematica/nondet.png Graphic file (type png)
 
 <use ../mathematica/nondet.png>
@@ -3169,21 +3190,21 @@ Package pdftex.def Info: ../mathematica/nondet.png used on input line 595.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-) [139] [140 <../mathematica/det.png (PNG copy)>] [141 <../mathematica/nondet.p
+) [141] [142 <../mathematica/det.png (PNG copy)>] [143 <../mathematica/nondet.p
 ng (PNG copy)>]
-Underfull \hbox (badness 1043) in paragraph at lines 220--223
+Underfull \hbox (badness 1043) in paragraph at lines 221--224
 []\OT1/cmr/m/sc/12 Bodenheimer, \OT1/cmr/m/n/12 Michel, \OT1/cmr/m/sc/12 Laugh-
 lin, \OT1/cmr/m/n/12 Gre-gory P., \OT1/cmr/m/sc/12 Rozy-czka, \OT1/cmr/m/n/12 M
 ichal,
  []
 
 
-Underfull \hbox (badness 2158) in paragraph at lines 250--253
+Underfull \hbox (badness 2158) in paragraph at lines 251--254
 []\OT1/cmr/m/sc/12 Levy, \OT1/cmr/m/n/12 Steven :  \OT1/cmr/m/it/12 The man who
  cracked the code to ev-ery-thing\OT1/cmr/m/n/12 .
  []
 
-[142
+[144
 
 
 pdfTeX warning (ext4): destination with the same identifier (name{cite.henon}) 
@@ -3191,35 +3212,35 @@ has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.259 \listoffigures
-                    ] (thesis.lof [143
+l.260 \listoffigures
+                    ] (thesis.lof [145
 
-] [144])
+] [146])
 \tf@lof=\write6
 \openout6 = `thesis.lof'.
 
- [145] (thesis.lot)
+ [147] (thesis.lot)
 \tf@lot=\write7
 \openout7 = `thesis.lot'.
 
- [146
+ [148
 
 ]
-[147
+[149
 
-] [148
+] [150
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 283.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 283.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 284.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 284.
  (thesis.aux (title.aux) (preface.aux) (CA.aux) (LGCA.aux)
-(FHPintro.aux) (fchc.aux) (PI.aux) (bgki.aux) (lbm.aux) (Practical.aux)
-(Implementation.aux) (FCHCimplem.aux) (PIImplem.aux) (nonPI.aux) (obstacles.aux
-) (turbo.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 283.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 283.
+(FHPintro.aux) (fchc.aux) (PI.aux) (bgki.aux) (lbm.aux) (scaling.aux)
+(Practical.aux) (Implementation.aux) (FCHCimplem.aux) (PIImplem.aux) (nonPI.aux
+) (obstacles.aux) (turbo.aux))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 284.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 284.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 82B91C1F4AA3A288CBD6F1CA6EA2F44A;14269.
+(rerunfilecheck)             Checksum: C885B8E1E60DC3123DD7D278B724CC5B;15221.
 
 
 LaTeX Warning: There were undefined references.
@@ -3227,13 +3248,13 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 283.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 284.
  ) 
 Here is how much of TeX's memory you used:
- 24730 strings out of 493342
- 386446 string characters out of 3130885
- 480719 words of memory out of 3000000
- 25615 multiletter control sequences out of 15000+200000
+ 24738 strings out of 493342
+ 386641 string characters out of 3130885
+ 481146 words of memory out of 3000000
+ 25630 multiletter control sequences out of 15000+200000
  25351 words of font info for 93 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  39i,18n,58p,10401b,1984s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -3283,9 +3304,9 @@ ppData/Local/Programs/MiKTeX 2.9/fonts/type1/arphic/gbsnu/gbsnu95.pfb><C:/Users
 /Miro/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/arphic/gbsnu/gbsnu9f.pfb><C
 :/Users/Miro/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/arphic/gbsnu/gbsnuff
 .pfb>
-Output written on thesis.pdf (151 pages, 5743759 bytes).
+Output written on thesis.pdf (153 pages, 5781662 bytes).
 PDF statistics:
- 3971 PDF objects out of 4296 (max. 8388607)
- 2151 named destinations out of 2487 (max. 500000)
- 1168 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 4073 PDF objects out of 4296 (max. 8388607)
+ 2135 named destinations out of 2487 (max. 500000)
+ 1226 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -24,7 +24,9 @@ Geometry of the lattice is same as for HPP model. It consists of nodes arranged 
 \end{figure}
 
 Every node (the cirlce on the picture above) is connected to 4 diagonal neighbors.
-Let us consider that in the time-step $t$ only the black nodes are occupied. Then in the next step $t+1$, only the white nodes are occupied. Without loss of generality we can assert that nodes with even Cartesian coordinates, e.g. [0,2], [2,4] are occupied at even time steps, and vice versa. This property of the grid offers very efficient implementation, as  we need only one array for both even and odd time steps.
+Let us consider that in the time-step $t$ only the black nodes are occupied (with odd Cartesian idices). Then in the next step $t+1$, only the white nodes (with even indices) are occupied. 
+So the set of occupied points alternate with every time step, which offers very efficient implementation, but we need to think
+Without loss of generality we can assert that nodes with even Cartesian coordinates, e.g. [0,2], [2,4] are occupied at even time steps, and vice versa. This property of the grid offers very efficient implementation, as  we need only one array for both even and odd time steps.
 
 \bigskip
 
@@ -200,14 +202,14 @@ Mass and momentum are given by
 m_0 = \sum_i n_{i0}
 \end{equation}
 \begin{equation}
-p_{\alpha} = \sum_i c_{i\alpha} n_{i\alpha},~\alpha=1,2,...D
+p_j = \sum_i c_{ij} n_{ij},~j=1,2,...D
 \end{equation}
 
 Using these definitions, condition of mass and momentum conservation could be expressed by:
 \begin{align}\label{mmc}
 \begin{split} 
 m_o = m'_o &~~ \Leftrightarrow ~~ \sum_i n_{i0} = \sum_i n'_{i0}, \\
-p_{\alpha} = p'_{\alpha} &~~ \Leftrightarrow ~~ \sum_i c_{i\alpha} n_{i\alpha} = \sum_i c_{i\alpha} n'_{i\alpha}, ~\alpha=1,2,... D 
+p_j = p'_j &~~ \Leftrightarrow ~~ \sum_i c_{ij} n_{ij} = \sum_i c_{ij} n'_{ij}, ~j=1,2,... D 
 \end{split}
 \end{align}
 \end{enumerate}
@@ -229,324 +231,234 @@ In each step ($d=1...D$), we create pairs of cells in $d^{th}$ direction, or equ
 If $n_{id} = n_{jd}$ (it means that in direction $d$, momentum of the pair is zero), we swap the states of the cells $n_i$ and $n_j$ without changing the total momentum of the pairs.
 In the end of the collision, the total momentum of the node is conserved, because all the pair-interactions conserved the momentum.
 
-\bigskip
-
-%Parameters $\mu_{\alpha}$ are intensive thermodynamical parameters corresponding to the the extensive dynamical invariants $m_{\alpha}$.
-
 \section{Equilibrium statistics}
 We start by revoking the basic result of the microdynamics
 \begin{equation} \label{over2}
 \bm{n}(t+2,.) = \mathcal{U}^2 \bm{n}(t,.)
 \end{equation}
+We remind that $n(.)$ represents the whole lattice, while $n(\bm{r})$ represents the state of the node at $\bm{r}$.
 
-In the odd and even time steps, the different parts of the hlattice are occupied, so it does not make sense to compare them.
-That is why we are comparing states of the lattice over the two time steps.
+As we already mentioned, with each time step, the occupied parts on the lattice alternate, hence it makes sense only to compare states of the lattice over the two time steps.
 
 The microdynamical equation \ref{over2} implies conservation of probabilities
 \begin{equation} \label{cp}
 P(t,\bm{n}(.)) = P(t+2,\mathcal{U}^2\bm{n}(.))
 \end{equation}
-where $P(t,n(.))$ is the probability of occurrence of lattice in some state $n(.)$ from the statistical ensable of automata.
+where $P(t,n(.))$ is the probability that lattice is found in the state $n(.)$ from the statistical ensable of automata.
 
 \subsection{Gibbs distribution}
 
-Let's see if the Gibbs probability distribution fulfill the conservation law \ref{cp}.
-
-First we define the total momentum of the whole lattice $\mathcal{L}$:
-\begin{equation} \label{momentum}
-m_{\alpha}(.) = \sum_{i,\bm{r}} c_{i\alpha} n_{i\alpha}(\bm{r}),~\alpha=0,1,..D
-\end{equation}
-
-Now we can define Gibbs probability for our model:
+The Gibbs distribution is defined for this model as
 \begin{equation}
 P^E(n(.)) = \frac{W(n(.))}{Z}
 \end{equation}
 where
 \begin{equation}
-W(n(.)) = exp(-\sum_{\alpha = 0}^D \mu_{\alpha} m_{\alpha}(.))
+W(n(.)) = \exp(-\sum_{\alpha = 0}^D \mu_{\alpha} m_{\alpha}(.))
 \end{equation} 
 and $Z$ is the partition function
 \begin{equation}
-Z = \sum_{n(.))} W(n(.))
+Z = \sum_{n(.))} W(n(.)).
+\end{equation}
+
+MU ARE INTENSIVE PARAMETERS CORRESPONDING TO M
+
+Let us inspect if the Gibbs distribution fulfills the conservation of probabilities required by \ref{cp}.
+
+The total momentum of the whole lattice $\mathcal{L}$ is given by
+\begin{equation} \label{momentum}
+m_{\alpha}(.) = \sum_{\bm{r} \in \mathcal{L}} c_{i\alpha} n_{i\alpha}(\bm{r}),~\alpha=0,1,..D.
 \end{equation}
 
 Conservation of local momenta \ref{mmc} implies conservation of the total momentum
 \begin{equation}
 m_{\alpha}(.) = m'_{\alpha}(.),~\alpha=0,1,..D
 \end{equation}
-that immediately implies conservation of Gibbs probability
+that immediately implies conservation of the Gibbs probability
 \begin{equation}
 P^E(t+2,\mathcal{E}^2n(.)) = P^E(t,n(.)).
-\end{equation}
+\end{equation}.
+So the $P^E(t,(n.))$ is the stationary solution of \ref{cp}, which means it is the equilibrium distribution for our model. However, the Gibbs distribution represents only one class of the stationary solutions. If there were additional extensive dynamical invariants independent of momenta and mass (e.g. Zanetti's invariants for FHP and FCHC bmodel), there would arise conjugated intensive parameters, corresponding to other equilibrium distributions. However, due to the alternating lattice, this model is free of Zanetti's invariants.
 
-Additivity of the momentum cell by cell over the whole lattice (equation \ref{momentum}) implies that there is no statistical correlation between different cells:
+\bigskip
+
+The additivity of the momentum cell by cell on the lattice (equation \ref{momentum}) implies
 \begin{equation}
-P^E(n(.)) = \prod_{i,\bm{r}} P^E(n_i(\bm{r}))
-\end{equation} 
-Even further, if we consider, that
-\begin{equation}
-P(n_i(\bm{r})) = \frac{W(n_i(\bm{r}))}{Z}
+P^E(n(.)) = \prod_{i,\bm{r} \in \mathcal{L}} P^E(n_i(\bm{r}))
 \end{equation}
-where
+which means that there is no statistical correlation between the cells.
+Again,
 \begin{equation}
+P^E(n_i(\bm{r})) = \frac{W(n_i(\bm{r}))}{Z},
+\end{equation}
+with
+\begin{equation} \label{mprobab}
 W(n_i(\bm{r}))=exp(-\sum_{\alpha = 0}^D\mu_{\alpha}c_{i\alpha}n_{i\alpha}(\bm{r})) = \prod_{\alpha=0}^Dexp(-\mu_{\alpha}c_{i\alpha}n_{i\alpha}(\bm{r})) = \prod_{\alpha = 0}^D W(n_{i\alpha}(\bm{r}))
 \end{equation}
-we can see that bits of the cells $n_{i\alpha},~\alpha = 1,2,...D$ are not statistically correlated.
-
-For sure, they are correlated with $n_{i0}$, because $n_{i0} = 0 \Rightarrow n_{i\alpha} = 0~ for~ \forall ~ \alpha = 1,2,...D$.
-
-But for $\alpha=1,2,...D$ we can write:
-\begin{equation} \label{form2}
-\sigma_{i\alpha} = prob(n_{i\alpha} = 1 | n_{i0} = 1) = \frac{W(n_{i\alpha})}{Z_{i\alpha}}
+and
+\begin{align*}
+Z_i = \sum_{n_i} W(n_i(\bm{r})).
+\end{align*}
+The probability that the cell is occupied by a particle is
+%Let us denote the probability that the cell is occupied by
+\begin{align*}
+\rho_i \equiv \langle n_{i0} \rangle = \frac{1}{Z_i}
+\end{align*}
+and the probability that the particle has non-zero $i^{th}$ component of the momentum
+\begin{align*}
+\sigma_{ij} \equiv \langle n_{ij} | n_{i0} = 1 \rangle = \frac{W(n_{ij}}{Z_i}.
+\end{align*}
+Rather technical solution of the two equations above shown in the Appendix B of \cite{nasilowski} leads to
+\begin{equation} \label{form1}
+\rho_i := f\big(\mu_0 + \sum_{j=1}^d ln f(-\mu_j v_j) \big), \quad \sigma_{ij} = f(\mu_j v_j),
 \end{equation}
 where
-\begin{equation}
-W(n_{i\alpha}) = exp(-\mu_{\alpha}c_{i\alpha}n_{i\alpha})
-\end{equation}
-and
-\begin{equation}
-Z_{i\alpha} = \sum_{n_{i\alpha}=0}^1 W(n_{i\alpha}). 
-\end{equation}
-Hence
-%\begin{align}
-%\frac{1}{1 + \exp(\mu_{\alpha} c_{i\alpha})} := f(\mu_{\alpha} c_{i\alpha}).
-%\end{align}
+\begin{align*}
+f(\lambda) := \frac{1}{1 + e^{\lambda}}.
+\end{align*}
 
-Little more laborious calculation would lead us to mean occupation numbers
-\begin{equation} \label{form1}
-\rho_i := <n_{i0}> = \frac{Z_i - 1}{Z_i} = \frac{e^{-\mu_0}\prod_{\alpha = 1}^D(1+e^{-{\mu_{\alpha} c_{i\alpha}}})}{1+e^{-\mu_0}\prod_{\alpha = 1}^D(1+e^{-{\mu_{\alpha} c_{i\alpha}}}) } = f\big(\mu_0 + \sum_{j=1}^d ln f(-\mu_j v_j) \big).
-\end{equation}
-$\rho_i$ can be interpreted as probability that cell $n_i$ is occupied, but also as the equilibrium mass of the cell.
-
-To define the density, we need to consider what is the volume of the node. Since lattice vectors $c_{i\alpha}$ span interval $[-1,1]^D$, we can define volume V as
-\begin{equation}
-V = 2^D
-\end{equation}
-Then the mass density reads
+Because the lattice vectors are normalized and the single node contains $2^D$ lattice vectors, the volume of the node is
+\begin{align*}
+V = 2^D.
+\end{align*}
+Finally, we can define the mass density
 \begin{equation}
 \rho = 2^{-D} \sum_i \rho_i
 \end{equation}
 and the momentum density
 \begin{equation}
-q_a := 2^{-D} \sum_i c_{i\alpha} <n_{i\alpha}> = 2^{-D} \sum_i c_{i\alpha} \rho_i \sigma_{i\alpha}.
+q_j := 2^{-D} \sum_i c_{ij} \langle n_{ij} \rangle = 2^{-D} \sum_i c_{ij} \rho_i \sigma_{ij}, \quad j=1,2...D.
 \end{equation}
-It is efficient to use only one quantity instead of mass and momentum density, and our formalism invites us to do so. We define the \textbf{hypermomentum} density
+
+Solution of the equations in the closed-form is not possible, but one can find the asymptotic solution for small $\bm{q}$, derived in the Appendix B of \cite{nasilowski}. We express it in terms of the mass and momentum density defined above
+\begin{align} \label{hypequi}
+\begin{split}
+\rho_i &= \rho + 2 \frac{1-\rho}{2-\rho} \bm{v}.\bm{q} + 2 \, \frac{(1-\rho)(1-2\rho}{(2-\rho)^2 \rho} \, \big[(\bm{v}.\bm{q})^2 - q^2 \big] + O(q^3), \\
+\sigma_{ij} &= \frac{1}{2} + \frac{v_j q_j}{(2-\rho)\rho} + O(q^3).
+\end{split}
+\end{align}
+
+Before we proceed to the next section, it is handy to define the \textbf{hypermomentum} density
 \begin{equation} \label{hypermom}
-q_{\alpha} := 2^{-D} \sum_i c_{i\alpha} <n_{i\alpha}>
+q_{\alpha} := 2^{-D} \sum_i c_{i\alpha} \langle n_{i\alpha} \rangle,~\alpha = 0,1,2...D,
 \end{equation}
 where $q_0$ is the mass density $\rho$, and $(q_1,q_2,...q_D)$ is the momentum density.
 
-Expanding formulas \ref{form1} and \ref{form2} in Taylor series and inserting to the last equation leads to rather lengthy calculation (Appendix B in [2]), that results in 
-\begin{align}
-\begin{split}
-\rho_i &= \rho + 2 \frac{1-\rho}{2-\rho} \bm{v}.\bm{q} + 2 \, \frac{(1-\rho)(1-2\rho}{(2-\rho)^2 \rho} \, \big[(\bm{v}.\bm{q})^2 - q^2 \big] + O(q^3), \\
-\sigma_{ij} &= \frac{1}{2} + \frac{v_j q_j}{(2-\rho)\rho} + O(q^3)
-\end{split}
-\end{align}
-%for $|\bm{q}| \ll 1$.
+From now on, the Greek index $\alpha$ will run trough the $\{0,1,2,...,D\}$ and will signalize that hypermomentum is used, while Latin $jb$ runs over $\{1,2,...D\}$ and signalizes the standard momentum.
 
 \section{Hydrodynamic description}
-It is based on the assumption that the state of the cellular automaton is near its equilibrium.
-In that case, the whole state of the automaton can be specified by a few macroscopic order parameters $q_{\alpha}$.
+The quantities of our interest are the so-called \textit{collisional invariant}. These quantities do not change by the collisions, but vary slowly in time and space.
+On the most general level, they are temperature, mass and momentum, and the system they describe is in local equilibrium. 
 
-\bigskip
+In this section, the system is assumed to be near its local equilibrium, so in the first approximation, it can be described as the local equilibrium state given by \ref{hypequi} with the hypermomentum as its only parameter:
+\begin{align*}
+\begin{split}
+\rho_i^0 = \rho_i^0(q_{\alpha}), \\
+\sigma_{i\alpha}^0 = \sigma_{i\alpha}^0(q_{\alpha}),
+\end{split}
+\end{align*}
+% As we already mentioned, this assumption is natural, as the fluid relaxes to its local equilibrium in matter of $10^{-13}$ seconds.
 
-For example, expectation values $p_{i\alpha}$ are continuous differentiable functions of the parameter q
-\begin{equation}
-p_{i\alpha} = p_{i\alpha}(q, \nabla q, \nabla^2 q,...)
-\end{equation}
-and we can expand them in Chapman-Enskog series in terms of $p_{i\alpha}^{eq}$
-\begin{equation} \label{expro}
-p_{i\alpha} = p_{i\alpha}^{eq} + r_{i\alpha} + \mathcal{O}(\nabla^2)
-\end{equation}
-with
-\begin{align}
-r_{i\alpha} = \sum_{\beta j} R_{i\alpha \beta j } \nabla_j q_{\beta}.
+We are looking for the hydrodynamic equations of the form
+\begin{align} \label{hydroeq}
+\frac{\pd q_{\alpha}}{\pd t} = - \sum_k \nabla_k Q_{\alpha k},
 \end{align}
-We will use this expansion later on.
+where the $Q_{\alpha k}$ is the hypermomentum flux tensor. The first approximation of this equation
+\begin{align*}
+\frac{\pd q_{\alpha}}{\pd t} = - \sum_k \nabla_k Q^0_{\alpha k}(q_{\alpha})
+\end{align*}
+is time-reversal and symmetric, so it cannot capture the viscosity and other friction effects.
+ 
+In order to proceed, we need to expand the functionals $ p_{i\alpha} := (\rho_i,\sigma_{ij})$ and $Q_{\alpha k}$ in the Chapman-Enskog series
+\begin{align} \label{distrib}
+p_{i \alpha} = p_{i \alpha}^0(\bm{q}) + \sum_{\beta j} R_{i \alpha \beta j}(\bm{q}) \nabla_{j} q_{\beta} + O(\nabla^2),
+\end{align}
+\begin{align} \label{momentflux}
+Q_{\alpha k} = Q_{\alpha k}^0(\bm{q}) - \sum_{\beta j} T_{\alpha \beta k j}(\bm{q}) \nabla_{j} q_{\beta} + O(\nabla^2),
+\end{align}
+where the tensor $T_{\alpha \beta k j}$ plays the role of the diffusion coefficients.
+Note that this expansion is justified only for sufficiently small lattice spacing $\Delta x$, because
+\begin{align*}
+O(\nabla^k) = O((\Delta x)^{-k}).
+\end{align*}
 
-\bigskip
+The unknown terms in the equations \ref{distrib} and \ref{momentflux} must be consistent with the microdynamics of our model, and that is the recipe to calculate them.
+The details of this calculation are shown in Appendix A of \cite{nasilowski}, we will just summarize the main results.
 
-The resulting equations of this section will be the hydrodynamic equations for the pair-interaction automaton.
-
-They are the set of evolution equations for the order parameters
-\begin{equation} \label{evol}
-\partial_t q_{\alpha} = \dot{q_{\alpha}}(q,\nabla q, \nabla^2 q,...)
-\end{equation}
-Due to conservation of the hypermomentum, the right hand side of \ref{evol} must be of the form
-\begin{equation}
-\dot{q_{\alpha}} = -\sum_k \nabla_k Q_{\alpha k}(q, \nabla q, \nabla^2 q).
-\end{equation}
-
-Let us look back to the microdynamical propagation equation
-\begin{equation}
-n_{i\alpha}(t+1,\bm{r} + \bm{c_i}) = n'_{i\alpha}(t, \bm{r}),
-\end{equation}
-that directly implies
-\begin{equation} \label{micprob}
-p_{i\alpha}(t+1, \bm{r} + \bm{c_i}) = p'_{i\alpha}(t, \bm{r}).
-\end{equation}
-If we expand $p_{i\alpha}(t+1, \bm{r} + \bm{c_i})$ in terms of $p_{i\alpha}(t,\bm{r})$, insert it to \ref{micprob} and apply $2^{-D}\sum_i c_{i\alpha}$ on both sides, we get
-\begin{equation} \label{dens}
-2^{-D} \sum_i c_{i\alpha} \big[(\partial_t + c_{i\alpha}\nabla_{\alpha}) + \frac{1}{2}(\partial_t + c_{i\alpha}\nabla_{\alpha})^2 + ... \big] p_{i\alpha} = 0
-\end{equation}
-The right-hand side disappeared because of the conservation of hypermomentum
-\begin{equation}
-2^{-D} \sum_i c_{i\alpha} p_{i\alpha} = 2^{-D} \sum_i c_{i\alpha} p'_{i\alpha}.
-\end{equation}
-
-
-Analogously to FHP and FCHC model, we can define various temporal and spatial scales (see Table \ref{scalings}) and expand operator of time derivative and space derivative into modes
-\begin{equation} \label{exoper}
+The momentum flux tensor in the first approximation reads
+\begin{align} \label{mft1ap}
 \begin{split}
-\partial_t = \epsilon \partial_t^{(1)} + \epsilon^2 \partial_t^{(2)} + ...\\
-\partial_{\alpha} = \epsilon \partial_{\alpha}^{(1)}
+g^0_k := Q^0_{0k} &= 2 \frac{1 - \rho}{2 - \rho} q_k + O(\bm{q}^3), \\
+Q^0_{jk} &= \Big( \frac{\rho}{2} - 2 \frac{(1-\rho)(1-2\rho)}{(2-\rho)^2\rho} q_j^2 \Big) \delta_{jk} + 4 \frac{(1-\rho)^2}{(2-\rho)^2} q_j q_k + O(\bm{q}^3).
 \end{split}
-\end{equation}
+\end{align}
+We have split the hypermomentum flux tensor into its mass component $\bm{g}$ and the ordinary momentum tensor $Q_{jk}$ to obtain the hydrodynamic equations in the familiar form.
 
-Inserting \ref{expro} and \ref{exoper} into \ref{dens} leads to
-\begin{equation}
-\begin{split}
-0 = 2^{-D} \sum_i c_{i\alpha}(\epsilon\partial_{t}^{(1)} + c_i \nabla_i) p_{i\alpha}^{eq} \\
-+ 2^{-D} \sum_i c_{i\alpha}\big[\epsilon^2 \partial_t^{(2)} p_{i\alpha}^{eq} + \frac{1}{2}(\epsilon \partial_t^{(1)} + c_{i\alpha} \nabla_{\alpha})^2 p_{i\alpha}^{eq} \\
-+ (\partial_t^{(1)} + c_{i\alpha} \nabla_{\alpha})\sum_{j \beta} R_{\beta j \alpha i}\nabla_{j}q_{\beta} \big] + \mathcal{O}(\nabla^3)
+\section{Euler equations}
+If we substitute these $\bm{g}^0$ and $Q_{jk}^0$ into the hydrodynamic equations \ref{hydroeq}, we obtain
+\begin{align}
+\begin{split} \label{O2}
+\pd_t \rho + \bm{\nabla.} \Big[ \Big( \frac{10}{9} - \frac{8}{9} \Big) \bm{q} \Big] &= 0,\\
+\pd_t q_j + \sum_k \nabla_k \Big[\frac{\rho}{2} \delta_{jk} + \frac{8}{9}q_j\,q_k \Big] &= 0,
 \end{split}
-\end{equation}
-
-Each order of $\epsilon$ must vanish separately.
-
-For the terms linear in $\epsilon$ we get
-\begin{equation}
-2^{-D} \sum_i c_{i\alpha}(\partial_{t}^{(1)} + c_{i\alpha} \nabla_{\alpha}) p_{i\alpha}^{eq} = 0
-\end{equation} \label{hydym}
-or equivalently in terms of momentum density:
-\begin{equation}
-\partial_t^{(1)} q_{\alpha} + \sum_k \nabla_k Q_{\alpha k}^0 = 0
-\end{equation}
-where we used definition of hypermomentum \ref{hypermom},
-and defined zero$^{th}$ term of momentum flux tensor $Q_{\alpha k}^0$:
-\begin{equation}
-Q_{\alpha k}^0 := 2^{-D} \sum_i c_{i\alpha}c_{i k} p_{i\alpha}^{eq}
-\end{equation}
-
-We can split equation \ref{hydym} into two -  mass density conservation and momentum conservation:
-\begin{equation} \label{hyd1}
-\partial_t \rho + \bm{\nabla . g^0}(\rho, \bm{q}) = \mathcal{O}(\nabla^2)
-\end{equation}
-\begin{equation}
-\partial_t q_j + \sum_k \nabla_kQ_{jk}^0(\rho, \bm{q}) = \mathcal{O}(\nabla^2)
-\end{equation}
-where we used $g_k := Q_{0k}$.
-
-\section{Hydrodynamic limiting cases}
-In this section, we will derive hydrodynamic limiting cases of our model, that corresponds to four physical approximations,
-namely
-\begin{enumerate}
-\item compressible Euler equation,
-\item acoustic  limit,
-\item inviscid incompressible Euler equation,
-\item incompressible Euler equation with viscosity.
-\end{enumerate}
-
-Starting with equation \ref{hyd1}, blabla dokonci
-
-expand in $\epsilon \ll 1$, that is defined as the Knudsen number (ratio  of mean free path and macroscopic scale).
-
-\bigskip
-
-\textbf{1) Compressible Euler equation}
-
-For physical fluid, the equations read
+\end{align}
+that are analogous to the compressible Euler equations
 \begin{align}
 \begin{split}
 \pd_t \rho + \bm{\nabla . q} = 0, \\
-\pd_t q_j + \sum_k \nabla_k \big[ p(\rho) \, \delta_{jk} + \frac{1}{\rho} \, q_j \, q_k = 0
+\pd_t q_j + \sum_k \nabla_k \big[ p(\rho) \, \delta_{jk} + \frac{1}{\rho} \, q_j \, q_k \big]= 0.
 \end{split}
 \end{align}
 
-For our model, we need to pick up terms of order
-\begin{align}
-\begin{split}
-\pd_t = O(\epsilon^2), ~ \bm{\nabla} = O(\epsilon^2),~\rho = \frac{1}{2} + O(\epsilon), \bm{q} = O(\epsilon) 
-\end{split}
-\end{align}
-and we get
+%The underlaying reason why this anisotropic term appears is the absence of Galilei invariance in the automaton.
 
-\begin{align}
-\begin{split} \label{O2}
-\pd_t \rho + \bm{\nabla.} \big[ \big( \frac{10}{9} - \frac{8}{9} big) \bm{q} \big] &= 0,\\
-\pd_t q_j + \sum_k \nabla_k \big[\frac{\rho}{2} \delta_{jk} + \frac{8}{9}q_j\,q_k \big] &= 0
-\end{split}
-\end{align}
+Unfortunately, the tensor $Q_{jk}^0$ from \ref{mft1ap} possesses non-physical anisotropy, due to the term proportional to $q^2_j \delta_{jk}$, and thus the automaton's hydrodynamics is not equivalent to that of physical fluid.
 
-As in case of FHP, the absence of Galilei invariance in our model caused the unphysical dependence of the pressure $p$ on $\rho$.
-
-\bigskip
-
-\textbf{2) Acoustic limit}
-
-Picking up the terms of order
-\begin{align}
-\pd_t = O(\epsilon),~ \bm{\nabla} = O(\epsilon),~ \rho = \rho_0 + O(\epsilon),~ \bm{q} = O(\epsilon)
-\end{align}
-leads to linear equations of sound
-\begin{align}
-\begin{split}
-\pd_t \rho + 2\frac{1-\rho_0}{2-\rho_0} \bm{\nabla . q} = 0, \\
-\pd_t \bm{q} + \frac{1}{2} \nabla \rho = 0 \,.
-\end{split}
-\end{align}
-
-
-
-\textbf{3) Inviscid incompressible Euler equations}
-
-For the ideal physical fluid (ideal fluid means inviscid and incompressible), the equations read
-\begin{align} \label{ideal_phys}
-\begin{split}
-\bm{\nabla . u} &= 0, \\
-(\pd_t + \bm{u.\nabla})\bm{u} + \nabla \Phi &= 0,
-\end{split}
-\end{align}
-with $\Phi = p / \rho_0 = 2 p$ being the kinematic pressure.
-
-For our model, taking terms of order
-\begin{align}
-\pd_t = O(\epsilon^3), \qquad \bm{\nabla} = O(\epsilon^2), \qquad \rho = \frac{1}{2} + O(\epsilon^2), \qquad \bm{q} = O(\epsilon)
-\end{align}
-from the expansion (cislo) leads us to
+Notice, however, that if we set density to be constant $\rho = 1/2$, the anisotropic term vanishes and we obtain the incompressible inviscid equations
 \begin{align}
 \begin{split}
 \bm{\nabla . q} &= 0, \\ 
 (\pd_t + \frac{8}{9}\bm{q.\nabla})\bm{q} + \frac{1}{2} \bm{\nabla} \rho &= 0.
 \end{split}
 \end{align}
-
-At last, our automaton got the hydrodynamic equations right, as we can easily transform then into \ref{ideal_phys} by setting
-\begin{align} \label{transfor}
- \Phi = \frac{4}{9} \rho, \qquad \bm{u} = \frac{8}{9} \bm{q}.
-\end{align}  
-The $\bm{u}$ is the hydrodynamic velocity and 
-
-Notice that the hydrodynamic velocity $\bm{u}$ is the momentum convection velocity, and can not be interpreted as the mean velocity of particles
-\begin{align}
-\bm{w} = \frac{\langle \sum_i v_i n_{i0} \rangle}{\langle \sum_i n_{i0} \rangle} = ... = \frac{2(1-\rho)}{(2 - \rho) \rho}\bm{q}.
+Comparing them to the physical incompressible Euler equations
+\begin{align} \label{ideal_phys}
+\begin{split}
+\bm{\nabla . u} &= 0, \\
+(\pd_t + \bm{u.\nabla})\bm{u} + \nabla \Phi &= 0,
+\end{split}
 \end{align}
+we can easily see that they are equivalent and can be transformed into each other by
+\begin{align} \label{transformers}
+\Phi = \frac{4}{9} \rho, \quad \bm{u} = \frac{8}{9} \bm{q}.
+\end{align}
+So our model perfectly simulates the ideal fluid (obeying incompressible Euler equations) with the kinematic pressure $\Phi$ and the hydrodynamic velocity $\bm{u}$ defined by \ref{transformers}.
+This hydrodynamic velocity can be interpreted as the momentum convection velocity, which differs from the mean velocity $\bm{w}$ of the particles
+\begin{align}
+\bm{w} = \frac{\langle \sum_i v_i n_{i0} \rangle}{\langle \sum_i n_{i0} \rangle} \approx \frac{2(1-\rho)}{(2 - \rho) \rho}\bm{q}.
+\end{align}
+%and for $\rho = 1/2$ we have
+%\begin{align*}
+%\bm{w} = \frac{3}{2} \bm{u}.
+%\end{align*}
+%This peculiar fact is loosely equivalent to the situation of copper wire in the electric circuit, where the mean velocity of the electrons is much slower then the information that the current carry.
+%
+%In the physical fluid, however, the Galilei invariance forces $\bm{u}$ and $\bm{w}$ to be the same but due to the discrete rotational symmetry, the Galilei invariance is broken for all types of CA and there is the proportional factor between the velocities
+%\begin{align*}
+%\bm{w} = g(\rho) \bm{u}
+%\end{align*}
+%depending on the density.
 
-The reason behind this difference lies in the broken Galilean invariance of our model.
-The ratio between the velocities is called the "g-factor" ($g(\rho$), and for our special case, it is equal to
+The reason behind this difference is the broken Galilean invariance due to discrete symmetry of our model.
+The ratio between the velocities is called the "g-factor" ($g(\rho$), and for our special case $\rho=\frac{1}{2}$, it is equal to
 \begin{align}
 \bm{w} = \frac{4}{3} \bm{q} = \frac{2}{3} \bm{u}.
 \end{align}
-
 It already arised in the FHP and FCHC model (where $g(\rho) \sim 1/2$ for small $\rho$).
 
-\bigskip
-
-\textbf{The Navier-Stokes equations}
-
+\section{Navier-Stokes equations}
 For most applications, the inviscid incompressible approximation is too much idealized,
-and we would like to find an approximation of Navier-Stokes equations
+and we would like to find an analogous equations to the Navier-Stokes
 \begin{align} \label{nst}
 \begin{split}
 \bm{\nabla . u} = 0, \\
@@ -555,32 +467,23 @@ and we would like to find an approximation of Navier-Stokes equations
 \end{align}
 with the friction term on the right hand side, containing the shear viscosity $\nu$.
 
-For our model, the analogous set of equations is obtained by picking up terms
-\begin{align}
-\pd_t = O(\epsilon^2), \qquad \nabla = O(\epsilon), \qquad, \rho = \frac{1}{2} + O(\epsilon), \qquad \bm{q} = O(\epsilon).
-\end{align} 
-that leads to
+We need to substitute the momentum flux tensor in the second approximation \ref{momentflux} into the hydrodynamic equations \ref{hydroeq} to obtain
 \begin{align}
 \begin{split}
 \bm{\nabla . q} &= 0,\\ 
 (\pd_t + \frac{8}{9} \bm{q . \nabla}) q_j + \frac{1}{2}\nabla_j\rho &= \sum_{klm} T_{jklm}\nabla_l \nabla_m q_k.
 \end{split}
 \end{align}
+If we could show that the viscosity tensor $T_{jklm}$ is isotropic, these equations would be equivalent to Navier-Stokes \ref{nst} by means of the transformation \ref{transformers}, but our model do not posses symmetries that forces $T_{jklm}$ to be isotropic.
 
-Is this set of equations equivalent to Navier-Stokes \ref{nst}?
-If we could show that $T_{jklm}$ is isotropic, the equations would be equivalent by the transformation \ref{transfor}.
-However, this is not the case, our model do not posses symmetries that forces $T_{jklm}$ to be isotropic.
-We need to go to the second approximation to get more information of the tensor $T_{jklm}$.
-
-Lengthy calculation that can be found in \cite{nasilowski} leads to
+The more detailed calculation of the friction terms, that spans pages 24-32 in \cite{nasilowski}, leads to
 \begin{align} \label{vistens}
 \begin{split}
 T_{00km} &= \frac{1}{9} \delta_{kl}, \\
 T_{jklm} &= \frac{1}{6} (3 \delta_{jl}\delta_{km} + \delta_{jm} \delta_{lk}(1 + \gamma_{mk}) - 2 \delta_{jklm}).
 \end{split}
 \end{align}
-
-To see if it is isotropic or not, let us consider simple example of two-dimensional flow in $x_1-direction$
+To prove that the tensor is not isotropic, we consider a simple example of two-dimensional flow in $x_1$-direction
 \begin{align}
 q_1 = q_1(t,x_2), \qquad q_2 = 0.
 \end{align}
@@ -588,32 +491,29 @@ Then, the Navier-Stokes equations \ref{nst} reduces to
 \begin{align}
 \pd_t q_1 = \nu (\nabla_2)^2 q_1,
 \end{align}
-where $\nu = T_{1122}$ is the shear viscosity coefficient.
+where we introduced the shear viscosity coefficient $\nu := T_{1122}$.
 
-\bigskip
-
-Let us rotate the flow by the angle $\alpha$.
-We get
+If we rotate the flow by the angle $\alpha$, the equation changes to
 \begin{equation}
-\pd_t q'_1 = \nu' (\nabla'_2)^2 q'_1
+\pd_t q'_1 = \nu' (\nabla'_2)^2 q'_1,
 \end{equation}
-where the prime quantities are obtained by transformation 
+where the prime quantities are obtained by rotation 
 \begin{equation}
 \begin{split}
 \bm{x} &= R \, \bm{ x'}, \\
-\bm{\nabla} &= R \bm{\nabla}, \\
-\bm{q} &= R \bm{q'} \\
-T'_{j'k'l'm'} &= \sum_{jklm} T_{jklm} R_{jj'} R_{kk'} R_{ll'} R_{mm'}
+\nabla &= R \nabla, \\
+\bm{q} &= R \bm{q'}, \\
+T'_{j'k'l'm'} &= \sum_{jklm} T_{jklm} R_{jj'} R_{kk'} R_{ll'} R_{mm'},
 \end{split}
 \end{equation}
-with the orthogonal matrix
+using the orthogonal matrix
 \begin{align}
 R = \begin{pmatrix}
 cos(\alpha) & sin(\alpha) \\
 -sin(\alpha) & cos(\alpha)
-\end{pmatrix} .
+\end{pmatrix}.
 \end{align}
-The viscosity transformed into rotated coordinate system reads
+The shear viscosity transformed into rotated coordinate system reads
 \begin{align} \label{rotvis}
 \begin{split}
 \nu' = T'_{1122} = T_{1122} cos^4(\alpha) + T_{2211} sin^4(\alpha) \\
@@ -643,3 +543,62 @@ which clearly shows that the shear viscosity is angle-dependent in contrast with
 %\begin{equation}
 %blablabla
 %\end{equation}
+
+%Let us look back to the microdynamical propagation equation
+%\begin{equation}
+%n_{i\alpha}(t+1,\bm{r} + \bm{c_i}) = n'_{i\alpha}(t, \bm{r}),
+%\end{equation}
+%that directly implies
+%\begin{equation} \label{micprob}
+%p_{i\alpha}(t+1, \bm{r} + \bm{c_i}) = p'_{i\alpha}(t, \bm{r}).
+%\end{equation}
+%If we expand $p_{i\alpha}(t+1, \bm{r} + \bm{c_i})$ in terms of $p_{i\alpha}(t,\bm{r})$, insert it to \ref{micprob} and apply $2^{-D}\sum_i c_{i\alpha}$ on both sides, we get
+%\begin{equation} \label{dens}
+%2^{-D} \sum_i c_{i\alpha} \big[(\partial_t + c_{i\alpha}\nabla_{\alpha}) + \frac{1}{2}(\partial_t + c_{i\alpha}\nabla_{\alpha})^2 + ... \big] p_{i\alpha} = 0
+%\end{equation}
+%The right-hand side disappeared because of the conservation of hypermomentum
+%\begin{equation}
+%2^{-D} \sum_i c_{i\alpha} p_{i\alpha} = 2^{-D} \sum_i c_{i\alpha} p'_{i\alpha}.
+%\end{equation}
+%
+%Analogously to FHP and FCHC model, we can define various temporal and spatial scales (see Table \ref{scalings}) and expand operator of time derivative and space derivative into modes
+%\begin{equation} \label{exoper}
+%\begin{split}
+%\partial_t = \epsilon \partial_t^{(1)} + \epsilon^2 \partial_t^{(2)} + ...\\
+%\partial_{\alpha} = \epsilon \partial_{\alpha}^{(1)}
+%\end{split}
+%\end{equation}
+%
+%Inserting \ref{expro} and \ref{exoper} into \ref{dens} leads to
+%\begin{equation}
+%\begin{split}
+%0 = 2^{-D} \sum_i c_{i\alpha}(\epsilon\partial_{t}^{(1)} + c_i \nabla_i) p_{i\alpha}^{eq} \\
+%+ 2^{-D} \sum_i c_{i\alpha}\big[\epsilon^2 \partial_t^{(2)} p_{i\alpha}^{eq} + \frac{1}{2}(\epsilon \partial_t^{(1)} + c_{i\alpha} \nabla_{\alpha})^2 p_{i\alpha}^{eq} \\
+%+ (\partial_t^{(1)} + c_{i\alpha} \nabla_{\alpha})\sum_{j \beta} R_{\beta j \alpha i}\nabla_{j}q_{\beta} \big] + \mathcal{O}(\nabla^3)
+%\end{split}
+%\end{equation}
+%
+%Each order of $\epsilon$ must vanish separately.
+%
+%For the terms linear in $\epsilon$ we get
+%\begin{equation}
+%2^{-D} \sum_i c_{i\alpha}(\partial_{t}^{(1)} + c_{i\alpha} \nabla_{\alpha}) p_{i\alpha}^{eq} = 0
+%\end{equation} \label{hydym}
+%or equivalently in terms of momentum density:
+%\begin{equation}
+%\partial_t^{(1)} q_{\alpha} + \sum_k \nabla_k Q_{\alpha k}^0 = 0
+%\end{equation}
+%where we used definition of hypermomentum \ref{hypermom},
+%and defined zero$^{th}$ term of momentum flux tensor $Q_{\alpha k}^0$:
+%\begin{equation}
+%Q_{\alpha k}^0 := 2^{-D} \sum_i c_{i\alpha}c_{i k} p_{i\alpha}^{eq}
+%\end{equation}
+%
+%We can split equation \ref{hydym} into two -  mass density conservation and momentum conservation:
+%\begin{equation} \label{hyd1}
+%\partial_t \rho + \bm{\nabla . g^0}(\rho, \bm{q}) = \mathcal{O}(\nabla^2)
+%\end{equation}
+%\begin{equation}
+%\partial_t q_j + \sum_k \nabla_kQ_{jk}^0(\rho, \bm{q}) = \mathcal{O}(\nabla^2)
+%\end{equation}
+%where we used $g_k := Q_{0k}$.
