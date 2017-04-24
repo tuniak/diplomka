@@ -13,7 +13,7 @@
 \contentsline {section}{\numberline {2.4}Conservation laws}{21}{section.2.4}
 \contentsline {chapter}{\numberline {3}FHP}{23}{chapter.3}
 \contentsline {section}{\numberline {3.1}The lattice of FHP}{23}{section.3.1}
-\contentsline {section}{\numberline {3.2}Update rule}{24}{section.3.2}
+\contentsline {section}{\numberline {3.2}Update rule}{23}{section.3.2}
 \contentsline {subsection}{\numberline {3.2.1}Propagation}{24}{subsection.3.2.1}
 \contentsline {subsection}{\numberline {3.2.2}Collision}{24}{subsection.3.2.2}
 \contentsline {section}{\numberline {3.3}Collision operator}{26}{section.3.3}

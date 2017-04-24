@@ -1,15 +1,15 @@
 \chapter{FHP}
-Again, his improved lattice gas cellular automaton is named after its inventors -- Frisch, Humpfrey and Pomeu. 
+Again, this enhanced lattice gas cellular automaton is named after its inventors -- Frisch, Humpfrey and Pomeu. 
 They proposed it in 1986 together with its three dimensional variant - the FCHC. 
 %Comparing it to HPP, we have a lattice with better rotational symmetry and nodes with richer  set of collisions.
 %
-Now that we presented the setting of FHP in two dimensions rather intuitively, let us explore the microdynamics of FHP in a more formal way. The formal treatment provides that the hydrodynamic equations that we derive are valid for FHP in arbitrary dimension (although finding an appropriate multidimensional lattice is non-trivial and possible only in 4 dimensions, as we will see).
-In following section, we will graphically explain the basic principles of FHP, the other sections will be more general and the obtained results will be valid for arbitrary dimensional FHP-like automaton (most importantly FCHC).
+%Now that we presented the setting of FHP in two dimensions rather intuitively, let us explore the microdynamics of FHP in a more formal way. The formal treatment provides that the hydrodynamic equations that we derive are valid for FHP in arbitrary dimension (although finding an appropriate multidimensional lattice is non-trivial and possible only in 4 dimensions, as we will see).
+In following section, we will graphically explain the basic principles of FHP, the later sections will be more general and the obtained results will be valid for arbitrary dimensional FHP-like automaton (most importantly FCHC).
 
 \section{The lattice of FHP}
-The whole improvement of FHP is one simple change - instead of square grid, FHP builds on a hexagonal grid. 
+The whole improvement of FHP lies in a simple change - instead of the rectangular grid, FHP builds on a hexagonal grid. 
 %The two dimensional plane can be uniformly covered by squares, but also by hexagon, that . This is the main improvement of FHP, 
-All other properties are implied by the increased symmetry of the hexagonal grid.
+All other properties are implied by the increased symmetry of the lattice.
 
 On the figure \ref{FHPgrid}, we have a part of the hexagonal grid, and from one of the nodes, six lattice vectors point to the neighboring nodes.
 Let us denote the set of the lattice vectors by $c_i,~i=1,2,3,4,5,6$.
@@ -20,8 +20,8 @@ Let us denote the set of the lattice vectors by $c_i,~i=1,2,3,4,5,6$.
  \includegraphics[width=0.6\textwidth]{./img/fhp_desc}
 \end{figure}
 
-The node is nothing else then a set of the six cells and each of the cells corresponds to one of the lattice vectors.
-Let us denote the state of the node by $\bm{n} = (n_1,n_2,n_3,n_4,n_5,n_6)$, where $n_i = 0$ stands form empty $i^{th}$ cell, and $n_i = 1$ implies that there is a particle in the $i^{th}$ cell. 
+The node is a set of the six cells and each of the cells corresponds to one of the lattice vectors.
+Let us denote the state of the node by $\bm{n} = (n_1,n_2,n_3,n_4,n_5,n_6)$, where $n_i = 0$ stands for an empty $i^{th}$ cell, and $n_i = 1$ implies that there is a particle in the $i^{th}$ cell. 
 
 State of a node with the position $\bf{r}$ on lattice will be denoted by $\bf{n(r)}$, whereas the state of the \textit{whole lattice} will be denoted by \textbf{n(.)}.
 
