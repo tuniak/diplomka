@@ -18,14 +18,13 @@ John Conway, by significant simplification of von Neumann ideas, introduced the 
 
 Depending on the initial conditions, evolution of this automaton can be chaotic, periodic or it can lead to the stable configurations.
 
-The reason for this complexity hides in the fundamental property of Game of Life - because it is the Turing-complete, in principle any computer program can be simulated in the Game of Life, and thus any behavior can be observed.
+The underlying reason for this complexity lies in the Turing-completeness of Game of Life - in principle it can simulate any computer program and thus various behavior can be observed.
 
 For the purposes of this thesis, we have written a simple desktop application implementing this game, since we can easily explain the basic principles of cellular automata on it.
 
 Let us have a rectangular grid, with black and white squares. 
 White squares represent dead cells, black cells represent living cells.
-On the figure \ref{gol1} we see such grid, that we chose for the initial state of 'Life'.
-
+On the figure \ref{gol1} we see such a grid, that we chose for the initial state of 'Life'.
 
 \begin{figure}[htbp]
  \centering
@@ -65,6 +64,7 @@ We see that the rule involves only the state of \textbf{the cell} and the states
 
 \bigskip
 
+
 Let us proceed from this simple example to a more general setting.
 In the next section, we will generalize main features of 'Life' and formally define the cellular automaton.
 %In the next chapter, we will generalize main feature of 'Life'
@@ -88,7 +88,7 @@ In 'Life' cells can be dead or alive, but generally, set of states $Q$ for the c
 \item \textbf{Neighborhood:}
 
 In 'Life', state of the cell in the next step was determined
-by the nearest neighboring cells. We call these cells neighborhood of range r = 1 (in the distance of 1 cell).
+by the nearest neighboring cells. We call these cells neighborhood of range r = 1 (in the distance by 1 cell).
 However, the rule might involve neighborhood with the arbitrary range, see figure \ref{neighbor}
 
 \begin{figure}
@@ -133,7 +133,16 @@ An example of an update rule is shown the table~\ref{rule90}.
 The three columns represent the state of a cell $a_t^i$ and its left and right neighbor, $a_t^{i-1}$ and $a_t^{i+1}$ respectively. A living cell is denoted by 1, a dead cell is denoted by 0. The last column denotes the state of the middle cell $a_i$ in the next step $t+1$. The sequence of $one$s and $zero$s in the last column is the binary representation of a rule. In this particular case, of the Rule 90.
 Since there is $2^8=256$ combinations for the last columns, there is $256$ rules for this most basic cellular automaton.
 
-According to Wofram \cite{wolf}, these automata can be classified by their correspondence to the dynamical systems into three classes \cite{wolf}
+The update rule that we have just described by the table can be formally written as
+%The alternative formulation of the update rule that we just described can be written as \cite{wolf}
+\begin{align} \label{rule1}
+a_i^{(t)} = f \big[ \sum_{j=-r}^{j=r} \alpha_j a_{i+j}^{(t-1)} \big]
+\end{align}
+where $a_i$ refer to the state of the $j^{th}$ cell, $\alpha_k$ are the integer weights, and $f$ is the function that takes integer as the single argument, and $r$ is the range of the neighborhood.
+
+\section{Classification of 1D cellular automata}
+
+According to Wofram \cite{wolf}, these automata can be classified by their correspondence to the dynamical systems:
 \begin{enumerate}
 \item \textbf{Limit point:}
 
@@ -159,18 +168,12 @@ Rules number $2,6,10,12,14,18,22,26,28,30,34,38,42,44,46,50$.
 %Rules number $20,52$.
 %
 \end{enumerate}
+The rule $110$ is special among them -- as Cook has proved \cite{cook},this rule is equivalent to the Turing machine, so depending on the initial conditions, it could be classified in any of the three classes above.
 
-The figures were plotted by our own implementation of this automaton.
-They represent the evolution of cellular automata with some of the mentioned rules.
-The downer-most row is the initial configuration of the cellular automaton with one cell alive in the middle, all other cells are dead.
-The $2^{nd}$ row is the configuration after the $1^{st}$ update and so forth.
+Below, we present figures capturing the evolution of several of the mentioned rules.
+They were obtained by our own implementation of 1D cellular automata (on github.com).
+All of them were initialized by the row of dead cells, only the middle cell was alive.
 
-Formally, the update rule that we have described by the table, may be written in the form
-%The alternative formulation of the update rule that we just described can be written as \cite{wolf}
-\begin{align} \label{rule1}
-a_i^{(t)} = f \big[ \sum_{j=-r}^{j=r} \alpha_j a_{i+j}^{(t-1)} \big]
-\end{align}
-where $a_i$ refer to the state of the $j^{th}$ cell, $\alpha$s are the integer weights, and $f$ is the function that takes integer as the single argument, and $r$ is the range of the neighborhood.
 \end{enumerate}
 
 \begin{figure}[!t]
@@ -221,14 +224,13 @@ where $a_i$ refer to the state of the $j^{th}$ cell, $\alpha$s are the integer w
 \end{figure}
 
 
-\section{Rule 110}
-The rule 110 is special among them.b As Cook has proved \cite{cook}, the rule 110 is special among, that this rule is equivalent to the Turing machine, so depending on the initial conditions, it could be classified in any of the mentioned classes.
-
 %First picture~\ref{koberec} is famous fractal known as Sierpinski carpet. Wolfram classified these 1D automata into four classes, based on the regularity of the pattern obtained.
 
 %Wolfram argues that variety of behavior seen even in these most simple CA rises suspitions, and encourage hope, that in the infinitely large world of possible CAs, there is CA that model any complex phenomena you can imagine.
 
 
+
+\section{Cellular automata in physics}
 In his visionary book New kind of Science \cite{wolf}, Wolfram suggest possibility, that in the infinitely large world of cellular automata, there is an automaton that constitute a unified theory of the fundamental physics.
 Although the details of his idea met with rejection(see \cite{aaronson}),
 many notable physicists are attempting to construct such cellular automaton \cite{hooft}).

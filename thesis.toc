@@ -4,7 +4,8 @@
 \contentsline {section}{\numberline {1.1}Game of Life}{6}{section.1.1}
 \contentsline {section}{\numberline {1.2}Cellular automaton in general}{8}{section.1.2}
 \contentsline {section}{\numberline {1.3}The most basic cellular automaton}{8}{section.1.3}
-\contentsline {section}{\numberline {1.4}Rule 110}{10}{section.1.4}
+\contentsline {section}{\numberline {1.4}Classification of 1D cellular automata}{10}{section.1.4}
+\contentsline {section}{\numberline {1.5}Cellular automata in physics}{12}{section.1.5}
 \contentsline {chapter}{\numberline {2}Lattice gass cellular automata}{19}{chapter.2}
 \contentsline {section}{\numberline {2.1}From CA to LGCA}{19}{section.2.1}
 \contentsline {section}{\numberline {2.2}Update rule}{19}{section.2.2}
