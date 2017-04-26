@@ -2,10 +2,10 @@
 
 In the previous chapter, we showed that Boltzmann equation is superior to the Navier-Stokes equations -- if we solve the Boltzmann equation, we can indirectly obtain the solution for the Navier-Stokes equations (NSE).
 
-But since the distribution $f(\bm{x},\bm{u},t)$ is the function of seven variables, it is even more difficult to solve the Boltzmann equation then NSE. 
-Surprisingly, the numerical method for the Boltzmann equation turns out to be simple to implement and straight-forward to parallelise, and it results in the exact advection (as opposed to NSE solvers, that have major difficulty with the advection term). 
+But since the distribution $f(\bm{x},\bm{u},t)$ is the function of seven variables, it is difficult equation to solve analytically.
+Surprisingly, the numerical method for the Boltzmann equation turns out to be quiet simple -- both to implement and parallelise, and it results in the exact advection (as opposed to NSE solvers, that have major difficulty with the advection term). 
 
-This numerical scheme evolved from the lattice-gas cellular automata that are the primary focus of our thesis, so we will explain it along the lines with LGCA, although explanations from the various perspectives are possible.
+This numerical scheme evolved from the lattice-gas cellular automata that are the focus of our thesis, so we will explain it along the lines with LGCA, although explanations from the various perspectives are possible.
 
 % Hence, we will explain it along the lines of LGCA, although it can be explained on its own just fine.
 
@@ -41,7 +41,7 @@ and for the lattice sets we introduced above, it is
 \begin{align*}
 c_s^2 = \frac{1}{3} \frac{\Delta x^2}{\Delta t^2},
 \end{align*}
-It is a good custom to set the lattice spacing $\Delta x = 1$  and time step $\Delta t = 1$.
+It is a good custom to set the lattice spacing $\Delta x = 1$  and time step $\Delta t = 1$, and rescale the result to the physical units in demand.
 
 The Boltzmann equation, discretized in space, time and velocity space \ref{Boltz} reads
 \begin{align} \label{updt}

@@ -2,9 +2,9 @@
 Pair-interaction automata (PI) constitute another branch that successfully evolved from HPP model, somewhat in contrast to FHP.
 To put it in a nutshell, FHP changed the rectangular grid for hexagonal, and thus obtained better rotational symmetry, increased the degree of freedom of the nodes and added new collision states. 
 
-The pair-interaction model preserves the HPP rectangular lattice, and the degrees of freedom in the node are incremented by the artificial definition of momentum.
+The pair-interaction model preserves the HPP rectangular lattice, but the degrees of freedom in the node are incremented by the artificial definition of momentum.
 %In FHP and HPP, momentum of the particle corresponds to its lattice velocity, or equivalently, to the cell that the particle occupies.
-Momenta has no longer same direction as the lattice velocities, but they constitute another degree of freedom of the particle, that might change in the collision, independently of the lattice velocity. 
+Momenta has no longer same direction as the lattice velocities, but they constitute an inner degree of freedom of the particle, that might change in the collision, independently of the lattice velocity.
 Although the differentiation in momentum and velocity might seem odd at the first glance, we will show that it leads to the physically correct microdynamics and offers us very efficient algorithm for implementation.
 
 \bigskip
@@ -23,23 +23,21 @@ Geometry of the lattice is same as for HPP model. It consists of nodes arranged 
  \caption{Lattice of 2D Pair Interaction automaton}
 \end{figure}
 
-Every node (the cirlce on the picture above) is connected to 4 diagonal neighbors.
-Let us consider that in the time-step $t$ only the black nodes are occupied (with odd Cartesian idices). Then in the next step $t+1$, only the white nodes (with even indices) are occupied. 
-So the set of occupied points alternate with every time step, which offers very efficient implementation, but we need to think
-Without loss of generality we can assert that nodes with even Cartesian coordinates, e.g. [0,2], [2,4] are occupied at even time steps, and vice versa. This property of the grid offers very efficient implementation, as  we need only one array for both even and odd time steps.
+%Every node (the cirlce on the picture above) is connected to 4 diagonal neighbors.
+Let us consider that in the time-step $t$ only the black nodes are occupied (e.g. with odd Cartesian idices). Then in the next step $t+1$, only the white nodes (with even indices) are occupied. 
+So the set of occupied points alternate with every time step, which offers very efficient implementation, because we can perform propagation on the single data-structure.
 
 \bigskip
 
-\textbf{The node:}
+\subsection{Node in detail}
 
-Let us look at the node in more detail:
+Let us look at the node in a more detail
 %If we look on the node in more detail, it looks like this:
-
-\begin{figure}[htbp]
+\begin{figure}[H]
  \centering 
- \includegraphics[width=0.3\textwidth]{./img/node_empty}
+ \includegraphics[width=0.5\textwidth]{./img/node_empty}
  \label{empty}
- \caption{A node in detail}
+ \caption{An empty node}
 \end{figure}
 
 \newpage
@@ -68,25 +66,25 @@ Following rules are true of every lattice-gas cellular automaton.
 
 \begin{enumerate}
 \item Lattice is changing in discrete time steps
-\item Update rules are \textbf{local}. It means that state of the cell in the next step is determined by the current state of the cell itself and its four neighbors. Hence we can resolve update of the lattice node by node (suitable for parallel computing)
+\item Update rules are \textbf{local}. It means that state of the cell in the next step is determined by the current state of the cell itself and its four neighbors. Hence we can resolve update of the lattice node by node, which can be carry out parallely.
 \item If this cellular automaton really simulates fluid dynamics and is physically realistic, update rule needs to conserve \textbf{mass, momentum and angular momentum}.
 \end{enumerate}
 
-Update of the lattice is done in two steps, collision and propagation.
-
+Update of the lattice is accomplished in two distinct steps -- collision and propagation.
 
 \subsection{Collision}
-Collision changes configuration inside the single nodes. We require that momentum and mass is preserved in this step.
+Collision changes configuration of the single nodes respecting two constraints -- number of particles and total momentum in the node is conserved. In this model, it is performed by the pair-interaction algorithm:
+\begin{enumerate}
 
-1) First, the cells are paired in X direction:
-\begin{figure}[htbp]
+\item The cells are paired in X direction:
+\begin{figure}[H]
  \centering 
  \includegraphics[width=0.3\textwidth]{../obrazky/x-interaction}
  \label{xinter}
  \caption{Pairs in X-direction}
 \end{figure}
 
-Then we swap the bits in the pairs so that total momentum in the pair is preserved. Therefore, node in \ref{pre_collision} changes to
+\item Then we swap the bits in the pairs so that total momentum in the pair is preserved. Therefore, node in \ref{pre_collision} changes to
 
 \begin{figure}[H]
  \centering 
@@ -95,7 +93,7 @@ Then we swap the bits in the pairs so that total momentum in the pair is preserv
  \caption{State of the node after pair-interaction in X direction}
 \end{figure}
 
-2) Then, the cells are paired in Y direction:
+\item Then, the cells are paired in Y direction
 \begin{figure}[htbp]
  \centering 
  \includegraphics[width=0.3\textwidth]{../obrazky/y-interaction}
@@ -103,7 +101,7 @@ Then we swap the bits in the pairs so that total momentum in the pair is preserv
  \caption{Pairs in Y-direction}
 \end{figure}
 
- Then we change the configuration in these pairs preserving mass and momentum in the node. Hence, the node in \ref{colision1} changes into:
+\item we change the configuration in these pairs preserving mass and momentum in the node. Hence, the node in \ref{colision1} changes into:
  \begin{figure}[htbp]
  \centering 
  \includegraphics[width=0.5\textwidth]{./img/node_3}
@@ -111,7 +109,9 @@ Then we swap the bits in the pairs so that total momentum in the pair is preserv
  \caption{State of the node after pair-interaction in Y-direction}
 \end{figure}
 \newpage
-Actually, there is only 17 different configurations of the pairs. So instead of computing new configuration during every pair-interaction, we can just look in the table \ref{transitions} below and change the configuration accordingly. We consider this to be the greatest practical advantage of PI comparing to other methods.
+\end{enumerate}
+
+In total, there is only 17 possible configurations of the pairs, so the pair-interaction can be resolved by This table is same for Pair-interaction automata of any dimension, which is the great advantage comparing to other methods.
 \newpage
 \begin{figure}[htbp]
  \centering 
@@ -121,20 +121,10 @@ Actually, there is only 17 different configurations of the pairs. So instead of 
 \end{figure}
 
 \section{Propagation:}
-Particles propagates from a single node to the four neighboring nodes along the lattice vectors, see \ref{2dgrid}.
-
-Particle from the cell \textbf{a} propagates to the node up-right, to the cell \textbf{a} as well.
-
-Analogously, particle from cell \textbf{b} propagates to the node up-left, to the cell \textbf{b}.
-
-Of course, particle carries all its bits (its momentum).
+Same as for HPP, particles propagates from a node along $4$ lattice vectors to the neighboring nodes. Of course, all the bits from the cell propagates with the particle (the mass and momentum bits alike)
 
 
-
-Generalization of this automaton to arbitrary dimension D is very straight-forward. But we need to establish some mathematical formalism, as we haven't learned to draw D-dimensional pictures.
-
-\section{3D Pair-interaction cellular automaton}
-
+\section{Pair-interaction cellular automaton in 3D and arbitrary dimension}
 \begin{center}
     \begin{tabular}{| l | l | l | l |}
     \hline
@@ -146,41 +136,28 @@ Generalization of this automaton to arbitrary dimension D is very straight-forwa
     \end{tabular}
 \end{center}
 
-In his famous paper, Nasilowski defined and used formalism that:
-\begin{enumerate}
-\item is more difficult then is necessary in our opinion (and in few cases he redefines it along the way)
-\item therefore his arguments are more difficult then necessary
-\end{enumerate}
+Generalization of this automaton to the arbitrary dimension D is very straight-forward. Instead of formalism that Nasilowski used in his founding article \cite{nasilowski}, we will use formalism that we already established for FHP model.
 
+State of the node will be denoted by $\bm{n}(t,\bm{r})$, where $\bm{r}$ is its position on the lattice and $t$ is the current time step. $\bm{n}(t,.)$ represents the whole lattice at time $t$. When possible, we will skip the time variable and use only $\bm{n}(.)$.
 
-Instead, we will stick to the more modern formalism that we have been using.
-We consider it more brief and effective and reader should be already familiar with it.
-
-In previous chapter, reader should get good understanding how 2D Pair-interaction works.
-believe that reader has already good idea how 2D Pair-interaction automaton works.
-
-State of the node will be denoted by $\bm{n}(t,\bm{r})$, where $\bm{r}$ is its position on the lattice and $t$ is the current time step. $\bm{n}(t,.)$ represents the whole lattice at time $t$, sometimes we can the time variable and use only $\bm{n}(.)$.
-
-Each node consists of $2^D$ cells:
+Each node consists of $2^D$ cells
 \begin{equation}
 \bm{n} = (n_1, n_2, ... , n_{2^D})
 \end{equation}
-State of each node is given by $2^D(D+1)$ bits: 
+or $2^D(D+1)$ bits
 \begin{equation}
 \bm{n} = \big\{ n_{i\alpha} \in \big\{0,1\big\},~i = 1..2^D, ~\alpha = 0,1,...D\big\}
 \end{equation}
-where index $i$ specifies cell of the node, and index $\alpha$ specifies the momentum bit of the cell. Actually, they are the Cartesian coordinates of the cell momenta.
+where $i$ is index of the cell, index $\alpha = 0$ stands for the mass bit, and $\alpha = 1,2,..D$ stands for the momenta bits of the cell.
 
-
-
-Evolution of the lattice happens in discrete time steps - updates $\mathcal{U}$:
-
+\section{Update}
+The evolution of the lattice happens in discrete time steps $\mathcal{U}$
 \begin{equation}
 \mathcal{U} \bm{n}(t,.) = \bm{n}(t+1,.)
 \end{equation} 
-Update operator $\mathcal{U}$ can be further divided in two operations, collision $\mathcal{C}$ and propagation $\mathcal{P}$:
+Update operator $\mathcal{U}$ is the composition of two operators, collision $\mathcal{C}$ and propagation $\mathcal{P}$
 \begin{equation}
-\mathcal{U} = \mathcal{P} \circ \mathcal{C}
+\mathcal{U} = \mathcal{P} \circ \mathcal{C}.
 \end{equation} 
 
 \section{Collision}
@@ -188,7 +165,7 @@ Update operator $\mathcal{U}$ can be further divided in two operations, collisio
 The purpose of collision is to change the state of the node $\bm{n}$ into new state $\bm{n'}$ such that 2 conditions are fulfilled:
 
 \begin{enumerate}
-\item \textbf{Collision operator is one-to-one}:
+\item \textbf{Collision operator is one-to-one}
 
 If $\mathcal{C}: \bm{n} \rightarrow \bm{n'}$,
 then $\mathcal{C}: \bm{n'} \rightarrow \bm{n}$.
@@ -204,8 +181,7 @@ m_0 = \sum_i n_{i0}
 \begin{equation}
 p_j = \sum_i c_{ij} n_{ij},~j=1,2,...D
 \end{equation}
-
-Using these definitions, condition of mass and momentum conservation could be expressed by:
+Using these definitions, conservation of mass and momentum can be expressed by
 \begin{align}\label{mmc}
 \begin{split} 
 m_o = m'_o &~~ \Leftrightarrow ~~ \sum_i n_{i0} = \sum_i n'_{i0}, \\
@@ -213,32 +189,28 @@ p_j = p'_j &~~ \Leftrightarrow ~~ \sum_i c_{ij} n_{ij} = \sum_i c_{ij} n'_{ij}, 
 \end{split}
 \end{align}
 \end{enumerate}
-
-
-The easiest collision rule fulfilling these conditions would be identity
+The simplest collision rule fulfilling these conditions would be identity
 \begin{equation}
 \mathcal{I}:\bm{n} \rightarrow \bm{n}
 \end{equation}
 but this "non-collision" would lead to undesired, non-physical invariants.
-On the contrary, we want to change as many bits in the node as possible,
-or to say it physically, change directions to as many particles as conservation of momentum allows.
-Providing that, the mean free path of particles is reduced to minimum, and we can reach higher Reynold numbers in the simulations.
+On the contrary, we want to change as many bits in the node as possible, to reduce the mean free path of the particles. Physically, it minimizes the shear viscosity and allow us to reach higher Reynolds numbers in the simulations.
 
-Such collision algorithm is surprisingly simple and was described in previous section graphically.
-Now we state collision rule more formally for arbitrary dimension D.
+\subsection{Collision algorithm}
+Collision rule that fulfills all the requirements above turned out to be really simple. It was explained graphically in the previous section, now we state it more formally for an arbitrary dimension D.
 The algorithm consists of D steps.
-In each step ($d=1...D$), we create pairs of cells in $d^{th}$ direction, or equivalently, we create pairs $(n_i,n_j)$, such that $c_{id} = -c_{jd}$ and $c_{i\alpha} = c_{j\alpha}$ for $\alpha \neq d$.
+In each step ($d=1...D$), we create pairs of the cells in $d^{th}$ direction, such that $c_{id} = -c_{jd}$ and $c_{i\alpha} = c_{j\alpha}$ for $\alpha \neq d$.
 If $n_{id} = n_{jd}$ (it means that in direction $d$, momentum of the pair is zero), we swap the states of the cells $n_i$ and $n_j$ without changing the total momentum of the pairs.
-In the end of the collision, the total momentum of the node is conserved, because all the pair-interactions conserved the momentum.
+Because all the pair-interactions conserved the momentum, the total momentum in the node is conserved by the collision.
 
 \section{Equilibrium statistics}
-We start by revoking the basic result of the microdynamics
+We start by revoking the basic equation of the microdynamics
 \begin{equation} \label{over2}
 \bm{n}(t+2,.) = \mathcal{U}^2 \bm{n}(t,.)
 \end{equation}
 We remind that $n(.)$ represents the whole lattice, while $n(\bm{r})$ represents the state of the node at $\bm{r}$.
 
-As we already mentioned, with each time step, the occupied parts on the lattice alternate, hence it makes sense only to compare states of the lattice over the two time steps.
+As we already mentioned, the occupied parts on the lattice alternate every time-step, so we can compare only states over the two time steps.
 
 The microdynamical equation \ref{over2} implies conservation of probabilities
 \begin{equation} \label{cp}
@@ -248,20 +220,23 @@ where $P(t,n(.))$ is the probability that lattice is found in the state $n(.)$ f
 
 \subsection{Gibbs distribution}
 
+Before we proceed, it is handy to define the \textbf{hypermomentum} $m_{\alpha}$, where $m_{0}$ is the mass, and $(m_1,m_2,...,m_D)$ is the momentum. 
+
+From now on, the Greek index $\alpha$ will run trough the $\{0,1,2,...,D\}$ and will signalize that hypermomentum is used, while Latin $j$ runs over $\{1,2,...D\}$ and signalizes the standard momentum.
+
 The Gibbs distribution is defined for this model as
 \begin{equation}
 P^E(n(.)) = \frac{W(n(.))}{Z}
 \end{equation}
 where
 \begin{equation}
-W(n(.)) = \exp(-\sum_{\alpha = 0}^D \mu_{\alpha} m_{\alpha}(.))
+W(n(.)) = \exp(-\sum_{\alpha = 0}^D \mu_{\alpha} m_{\alpha}(.)),
 \end{equation} 
-and $Z$ is the partition function
+$Z$ is the partition function
 \begin{equation}
 Z = \sum_{n(.))} W(n(.)).
 \end{equation}
-
-MU ARE INTENSIVE PARAMETERS CORRESPONDING TO M
+and the $\mu_{\alpha}$ are the intensive parameters conjugated to the hypermomentum $m_{\alpha}$. 
 
 Let us inspect if the Gibbs distribution fulfills the conservation of probabilities required by \ref{cp}.
 
@@ -329,22 +304,19 @@ and the momentum density
 \begin{equation}
 q_j := 2^{-D} \sum_i c_{ij} \langle n_{ij} \rangle = 2^{-D} \sum_i c_{ij} \rho_i \sigma_{ij}, \quad j=1,2...D.
 \end{equation}
+In the next section, we will also use \textbf{hypermomentum} density
+\begin{equation} \label{hypermom}
+q_{\alpha} := 2^{-D} \sum_i c_{i\alpha} \langle n_{i\alpha} \rangle,~\alpha = 0,1,2...D,
+\end{equation}
+where $q_0$ is the mass density $\rho$, and $(q_1,q_2,...q_D)$ is the momentum density.
 
-Solution of the equations in the closed-form is not possible, but one can find the asymptotic solution for small $\bm{q}$, derived in the Appendix B of \cite{nasilowski}. We express it in terms of the mass and momentum density defined above
+We can use the above definitions to solve equations \ref{form1} in terms of $\rho$ and $\bm{q}$. To find the solution in the closed-form is not possible, but one can find the asymptotic solution for small $\bm{q}$, derived in the Appendix B of \cite{nasilowski}.
 \begin{align} \label{hypequi}
 \begin{split}
 \rho_i &= \rho + 2 \frac{1-\rho}{2-\rho} \bm{v}.\bm{q} + 2 \, \frac{(1-\rho)(1-2\rho}{(2-\rho)^2 \rho} \, \big[(\bm{v}.\bm{q})^2 - q^2 \big] + O(q^3), \\
 \sigma_{ij} &= \frac{1}{2} + \frac{v_j q_j}{(2-\rho)\rho} + O(q^3).
 \end{split}
 \end{align}
-
-Before we proceed to the next section, it is handy to define the \textbf{hypermomentum} density
-\begin{equation} \label{hypermom}
-q_{\alpha} := 2^{-D} \sum_i c_{i\alpha} \langle n_{i\alpha} \rangle,~\alpha = 0,1,2...D,
-\end{equation}
-where $q_0$ is the mass density $\rho$, and $(q_1,q_2,...q_D)$ is the momentum density.
-
-From now on, the Greek index $\alpha$ will run trough the $\{0,1,2,...,D\}$ and will signalize that hypermomentum is used, while Latin $jb$ runs over $\{1,2,...D\}$ and signalizes the standard momentum.
 
 \section{Hydrodynamic description}
 The quantities of our interest are the so-called \textit{collisional invariant}. These quantities do not change by the collisions, but vary slowly in time and space.

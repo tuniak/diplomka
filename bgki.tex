@@ -4,7 +4,7 @@ Let us start by invoking the Hamiltonian for the $N$ particle system
 \begin{align*}
 H = \frac{1}{2m} \sum_{i=1}^N p_i^2 + \sum_{i=1}^N V(\bm{r_i}) + \sum_{i<j} U(\bm{r_i} - \bm{r_j})
 \end{align*}
-where $V$ is the potential of the force $F= -\nabla V$, that affects all the particles equally, and $U$ is the potential of the $2$-particle interactions. We require that $U$ is short-ranged, meaning $U(r) \approx 0$ for $r$ of order much larger then is the atomic distance.
+where $V$ is the potential of the force $\bm{F}= -\nabla V$, that affects all the particles equally, and $U$ is the potential of the $2$-particle interactions. We require that $U$ is short-ranged, meaning $U(r) \approx 0$ for $r$ of order much larger then is the atomic distance.
 
 As usual in the framework of continuum mechanics, $N$ is a ridiculously large number, something like $N \approx 10^{23}$.
 
@@ -45,6 +45,7 @@ Leaving the particle with index $1$ from the product was arbitrary, because all 
 \int f_1(\bm{r_1},\bm{p_1},t) \dd \bm{r_1} \dd \bm{p_1} = N.
 \end{align*}
 To simplify the notation, we will use $(\bm{p},\bm{r})$ instead $(\bm{p_1},\bm{r_1})$ from now on.
+
 For many purposes, the function $f_1$ captures all we need to know.
 For example, it gives us the average density of particles at the spatial point $\bm{r}$
 \begin{align} \label{partdens}
@@ -62,7 +63,7 @@ To derive the equation governing the evolution of $f_1$, let us see how it varie
 \begin{align*}
 \frac{\pd f_1}{\pd t} = N \int \prod_{i=2}^N \dd \, \bm{r_i} \dd \, \bm{p_i} \frac{\pd f}{\pd t} = N \int \prod_{i=2}^N \dd \, \bm{r_i} \dd \, \bm{p_i} \big\{ H, \, f \big\}.
 \end{align*}
-By some non-trivial arrangements, we can put the equation in the form
+Arranging the terms on the right, we can turn this equation in the form
 \begin{align} \label{boltzman}
 \frac{\pd f_1}{\pd t} = \big\{ H_1, f_1 \big\} + \Big(\frac{\pd f_1}{\pd t} \Big)_{coll},
 \end{align}
@@ -75,17 +76,15 @@ We see that the evolution of $f_1$ is governed by the Liouville's equation plus 
 \Big(\frac{\pd f_1}{\pd t} \Big)_{coll} = N(N-1) \int \dd \bm{r_2} \dd \bm{p_2} 
 \frac{\pd U(\bm{r} - \bm{r_2})}{\pd \bm{r}} . \frac{\pd}{\pd \bm{p}} \int \prod_{i=3}^N \dd \bm{r_i} \dd\bm{p_i} f(\bm{r},\bm{r_2},...,\bm{p},\bm{p_2},...,t).
 \end{align*}
-
 Not surprisingly, it is not determined by the 1-particle distribution, because it does not contain the relation of one particle to all other particles. Some of that information is carried by the \textit{2-particle distribution}
 \begin{align*}
 f_2(\bm{r},\bm{r_2},\bm{p},\bm{p_2},t) := N(N-1)\int f(\bm{r},\bm{r_2},\bm{r_3},...,\bm{p},\bm{p_2},\bm{p_3},...,t) \prod_{i=3}^N \dd \bm{r_i} \dd \bm{p_i}.
 \end{align*}
-Using the 2-particle distribution, the collision integral can be rewritten as
+Using the 2-particle distribution, we can rewritten the collision integral as
 \begin{align*}
 \Big(\frac{\pd f_1}{\pd t} \Big)_{coll} = \int \dd \bm{r_2} \dd \bm{p_2} \frac{\pd U(\bm{r} - \bm{r_2})}{\pd \bm{r}} . \frac{\pd f_2}{\pd\bm{p}}.
 \end{align*}
-
-We can see that to follow the evolution of one-particle distribution $f_1$, we also need to know something about the two-particle distribution. And again, to know the evolution of the two-particle distribution, we repeat the same procedure as before and find the Liouville-like equation for $f_2$ with additional term containing the three-particle distribution.
+We see that to follow the evolution of one-particle distribution $f_1$, we also need to know something about the two-particle distribution $f_2$. And again, to know the evolution of the two-particle distribution, we repeat the same procedure as before and find the Liouville-like equation for $f_2$ with additional term containing the three-particle distribution $f_3$.
 
 In general, the evolution of \textit{n-particle distribution} is described by
 \begin{align} \label{bgky}
@@ -100,8 +99,9 @@ includes external forces $V$ and interactions between the $n$ particles.
 The set of equations \ref{bgky} is called the \textit{BBGKY hierarchy}.
 Instead of the Liouville's equation governing the function of $N \approx 10^{23}$ variables, we have now the set of $10^{23}$ functions.
 
-But it is truly more advantageous to work with the hierarchy of equations \ref{bgky}, as it is ready to be approximated. Depending on the particular problem at hands, we decide which terms are important and which terms can be ignored, thus truncating the problem to something manageable.
+However, it is more advantageous to work with the hierarchy of equations \ref{bgky}, as it is ready to be approximated. Depending on the particular problem at hands, we decide which terms are important and which terms can be ignored, thus truncating the problem to something manageable.
 
+\section{Boltzmann equation}
 Let us derive the most simple and useful of these truncations, the Boltzmann equation
 \begin{align*}
 \frac{\pd f_1}{\pd t} = \big\{ H_1, f_1 \big\} + \Big(\frac{\pd f_1}{\pd t} \Big)_{coll},
@@ -116,7 +116,7 @@ in the closed form, where collision integral is the expression of $f_1$ alone.
 %but the collision integral was dependent on $f_2$.
 
 To proceed, let us define two time scales:
-the time between particle collisions $\tau$, and the time of collision itself, $\tau_{coll}$.
+the time between particle collisions $\tau$, and the time of the collision itself, $\tau_{coll}$.
 In a dilute gas, we have
 \begin{align*}
 \tau >> \tau_{coll},
@@ -126,30 +126,30 @@ so most of the time, $f_1$ follows the Hamiltonian evolution, with occasional, b
 What is the rate at which the collision happens?
 
 Let the two particle with momenta $\bm{p_1}$ and $\bm{p_2}$ collide at the point $\bm{r}$, and during the collision, they gain velocities $\bm{p'_1}$ and $\bm{p'_2}$.
-Let us define the rate of the collision by
+We can define the rate of the collision by
 \begin{align*}
 Rate = \omega(\bm{p_1},\bm{p_2} | \bm{p'_1}, \bm{p'_2}) f_2(\bm{r},\bm{r},\bm{p_1},\bm{p_2}),
 \end{align*}
 where $\omega$ carries information of the about the dynamics of the collision, and can be computed from the inter-atomic potential $U$.
 
-Next, we focus on the collisions where one particle had specific momentum $p_1$ before collision, and gains some unspecified momentum $p'_1$ in the collision, or the particle had unspecified momentum $p'_1$ before the collision, but gains the specific momentum $p_1$ in the collision.
+Next, we focus on the collisions where one particle has specific momentum $\bm{p_1}$ before collision, and gains some unspecified momentum $\bm{p'_1}$ in the collision, or the particle had unspecified momentum $\bm{p'_1}$ before the collision, but gains the specific momentum $\bm{p_1}$ in the collision.
 The collision integral governing these collisions contains two terms:
 \begin{align*}
-\Big( \frac{\pd f_1}{\pd t} \Big)_{coll}= \int \big[ \omega(\bm{u'_1},\bm{u'_2} | \bm{u_1}, \bm{u_2}) f_2(\bm{u'_1},\bm{u'_2}) - \omega(\bm{u_1},\bm{u_2} | \bm{u'_1}, \bm{u'_2}) f_2(\bm{u_1}, \bm{u_2}) \big] \dd \bm{u_2} \dd \bm{u'_1} \dd \bm{u'_2}
+\Big( \frac{\pd f_1}{\pd t} \Big)_{coll}= \int \big[ \omega(\bm{p'_1},\bm{p'_2} | \bm{p_1}, \bm{p_2}) f_2(\bm{p'_1},\bm{p'_2}) - \omega(\bm{p_1},\bm{p_2} | \bm{p'_1}, \bm{p'_2}) f_2(\bm{p_1}, \bm{p_2}) \big] \dd \bm{p_2} \dd \bm{p'_1} \dd \bm{p'_2}.
 \end{align*}
 Considering the symmetries of the process (invariance under time reversal and parity), we have
 \begin{align} \label{symm} 
-\omega(\bm{u'_1},\bm{u'_2} | \bm{u_1}, \bm{u_2}) = \omega(\bm{u_1},\bm{u_2} | \bm{u'_1}, \bm{u'_2})
-\end{align}.
+\omega(\bm{p'_1},\bm{p'_2} | \bm{p_1}, \bm{p_2}) = \omega(\bm{p_1},\bm{p_2} | \bm{p'_1}, \bm{p'_2}).
+\end{align}
 Finally, in order to express the collision integral in terms of $f_1$ instead of $f_2$, we make a non-trivial assumption, that velocities of colliding particles are uncorrelated:
 \begin{align} \label{chaos}
-f_2(\bm{r},\bm{r},\bm{u_1},\bm{u_2}) = f_1(\bm{r},\bm{u_1})\,f_1(\bm{r},\bm{u_2}).
+f_2(\bm{r},\bm{r},\bm{p_1},\bm{p_2}) = f_1(\bm{r},\bm{p_1})\,f_1(\bm{r},\bm{p_2}).
 \end{align}
-This assumption is known as a \textit{molecular chaos hypothesis}, and seems quite innocent. However, by supposing that particles are uncorrelated before the collision, but they naturally become correlated in the collision, we introduce the arrow of time on the scene.
+This assumption is known as a \textit{molecular chaos hypothesis}, and seems quite innocent. However, by supposing that particles are uncorrelated before the collision, but they inevitably become correlated in the collision, we introduce the arrow of time on the scene.
 
 Finally, using \ref{symm} and \ref{chaos}, we can write the collision integral in the form
 \begin{align} \label{colint}
-\Big( \frac{\pd f_1}{\pd t} \Big)_{coll}= \int \omega(\bm{u'_1},\bm{u'_2} | \bm{u_1}, \bm{u_2}) \big[f_1(\bm{r},\bm{u'_1})f_1(\bm{r},\bm{u'_2}) - f_1(\bm{r},\bm{u_1})f_1(\bm{r},\bm{u_2}) \big] \dd \bm{u_2} \dd \bm{u'_1} \dd \bm{u'_2}
+\Big( \frac{\pd f_1}{\pd t} \Big)_{coll}= \int \omega(\bm{p'_1},\bm{p'_2} | \bm{p_1}, \bm{p_2}) \big[f_1(\bm{r},\bm{p'_1})f_1(\bm{r},\bm{p'_2}) - f_1(\bm{r},\bm{p_1})f_1(\bm{r},\bm{p_2}) \big] \dd \bm{p_2} \dd \bm{p'_1} \dd \bm{p'_2}
 \end{align}
 and we can express the \textit{Boltzmann equation}
 \begin{align} \label{Boltz}
@@ -158,7 +158,7 @@ and we can express the \textit{Boltzmann equation}
 in the closed form.
 
 \section{Equilibrium and detailed balance}
-The \textit{equilibrium distribution} is defined such that it does not explicitly depend on the time
+The \textit{equilibrium distribution} is defined such that it does not explicitly depend on the time:
 \begin{align*}
 \frac{\pd f_1^{eq}}{\pd t} = 0.
 \end{align*}
@@ -174,28 +174,28 @@ If we restrict ourselves to the case with vanishing external force
 \begin{align*}
 V(\bm{r}) = 0,
 \end{align*}
-any function of momentum commutes with Hamiltonian and the streaming term vanishes.
+any function of momentum commutes with Hamiltonian and the streaming term $\big\{ f_1, H_1 \big\}$ vanishes.
 According to \ref{colint}, to make the collision integral vanish, we need to satisfy the \textit{detailed balance} condition
 \begin{align} \label{detailedbalance}
-f_1^{eq}(\bm{r},\bm{u_1})f_1^{eq}(\bm{r},\bm{u_2}) = f_1^{eq}(\bm{r},\bm{u'_1})f_1^{eq}(\bm{r},\bm{u'_2}),
+f_1^{eq}(\bm{r},\bm{p_1})f_1^{eq}(\bm{r},\bm{p_2}) = f_1^{eq}(\bm{r},\bm{p'_1})f_1^{eq}(\bm{r},\bm{p'_2}),
 \end{align}
 or equivalently
 \begin{align*}
-\log(f_1^{eq}(\bm{r},\bm{u_1})) + \log(f_1^{eq}(\bm{r},\bm{u_2})) = \log(f_1^{eq}(\bm{r},\bm{u'_1})) + \log(f_1^{eq}(\bm{r},\bm{u'_2})).
+\log(f_1^{eq}(\bm{r},\bm{p_1})) + \log(f_1^{eq}(\bm{r},\bm{p_2})) = \log(f_1^{eq}(\bm{r},\bm{p'_1})) + \log(f_1^{eq}(\bm{r},\bm{p'_2})).
 \end{align*}
 
-The last equation tells us, that the sum of terms on the left is conserved in the collision.
+According to this equation, the sum of logarithms is conserved in the collision.
 
-As we know, such quantities are either momenta or energy, hence the terms in this equation are the linear combination of energy and momenta
+As we know, such quantities are either momenta or energy, hence the logarithms are the linear combination of energy and momenta
 \begin{align*}
-log(f_1^{eq}(\bm{r},\bm{u})) = \beta(\mu - E(\bm{u}) + \bm{v}. \bm{u}),
+log(f_1^{eq}(\bm{r},\bm{p})) = \beta(\mu - E(\bm{p}) + \bm{u} \cdot \bm{p}),
 \end{align*}
 where
 \begin{align*}
-E(\bm{u}) = \frac{1}{2} m u^2
+E(\bm{p}) = \frac{1}{2m} p^2
 \end{align*}
-and $\beta,\mu$ and $\bm{v}$ are constants.
-Setting the constant $\mu$ such that normalization of $f_1$ is satisfied, we can write the solution
+and $\beta,\mu$ and $\bm{u}$ are constants.
+We need to set the constant $\mu$ such that normalization of $f_1$ is satisfied, that gives us
 \begin{align} \label{mbt}
 f_1^{eq} = \frac{N}{V}\big(\frac{\beta}{2\pi m}\big)^{3/2} e^{-\beta m (\bm{v} - \bm{u})^2/2}.
 \end{align}
@@ -203,25 +203,25 @@ Supposing that $\beta$ is the inverse temperature, this is the Maxwell-Boltzmann
 
 If we forget about the streaming term $\big\{ H_1, f_1 \big\}$, then the detailed balance condition \ref{detailedbalance} leads to the much larger class of solutions, so called \textit{local equilibrium distributions}
 \begin{align} \label{localequil}
-f_1^{loc}(\bm{x},\bm{u},t) = n(\bm{x},t) \Big(\frac{\beta(\bm{x},t)}{2\pi m}\Big)^{3/2} \exp \big(-\beta(\bm{x},t)\frac{m}{2}[\bm{v} - \bm{u}(\bm{x},t)]^2 \big)
+f_1^{loc}(\bm{r},\bm{p},t) = n(\bm{r},t) \Big(\frac{\beta(\bm{r},t)}{2\pi m}\Big)^{3/2} \exp \big(-\beta(\bm{r},t)\frac{m}{2}[\bm{v} - \bm{u}(\bm{r},t)]^2 \big)
 \end{align}
-where $\mu,\beta$ and $\bm{v}$ are promoted to the functions.
+where $n,\beta$ and $\bm{u}$ are promoted to the functions.
 Inserting these distributions into the Boltzmann equation, the collision integral vanishes, but the streaming term stays.
 
 \section{Hydrodynamics}
 On the most coarse-grained level, the system in local equilibrium is described by hydrodynamics, with the parameters that do not relax to their equilibrium values immediately, but vary slowly in space and time.
 %Just like the termodynamics describes systems in the equilibrium, hydrodynamics describes systems in the local equilibrium, with the parameters that vary slowly in space and time.
 %These are quantities that do not relax to their equilibrium values immediately, but change on the much slower scale. 
-In this section we will show that these quantities are density $\rho(\bm{r},t)$, temperature $T(\bm{r},t)$ and velocity $\bm{u}(\bm{r},t)$ (thus showing that the quantities in \ref{localequil} have their usual meaning).
+In this section we will show that these parameters are density $\rho(\bm{r},t)$, temperature $T(\bm{r},t)$ and velocity $\bm{u}(\bm{r},t)$ (thus showing that the functions in \ref{localequil} have their usual meaning).
 
 Let us have an arbitrary function $A(\bm{r},\bm{u})$.
-To see how does the function $A$ vary in space, let us integrate over the momentum
+To see how does the function $A$ vary in space, let us integrate over the momentum space
 \begin{align} \label{averg}
-\langle A(\bm{r},t) \rangle = \frac{\int A(\bm{r},\bm{u}) f_1(\bm{r},\bm{u},t) \dd \bm{u}}{\int f_1(\bm{r},\bm{u},t) \dd \bm{u}}.
+\langle A(\bm{r},t) \rangle = \frac{\int A(\bm{r},\bm{p}) f_1(\bm{r},\bm{p},t) \dd \bm{p}}{\int f_1(\bm{r},\bm{p},t) \dd \bm{p}}.
 \end{align}
 We are already familiar with the denominator -- it is the particle density function, so we can write
 \begin{align*}
-\langle A(\bm{r},t) \rangle = \frac{1}{n(\bm{r},t)} \int A(\bm{r},\bm{u}) f_1(\bm{r},\bm{u},t) \dd \bm{u}.
+\langle A(\bm{r},t) \rangle = \frac{1}{n(\bm{r},t)} \int A(\bm{r},\bm{p}) f_1(\bm{r},\bm{p},t) \dd \bm{p}.
 \end{align*} 
 
 Note that the resulting function is a function of space and time, since we computed average only over the momentum variables.
@@ -229,23 +229,23 @@ Note that the resulting function is a function of space and time, since we compu
 %To see how this averaged function evolve in time
 We are interested in the functions $A$ that vanish, when integrated against the collision integral
 \begin{align*}
-\int A(\bm{r},\bm{u})  \Big( \frac{\pd f_1}{\pd t} \Big)_{coll} \dd \bm{u} = 0.
+\int A(\bm{r},\bm{p})  \Big( \frac{\pd f_1}{\pd t} \Big)_{coll} \dd \bm{p} = 0.
 \end{align*}
 Intuitively, this condition is required because we are interested in the quantities that vary slowly, but the collisions are abrupt processes, and the term involving collision integral vary fast.
 
 Substituting the expression for the collision integral \ref{colint} to the last equation, we get
 \begin{align*}
-\int A(\bm{r},\bm{u_1}) \omega(\bm{u'_1},\bm{u'_2} | \bm{u_1}, \bm{u_2}) \big[f_1(\bm{r},\bm{u'_1})f_1(\bm{r},\bm{u'_2}) - f_1(\bm{r},\bm{u_1})f_1(\bm{r},\bm{u_2}) \big] \dd \bm{u_1} \dd \bm{u_2} \dd \bm{u'_1} \dd \bm{u'_2} = 0.
+\int A(\bm{r},\bm{p_1}) \omega(\bm{p'_1},\bm{p'_2} | \bm{p_1}, \bm{p_2}) \big[f_1(\bm{r},\bm{p'_1})f_1(\bm{r},\bm{p'_2}) - f_1(\bm{r},\bm{p_1})f_1(\bm{r},\bm{p_2}) \big] \dd \bm{p_1} \dd \bm{p_2} \dd \bm{p'_1} \dd \bm{p'_2} = 0.
 \end{align*}
 Considering the symmetries of $\omega$, this condition is equivalent to
 \begin{align*}
 \begin{split}
-\int \omega(\bm{u'_1},\bm{u'_2} | \bm{u_1}, \bm{u_2}) \big[f_1(\bm{r},\bm{u'_1})f_1(\bm{r},\bm{u'_2}) - f_1(\bm{r},\bm{u_1})f_1(\bm{r},\bm{u_2}) \big] \\ \cross \big[A(\bm{r},\bm{u_1}) + A(\bm{r},\bm{u_2}) - A(\bm{r},\bm{u'_1}) - A(\bm{r},\bm{u'_2}) \big] \dd \bm{u_1} \dd \bm{u_2} \dd \bm{u'_1} \dd \bm{u'_2} = 0
+\int \omega(\bm{p'_1},\bm{p'_2} | \bm{p_1}, \bm{p_2}) \big[f_1(\bm{r},\bm{p'_1})f_1(\bm{r},\bm{p'_2}) - f_1(\bm{r},\bm{p_1})f_1(\bm{r},\bm{p_2}) \big] \\ \cross \big[A(\bm{r},\bm{p_1}) + A(\bm{r},\bm{p_2}) - A(\bm{r},\bm{p'_1}) - A(\bm{r},\bm{p'_2}) \big] \dd \bm{p_1} \dd \bm{p_2} \dd \bm{p'_1} \dd \bm{p'_2} = 0
 \end{split},
 \end{align*}
 which holds if
 \begin{align*}
-A(\bm{r},\bm{u_1}) + A(\bm{r},\bm{u_2}) = A(\bm{r},\bm{u'_1}) + A(\bm{r},\bm{u'_2}).
+A(\bm{r},\bm{p_1}) + A(\bm{r},\bm{p_2}) = A(\bm{r},\bm{p'_1}) + A(\bm{r},\bm{p'_2}).
 \end{align*}
 
 So $A$ is a quantity that is conserved during the collision, which is true for the energy, momenta, and trivially, for a constant function, e.g. $A=1$.
@@ -253,40 +253,44 @@ These are the \textit{collision invariants} of our interest.
 
 If we plug any collision invariant to the Boltzmann equation \ref{Boltz} and integrate over the momenta variables, the term involving collision integral vanishes
 \begin{align*}
-\int A(\bm{r},\bm{u}) \Big( \frac{\pd }{\pd t} + \frac{\bm{u}}{m}.\frac{\pd}{\pd \bm{x}} + \bm{F}.\frac{\pd}{\pd \bm{u}} \Big) f_1(\bm{x},\bm{u},t) \dd \bm{u} = 0
+\int A(\bm{r},\bm{p}) \Big( \frac{\pd }{\pd t} + \frac{\bm{p}}{m}\cdot \frac{\pd}{\pd \bm{r}} + \bm{F} \cdot \frac{\pd}{\pd \bm{p}} \Big) f_1(\bm{r},\bm{p},t) \dd \bm{p} = 0
 \end{align*} 
-Because $A$ do not explicitly depend on time, we can put it inside the time derivative, and integrating other terms by parts, we get
+Because $A$ do not explicitly depend on time, we can put it inside the time derivative, and using integration by part on other terms \textit{per partes} leads to
 \begin{align*}
-\frac{\pd}{\pd t} \int A f \dd\bm{u} + \frac{\pd}{\pd \bm{x}} . \int \frac{\bm{u}}{m} A f \dd \bm{u} - \int \frac{\bm{u}}{m} . \frac{\pd A}{\pd \bm{x}} f \dd \bm{u} - \int \bm{F} . \frac{\pd A}{\pd \bm{u}}f \dd \bm{u} = 0
+\frac{\pd}{\pd t} \int A f \dd\bm{p} + \frac{\pd}{\pd \bm{r}} \cdot \int \frac{\bm{p}}{m} A f \dd \bm{p} - \int \frac{\bm{p}}{m} \cdot \frac{\pd A}{\pd \bm{r}} f \dd \bm{p} - \int \bm{F} \cdot \frac{\pd A}{\pd \bm{p}}f \dd \bm{p} = 0
 \end{align*}
-Finally, applying the expression for average \ref{averg} on this equation, we can write
+Finally, applying the expression for the average \ref{averg} on this equation, we can write
 \begin{align} \label{master}
-\frac{\pd}{\pd t} \langle n A \rangle + \frac{\pd}{\pd \bm{x}}.\langle n \bm{v} A \rangle - n \langle\bm{v} .\frac{\pd A}{\pd \bm{x}} \rangle - n \langle \bm{F}. \frac{\pd A}{\pd \bm{u}} \rangle = 0,
+\frac{\pd}{\pd t} \langle n A \rangle + \frac{\pd}{\pd \bm{r}} \cdot \langle n \bm{u} A \rangle - n \langle\bm{u} \cdot \frac{\pd A}{\pd \bm{r}} \rangle - n \langle \bm{F} \cdot \frac{\pd A}{\pd \bm{u}} \rangle = 0,
 \end{align}
-which is the master equation governing the evolution of the collisional invariant.
+which is our master equation governing the evolution of the collisional invariant.
+In between, we have introduced notation for the velocity
+\begin{align*}
+\bm{v} = \frac{\bm{p}}{m},
+\end{align*}
+and now we introduce the average velocity
+\begin{align*}
+\bm{u} = \langle \bm{v} \rangle.
+\end{align*}
+
 
 Substituting the constant $A=1$ into the master equation yields
 \begin{align*}
-\frac{\pd n}{\pd t} + \frac{\pd}{\pd \bm{r}}.(\overline{\bm{u}}). 
+\frac{\pd n}{\pd t} + \frac{\pd}{\pd \bm{r}} \cdot (n \bm{u}). 
 \end{align*}
 Multiplying by particle mass $m$, this is the continuity equation.
-In the last equation, we introduced new notation 
-\begin{align*}
-\overline{{u}} = \langle \bm{u} \rangle,
-\end{align*}
-that we will use from now on.
 
-Substituting the next collisional invariant, the momentum $A=m\bm{u}$, yields
+Substituting the next collisional invariant, the momentum $A=m\bm{v}$, yields
 \begin{align} \label{conmom}
-\frac{\pd}{\pd t} (mn\langle u_i \rangle) + \frac{\pd}{\pd r_j}\langle mn u_i u_j \rangle - \langle n F_i \rangle = 0
+\frac{\pd}{\pd t} (mn u_i)  + \frac{\pd}{\pd r_j}\langle mn v_i v_j \rangle - \langle n F_i \rangle = 0
 \end{align}
 If we expand the middle term like
 \begin{align*}
-\langle u_i u_j \rangle = \langle (v_j - u_j) (v_i - u_i) \rangle + u_i\, u_j
+\langle v_i v_j \rangle = \langle (u_j - v_j) (u_i - v_i) \rangle + v_i\, v_j
 \end{align*}
 and if we define the quantity
 \begin{align*}
-P_{ij} = P_{ji} = \rho \langle (v_j - u_j) (v_i - u_i) \rangle
+P_{ij} = P_{ji} = \rho \langle (u_j - v_j) (u_i - v_i) \rangle
 \end{align*}
 known as the pressure tensor,
 we can rewrite the equation \ref{conmom} as
@@ -307,25 +311,25 @@ which corresponds to the ideal gas law.
 The last collisional invariant is the kinetic energy of particles.
 Instead of absolute kinetic energy, we shall use the relative kinetic energy
 \begin{align*}
-A  = \frac{1}{2} m (\overline{\bm{u}} - \bm{u})^2,
+A  = \frac{1}{2} m (\bm{u} - \bm{v})^2,
 \end{align*}
-so that some of the terms vanish when we substitute it into our master equation \ref{master}
+so when we substitute it into our master equation \ref{master}, we get the compact form
 \begin{align} \label{cone}
-a
+\frac{1}{2} \frac{\pd}{\pd t} \langle \rho(\bm{v} - \bm{u}) \rangle + \frac{1}{2} \frac{\pd}{\pd r_i} \langle \rho v_i (\bm{v} - \bm{u}) \rangle - \rho \langle v_i \frac{\pd u_j}{\pd r_i}(\bm{v} - \bm{u})^2 \rangle = 0.
 \end{align}
 
 Using the idea of equipartition, we can define the temperature for the non-equilibrium system
 \begin{align*}
-\frac{3}{2}k_B T(\bm{r},t) = \frac{1}{2} m \langle (\overline{\bm{u}} - \bm{u})^2. \rangle
+\frac{3}{2}k_B T(\bm{r},t) = \frac{1}{2} m \langle (\bm{v} - \bm{u}(\bm{r},t))^2. \rangle
 \end{align*}
 
 Let us define another quantity, the \textit{heat flux}
 \begin{align*}
-\frac{1}{2} m \rho \langle (u_i - \overline{u_i})(\bm{u} - \bm{\overline{u}})^2 \rangle.
-\end{align*}b
+\frac{1}{2} m \rho \langle (v_i - u_i)(\bm{v} - \bm{u})^2 \rangle.
+\end{align*}
 Using the definition of heat flux and pressure tensor, we can rewrite the equation \ref{cone}
 \begin{align*}
-aa
+\frac{1}{2}m \rho \langle v_i (\bm{v} - \bm{u})^2 \rangle = q_i + \frac{3}{2}\rho u_ik_B T,
 \end{align*}
 Since the pressure tensor is symmetric, we can replace $\pd u_j / \pd r_i$ with the symmetric \textit{rate of strain}
 \begin{align*}
@@ -333,15 +337,15 @@ U_{ij} = \frac{1}{2}\big( \frac{\pd u_j}{\pd r_i} + \frac{\pd u_i}{\pd r_j} \big
 \end{align*}
 Further, using the continuity equation, we obtain the conservation of energy in its usual form
 \begin{align*}
-aa
+\rho \big( \frac{\pd}{\pd t} + u_i \frac{\pd}{\pd r_i} \big) k_B T + \frac{2}{3} \frac{\pd q_i}{\pd r_i} + \frac{2m}{3} U_{ij} P_{ij} = 0.
 \end{align*}
 
 Finally, we have the three equations, describing the time evolution of the particle density $n$, momentum $\bm{u}$ and the temperature $T$.
-Although they hold for any distribution $f_1$, they are not the closed set of equations -- equation for $n$ depends on $\bm{u}$, equation for momentum depends on the pressure tensor $P_{ij}$ and the equation for temperature depends on the heat flux $q$. To determine any of these, we need compute the distribution $f_1$ from the Boltzmann equation, which is not easy.
+Although they hold for any distribution $f_1$, they do not constitute the closed set of equations -- equation for $n$ depends on $\bm{u}$, equation for momentum depends on the pressure tensor $P_{ij}$ and the equation for temperature depends on the heat flux $q$. To determine any of these, we need to compute the distribution $f_1$ from the Boltzmann equation, which is not easy.
 
 \bigskip
 
-Since we are looking for the solution that varies slowly, the first approximation would be the  local equilibrium distribution, for which $col=0$.
+Since we are looking for the solution that varies slowly, the first approximation would be the  local equilibrium distribution \ref{localequil}, for which collision integral vanishes.
 %
 %Since local equilibrium distribution is not solution of the Boltzmann equation, because streaming term is non-zero, we will see later on what we are missing.
 
@@ -351,7 +355,7 @@ However, we are still missing dissipation in these equations. To show it, we can
 \begin{align*}
 \big( \frac{\pd}{\pd t} + u_j \frac{\pd}{\pd r_j} \big) (\rho T ^{-2/3}) = 0
 \end{align*}
-This implies that $\rho T^{-2/3}$ is constant along the streamlines, which means that the motion of the fluid is adiabatic -- not increasing entropy. Hence we have no mechanism for the fluid to return to the equilibrium yet.
+This equation implies that $\rho T^{-2/3}$ is constant along the streamlines, which means that the motion of the fluid is adiabatic -- not increasing entropy. Hence we have no mechanism for the fluid to return to the equilibrium yet.
 
 It is easy to see what we are missing. We chose local equilibrium as an approximation for the distribution $f_1$, so that the collision integral vanish, but it does not solve the streaming term. However, if we stick to the long wave-length variations in the velocity, we need to add only little correction term
 \begin{align} \label{cord}

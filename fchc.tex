@@ -2,11 +2,11 @@
 
 In two dimensions, we are lucky to find hexagon -- a symmetric polygon that covers whole 2D plane and possesses sufficient rotational symmetry to make a good lattice for FHP.
 
-In three dimensions, we have five symmetric candidates for LGCA but none of them works.
-They are so-called Plato solids. Out of them, dodecahedron or icosahedron might have sufficient rotational symmetry (interestingly, they have the same group of symmetries)
-but they do not cover whole 3D space uniformly. Only the cube does but LGCA build on a cubic grid would suffer from the same problem as HPP -- insufficient rotational symmetry and insufficient degrees of freedom in the nodes.
+In three dimensions, we have five symmetric candidates for LGCA, so--called Plato solids, but none of them works.
+Dodecahedron and icosahedron might have sufficient rotational symmetry (interestingly, they share the group of symmetries)
+but they do not cover whole 3D space uniformly. Only the cube does but LGCA build on a rectangular lattice would suffer from the same diseases as HPP -- insufficient rotational symmetry and insufficient degrees of freedom in the nodes.
 
-Short analysis would show (see [1] for example) that, in 5 and more dimensions, we have only three symmetric solids -- simplex, hypercube and its dual solid. None of them fits.
+Short analysis \cite{wolf} shows that in 5 and more dimensions, we have only three symmetric solids -- simplex, hypercube and its dual solid. None of them fits.
 
 \bigskip
 
@@ -26,7 +26,7 @@ Face-centered hypercube (we will use the shortcut FCHC) is the suitable solid fo
 \\
 \end{tabular}
 
-These 24 vertices correspond to 24 lattice vectors in four dimensions but if we project them into three dimensions (by "deleting" the fourth coordinate $q_4$) we get only 18 lattice vectors
+These 24 vertices correspond to 24 lattice vectors in four dimensions but if we project them into three dimensions (by deleting the fourth coordinate $q_4$) we get only 18 lattice vectors
 
 \begin{tabular}{cccc}
 \\
@@ -47,24 +47,22 @@ These 24 vertices correspond to 24 lattice vectors in four dimensions but if we 
  blue arrows with $q_4 = \pm 1$.}
 \end{figure}
 
-For $q_4 = 0$ we have 12 lattice vectors (red lines on the figure \ref{fchc}), each vector corresponds to the single cell only. Hence, at most one particle propagates along each of these vectors.
+For $q_4 = 0$ we have 12 lattice vectors (red lines on the figure \ref{fchc}), each vector corresponds to the single cell only, so at most one particle propagates along each.
+%Hence, at most one particle propagates along each of these vectors.
 
-For both $q_4 = -1$ and $q_4 = 1$ we get the same set of six lattice vectors (blue lines on the figure \ref{fchc}). Each vector corresponds to the two cells, hence two particles can propagate along each vector.
+For both $q_4 = -1$ and $q_4 = 1$ we obtain same six lattice vectors (blue lines on the figure \ref{fchc}). Each vector corresponds to the two cells, hence two particles can propagate along each vector.
 
-
-It is efficient to denote each node of the lattice by 3 Cartesian integer coordinates.
-
-
-In the resulting lattice, each node is connected to 18 neighbors by the lattice vectors of Fig.\ \ref{fchc}, and 24 particles can propagate along them in the single step.
+In the end, the $3D$ projection of the FCHC lattice leads to the rectangular grid, so the position of the nodes can be denoted by 3 Cartesian integer coordinates.
+Each node is connected to 18 neighbors by the lattice vectors of Fig.\ \ref{fchc}, and 24 particles can propagate along them in the single step.
 
 \section{Collision rules for FCHC}
 
-The FCHC lattice that we just described was proposed already by Frisch et.\ al.\ in 1986.
-However, they did not propose any recipe for a collision. It is easy to understand why it was not a simple task.
+The FCHC lattice that we have just described was proposed already by Frisch et.\ al.\ in 1986.
+However, they did not propose any recipe for a collision step. It is easy to understand why it is not a simple task.
 
-There are 24 cells in each node, hence the node can acquire $2^{24} = 16~777~216$ different states (that can be represented by 24 bits). It was easy to specify the collision rule for FHP in one simple table, but how do you specify rules for millions of states?
+There are 24 cells in each node, so the node can acquire $2^{24} = 16~777~216$ different states (that can be represented by 24 bits). It was easy to specify the collision rule for FHP in one simple table, but how do you specify rules for millions of states?
 
-In the subsequent section we will show you how Henon answered to this challenge in his famous article \cite{henon}.
+In the subsequent section we will show how Henon answered to this challenge in his famous article \cite{henon}.
 
 \bigskip
 
@@ -231,12 +229,14 @@ If the state has normalized momentum (i.e.\ fulfilling \ref{normMom}), we just l
 However, in the step 2, we do not want to use all the isometries that conserve the momentum.
 Optimally, we would like to change as many bits as possible (that minimizes mean free path of particles, and that leads to desired low viscosity).
 
-Although no further reduction then of 37 normalized momenta is possible,
+Although no further reduction beyond 37 normalized momenta is possible,
 some of these momenta share same optimal isometries, that lead to minimal viscosity and preserve momentum.
 
-Based on that,  momenta can be divided into 12 classes, see the table below.
-First column specifies momentum, second column specifies isometries that we can apply to this momentum. Using this table is the effective way to resolve collisions in FCHC.
+Based on that,  momenta can be divided into 12 classes, as we did in the table below.
+First column specifies momentum, the second column specifies isometries that can be applied to this momentum. 
+Before the simulations starts, we calculate optimal states for each of the $2^{24}$ initial states. Then, the collision step reduces to searching in this huge table and randomly choosing from the available states.
 
+Back in the times when this algorithm was proposed and tested, the look-up table was considered too big, and several optimizations were proposed and implemented in CRAY-Asssebler \cite{wolf}. Despite that, the achieved update rate was lower then of the Pair-iteraction model, that we are presenting in the next chapter. 
 %\begin{tabular}{ |p{1cm}||p{1cm}||p{0.5cm}|p{7cm}|  }
 % \hline
 % Class& $w_{min}$&\multicolumn{2}{|c|}{Optimal isometries} \\

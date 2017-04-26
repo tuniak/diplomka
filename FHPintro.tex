@@ -35,7 +35,7 @@ Propagation is the straight-forward phase and can be captured by the simple equa
 S n_i(\bf{r}) = n_i(\bf{r + c_i}). 
 \end{align*}
 %This equation means that state of the $i^{th}$ cell in node \textbf{n(r)} \textit{propagates} along the lattice vector $c_i$ to the neighboring node $\bf{n(r + c_i)}$, the figure \ref{FHPprop}.
-If the cell is occupied by a particle -- $n_i(\bf{r})=1$, it propagates along the corresponding lattice vector to the neighboring node, see the figure \ref{FHPprop}.
+If the cell is occupied by a particle, that means $n_i(\bf{r})=1$, it propagates along the corresponding lattice vector to the neighboring node, see the figure \ref{FHPprop}.
 
 \begin{figure}[H]
  \centering
@@ -43,14 +43,14 @@ If the cell is occupied by a particle -- $n_i(\bf{r})=1$, it propagates along th
  \caption{FHP collisions without rest particle.}
  \label{FHPprop}
 \end{figure}
-The propagation, however, is preceded by the more interesting step -- the collision.
+The propagation, however, is preceded by the more difficult step -- the collision.
 
 \subsection{Collision}
 
 The purpose of the collision is to swap as many particles in the node as possible.
 The only constraint on the collision rule is to preserve the number of particles (conservation of the mass) and to preserve the total momentum in the node.
 
-These requirements lead only to a handful of collision configurations, see figure \ref{FHPcol}. For the simplicity, we are considering the FHP-I model, that does not included the "rest particles", otherwise we would have few more rules to add.
+These requirements lead only to a handful of collision configurations, see figure \ref{FHPcol}. For the simplicity, we are considering the FHP-I model, that does not included the "rest particles", otherwise there would be few more rules to add.
 
 \begin{figure}[H]
  \centering
@@ -59,15 +59,15 @@ These requirements lead only to a handful of collision configurations, see figur
  \label{FHPcol}
 \end{figure}
 
-We see that two and four particle configurations can be resolved in two different configurations. The resulting state need to be chosen randomly, with probability $1/2$ for each state to preserve the parity symmetry of the model. If we were systematically choosing only one of them, we would introduce additional, non-physical invariant - chirality. Hence, we need to introduce non-determinism to the model.
+We see that two and four particle configurations can be resolved in two different configurations. The resulting state need to be chosen randomly, with probability $1/2$ for each state to preserve the parity symmetry of the model. If we were systematically preferring one of them, we would introduce additional, non-physical invariant - chirality. Hence, we need to introduce non-determinism to the model.
 
 
-We will express the probabilities of transition from state $n$ to state $n'$ by probability matrix:
+We will express the probabilities of transition from state $n$ to state $n'$ by the probability matrix
 \begin{align*}
-A(n \rightarrow n') \geq 0
+A(n \rightarrow n') \geq 0.
 \end{align*}
 As we have 64 possible states of the node, matrix A is of dimension $64\times 64$.
-For example, the cell of matrix A that governs the head-on collisions looks like this:
+For example, the submatrix of A that governs the head-on collisions is
 \[
  A'=
   \begin{bmatrix}
@@ -78,9 +78,9 @@ For example, the cell of matrix A that governs the head-on collisions looks like
 \]
 Since the collisions are symmetric, matrix A is symmetric as well.
 
-Also, collisions are invariant to rotations and reflections of the node:
+Also, collisions are invariant to rotations and reflections of the node
 \begin{align*}
-A(g(n) \rightarrow g(n')) = A(n \rightarrow n')
+A(g(n) \rightarrow g(n')) = A(n \rightarrow n'),
 \end{align*}
 where $g \in G$, and G is the symmetry group of the node.
 
@@ -133,7 +133,7 @@ by substituting \ref{colop} into these equations. Combining with \ref{withcol}, 
 \sum_i c_i n_i(t+1, r + c_i) &= \sum_i c_i n_i(t,r).
 \end{split}
 \end{align}
-By employing the aparatus of the statistical physics we will show that these microscopic conservation laws lead to physically realistic macroscopic description.
+By employing the aparatus of the statistical physics we will show that these microscopic conservation laws lead to physically plausible macroscopic description.
 
 \section{Conservation of probabilities}
 Let us define the phase space $\Gamma$ as the set of all possible states of the lattice $n(.)$.
@@ -143,19 +143,21 @@ We assign initial probability to each of these microstates:
 \begin{align*}
 P(0,s(.)) \geq 0.
 \end{align*}
-Of course, probabilities over whole lattice are normalized so
-$\sum_s(.) P(0,s(.)) = 1$.
+As always, probabilities over whole lattice are normalized so
+\begin{align*}
+\sum_s(.) P(0,n(.)) = 1.
+\end{align*}
 
 In the statistical mechanics, Liouville's space state theorem postulates that the density of the phase space is constant. Microdynamics of our model implies equivalent theorem for LGCA:
 \begin{align*}
-P(t+1, \mathcal{E} s(.)) = P(t, s(.))
+P(t+1, \mathcal{E} n(.)) = P(t, n(.))
 \end{align*}
 
 It is obtained directly by applying the update formula
 \begin{equation*}
-\mathcal{E} s(t,.) = s(t+1,.)
+\mathcal{E} n(t,.) = n(t+1,.)
 \end{equation*}
-However, for indeterministic model such as FHP, the conservation of probability is governed by the more general formula
+However, for FHP and other non-deterministic models, the conservation of probability is governed by the more general formula
 \begin{equation}
 P(t+1,\mathcal{S} n'(.)) = \sum_{n(.) \in \Gamma} \prod_{n(.)} A(n(\bm{r} \rightarrow n'(\bm{r})) P(t, n(.)),
 \end{equation}
@@ -166,7 +168,6 @@ Motivated by the ensemble formalism of statistical physics, we define mean occup
 \begin{equation*}
 N_i = \langle n_i \rangle = \sum_{s(.) \in \Gamma} n(s(.)) P(t,s(.)) .n
 \end{equation*}
-
 This formula naturally suggests definition of the mean mass density
 \begin{equation} \label{ddens}
 \rho(t,r) = \sum_i N_i(t,r)
