@@ -171,7 +171,7 @@ Rules number $2,6,10,12,14,18,22,26,28,30,34,38,42,44,46,50$.
 The rule $110$ is special among them -- as Cook has proved \cite{cook},this rule is equivalent to the Turing machine, so depending on the initial conditions, it could be classified in any of the three classes above.
 
 Below, we present figures capturing the evolution of several of the mentioned rules.
-They were obtained by our own implementation of 1D cellular automata (on github.com).
+They were obtained by our own implementation of 1D cellular automata (on https://github.com/tuniak/1d).
 All of them were initialized by the row of dead cells, only the middle cell was alive.
 
 \end{enumerate}
@@ -231,7 +231,7 @@ All of them were initialized by the row of dead cells, only the middle cell was 
 
 
 \section{Cellular automata in physics}
-In his visionary book New kind of Science \cite{wolf}, Wolfram suggest possibility, that in the infinitely large world of cellular automata, there is an automaton that constitute a unified theory of the fundamental physics.
+In his visionary book New kind of Science \cite{wolf}, Wolfram suggest possibility, that in the infinitely large world of cellular automata, there is an automaton that constitute a unified theory of the physics.
 Although the details of his idea met with rejection(see \cite{aaronson}),
 many notable physicists are attempting to construct such cellular automaton \cite{hooft}).
 %
@@ -239,7 +239,7 @@ many notable physicists are attempting to construct such cellular automaton \cit
 %However, in the field of computational physics, cellular automata have already recorded success. And the focus of our 
 
 However, focus of our work is much more modest that cellular automata describing universe.
-Our focus is on the cellular automata that model flows of the fluids.
+We are interested in the cellular automata that could model flow of the fluids.
 
 There is already a formal similarity between cellular automata we presented, and discrete partial differential equations. Consider the diffusion equation
 \begin{align*}
@@ -249,8 +249,8 @@ By discretization forward in time, it is transformed to
 \begin{align*}
 C_i^{(t)} = f\big[\sum_{j=-1}^{j=1}\alpha_j \, C_{i+j}^{(t-1)} \big]
 \end{align*}
-Formally, this equation corresponds to the rule of the one dimensional cellular automaton \ref{rule1}. However, $C_i$ is not from discrete finite set, but it is a continuous value, the $\alpha_i$ are not integers, but reals, and this would cause instability of this cellular automaton, as discussed in \cite{wolf} and the formal similarity leads to the dead end.
+Formally, this equation corresponds to the rule of the one dimensional cellular automaton \ref{rule1}. However, in case of these equation, $C_i$ is a continuous value, not discrete, the $\alpha_i$ are reals, not integers, which would cause instability of cellular automaton, as discussed in \cite{wolf} and the similarity is only formal.
 
-The connection of the cellular automata with the fluid mechanics is not straight-forward or formal, but it is grounded in the symmetries and conservation laws found in the hydrodynamic equations and the special class of cellular automata - the lattice gas cellular automata.
+The connection of the cellular automata with the fluid mechanics is not this straight-forward, but it is grounded in the symmetries and conservation laws found in the hydrodynamic equations and the special class of cellular automata alike.
 
 In these symmetries lies not only beauty of this method and their attractiveness for physicists, but their principal advantage over the better-established CFD methods.
