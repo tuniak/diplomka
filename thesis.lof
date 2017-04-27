@@ -26,9 +26,9 @@
 \contentsline {figure}{\numberline {5.3}{\ignorespaces State of a node before collision}}{39}{figure.5.3}
 \contentsline {figure}{\numberline {5.4}{\ignorespaces Pairs in X-direction}}{40}{figure.5.4}
 \contentsline {figure}{\numberline {5.5}{\ignorespaces State of the node after pair-interaction in X direction}}{40}{figure.5.5}
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Pairs in Y-direction}}{40}{figure.5.6}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Pairs in Y-direction}}{41}{figure.5.6}
 \contentsline {figure}{\numberline {5.7}{\ignorespaces State of the node after pair-interaction in Y-direction}}{41}{figure.5.7}
-\contentsline {figure}{\numberline {5.8}{\ignorespaces All admissible pair-interactions}}{44}{figure.5.8}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces All admissible pair-interactions}}{42}{figure.5.8}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
@@ -36,66 +36,66 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {12.1}{\ignorespaces Node before collision}}{97}{figure.12.1}
-\contentsline {figure}{\numberline {12.2}{\ignorespaces Node after deterministic collision}}{97}{figure.12.2}
-\contentsline {figure}{\numberline {12.3}{\ignorespaces Another acceptable state after collision}}{97}{figure.12.3}
-\contentsline {figure}{\numberline {12.4}{\ignorespaces Node before collision, and after deterministic collision}}{98}{figure.12.4}
-\contentsline {figure}{\numberline {12.5}{\ignorespaces Node after non-deterministic collision}}{98}{figure.12.5}
-\contentsline {figure}{\numberline {12.6}{\ignorespaces Deterministic PI - time 0}}{101}{figure.12.6}
-\contentsline {figure}{\numberline {12.7}{\ignorespaces Deterministic PI - time 12}}{102}{figure.12.7}
-\contentsline {figure}{\numberline {12.8}{\ignorespaces Deterministic PI - time 36}}{102}{figure.12.8}
-\contentsline {figure}{\numberline {12.9}{\ignorespaces Deterministic PI - time 84}}{103}{figure.12.9}
-\contentsline {figure}{\numberline {12.10}{\ignorespaces Deterministic PI - time 102}}{103}{figure.12.10}
-\contentsline {figure}{\numberline {12.11}{\ignorespaces Deterministic PI - time 126}}{104}{figure.12.11}
-\contentsline {figure}{\numberline {12.12}{\ignorespaces Deterministic PI - time 162}}{104}{figure.12.12}
-\contentsline {figure}{\numberline {12.13}{\ignorespaces Deterministic PI - time 174}}{105}{figure.12.13}
-\contentsline {figure}{\numberline {12.14}{\ignorespaces Deterministic PI - time 198}}{105}{figure.12.14}
-\contentsline {figure}{\numberline {12.15}{\ignorespaces Deterministic PI - time 234}}{106}{figure.12.15}
-\contentsline {figure}{\numberline {12.16}{\ignorespaces Deterministic PI - time 282}}{106}{figure.12.16}
-\contentsline {figure}{\numberline {12.17}{\ignorespaces Deterministic PI - time 312}}{107}{figure.12.17}
-\contentsline {figure}{\numberline {12.18}{\ignorespaces Deterministic PI - time 324}}{107}{figure.12.18}
-\contentsline {figure}{\numberline {12.19}{\ignorespaces Non-deterministic PI - time 6}}{108}{figure.12.19}
-\contentsline {figure}{\numberline {12.20}{\ignorespaces Non-deterministic PI - time 30}}{108}{figure.12.20}
-\contentsline {figure}{\numberline {12.21}{\ignorespaces Non-deterministic PI - time 48}}{109}{figure.12.21}
-\contentsline {figure}{\numberline {12.22}{\ignorespaces Non-deterministic PI - time 72}}{109}{figure.12.22}
-\contentsline {figure}{\numberline {12.23}{\ignorespaces Non-deterministic PI - time 90}}{110}{figure.12.23}
-\contentsline {figure}{\numberline {12.24}{\ignorespaces Non-deterministic PI - time 102}}{110}{figure.12.24}
-\contentsline {figure}{\numberline {12.25}{\ignorespaces Non-deterministic PI - time 138}}{111}{figure.12.25}
-\contentsline {figure}{\numberline {12.26}{\ignorespaces Non-deterministic PI - time 150}}{111}{figure.12.26}
-\contentsline {figure}{\numberline {12.27}{\ignorespaces Non-deterministic PI - time 162}}{112}{figure.12.27}
-\contentsline {figure}{\numberline {12.28}{\ignorespaces Non-deterministic PI - time 492}}{112}{figure.12.28}
-\contentsline {figure}{\numberline {12.29}{\ignorespaces Non-deterministic PI - time 570}}{113}{figure.12.29}
-\contentsline {figure}{\numberline {12.30}{\ignorespaces Non-deterministic PI - time 696}}{113}{figure.12.30}
+\contentsline {figure}{\numberline {12.1}{\ignorespaces Node before collision}}{96}{figure.12.1}
+\contentsline {figure}{\numberline {12.2}{\ignorespaces Node after deterministic collision}}{96}{figure.12.2}
+\contentsline {figure}{\numberline {12.3}{\ignorespaces Another acceptable state after collision}}{96}{figure.12.3}
+\contentsline {figure}{\numberline {12.4}{\ignorespaces Node before collision, and after deterministic collision}}{97}{figure.12.4}
+\contentsline {figure}{\numberline {12.5}{\ignorespaces Node after non-deterministic collision}}{97}{figure.12.5}
+\contentsline {figure}{\numberline {12.6}{\ignorespaces Deterministic PI - time 0}}{100}{figure.12.6}
+\contentsline {figure}{\numberline {12.7}{\ignorespaces Deterministic PI - time 12}}{101}{figure.12.7}
+\contentsline {figure}{\numberline {12.8}{\ignorespaces Deterministic PI - time 36}}{101}{figure.12.8}
+\contentsline {figure}{\numberline {12.9}{\ignorespaces Deterministic PI - time 84}}{102}{figure.12.9}
+\contentsline {figure}{\numberline {12.10}{\ignorespaces Deterministic PI - time 102}}{102}{figure.12.10}
+\contentsline {figure}{\numberline {12.11}{\ignorespaces Deterministic PI - time 126}}{103}{figure.12.11}
+\contentsline {figure}{\numberline {12.12}{\ignorespaces Deterministic PI - time 162}}{103}{figure.12.12}
+\contentsline {figure}{\numberline {12.13}{\ignorespaces Deterministic PI - time 174}}{104}{figure.12.13}
+\contentsline {figure}{\numberline {12.14}{\ignorespaces Deterministic PI - time 198}}{104}{figure.12.14}
+\contentsline {figure}{\numberline {12.15}{\ignorespaces Deterministic PI - time 234}}{105}{figure.12.15}
+\contentsline {figure}{\numberline {12.16}{\ignorespaces Deterministic PI - time 282}}{105}{figure.12.16}
+\contentsline {figure}{\numberline {12.17}{\ignorespaces Deterministic PI - time 312}}{106}{figure.12.17}
+\contentsline {figure}{\numberline {12.18}{\ignorespaces Deterministic PI - time 324}}{106}{figure.12.18}
+\contentsline {figure}{\numberline {12.19}{\ignorespaces Non-deterministic PI - time 6}}{107}{figure.12.19}
+\contentsline {figure}{\numberline {12.20}{\ignorespaces Non-deterministic PI - time 30}}{107}{figure.12.20}
+\contentsline {figure}{\numberline {12.21}{\ignorespaces Non-deterministic PI - time 48}}{108}{figure.12.21}
+\contentsline {figure}{\numberline {12.22}{\ignorespaces Non-deterministic PI - time 72}}{108}{figure.12.22}
+\contentsline {figure}{\numberline {12.23}{\ignorespaces Non-deterministic PI - time 90}}{109}{figure.12.23}
+\contentsline {figure}{\numberline {12.24}{\ignorespaces Non-deterministic PI - time 102}}{109}{figure.12.24}
+\contentsline {figure}{\numberline {12.25}{\ignorespaces Non-deterministic PI - time 138}}{110}{figure.12.25}
+\contentsline {figure}{\numberline {12.26}{\ignorespaces Non-deterministic PI - time 150}}{110}{figure.12.26}
+\contentsline {figure}{\numberline {12.27}{\ignorespaces Non-deterministic PI - time 162}}{111}{figure.12.27}
+\contentsline {figure}{\numberline {12.28}{\ignorespaces Non-deterministic PI - time 492}}{111}{figure.12.28}
+\contentsline {figure}{\numberline {12.29}{\ignorespaces Non-deterministic PI - time 570}}{112}{figure.12.29}
+\contentsline {figure}{\numberline {12.30}{\ignorespaces Non-deterministic PI - time 696}}{112}{figure.12.30}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {13.1}{\ignorespaces PI - flow around sphere, time 70}}{116}{figure.13.1}
-\contentsline {figure}{\numberline {13.2}{\ignorespaces PI - flow around sphere, time 170}}{116}{figure.13.2}
-\contentsline {figure}{\numberline {13.3}{\ignorespaces PI - flow around sphere, time 320}}{117}{figure.13.3}
-\contentsline {figure}{\numberline {13.4}{\ignorespaces PI - flow around sphere, time 460}}{117}{figure.13.4}
-\contentsline {figure}{\numberline {13.5}{\ignorespaces PI - flow around sphere, time 700}}{118}{figure.13.5}
-\contentsline {figure}{\numberline {13.6}{\ignorespaces PI - flow around sphere, time 1000}}{118}{figure.13.6}
-\contentsline {figure}{\numberline {13.7}{\ignorespaces PI - flow around sphere, time 1500}}{119}{figure.13.7}
-\contentsline {figure}{\numberline {13.8}{\ignorespaces PI - flow around sphere, time 2300}}{119}{figure.13.8}
-\contentsline {figure}{\numberline {13.9}{\ignorespaces PI - flow around plate, time 50}}{120}{figure.13.9}
-\contentsline {figure}{\numberline {13.10}{\ignorespaces PI - flow around plate, time 150}}{121}{figure.13.10}
-\contentsline {figure}{\numberline {13.11}{\ignorespaces PI - flow around plate, time 250}}{121}{figure.13.11}
-\contentsline {figure}{\numberline {13.12}{\ignorespaces PI - flow around plate, time 350}}{122}{figure.13.12}
-\contentsline {figure}{\numberline {13.13}{\ignorespaces PI - flow around plate, time 350}}{122}{figure.13.13}
-\contentsline {figure}{\numberline {13.14}{\ignorespaces PI - flow around plate, time 550}}{123}{figure.13.14}
-\contentsline {figure}{\numberline {13.15}{\ignorespaces PI - flow around plate, time 750}}{123}{figure.13.15}
-\contentsline {figure}{\numberline {13.16}{\ignorespaces PI - flow around plate, time 1000}}{124}{figure.13.16}
-\contentsline {figure}{\numberline {13.17}{\ignorespaces PI - flow around plate, time 1500}}{124}{figure.13.17}
-\contentsline {figure}{\numberline {13.18}{\ignorespaces PI - flow around plate, time 2000}}{125}{figure.13.18}
-\contentsline {figure}{\numberline {13.19}{\ignorespaces PI - flow around plate, time 2500}}{125}{figure.13.19}
+\contentsline {figure}{\numberline {13.1}{\ignorespaces PI - flow around sphere, time 70}}{115}{figure.13.1}
+\contentsline {figure}{\numberline {13.2}{\ignorespaces PI - flow around sphere, time 170}}{115}{figure.13.2}
+\contentsline {figure}{\numberline {13.3}{\ignorespaces PI - flow around sphere, time 320}}{116}{figure.13.3}
+\contentsline {figure}{\numberline {13.4}{\ignorespaces PI - flow around sphere, time 460}}{116}{figure.13.4}
+\contentsline {figure}{\numberline {13.5}{\ignorespaces PI - flow around sphere, time 700}}{117}{figure.13.5}
+\contentsline {figure}{\numberline {13.6}{\ignorespaces PI - flow around sphere, time 1000}}{117}{figure.13.6}
+\contentsline {figure}{\numberline {13.7}{\ignorespaces PI - flow around sphere, time 1500}}{118}{figure.13.7}
+\contentsline {figure}{\numberline {13.8}{\ignorespaces PI - flow around sphere, time 2300}}{118}{figure.13.8}
+\contentsline {figure}{\numberline {13.9}{\ignorespaces PI - flow around plate, time 50}}{119}{figure.13.9}
+\contentsline {figure}{\numberline {13.10}{\ignorespaces PI - flow around plate, time 150}}{120}{figure.13.10}
+\contentsline {figure}{\numberline {13.11}{\ignorespaces PI - flow around plate, time 250}}{120}{figure.13.11}
+\contentsline {figure}{\numberline {13.12}{\ignorespaces PI - flow around plate, time 350}}{121}{figure.13.12}
+\contentsline {figure}{\numberline {13.13}{\ignorespaces PI - flow around plate, time 350}}{121}{figure.13.13}
+\contentsline {figure}{\numberline {13.14}{\ignorespaces PI - flow around plate, time 550}}{122}{figure.13.14}
+\contentsline {figure}{\numberline {13.15}{\ignorespaces PI - flow around plate, time 750}}{122}{figure.13.15}
+\contentsline {figure}{\numberline {13.16}{\ignorespaces PI - flow around plate, time 1000}}{123}{figure.13.16}
+\contentsline {figure}{\numberline {13.17}{\ignorespaces PI - flow around plate, time 1500}}{123}{figure.13.17}
+\contentsline {figure}{\numberline {13.18}{\ignorespaces PI - flow around plate, time 2000}}{124}{figure.13.18}
+\contentsline {figure}{\numberline {13.19}{\ignorespaces PI - flow around plate, time 2500}}{124}{figure.13.19}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {14.1}{\ignorespaces State of a node before collision}}{126}{figure.14.1}
-\contentsline {figure}{\numberline {14.2}{\ignorespaces Velocity field at time 8 - FCHC inward flow}}{127}{figure.14.2}
-\contentsline {figure}{\numberline {14.3}{\ignorespaces Velocity field at time 16 - FCHC inward flow}}{128}{figure.14.3}
-\contentsline {figure}{\numberline {14.4}{\ignorespaces Velocity field at time 24 - FCHC inward flow}}{128}{figure.14.4}
-\contentsline {figure}{\numberline {14.5}{\ignorespaces Velocity field at time 32 - FCHC inward flow}}{129}{figure.14.5}
-\contentsline {figure}{\numberline {14.6}{\ignorespaces Velocity field at time 40 - FCHC inward flow}}{129}{figure.14.6}
-\contentsline {figure}{\numberline {14.7}{\ignorespaces Velocity field at time 8 - PI inward flow}}{130}{figure.14.7}
-\contentsline {figure}{\numberline {14.8}{\ignorespaces Velocity field at time 16 - PI inward flow}}{130}{figure.14.8}
-\contentsline {figure}{\numberline {14.9}{\ignorespaces Velocity field at time 24 - PI inward flow}}{131}{figure.14.9}
-\contentsline {figure}{\numberline {14.10}{\ignorespaces Velocity field at time 32 - PI inward flow}}{131}{figure.14.10}
-\contentsline {figure}{\numberline {14.11}{\ignorespaces Velocity field at time 40 - PI inward flow}}{132}{figure.14.11}
-\contentsline {figure}{\numberline {14.12}{\ignorespaces Covariance tensor field for PI with deterministic (standard) algorithm - only the tensors with highest norm are presented}}{142}{figure.14.12}
+\contentsline {figure}{\numberline {14.1}{\ignorespaces State of a node before collision}}{125}{figure.14.1}
+\contentsline {figure}{\numberline {14.2}{\ignorespaces Velocity field at time 8 - FCHC inward flow}}{126}{figure.14.2}
+\contentsline {figure}{\numberline {14.3}{\ignorespaces Velocity field at time 16 - FCHC inward flow}}{127}{figure.14.3}
+\contentsline {figure}{\numberline {14.4}{\ignorespaces Velocity field at time 24 - FCHC inward flow}}{127}{figure.14.4}
+\contentsline {figure}{\numberline {14.5}{\ignorespaces Velocity field at time 32 - FCHC inward flow}}{128}{figure.14.5}
+\contentsline {figure}{\numberline {14.6}{\ignorespaces Velocity field at time 40 - FCHC inward flow}}{128}{figure.14.6}
+\contentsline {figure}{\numberline {14.7}{\ignorespaces Velocity field at time 8 - PI inward flow}}{129}{figure.14.7}
+\contentsline {figure}{\numberline {14.8}{\ignorespaces Velocity field at time 16 - PI inward flow}}{129}{figure.14.8}
+\contentsline {figure}{\numberline {14.9}{\ignorespaces Velocity field at time 24 - PI inward flow}}{130}{figure.14.9}
+\contentsline {figure}{\numberline {14.10}{\ignorespaces Velocity field at time 32 - PI inward flow}}{130}{figure.14.10}
+\contentsline {figure}{\numberline {14.11}{\ignorespaces Velocity field at time 40 - PI inward flow}}{131}{figure.14.11}
+\contentsline {figure}{\numberline {14.12}{\ignorespaces Covariance tensor field for PI with deterministic (standard) algorithm - only the tensors with highest norm are presented}}{141}{figure.14.12}

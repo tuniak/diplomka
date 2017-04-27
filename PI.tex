@@ -35,13 +35,13 @@ Let us look at the node in a more detail
 %If we look on the node in more detail, it looks like this:
 \begin{figure}[H]
  \centering 
- \includegraphics[width=0.5\textwidth]{./img/node_empty}
+ \includegraphics[width=0.4\textwidth]{./img/emptynode}
  \label{empty}
  \caption{An empty node}
 \end{figure}
 
 \newpage
-It consists of 4 cells ( \textbf{a,b,c,d} ) that are represented by 3 bits:
+It consists of 4 cells that are represented by 3 bits:
 % on the picture. Each cell is represented by 3 bits:
 one mass bit (a big circle) and two momentum bits (small circles).
 
@@ -50,16 +50,16 @@ The node on the picture above is empty (all bits are set to zero).
 Here we have another example of a node:
 \begin{figure}[htbp]
  \centering 
- \includegraphics[width=0.5\textwidth]{./img/node_1}
+ \includegraphics[width=0.4\textwidth]{./img/beforeX}
  \label{pre_collision}
  \caption{State of a node before collision}
 \end{figure}
 
-In this node, there are particles in the cells a,b,d (mass bit is set to 1 - the big circle is black).
+In this node, there are particles in the three cells (mass bit is set to 1).
 
-Particle in the cell \textbf{a} is standing (both momentum bits are 0).
+Particle in the lower-left cell is standing (both momentum bits are 0).
 
-Particle in the cell \textbf{b} has momentum in direction [1,1] and particle in the cell \textbf{d} has momentum in direction [0,1].
+Particle in the upper-left cell has momentum in direction [1,1] and particle in the lower-right cell has momentum in direction [0,1].
 
 \subsection{Update rules}
 Following rules are true of every lattice-gas cellular automaton.
@@ -79,7 +79,7 @@ Collision changes configuration of the single nodes respecting two constraints -
 \item The cells are paired in X direction:
 \begin{figure}[H]
  \centering 
- \includegraphics[width=0.3\textwidth]{../obrazky/x-interaction}
+ \includegraphics[width=0.4\textwidth]{./img/x-inter}
  \label{xinter}
  \caption{Pairs in X-direction}
 \end{figure}
@@ -88,35 +88,36 @@ Collision changes configuration of the single nodes respecting two constraints -
 
 \begin{figure}[H]
  \centering 
- \includegraphics[width=0.5\textwidth]{./img/node_2}
+ \includegraphics[width=0.4\textwidth]{./img/beforeY}
  \label{colision1}
  \caption{State of the node after pair-interaction in X direction}
 \end{figure}
 
+\newpage
+
 \item Then, the cells are paired in Y direction
-\begin{figure}[htbp]
+\begin{figure}[H]
  \centering 
- \includegraphics[width=0.3\textwidth]{../obrazky/y-interaction}
+ \includegraphics[width=0.4\textwidth]{./img/y-inter}
  \label{yinter}
  \caption{Pairs in Y-direction}
 \end{figure}
 
-\item we change the configuration in these pairs preserving mass and momentum in the node. Hence, the node in \ref{colision1} changes into:
- \begin{figure}[htbp]
+\item We change the configuration in these pairs preserving mass and momentum in the node. Hence, the node in \ref{colision1} changes into:
+ \begin{figure}[H]
  \centering 
- \includegraphics[width=0.5\textwidth]{./img/node_3}
+ \includegraphics[width=0.4\textwidth]{./img/afterall}
  \label{colision2}
  \caption{State of the node after pair-interaction in Y-direction}
 \end{figure}
 \newpage
 \end{enumerate}
 
-In total, there is only 17 possible configurations of the pairs, so the pair-interaction can be resolved by This table is same for Pair-interaction automata of any dimension, which is the great advantage comparing to other methods.
-\newpage
-\begin{figure}[htbp]
+In total, there is only 17 possible configurations of the pairs, so the pair-interaction can be resolved by looking in the figure \ref{transitionss}. This configuration set is same for Pair-interaction automata of any dimension, which is the great advantage comparing to other LGCA methods.
+\begin{figure}[H]
  \centering 
- \includegraphics[width=0.7\textwidth]{../obrazky/transitions}
- \label{transitions}
+ \includegraphics[width=0.55\textwidth]{./img/allpairs}
+ \label{transitionss}
  \caption{All admissible pair-interactions}
 \end{figure}
 
@@ -253,7 +254,7 @@ that immediately implies conservation of the Gibbs probability
 \begin{equation}
 P^E(t+2,\mathcal{E}^2n(.)) = P^E(t,n(.)).
 \end{equation}.
-So the $P^E(t,(n.))$ is the stationary solution of \ref{cp}, which means it is the equilibrium distribution for our model. However, the Gibbs distribution represents only one class of the stationary solutions. If there were additional extensive dynamical invariants independent of momenta and mass (e.g. Zanetti's invariants for FHP and FCHC bmodel), there would arise conjugated intensive parameters, corresponding to other equilibrium distributions. However, due to the alternating lattice, this model is free of Zanetti's invariants.
+So the $P^E(t,(n.))$ is the stationary solution of \ref{cp}, which means it is the equilibrium distribution for our model. However, the Gibbs distribution represents only one class of the stationary solutions. If there were additional extensive dynamical invariants independent of momenta and mass (e.g. Zanetti's invariants for FHP and FCHC bmodel), there would arise conjugated intensive parameters, corresponding to other equilibrium distributions. However, due t	o the alternating lattice, this model is free of Zanetti's invariants.
 
 \bigskip
 
