@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.11.8)  27 APR 2017 13:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.11.8)  27 APR 2017 13:32
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -3128,28 +3128,13 @@ Overfull \hbox (27.08925pt too wide) in paragraph at lines 554--555
 [][][][][][][][][][][][][][][][]  |
  []
 
-[141] <../mathematica/det.png, id=3361, 361.35pt x 399.4925pt>
-File: ../mathematica/det.png Graphic file (type png)
+[141] <./img/correlation3.pdf, id=3361, 342.27875pt x 334.24875pt>
+File: ./img/correlation3.pdf Graphic file (type pdf)
 
-<use ../mathematica/det.png>
-Package pdftex.def Info: ../mathematica/det.png used on input line 589.
-(pdftex.def)             Requested size: 371.30594pt x 410.50044pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<../mathematica/nondet.png, id=3362, 361.35pt x 399.4925pt>
-File: ../mathematica/nondet.png Graphic file (type png)
-
-<use ../mathematica/nondet.png>
-Package pdftex.def Info: ../mathematica/nondet.png used on input line 595.
-(pdftex.def)             Requested size: 371.30594pt x 410.50044pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-) [142] [143 <../mathematica/det.png (PNG copy)>] [144 <../mathematica/nondet.p
-ng (PNG copy)>]
+<use ./img/correlation3.pdf>
+Package pdftex.def Info: ./img/correlation3.pdf used on input line 589.
+(pdftex.def)             Requested size: 371.30594pt x 362.62044pt.
+ [142 <./img/correlation3.pdf>]) [143]
 Underfull \hbox (badness 1043) in paragraph at lines 221--224
 []\OT1/cmr/m/sc/12 Bodenheimer, \OT1/cmr/m/n/12 Michel, \OT1/cmr/m/sc/12 Laugh-
 lin, \OT1/cmr/m/n/12 Gre-gory P., \OT1/cmr/m/sc/12 Rozy-czka, \OT1/cmr/m/n/12 M
@@ -3162,7 +3147,7 @@ Underfull \hbox (badness 2158) in paragraph at lines 251--254
  cracked the code to ev-ery-thing\OT1/cmr/m/n/12 .
  []
 
-[145
+[144
 
 
 pdfTeX warning (ext4): destination with the same identifier (name{cite.henon}) 
@@ -3171,22 +3156,22 @@ has been already used, duplicate ignored
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.260 \listoffigures
-                    ] (thesis.lof [146
+                    ] (thesis.lof [145
 
-] [147])
+])
 \tf@lof=\write6
 \openout6 = `thesis.lof'.
 
- [148] (thesis.lot)
+ [146] [147] (thesis.lot)
 \tf@lot=\write7
 \openout7 = `thesis.lot'.
 
- [149
+ [148
 
 ]
-[150
+[149
 
-] [151
+] [150
 
 ]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 284.
@@ -3208,10 +3193,10 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 284.
  ) 
 Here is how much of TeX's memory you used:
- 24550 strings out of 493342
- 383805 string characters out of 3130885
- 479306 words of memory out of 3000000
- 25493 multiletter control sequences out of 15000+200000
+ 24542 strings out of 493342
+ 383645 string characters out of 3130885
+ 479227 words of memory out of 3000000
+ 25488 multiletter control sequences out of 15000+200000
  21255 words of font info for 78 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  39i,18n,58p,10401b,1984s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -3244,9 +3229,9 @@ blic/amsfonts/cm/cmsy8.pfb><C:/Users/Miro/AppData/Local/Programs/MiKTeX 2.9/fon
 ts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/Miro/AppData/Local/Programs/Mi
 KTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/Miro/AppData/Local
 /Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on thesis.pdf (154 pages, 5743078 bytes).
+Output written on thesis.pdf (153 pages, 6315387 bytes).
 PDF statistics:
- 4028 PDF objects out of 4296 (max. 8388607)
- 2144 named destinations out of 2487 (max. 500000)
- 1186 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 4021 PDF objects out of 4296 (max. 8388607)
+ 2142 named destinations out of 2487 (max. 500000)
+ 1181 words of extra memory for PDF output out of 10000 (max. 10000000)
 

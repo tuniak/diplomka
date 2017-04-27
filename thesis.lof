@@ -98,5 +98,4 @@
 \contentsline {figure}{\numberline {14.9}{\ignorespaces Velocity field at time 24 - PI inward flow}}{131}{figure.14.9}
 \contentsline {figure}{\numberline {14.10}{\ignorespaces Velocity field at time 32 - PI inward flow}}{131}{figure.14.10}
 \contentsline {figure}{\numberline {14.11}{\ignorespaces Velocity field at time 40 - PI inward flow}}{132}{figure.14.11}
-\contentsline {figure}{\numberline {14.12}{\ignorespaces Covariance tensor field for PI with deterministic (standard) algorithm - only the tensors with highest norm are presented}}{143}{figure.14.12}
-\contentsline {figure}{\numberline {14.13}{\ignorespaces Covariance tensor field for PI with non-deterministic algorithm - future simulations are required to confirm and explain the discrepancy}}{144}{figure.14.13}
+\contentsline {figure}{\numberline {14.12}{\ignorespaces Covariance tensor field for PI with deterministic (standard) algorithm - only the tensors with highest norm are presented}}{142}{figure.14.12}

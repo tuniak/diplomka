@@ -83,8 +83,8 @@
 \contentsline {subsection}{\numberline {14.2.2}Second statistical moment -- the covariance tensor}{137}{subsection.14.2.2}
 \contentsline {subsection}{\numberline {14.2.3}Structure functions}{139}{subsection.14.2.3}
 \contentsline {section}{\numberline {14.3}Graphical representation of the obtained results}{142}{section.14.3}
-\contentsline {chapter}{Bibliography}{145}{chapter*.2}
-\contentsline {chapter}{List of Figures}{146}{chapter*.3}
-\contentsline {chapter}{List of Tables}{149}{chapter*.4}
-\contentsline {chapter}{List of Abbreviations}{150}{chapter*.5}
-\contentsline {chapter}{Attachments}{151}{chapter*.6}
+\contentsline {chapter}{Bibliography}{144}{chapter*.2}
+\contentsline {chapter}{List of Figures}{145}{chapter*.3}
+\contentsline {chapter}{List of Tables}{148}{chapter*.4}
+\contentsline {chapter}{List of Abbreviations}{149}{chapter*.5}
+\contentsline {chapter}{Attachments}{150}{chapter*.6}

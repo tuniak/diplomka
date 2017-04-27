@@ -586,16 +586,16 @@ void finalize_struct(double**str, double****mean, int I, int J, int K, int d, in
 
 \begin{figure}[h] 
  \centering  \label{tendet}
- \includegraphics[width=0.9\textwidth]{../mathematica/det}
+ \includegraphics[width=0.9\textwidth]{./img/correlation3}
  \caption{Covariance tensor field for PI with deterministic (standard) algorithm - only the tensors with highest norm are presented}
 \end{figure}
 
-\begin{figure}[h] 
- \centering \label{tennot}
- \includegraphics[width=0.9\textwidth]{../mathematica/nondet}
- \caption{Covariance tensor field for PI with non-deterministic algorithm - future simulations are required to confirm and explain the discrepancy}
-\end{figure}
+%\begin{figure}[h] 
+% \centering \label{tennot}
+% \includegraphics[width=0.9\textwidth]{../mathematica/nondet}
+% \caption{Covariance tensor field for PI with non-deterministic algorithm - future simulations are required to confirm and explain the discrepancy}
+%\end{figure}
 
-The figures \ref{tendet} and \ref{tennot} show that the correlation tensor is represented by highly ellipsoidal surfaces and hence, the isotropy seems to be significantly violated. This can have several reasons. First, an obvious possibility is a mistake in the code, but after careful inspection and previous applications with reasonable outcomes, we believe this is not the case.
+The figure \ref{tendet} shows that the correlation tensor is represented by highly ellipsoidal surfaces and hence, the isotropy seems to be significantly violated. This can have several reasons. First, an obvious possibility is a mistake in the code, but after careful inspection and previous applications with reasonable outcomes, we believe this is not the case.
 
 Another and the most plausible source of anisotropy is the limited size of the grid. Based on the theoretical analysis, we expect that (much) larger grids will produce more isotropic configurations. Anisotropy can also be attributed to the initial and boundary conditions on the sphere, which are isotropic only to extent allowed by the geometry of the lattice and the coarse-graining of the velocity field. This question is left for the future investigation.
