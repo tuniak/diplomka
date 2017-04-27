@@ -232,11 +232,11 @@ Optimally, we would like to change as many bits as possible (that minimizes mean
 Although no further reduction beyond 37 normalized momenta is possible,
 some of these momenta share same optimal isometries, that lead to minimal viscosity and preserve momentum.
 
-Based on that,  momenta can be divided into 12 classes, as we did in the table below.
+Based on that,  momenta can be divided into 12 classes, as in the table below.
 First column specifies momentum, the second column specifies isometries that can be applied to this momentum. 
 Before the simulations starts, we calculate optimal states for each of the $2^{24}$ initial states. Then, the collision step reduces to searching in this huge table and randomly choosing from the available states.
 
-Back in the times when this algorithm was proposed and tested, the look-up table was considered too big, and several optimizations were proposed and implemented in CRAY-Asssebler \cite{wolf}. Despite that, the achieved update rate was lower then of the Pair-iteraction model, that we are presenting in the next chapter. 
+In the early nineties when this algorithm was proposed and tested, the look-up table was considered too big, and several optimizations were proposed and implemented in CRAY-Asssebler \cite{wolf}. Despite that, the achieved update rate was lower then of the Pair-iteraction model, that we are presenting in the next chapter. 
 %\begin{tabular}{ |p{1cm}||p{1cm}||p{0.5cm}|p{7cm}|  }
 % \hline
 % Class& $w_{min}$&\multicolumn{2}{|c|}{Optimal isometries} \\
