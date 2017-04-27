@@ -1,92 +1,90 @@
-\contentsline {chapter}{Introduction}{4}{chapter*.2}
-\contentsline {part}{I\hspace {1em}Theory}{5}{part.1}
-\contentsline {chapter}{\numberline {1}Cellular automata}{6}{chapter.1}
-\contentsline {section}{\numberline {1.1}Game of Life}{6}{section.1.1}
-\contentsline {section}{\numberline {1.2}Cellular automaton in general}{8}{section.1.2}
-\contentsline {section}{\numberline {1.3}The most basic cellular automaton}{8}{section.1.3}
-\contentsline {section}{\numberline {1.4}Classification of 1D cellular automata}{10}{section.1.4}
-\contentsline {section}{\numberline {1.5}Cellular automata in physics}{12}{section.1.5}
-\contentsline {chapter}{\numberline {2}Lattice gass cellular automata}{19}{chapter.2}
-\contentsline {section}{\numberline {2.1}From CA to LGCA}{19}{section.2.1}
-\contentsline {section}{\numberline {2.2}Update rule}{19}{section.2.2}
-\contentsline {section}{\numberline {2.3}Propagation:}{20}{section.2.3}
-\contentsline {section}{\numberline {2.4}Conservation laws}{21}{section.2.4}
-\contentsline {chapter}{\numberline {3}FHP}{23}{chapter.3}
-\contentsline {section}{\numberline {3.1}The lattice of FHP}{23}{section.3.1}
-\contentsline {section}{\numberline {3.2}Update rule}{23}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Propagation}{24}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Collision}{24}{subsection.3.2.2}
-\contentsline {section}{\numberline {3.3}Collision operator}{26}{section.3.3}
-\contentsline {section}{\numberline {3.4}Microscopic conservation laws}{27}{section.3.4}
-\contentsline {section}{\numberline {3.5}Conservation of probabilities}{27}{section.3.5}
-\contentsline {section}{\numberline {3.6}Mean occupation numbers}{28}{section.3.6}
-\contentsline {section}{\numberline {3.7}Equilibrium occupation numbers}{28}{section.3.7}
-\contentsline {section}{\numberline {3.8}Chapman-Enskog expansion}{29}{section.3.8}
-\contentsline {chapter}{\numberline {4}FCHC}{32}{chapter.4}
-\contentsline {section}{\numberline {4.1}Face-centered hypercube}{32}{section.4.1}
-\contentsline {section}{\numberline {4.2}Collision rules for FCHC}{33}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Necessary conditions}{33}{subsection.4.2.1}
-\contentsline {section}{\numberline {4.3}Isometries of FCHC}{34}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Generating set}{35}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Normalized momenta}{35}{subsection.4.3.2}
-\contentsline {subsection}{\numberline {4.3.3}Optimal isometries}{36}{subsection.4.3.3}
-\contentsline {chapter}{\numberline {5}Pair Interaction LGCA}{38}{chapter.5}
-\contentsline {section}{\numberline {5.1}User-friendly guide to Pair interactions}{38}{section.5.1}
-\contentsline {subsection}{\numberline {5.1.1}Pair-interactions automaton in two dimensions}{38}{subsection.5.1.1}
-\contentsline {subsection}{\numberline {5.1.2}Node in detail}{39}{subsection.5.1.2}
-\contentsline {subsection}{\numberline {5.1.3}Update rules}{40}{subsection.5.1.3}
-\contentsline {subsection}{\numberline {5.1.4}Collision}{40}{subsection.5.1.4}
-\contentsline {section}{\numberline {5.2}Propagation:}{44}{section.5.2}
-\contentsline {section}{\numberline {5.3}Pair-interaction cellular automaton in 3D and arbitrary dimension}{44}{section.5.3}
-\contentsline {section}{\numberline {5.4}Update}{44}{section.5.4}
-\contentsline {section}{\numberline {5.5}Collision}{44}{section.5.5}
-\contentsline {subsection}{\numberline {5.5.1}Collision algorithm}{46}{subsection.5.5.1}
-\contentsline {section}{\numberline {5.6}Equilibrium statistics}{46}{section.5.6}
-\contentsline {subsection}{\numberline {5.6.1}Gibbs distribution}{47}{subsection.5.6.1}
-\contentsline {section}{\numberline {5.7}Hydrodynamic description}{49}{section.5.7}
-\contentsline {section}{\numberline {5.8}Euler equations}{50}{section.5.8}
-\contentsline {section}{\numberline {5.9}Navier-Stokes equations}{51}{section.5.9}
-\contentsline {chapter}{\numberline {6}Hydrodynamic equations}{54}{chapter.6}
-\contentsline {section}{\numberline {6.1}Liouville's equation}{54}{section.6.1}
-\contentsline {section}{\numberline {6.2}The BBGKY hierarchy}{54}{section.6.2}
-\contentsline {section}{\numberline {6.3}Boltzmann equation}{56}{section.6.3}
-\contentsline {section}{\numberline {6.4}Equilibrium and detailed balance}{57}{section.6.4}
-\contentsline {section}{\numberline {6.5}Hydrodynamics}{58}{section.6.5}
-\contentsline {section}{\numberline {6.6}Where is the viscosity?}{62}{section.6.6}
-\contentsline {section}{\numberline {6.7}Navier-Stokes equations}{63}{section.6.7}
-\contentsline {chapter}{\numberline {7}Lattice Boltzmann method}{64}{chapter.7}
-\contentsline {section}{\numberline {7.1}Basics}{64}{section.7.1}
-\contentsline {section}{\numberline {7.2}Collision and propagation}{65}{section.7.2}
-\contentsline {part}{II\hspace {1em}Implementation and applications}{66}{part.2}
-\contentsline {chapter}{\numberline {8}Parallel scaling performace of PI automata}{67}{chapter.8}
-\contentsline {section}{\numberline {8.1}Strong scaling}{67}{section.8.1}
-\contentsline {section}{\numberline {8.2}Weak scaling}{67}{section.8.2}
-\contentsline {section}{\numberline {8.3}Flow on the sphere}{67}{section.8.3}
-\contentsline {chapter}{\numberline {9}Practical part}{70}{chapter.9}
-\contentsline {chapter}{\numberline {10}General comments on the implementation}{71}{chapter.10}
-\contentsline {section}{\numberline {10.1}Parallelization}{71}{section.10.1}
-\contentsline {chapter}{\numberline {11}Implementation of FCHC}{72}{chapter.11}
-\contentsline {section}{\numberline {11.1}Algorithm for the creation of the table}{72}{section.11.1}
-\contentsline {section}{\numberline {11.2}Algorithm for collision}{87}{section.11.2}
-\contentsline {section}{\numberline {11.3}Propagation in FCHC}{88}{section.11.3}
-\contentsline {chapter}{\numberline {12}Implementation of the Pair-Interaction LGCA in 3D}{90}{chapter.12}
-\contentsline {section}{\numberline {12.1}Implementation of the collision algorithm}{90}{section.12.1}
-\contentsline {section}{\numberline {12.2}Implementation of the Propagation}{95}{section.12.2}
-\contentsline {chapter}{\numberline {13}Non-deterministic PI}{98}{chapter.13}
-\contentsline {section}{\numberline {13.1}Exploding cube}{101}{section.13.1}
-\contentsline {chapter}{\numberline {14}Study of the flow around the obstacles}{115}{chapter.14}
-\contentsline {section}{\numberline {14.1}Flow around the sphere}{116}{section.14.1}
-\contentsline {section}{\numberline {14.2}Flow around the disk}{121}{section.14.2}
-\contentsline {chapter}{\numberline {15}Fully developed turbulence simulated on LGCA}{127}{chapter.15}
-\contentsline {section}{\numberline {15.1}Inward flow on the sphere}{127}{section.15.1}
-\contentsline {subsection}{\numberline {15.1.1}FCHC implementation of inward flow from the sphere}{128}{subsection.15.1.1}
-\contentsline {section}{\numberline {15.2}Statistical properties of the flow}{137}{section.15.2}
-\contentsline {subsection}{\numberline {15.2.1}First statistical moment - the mean velocity field}{137}{subsection.15.2.1}
-\contentsline {subsection}{\numberline {15.2.2}Second statistical moment -- the covariance tensor}{138}{subsection.15.2.2}
-\contentsline {subsection}{\numberline {15.2.3}Structure functions}{140}{subsection.15.2.3}
-\contentsline {section}{\numberline {15.3}Graphical representation of the obtained results}{143}{section.15.3}
-\contentsline {chapter}{Bibliography}{146}{chapter*.3}
-\contentsline {chapter}{List of Figures}{147}{chapter*.4}
-\contentsline {chapter}{List of Tables}{150}{chapter*.5}
-\contentsline {chapter}{List of Abbreviations}{151}{chapter*.6}
-\contentsline {chapter}{Attachments}{152}{chapter*.7}
+\contentsline {part}{I\hspace {1em}Theory}{4}{part.1}
+\contentsline {chapter}{\numberline {1}Cellular automata}{5}{chapter.1}
+\contentsline {section}{\numberline {1.1}Game of Life}{5}{section.1.1}
+\contentsline {section}{\numberline {1.2}Cellular automaton in general}{7}{section.1.2}
+\contentsline {section}{\numberline {1.3}The most basic cellular automaton}{7}{section.1.3}
+\contentsline {section}{\numberline {1.4}Classification of 1D cellular automata}{9}{section.1.4}
+\contentsline {section}{\numberline {1.5}Cellular automata in physics}{11}{section.1.5}
+\contentsline {chapter}{\numberline {2}Lattice gass cellular automata}{18}{chapter.2}
+\contentsline {section}{\numberline {2.1}From CA to LGCA}{18}{section.2.1}
+\contentsline {section}{\numberline {2.2}Update rule}{18}{section.2.2}
+\contentsline {section}{\numberline {2.3}Propagation:}{19}{section.2.3}
+\contentsline {section}{\numberline {2.4}Conservation laws}{20}{section.2.4}
+\contentsline {chapter}{\numberline {3}FHP}{22}{chapter.3}
+\contentsline {section}{\numberline {3.1}The lattice of FHP}{22}{section.3.1}
+\contentsline {section}{\numberline {3.2}Update rule}{22}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Propagation}{23}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Collision}{23}{subsection.3.2.2}
+\contentsline {section}{\numberline {3.3}Collision operator}{25}{section.3.3}
+\contentsline {section}{\numberline {3.4}Microscopic conservation laws}{26}{section.3.4}
+\contentsline {section}{\numberline {3.5}Conservation of probabilities}{26}{section.3.5}
+\contentsline {section}{\numberline {3.6}Mean occupation numbers}{27}{section.3.6}
+\contentsline {section}{\numberline {3.7}Equilibrium occupation numbers}{27}{section.3.7}
+\contentsline {section}{\numberline {3.8}Chapman-Enskog expansion}{28}{section.3.8}
+\contentsline {chapter}{\numberline {4}FCHC}{31}{chapter.4}
+\contentsline {section}{\numberline {4.1}Face-centered hypercube}{31}{section.4.1}
+\contentsline {section}{\numberline {4.2}Collision rules for FCHC}{32}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Necessary conditions}{32}{subsection.4.2.1}
+\contentsline {section}{\numberline {4.3}Isometries of FCHC}{33}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Generating set}{34}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Normalized momenta}{34}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}Optimal isometries}{35}{subsection.4.3.3}
+\contentsline {chapter}{\numberline {5}Pair Interaction LGCA}{37}{chapter.5}
+\contentsline {section}{\numberline {5.1}User-friendly guide to Pair interactions}{37}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Pair-interactions automaton in two dimensions}{37}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}Node in detail}{38}{subsection.5.1.2}
+\contentsline {subsection}{\numberline {5.1.3}Update rules}{39}{subsection.5.1.3}
+\contentsline {subsection}{\numberline {5.1.4}Collision}{39}{subsection.5.1.4}
+\contentsline {section}{\numberline {5.2}Propagation:}{43}{section.5.2}
+\contentsline {section}{\numberline {5.3}Pair-interaction cellular automaton in 3D and arbitrary dimension}{43}{section.5.3}
+\contentsline {section}{\numberline {5.4}Update}{43}{section.5.4}
+\contentsline {section}{\numberline {5.5}Collision}{43}{section.5.5}
+\contentsline {subsection}{\numberline {5.5.1}Collision algorithm}{45}{subsection.5.5.1}
+\contentsline {section}{\numberline {5.6}Equilibrium statistics}{45}{section.5.6}
+\contentsline {subsection}{\numberline {5.6.1}Gibbs distribution}{46}{subsection.5.6.1}
+\contentsline {section}{\numberline {5.7}Hydrodynamic description}{48}{section.5.7}
+\contentsline {section}{\numberline {5.8}Euler equations}{49}{section.5.8}
+\contentsline {section}{\numberline {5.9}Navier-Stokes equations}{50}{section.5.9}
+\contentsline {chapter}{\numberline {6}Hydrodynamic equations}{53}{chapter.6}
+\contentsline {section}{\numberline {6.1}Liouville's equation}{53}{section.6.1}
+\contentsline {section}{\numberline {6.2}The BBGKY hierarchy}{53}{section.6.2}
+\contentsline {section}{\numberline {6.3}Boltzmann equation}{55}{section.6.3}
+\contentsline {section}{\numberline {6.4}Equilibrium and detailed balance}{56}{section.6.4}
+\contentsline {section}{\numberline {6.5}Hydrodynamics}{57}{section.6.5}
+\contentsline {section}{\numberline {6.6}Where is the viscosity?}{61}{section.6.6}
+\contentsline {section}{\numberline {6.7}Navier-Stokes equations}{62}{section.6.7}
+\contentsline {chapter}{\numberline {7}Lattice Boltzmann method}{63}{chapter.7}
+\contentsline {section}{\numberline {7.1}Basics}{63}{section.7.1}
+\contentsline {section}{\numberline {7.2}Collision and propagation}{64}{section.7.2}
+\contentsline {part}{II\hspace {1em}Implementation and applications}{65}{part.2}
+\contentsline {chapter}{\numberline {8}Practical part}{66}{chapter.8}
+\contentsline {chapter}{\numberline {9}Implementation}{67}{chapter.9}
+\contentsline {section}{\numberline {9.1}Parallelization}{67}{section.9.1}
+\contentsline {section}{\numberline {9.2}Strong scaling}{67}{section.9.2}
+\contentsline {section}{\numberline {9.3}Weak scaling}{68}{section.9.3}
+\contentsline {section}{\numberline {9.4}Flow on the sphere}{68}{section.9.4}
+\contentsline {chapter}{\numberline {10}Implementation of FCHC}{71}{chapter.10}
+\contentsline {section}{\numberline {10.1}Algorithm for the creation of the table}{71}{section.10.1}
+\contentsline {section}{\numberline {10.2}Algorithm for collision}{86}{section.10.2}
+\contentsline {section}{\numberline {10.3}Propagation in FCHC}{87}{section.10.3}
+\contentsline {chapter}{\numberline {11}Implementation of the Pair-Interaction LGCA in 3D}{89}{chapter.11}
+\contentsline {section}{\numberline {11.1}Implementation of the collision algorithm}{89}{section.11.1}
+\contentsline {section}{\numberline {11.2}Implementation of the Propagation}{94}{section.11.2}
+\contentsline {chapter}{\numberline {12}Non-deterministic PI}{97}{chapter.12}
+\contentsline {section}{\numberline {12.1}Exploding cube}{100}{section.12.1}
+\contentsline {chapter}{\numberline {13}Study of the flow around the obstacles}{114}{chapter.13}
+\contentsline {section}{\numberline {13.1}Flow around the sphere}{115}{section.13.1}
+\contentsline {section}{\numberline {13.2}Flow around the disk}{120}{section.13.2}
+\contentsline {chapter}{\numberline {14}Fully developed turbulence simulated on LGCA}{126}{chapter.14}
+\contentsline {section}{\numberline {14.1}Inward flow on the sphere}{126}{section.14.1}
+\contentsline {subsection}{\numberline {14.1.1}FCHC implementation of inward flow from the sphere}{127}{subsection.14.1.1}
+\contentsline {section}{\numberline {14.2}Statistical properties of the flow}{136}{section.14.2}
+\contentsline {subsection}{\numberline {14.2.1}First statistical moment - the mean velocity field}{136}{subsection.14.2.1}
+\contentsline {subsection}{\numberline {14.2.2}Second statistical moment -- the covariance tensor}{137}{subsection.14.2.2}
+\contentsline {subsection}{\numberline {14.2.3}Structure functions}{139}{subsection.14.2.3}
+\contentsline {section}{\numberline {14.3}Graphical representation of the obtained results}{142}{section.14.3}
+\contentsline {chapter}{Bibliography}{145}{chapter*.2}
+\contentsline {chapter}{List of Figures}{146}{chapter*.3}
+\contentsline {chapter}{List of Tables}{149}{chapter*.4}
+\contentsline {chapter}{List of Abbreviations}{150}{chapter*.5}
+\contentsline {chapter}{Attachments}{151}{chapter*.6}

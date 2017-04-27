@@ -294,17 +294,17 @@ P_{ij} = P_{ji} = \rho \langle (u_j - v_j) (u_i - v_i) \rangle
 \end{align*}
 known as the pressure tensor,
 we can rewrite the equation \ref{conmom} as
-\begin{align*}
+\begin{align} \label{mmcl}
 \rho \Big(\frac{\pd}{\pd t} + u_j \frac{\pd}{\pd x_j} \Big) u_i = \frac{\rho}{m} F_i - \frac{\pd}{\pd x_j}P_{ij}.
-\end{align*}
+\end{align}
 This is the familiar form of the momentum conservation law. We can interpret it according to the Newton's law -- the left-hand side is the acceleration of the fluid element, and the right-hand side involves the external force $\bm{F}$ and the internal pressure of the fluid
 %The collision integral reflects the rate of the collisions.
 
-Let us pause at the pressure tensor for a moment. We can evaluate it on the equilibrium distribution and find out that it is proportional to the temperature
+If we evaluate the pressure tensor on the equilibrium distribution, we find out that it is proportional to the temperature
 \begin{align*}
-P_{ij} = n k_B T \delta_{ij}
+P_{ij} = n k_B T \delta_{ij},
 \end{align*} 
-which corresponds to the ideal gas law.
+which is the ideal gas law.
 
 \bigskip
 
@@ -317,7 +317,6 @@ so when we substitute it into our master equation \ref{master}, we get the compa
 \begin{align} \label{cone}
 \frac{1}{2} \frac{\pd}{\pd t} \langle \rho(\bm{v} - \bm{u}) \rangle + \frac{1}{2} \frac{\pd}{\pd r_i} \langle \rho v_i (\bm{v} - \bm{u}) \rangle - \rho \langle v_i \frac{\pd u_j}{\pd r_i}(\bm{v} - \bm{u})^2 \rangle = 0.
 \end{align}
-
 Using the idea of equipartition, we can define the temperature for the non-equilibrium system
 \begin{align*}
 \frac{3}{2}k_B T(\bm{r},t) = \frac{1}{2} m \langle (\bm{v} - \bm{u}(\bm{r},t))^2. \rangle
@@ -327,13 +326,13 @@ Let us define another quantity, the \textit{heat flux}
 \begin{align*}
 \frac{1}{2} m \rho \langle (v_i - u_i)(\bm{v} - \bm{u})^2 \rangle.
 \end{align*}
-Using the definition of heat flux and pressure tensor, we can rewrite the equation \ref{cone}
+Using the definition of heat flux and pressure tensor, we rewrite the equation \ref{cone} as
 \begin{align*}
 \frac{1}{2}m \rho \langle v_i (\bm{v} - \bm{u})^2 \rangle = q_i + \frac{3}{2}\rho u_ik_B T,
 \end{align*}
 Since the pressure tensor is symmetric, we can replace $\pd u_j / \pd r_i$ with the symmetric \textit{rate of strain}
 \begin{align*}
-U_{ij} = \frac{1}{2}\big( \frac{\pd u_j}{\pd r_i} + \frac{\pd u_i}{\pd r_j} \big)
+U_{ij} = \frac{1}{2}\big( \frac{\pd u_j}{\pd r_i} + \frac{\pd u_i}{\pd r_j} \big).
 \end{align*}
 Further, using the continuity equation, we obtain the conservation of energy in its usual form
 \begin{align*}
@@ -343,27 +342,37 @@ Further, using the continuity equation, we obtain the conservation of energy in 
 Finally, we have the three equations, describing the time evolution of the particle density $n$, momentum $\bm{u}$ and the temperature $T$.
 Although they hold for any distribution $f_1$, they do not constitute the closed set of equations -- equation for $n$ depends on $\bm{u}$, equation for momentum depends on the pressure tensor $P_{ij}$ and the equation for temperature depends on the heat flux $q$. To determine any of these, we need to compute the distribution $f_1$ from the Boltzmann equation, which is not easy.
 
-\bigskip
-
 Since we are looking for the solution that varies slowly, the first approximation would be the  local equilibrium distribution \ref{localequil}, for which collision integral vanishes.
 %
 %Since local equilibrium distribution is not solution of the Boltzmann equation, because streaming term is non-zero, we will see later on what we are missing.
-
-Using the distribution do compute the $P_{ij}$ and $q$, we obtain new form the conservation laws:
-
-However, we are still missing dissipation in these equations. To show it, we can combine the equations refANDref to obtain
+Using this distribution, we can compute that
+\begin{align*}
+P_{ij} = k_b n(\bm{r},t) T(\bm{r},t) \delta_{ij} = P(\bm{r},t) \delta_{ij}
+\end{align*} and
+\begin{align*}
+q = 0.
+\end{align*}
+Inserting these terms into the conservation laws, the continuity equation stays unchanged, we just rewrite it using $\rho = m\,n$:
+\begin{align} \label{cunt}
+\big(\frac{\pd}{\pd t} + u_j \frac{\pd}{\pd r_j} \big) \rho + \rho \frac{\pd u_i}{\pd r_i}.
+\end{align}
+However, the momentum conservation \ref{mmcl} turns into the Euler equation
+\begin{align} \label{ell}
+\big(\frac{\pd}{\pd t} + u_j \frac{\pd}{\pd r_j} \big) u_i  + \frac{1}{\rho}  \frac{\pd P}{\pd x_i} = \frac{F_i}{m}.
+\end{align}
+However, we are still missing dissipation in these equations. To show it, we can combine equations \ref{cunt} and \ref{ell} to obtain
 \begin{align*}
 \big( \frac{\pd}{\pd t} + u_j \frac{\pd}{\pd r_j} \big) (\rho T ^{-2/3}) = 0
 \end{align*}
 This equation implies that $\rho T^{-2/3}$ is constant along the streamlines, which means that the motion of the fluid is adiabatic -- not increasing entropy. Hence we have no mechanism for the fluid to return to the equilibrium yet.
 
-It is easy to see what we are missing. We chose local equilibrium as an approximation for the distribution $f_1$, so that the collision integral vanish, but it does not solve the streaming term. However, if we stick to the long wave-length variations in the velocity, we need to add only little correction term
+It is easy to see what we are missing. We chose local equilibrium as an approximation for the distribution $f_1$, so that the collision integral vanishes, but it does not solve the streaming term. However, if we stick to the long wave-length variations in the velocity, we need to add only little correction term
 \begin{align} \label{cord}
 f_1 = f_1^{(0)} + \delta f_1.
 \end{align}
 The correction $\delta f_1$ contributes to the collision integral
 \begin{align*}
-\Big( \frac{\pd f_1}{\pd t} \Big)_{coll}= \int \omega(\bm{u'_1},\bm{u'_2} | \bm{u_1}, \bm{u_2}) \big[ f_1(\bm{u'_1})f_1(\bm{u'_2}) - f_1(\bm{u_1})f_1(\bm{u_2}) \big] \dd \bm{u_2} \dd \bm{u'_1} \dd \bm{u'_2}
+\Big( \frac{\pd f_1}{\pd t} \Big)_{coll}= \int \omega(\bm{p'_1},\bm{p'_2} | \bm{p_1}, \bm{p_2}) \big[ f_1(\bm{p'_1})f_1(\bm{p'_2}) - f_1(\bm{p_1})f_1(\bm{p_2}) \big] \dd \bm{p_2} \dd \bm{p'_1} \dd \bm{p'_2}
 \end{align*}
 where we neglected the quadratic terms $O(\delta f_1^2)$ and used the fact that $f_1^{(0)}$ vanish in the collision integral.
 
@@ -394,11 +403,11 @@ P_{ij} = P \delta_{ij} + \Pi_{ij},
 \end{align}
 with the additional term $\Pi_{ij}$, which is a non-diagonal \textit{stress tensor}
 \begin{align*}
-\Pi_{ij} = something something.
+\Pi_{ij} = \frac{m \tau \rho}{k_B T} U_{kl} = \Big[ \langle v_i v_j v_k v_l \rangle_0 - \frac{1}{3} \delta_{kl} \langle v_i v_j v^2 \rangle_0 \Big].
 \end{align*}
 In fact, the $\Pi_{ij}$ is traceless, because
 \begin{align*}
-\langle v^2 v_k v_l \rangle_0 = \delta_{kl} \langle v_i v_j v^2 \rangle. 
+\langle v^2 v_k v_l \rangle_0 = \delta_{kl} \langle v_i v_j v^2 \rangle_0. 
 \end{align*}
 and it depends linearly on the $U_{kl}$.
 These two properties determine the form of the tensor
@@ -424,13 +433,13 @@ The corrected distribution \ref{cord} does not change the density equation
 \end{align*}
 but due to the non-diagonal stress tensor \ref{stresst}, the momentum equation transforms to the Navier-Stokes equation
 \begin{align}
-aa.
+\Big(\frac{\pd}{\pd t} + \bm{u} \cdot \nabla \Big) \bm{u} = \frac{\bm{F}}{m} - \frac{1}{\rho} \nabla P + \frac{\eta}{\rho} \nabla^2 \bm{u} + \frac{\eta}{3 \rho}\nabla(\nabla \cdot \bm{u})
 \end{align}
-Since $\nabla \kappa \approx 0$ and $U_{ij} \Pi_{ij} \approx 0$ are small at the order we are working at, we can drop them, so we are left with
-\begin{align*}
-aa
-\end{align*}
-Although our derivation relied on the dilute gas approximation, the Navier-Stokes equation are more general then that. In fact, they can be considered to be the most general expression for the momentum transport.
+%Since $\nabla \kappa \approx 0$ and $U_{ij} \Pi_{ij} \approx 0$ are small at the order we are working at, we can drop them and the equation reduces to
+%\begin{align*}
+%aa
+%\end{align*}
+Although our derivation relied on the dilute gas approximation, the Navier-Stokes equation are more general then that and can be considered to be the most general expression for the momentum transport.
 
 %This force K will be neglected in the subsequent text, because external force is not supposed to influence dynamics of collisions.
 %The right hand side of Boltzmann equation, the $Q(f,f)$, is the collision integral.
