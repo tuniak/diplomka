@@ -32,10 +32,10 @@ As we know, the update happens in discrete time steps ($t=1,2,3...$) and consist
 
 Propagation is the straight-forward phase and can be captured by the simple equation
 \begin{align*}
-S n_i(\bf{r}) = n_i(\bf{r + c_i}). 
+S n_i(\bm{r}) = n_i(\bm{r} + \bm{c_i}). 
 \end{align*}
 %This equation means that state of the $i^{th}$ cell in node \textbf{n(r)} \textit{propagates} along the lattice vector $c_i$ to the neighboring node $\bf{n(r + c_i)}$, the figure \ref{FHPprop}.
-If the cell is occupied by a particle, that means $n_i(\bf{r})=1$, it propagates along the corresponding lattice vector to the neighboring node, see the figure \ref{FHPprop}.
+If the cell is occupied by a particle, that means $n_i(\bm{r})=1$, it propagates along the corresponding lattice vector to the neighboring node, see the figure \ref{FHPprop}.
 
 \begin{figure}[H]
  \centering
@@ -80,10 +80,13 @@ Since the collisions are symmetric, matrix A is symmetric as well.
 
 Also, collisions are invariant to rotations and reflections of the node
 \begin{align*}
-A(g(n) \rightarrow g(n')) = A(n \rightarrow n'),
+A(g(\bm{n}) \rightarrow g(\bm{n'})) = A(\bm{n} \rightarrow \bm{n'}),
 \end{align*}
 where $g \in G$, and G is the symmetry group of the node.
-
+The normalization of probability leads to the semi-detailed balance
+\begin{align} \label{smd}
+\sum_{\bm{n}} A(\bm{n} \rightarrow \bm{n'}) = 1	
+\end{align}
 
 \section{Collision operator}
 Interestingly, we can express the whole update step in one simple equation using collision operator $\Delta_i$:
@@ -138,91 +141,105 @@ By employing the aparatus of the statistical physics we will show that these mic
 \section{Conservation of probabilities}
 Let us define the phase space $\Gamma$ as the set of all possible states of the lattice $n(.)$.
 Imagine we want to initialize cellular automaton with some macroscopic velocity $\bm{v_0}$, macroscopic pressure $p_0$, and macroscopic density $\rho_0$.
-We can realize this macrostate by very many microstates of lattice $n(.)$.
-We assign initial probability to each of these microstates:
+We can realize this macrostate by very many microstates of lattice $\bm{n(.)}$.
+We assign initial probability to each of these microstates
 \begin{align*}
-P(0,s(.)) \geq 0.
+P(0,\bm{n(.)}) \geq 0.
 \end{align*}
-As always, probabilities over whole lattice are normalized so
+As always, probabilities over whole lattice are normalized:
 \begin{align*}
-\sum_s(.) P(0,n(.)) = 1.
+\sum_{\bm{n(.)}} P(0,\bm{n(.)}) = 1.
 \end{align*}
 
 In the statistical mechanics, Liouville's space state theorem postulates that the density of the phase space is constant. Microdynamics of our model implies equivalent theorem for LGCA:
 \begin{align*}
-P(t+1, \mathcal{E} n(.)) = P(t, n(.))
+P(t+1, \mathcal{E} \bm{n}(.)) = P(t, \bm{n}(.))
 \end{align*}
 
 It is obtained directly by applying the update formula
 \begin{equation*}
-\mathcal{E} n(t,.) = n(t+1,.)
+\mathcal{E} \bm{n}(t,.) = \bm{n}(t+1,.)
 \end{equation*}
-However, for FHP and other non-deterministic models, the conservation of probability is governed by the more general formula
-\begin{equation}
-P(t+1,\mathcal{S} n'(.)) = \sum_{n(.) \in \Gamma} \prod_{n(.)} A(n(\bm{r} \rightarrow n'(\bm{r})) P(t, n(.)),
+However, for FHP and other non-deterministic models, the conservation of probability is governed by the more general Chapman-Kolmogorov equation
+\begin{equation} \label{chapkol}
+P(t+1,\mathcal{S} \bm{n'}(.)) = \sum_{\bm{n}(.) \in \Gamma} \prod_{\bm{r}} A(\bm{n}(\bm{r}) \rightarrow \bm{n'}(\bm{r})) P(t, \bm{n}(.)),
 \end{equation}
-that constitutes the LGCA version of Chapman-Kolmogorov equation.
+that reduces to Liouville equations in deterministic case, where $A(\bm{n(r)} \rightarrow \bm{n'(r)})$ selects unique configuration.
 
 \section{Mean occupation numbers}
 Motivated by the ensemble formalism of statistical physics, we define mean occupation numbers
 \begin{equation*}
-N_i = \langle n_i \rangle = \sum_{s(.) \in \Gamma} n(s(.)) P(t,s(.)) .n
+N_i = \langle n_i \rangle = \sum_{n_i(.) \in \Gamma} n_i(.) P(t,n_i(.))
 \end{equation*}
-This formula naturally suggests definition of the mean mass density
+that naturally implies formula for mean mass density
 \begin{equation} \label{ddens}
-\rho(t,r) = \sum_i N_i(t,r)
+\rho(t,r) = \sum_i N_i(t,\bm{r})
 \end{equation}
 and the momentum density
 \begin{equation} \label{mmom}
-j(t,r) = \sum_i c_i N_i
+j(t,r) = \sum_i c_i N_i(t,\bm{r}).
 \end{equation}
 
-Due to conservation of probabilities, the conservation laws \ref{cons1} implies conservation of the mean quantities
+Due to conservation of probabilities, the conservation laws \ref{cons1} implies conservation of the mean populations
 \begin{equation} \label{macro1}
-\sum_i N_i(t+1,r+c_i) = \sum_i N_i(t,r) 
+\sum_i N_i(t+1,\bm{r+c_i}) = \sum_i N_i(t,\bm{r}), 
 \end{equation}
 \begin{equation} \label{macro2}
-\sum_i c_i N_i(t+1,r+c_i) = \sum_i c_i N_i(t,r)
+\sum_i c_i N_i(t+1,\bm{r+c_i}) = \sum_i c_i N_i(t,\bm{r}).
 \end{equation}
 
 \section{Equilibrium occupation numbers}
-After laborious definitions in previous sections, we are ready for one of the central theorems for FHP. It states that the equilibrium occupation numbers are given by Fermi-Dirac distribution. Its implications will haunt us until the last chapter.
+We are interested in the equilibrium solutions of the Chapman-Kolmogorov equation \ref{chapkol}. Because collisions on the lattice are purely local, we are looking for the solution of the form
+\begin{align} \label{formula1}
+P(\bm{n}(.)) = \prod_{\bm{r} \in \mathcal{L}} p(\bm{n}(\bm{r})).
+\end{align}
+Maximization of the entropy suggest $p(n(.))$ of the form
+\begin{align} \label{formula2}
+p(\bm{n}(\bm{r})) = \prod_i N_i^{n_i} (1 - N_i)^{(1-n_i)}.
+\end{align}
+where $N_i^{n_i} (1 - N_i)^{(1-n_i)}$ is probability that mean occupation number is $N_i$.
 
-We state it without the lengthy proof, but we recommend \cite{wolf} or \cite{frisch} for the non-believers.
+Substituting the formula \ref{formula1} and \ref{formula2} into Chapman-Kolmogorov equation \ref{chapkol} gives
+\begin{align} \label{rovnicka}
+N_i^{n'_i} (1 - N_i)^{(1-n'_i)} = \sum_{\bm{n} \in \Gamma} \prod_{\bm{r}} A(\bm{n} \rightarrow \bm{n'}) N_i^{n_i} (1 - N_i)^{(1-n_i)},
+\end{align}
+for each state $\bm{n}$ of $64$ possible states (or $2^b$ for automaton with $b$ lattice vectors). So in fact the last equation is a set of $64$ equations.
 
-\bigskip
-Since the formalism that we were using in previous section is independent of the dimension of FHP, we can state this theorem for the FHP-like automaton in arbitrary dimension $D$ with the lattice vectors $c_i \in R^D,~i=1...b$.
-
-\bigskip
+It is a non-trivial fact, that this set has a solution, and the following lemma states, that it is given by Fermi-Dirac distribution. The theorem is stated for $D$ dimensional cellular automaton with $b$ lattice vectors $c_i,~i=1,2...b$.
 
 \textbf{Theorem 1:}
 The following statements are equivalent:
 \begin{enumerate}
-\item $N_i^{eq}$s are solutions of Chapman-Kolmogorov equation (reference)\\
-\item $N_i^{eq}$s are solutions of set of b equations:
+\item $N_i^{eq}$ are solutions of \ref{rovnicka}.\\
+\item $N_i^{eq}$ are solutions of the set of b equations:
 \begin{equation}
 \Delta_i(N) = \sum_{nn'}(n'_i - n_i)A(n \rightarrow n')\prod_j N_j^{n_j}(1-N_j)^{1-n_j}
 \end{equation} 
 
-\item $N_i$ are given by Fermi-Dirac distribution
-%\begin{align} \label{fd}
-%N_i^{eq} = \frac{1}{1 + \exp(h + \bm{q}.\bm{c_i})},
-%\end{align}
+\item $N_i^{eq}$ are given by Fermi-Dirac distribution
+\begin{align} \label{fd}
+N_i^{eq} = \frac{1}{1 + \exp(h + \bm{q}.\bm{c_i})},
+\end{align}
 where h is real number and \textbf{q} is D-dimensional vector.
 \end{enumerate}
 
-\bigskip
+The proof of this theorem can be found in the Appendix C of \cite{frisch}.
+Further, non-deterministic collisions and semi-detailed balance \ref{smd} lead to the \textit{Universality theorem}, stating that these automata admit universal equilibrium solutions, completly factorized over all nodes and cells, with mean populations $N_i$ given by the Fermi-Dirac distribution, dependent only on the density $\rho$ and mass current $j = \rho \bm{u}$ and independent of the transition probabilities $A(\bm{n} \rightarrow \bm{n'})$ \cite{frisch}.
 
-To express $N_i^{eq}$ explicitly as function of $\rho$ and $\bm{u}$, we employ technique of Lagrange multipliers with natural constraints
+The idea of the proof is as follows:
+
+Unknown parameters $h$ and $\bm{q}$ can be calculated in terms of mass density and velocity by inversion of the relations
 \begin{equation}
 \rho = \sum_i N_i = \sum_i \frac{1}{1+ exp(h + \bm{q}.\bm{c_i})}
 \end{equation}
 \begin{equation}
 \bm{u} = \sum_i \bm{c_i} \bm{N_i} = \sum_i \frac{\bm{c_i}}{1+ exp(h + \bm{q}.\bm{c_i})}
 \end{equation}
+For FHP, explicit solutions are available only in few special cases \cite{frisch}.
+It is not surprising to obtain Fermi-Dirac distribution in equilibrium, due to the exclusion principle (cells are empty or occupied by one particle).
 
-Explicit solutions are available only in few special cases.
-In general, we may use expansion for small Mach numbers ($\bm{u}/c_{\mathrm{sound}}$). By expansion up to second order, equilibrium distribution for $D$-dimensional FHP-like automaton reads \footnote{The expansion is required up to the second order, because the non-linear term in Navier-Stokes equations will emerge from the quadratic term}
+To proceed, we will use perturbation of equilibrium solutions $N_i^{eq}$ in powers of $\bm{u}$ for small Mach numbers ($\bm{u}/c_{\mathrm{sound}}$). 
+Up to the second order\footnote{The expansio to the second order is required, because the advection in Navier-Stokes equations will emerge from the quadratic term}, the expansion reads \cite{frisch}
 \begin{equation} \label{eou}
 N_i^{eq}(\rho,\bm{u}) = \frac{\rho}{b} + \frac{D\rho}{c^2 b}\bm{c_i}.\bm{u} = \rho G(\rho) Q_{i\alpha\beta}u_{\alpha}u_{\beta} + O(u^3)
 \end{equation}
@@ -234,7 +251,7 @@ and
 \begin{align}
 G(\rho) = \frac{D^2}{2c^4b}\frac{b-2\rho}{b-\rho}.
 \end{align}
-
+We see that for $\rho= b/2$, the coefficient $G(\rho)$ vanishes.
 %Realizing that
 %\begin{equation}
 %\sum_i c_{i\alpha} c_{i\beta} = 
@@ -297,11 +314,11 @@ The expression above is the mixture of various physical phenomena -- diffusion, 
     \end{tabular}
 \end{center}
 
-To derive the hydrodynamical equation that we long for, we will exploit the multi-scale technique. It starts by grouping-up the terms of hydrodynamical temporal and spatial scales.
+To derive the hydrodynamical equation, we will exploit the multi-scale technique. It starts by grouping-up the terms of hydrodynamical temporal and spatial scales.
 
 
 \bigskip
-Using to rescaled the length and time, we deduce the rescaled differential operators
+Using the rescaled length and time, we deduce the rescaled differential operators
 \begin{equation} \label{oper}
 \begin{split}
 \partial_t = \epsilon \partial_t^{(1)} + \epsilon^2 \partial_t^{(2)} \\
@@ -309,15 +326,15 @@ Using to rescaled the length and time, we deduce the rescaled differential opera
 \end{split}
 \end{equation}
 
-Now, we are ready to expand the conservation laws \ref{macro_m} and \ref{macro_p} by Chapman-Enskog. We insert expansion \ref{rozvoj t+1} of $N_i(t+1,r+c_i)$, then we insert expansion of $N_i(t,r)$ according to \ref{chap}. Finally, we substitute differential operators according to \ref{oper}.
+Now, we are ready to expand the conservation laws \ref{macro_m} and \ref{macro_p} in Chapman-Enskog series. We insert expansion \ref{rozvoj t+1} of $N_i(t+1,r+c_i)$, then we insert expansion of $N_i(t,r)$ according to \ref{chap}. Finally, we substitute differential operators according to \ref{oper}.
 
-We do not present the whole monstrous expansion, only the terms of order $\epsilon$, that we are interested in.
+From the expansion, we present only the terms of order $\epsilon$, that we are interested in.
 
-From conservation of mass \ref{macro_m} we get
+From the conservation of mass \ref{macro_m} we get
 \begin{equation}
 \partial_t^{(1)} \sum_i N_i^{(0)} + \partial_{\beta} \sum_i c_{i\beta} N_i^{(0)} = 0,
 \end{equation}
-and from conservation of momentum \ref{macro_p} we get
+and from the conservation of momentum \ref{macro_p} we get
 \begin{equation}
 \partial_t^{(1)} \sum_i c_{i\alpha} N_i^{(0)} + \partial_{\beta} \sum_i c_{i\alpha} c_{i\beta} N_i^{(0)} = 0.
 \end{equation}
@@ -334,7 +351,7 @@ we can write the conservation laws in the shorter form
 \end{split}
 \end{equation}
 
-In the first equation, we recognize the famous continuity equation, but we have some work to do with the second equation.
+In the first equation, we can recognize the familiar continuity equation, but we have some work to do with the second one.
 
 %Now is the time to observe, that:
 %\begin{equation} \label{2mom}
@@ -366,21 +383,23 @@ P_{xy} = P_{yx} = \rho u_x u_y
 
 Let us examine why are these tensors different.
 
-For low values of $\bm{u}^2$, pressure $p$ is given by isothermal relation \cite{wol} $p = \frac{\rho}{2} = \rho c_s^2$, where $c_s = \frac{1}{\sqrt{2}}$ is the speed of sound.
+For low values of $\bm{u}^2$, pressure $p$ is given by isothermal relation $p = \frac{\rho}{2} = \rho c_s^2$, where $c_s = \frac{1}{\sqrt{2}}$ is the speed of sound\cite{wolf}.
 
 What about $g(\rho)$?  
 
-The disease of FHP, FCHC and all lattice-gas cellular automata to follow is, that $g(\rho)$ is never equal to 1, as it is in Navier-Stokes equations.
+The disease of FHP, FCHC and all the lattice-gas cellular automata to follow is that $g(\rho)$ is never equal to 1, as it is in Navier-Stokes equations.
 
-The reason lies in the broken \textit{Galilei invariance} of LGCA,as they all have discrete rotational symmetry (by $60 \degree$ in FHP and between $60 \degree$ and $45 \degree$ in FCHC).
+The reason lies in the broken \textit{Galilei invariance} in these automata as they all have discrete rotational symmetry (by $60 \degree$ in FHP and between $60 \degree$ and $45 \degree$ in FCHC).
 
-In the final chapter on theory of LGCA, we will show the fundamental treatment of this flaw. Symptomatic treatment, such as rescaling the time
+%In the final chapter on theory of LGCA, we will show the fundamental treatment of this flaw. 
+Symptomatic treatment, such as rescaling of time
 \begin{align} \label{frac_resc}
 t \rightarrow \frac{t}{g(\rho)},
 \end{align}
 does not solve all the associated problems (D'Humier et al. 1987).
+This flaw requires fundamental treatment, and leads to the new generation of automata that we will present in the final chapter on LGCA theory.
 
-However, using this rescaled time, and setting density to be constant ($\rho = \rho_0$ except for the pressure term \ref{press}), we get the familiar incompressible Euler equation
+However, using this rescaled time, and setting density to be constant ($\rho = \rho_0$) for all terms except the pressure \ref{press}), we get the familiar incompressible Euler equation
 \begin{equation}
 \frac{\partial \bm{u}}{\partial t} + (\bm{u} \bm{\nabla}) \bm{u} = -\bm{\nabla} P,
 \end{equation}
@@ -397,7 +416,7 @@ The derivation of the Navier-Stokes equations
 \pd_t \bm{u} + (\bm{u \nabla})\bm{u} &= - \bm{\nabla} P + \nu \, \nabla^2 \bm{u}
 \end{split}
 \end{align}
-would require terms of the order $\epsilon^2$  from the Chapman-Enskog expansion to add in the equations \ref{macro_m} and \ref{macro_p}, as done by Frisch \cite{frisch}.
+would require terms of the order $\epsilon^2$  from the Chapman-Enskog expansion to add in the equations \ref{macro_m} and \ref{macro_p}, as shown in \cite{frisch}.
 
 %When the collision is resolved in every node, propagation follows.
 %This phase is straigt-forward -- 
