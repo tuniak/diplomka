@@ -1,26 +1,14 @@
 \chapter{Implementation of FCHC}
 
-In the chapter blabla, we inspected FCHC automaton theoretically, you should be familiar with it before we start.
+In the chapter $4$, we theoretically analyzed FCHC automaton, and explained its collision algorithm proposed by Henon. In this chapter, we explain our implementation of this algorithm.
 
-According to \cite{Wolf}, (find idea on lack of implementation).
-And field of practical applications is ruled by Lattice Boltzmann model nowadays, so we really do not find many applications.
+%Not so long ago, table that would specify collision rules for $2^{24}$ states was problematic - it would require approximately $2^{24} \cross 10 \cross 4 bytes = 640$MB memory to manage.
+%
+%Henon proposed algorithm for collision that would by-pass this obstacle, compute the possible set of states in reasonable time and chose optimal state.
 
-As the more advanced "lattice Boltzmann model" evolved from LGCA, it attracted 
-And nowadays, the "lattice Boltzmann model" has taken over the application.
+%This algorithm is very expensive on computation time, especially comparing to pair-interaction LGCA.
 
-Due to huge number of state of the node and huge number of colli
-As state of the node is represented by 24 bits.
-Therefore, integer with its 32 bits is enough to represent both node and obstacle (24 bits + 1 bit).
 
-\bigskip
-
-Not so long ago, table that would specify collision rules for $2^{24}$ states was problematic - it would require approximately $2^{24} \cross 10 \cross 4 bytes = 640$MB memory to manage.
-
-Henon proposed algorithm for collision that would by-pass this obstacle, compute the possible set of states in reasonable time and chose optimal state.
-
-However, the algorithm is quiet expensive on computation time, especially comparing to pair-interaction LGCA.
-
-Therefore, we have chosen the following approach for resolving collisions:
 \begin{enumerate}
 \item At the beginning of the computation, before the simulation of the flow starts, we create table of $2^{24}$ entries. Integer index of the entry is the state of the node, and using Henon algorithm, we compute the optimal isometries for the state.
 \item Collisions during simulation are resolved by choosing the resulting state from the table, instead of computing the optimal isometries again and again. We are not generating the random numbers to chose the resulting state, as it is expensive on resources and was significantly slowing the algorithm in the testing phase. However, we believe that choosing random states is not necessary and our solution for choosing the optimal isometries leads to the uniform distribution due to large number of nodes (around $10^{8}$).

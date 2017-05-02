@@ -125,19 +125,19 @@ In total, there is only 17 possible configurations of the pairs, so the pair-int
 Same as for HPP, particles propagates from a node along $4$ lattice vectors to the neighboring nodes. Of course, all the bits from the cell propagates with the particle (the mass and momentum bits alike)
 
 
-\section{Pair-interaction cellular automaton in 3D and arbitrary dimension}
+\section{Pair-interaction cellular automaton in arbitrary dimension D}
 \begin{center}
     \begin{tabular}{| l | l | l | l |}
     \hline
-    \multicolumn{3}{|c|}{DIFFERENCES BETWEEN \textbf{2}D AND \textbf{N}D PAIR INTERACTION}\\ \hline
-     & \textbf{2dim PI CA} & \textbf{Ndim PI CA} \\ \hline
+    \multicolumn{3}{|c|}{COMPARISON OF $\bm{2}$ AND $\bm{D}$ DIMENSIONAL PAIR INTERACTION AUTOMATON}\\ \hline
+    \textbf{dimension of PI} & $\bm{2}$ & $\bm{D}$ \\ \hline
     \textbf{nodes} & $4$ cells arranged into square & $2^D$ cells arranged in hypercube \\ \hline
-    \textbf{cells} & 1 mass bit, 2 momentum bits  & 1 mass bit, N momentum bits \\ \hline
+    \textbf{cells} & 1 mass bit, 2 momentum bits  & 1 mass bit, $D$ momentum bits \\ \hline
     \textbf{neighbors} & node has 4 neighbors & node has $2^D$ neighbors  \\ \hline
     \end{tabular}
 \end{center}
 
-Generalization of this automaton to the arbitrary dimension D is very straight-forward. Instead of formalism that Nasilowski used in his founding article \cite{nasilowski}, we will use formalism that we already established for FHP model.
+Generalization of this automaton to the arbitrary dimension D is very straight-forward, if we chose a proper formalism. Instead of notation that Nasilowski used in his founding article \cite{nasilowski}, we will stick to the formalism that we already established for FHP model.
 
 State of the node will be denoted by $\bm{n}(t,\bm{r})$, where $\bm{r}$ is its position on the lattice and $t$ is the current time step. $\bm{n}(t,.)$ represents the whole lattice at time $t$. When possible, we will skip the time variable and use only $\bm{n}(.)$.
 
@@ -435,7 +435,7 @@ and we would like to find an analogous equations to the Navier-Stokes
 \begin{align} \label{nst}
 \begin{split}
 \bm{\nabla . u} = 0, \\
-(\pd_t + \bm{u.\nabla}\bm{u} + \nabla \Phi = \nu \nabla^2 \bm{u}
+(\pd_t + \bm{u.\nabla})\bm{u} + \nabla \Phi = \nu \nabla^2 \bm{u}
 \end{split}
 \end{align}
 with the friction term on the right hand side, containing the shear viscosity $\nu$.

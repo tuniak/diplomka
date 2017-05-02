@@ -1,17 +1,19 @@
 \chapter{Implementation}
 
-According to Wolf-Gladrow (\cite{wolf}, page. 2017), the most effective language for the implementation of LGCA is C (with slightly better performance than Fortran).
-
+According \cite{wolf}, the most effective language for the implementation of LGCA is C, with slightly better performance than Fortran.
+In our implementation, we could not resist to use some comfortable features of C++, but we have sticked to the low-level C-style of programming.
 \bigskip
 
-We listened to this advice and started the implementation in C language, but we could not resist to use some "shortcuts" of C++, but we stayed true to the C-style of programming.
+%We listened to this advice and started the implementation in C language, but we could not resist to use some "shortcuts" of C++, but we stayed true to the C-style of programming.
+%
+%\bigskip
 
-\bigskip
+%The programs have substantially grew over the time, and in case of further development,
 
-The programs have substantially grew over the time, and we got on the crossroad how to efficiently develop our two models further. The current option number one (in the process while writing these lines) is to use the pure C, and pack it as \textit{extension module} to Python, mainly for our own comfort in future applications, but we would be glad if it finds its way to some fellow out there.
+%and we got on the crossroad how to efficiently develop our two models further. The current option number one (in the process while writing these lines) is to use the pure C, and pack it as \textit{extension module} to Python, mainly for our own comfort in future applications, but we would be glad if it finds its way to some fellow out there.
 
 \section{Parallelization}
-Languages C and C++ offer us three widely used interfaces for parallelization:
+Languages C and C++ offer three widely used interfaces for parallelization:
 \begin{enumerate}
 \item OpenMP
 \item MPI
@@ -25,14 +27,15 @@ Languages C and C++ offer us three widely used interfaces for parallelization:
 
 \bigskip
 
-MPI was our hot candidate from the beginning, we have even used it on the cellular automaton not included in this thesis. But after consulting the experienced colleague, we concluded that OpenMP would be more appropriate choice.
+MPI was our hot candidate from the beginning, we have even used it on the cellular automaton not included in this thesis. 
+%But after consulting the experienced colleague, we concluded that OpenMP would be more appropriate choice.
+But in the end, we concluded that OpenMP would be more appropriate choice.
+Since we have opporunity to use clusters at Metacenter (the network of academic clusters all over the Czech republic) we expected we could employ huge amount of processors, if we use MPI and compute on various clusters parallely. But we learnt that in the practice we can hardly employ more then two hundreds of processors.
+Using OpenMP, we can run the computation on SMP machine with 64 processors, which is not significantly lower.
 
-Since we have opporunity to use clusters at Metacenter (the network of clusters from academic institutions all over the Czech republic) we expected we could employ huge amount of processors, if we use MPI and compute on various clusters parallely. But we learnt that in the practice we can hardly employ more then two hundreds of processors.
-Using OpenMP, we can run the computation on SMP machine with 64 processors, that is not significantly lower.
+The drawbacks of MPI are obvious, it requires vast modification of the code, comparing to OpenMP, that usually requires only several lines of code to add.
 
-The drawbacks of MPI are obvious, it requires vast modification of the code, comparing to OpenMP, that needs only few more lines of code to add (and sometimes, even that can be tricky).
-
-Another aspect is that parallelization with OpenMP can be easily included to Python extension module, in case we decide to develop it.
+Moreover, parallelization with OpenMP can be easily included to Python extension module, in case we decide to develop it.
 
 In the following section, we provide a useful measure of our parallel implementation, the \textit{scaling efficiency}. It indicates the speedup of the computation with the increasing number of processing units employed.
 We use two distinct ideas of scaling efficiency.
@@ -69,7 +72,7 @@ On the graph below, we plotted time--length of the last $1000$ steps against the
  \includegraphics[width=1\textwidth]{./img/strongscalingg}
 \end{figure}
 
-For the weak scaling, the diameter of the sphere varied, so that the volume of lattice was increasing proportionally to the number of threads. However, side of the lattice must be multiple of $10$, because macroscopic velocity is computed over the cube with side of $10$. Therefore, the number of nodes per one thread slightly differs -- by no more then $5\%$ at most.
+For the weak scaling, the diameter of the sphere varied, so that the volume of lattice was increasing proportionally to the number of threads. However, side of the lattice must be multiple of $10$, because macroscopic velocity is computed over the cube with side of $10$. Therefore, the number of nodes per one thread slightly differs -- but no more then $5\%$.
 
 \begin{tabular}{ |p{2cm}|p{4cm}|p{4cm}| }
  \hline
@@ -96,7 +99,7 @@ $32$ & $1000$ & $31\,250\,000$ \\
  \includegraphics[width=1\textwidth]{./img/weakscaling}
 \end{figure}
 
-All computations were performed on the cluster Alfrid of University of West Bohemia.
+All computations were performed on the cluster \textbf{Alfrid} of \textit{University of West Bohemia}.
 
 \begin{tabular}{ |p{4cm}|p{8.8cm}| }
 \hline
