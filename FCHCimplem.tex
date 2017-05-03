@@ -1,6 +1,6 @@
 \chapter{Implementation of FCHC}
 
-In the chapter $4$, we theoretically analyzed FCHC automaton, and explained its collision algorithm proposed by Henon. In this chapter, we explain our implementation of this algorithm.
+In the chapter $4$, we theoretically analyzed FCHC automaton, and explained its collision algorithm proposed by Henon. In this chapter, we explain details of our implementation.
 
 %Not so long ago, table that would specify collision rules for $2^{24}$ states was problematic - it would require approximately $2^{24} \cross 10 \cross 4 bytes = 640$MB memory to manage.
 %
@@ -10,12 +10,15 @@ In the chapter $4$, we theoretically analyzed FCHC automaton, and explained its 
 
 
 \begin{enumerate}
-\item At the beginning of the computation, before the simulation of the flow starts, we create table of $2^{24}$ entries. Integer index of the entry is the state of the node, and using Henon algorithm, we compute the optimal isometries for the state.
-\item Collisions during simulation are resolved by choosing the resulting state from the table, instead of computing the optimal isometries again and again. We are not generating the random numbers to chose the resulting state, as it is expensive on resources and was significantly slowing the algorithm in the testing phase. However, we believe that choosing random states is not necessary and our solution for choosing the optimal isometries leads to the uniform distribution due to large number of nodes (around $10^{8}$).
+\item Before the simulation of the flow starts, we compute the table with $2^{24}$ rows. Integer index of the row in the table is the state of the node. Using Henon's algorithm, we compute the optimal isometries for each state.
+\item Collisions during simulation are resolved by choosing the resulting state from the table, instead of computing the optimal isometries again and again. 
+The optimal state should be chosen randomly. But due to the significant overhead of the random numbers generator, we were choosing optimal states one after another, so that all isometries are used with the same frequencies.
+%
+%We are not generating the random numbers to chose the resulting state, as it is expensive on resources and was significantly slowing the algorithm in the testing phase. However, we believe that choosing random states is not necessary and our solution for choosing the optimal isometries leads to the uniform distribution due to large number of nodes (around $10^{8}$).
 
 \end{enumerate}
 
-Excerpt of the source code relevant to the creation of the table and collision follows.
+Excerpts of the source code providing the computation of the table follows.
 
 \section{Algorithm for the creation of the table}
 \begin{lstlisting}
@@ -59,8 +62,7 @@ int C[24] = {
 	C21, C22, C23, C24
 };
 
-
-/* Array of the cells, such that Reverse[i] lies on the diagonal to the C[i] from above */
+/* Array of the cells, such that Reverse[i] lies on the diagonal to the C[i] */
 int Reverse[24] = {
 	C4, C3, C2, C1,
 	C8, C7, C6, C5,
@@ -69,7 +71,6 @@ int Reverse[24] = {
 	C20,C19,C18,C17,
 	C24,C23,C22,C21
 };
-
 
 /* Lattice velocities. The lattice velocity c[i] corresponds to the cell C[i] */
 const int c[24][4] = {
@@ -122,8 +123,6 @@ int switchBits(int n, int i, int j)
 	}
 	return n;
 }
-
-
 
 /* Implementation of the isometries \Sigma_1 and \Sigma_2 on the node n*/
 /* As all isometries that will follow, it is achieved by swapping the appropriate bits in the node */
@@ -327,7 +326,6 @@ int* momenta(int node)
 /* We define this array so that we can reffer to the isometry by the single index */
 int(*iso[])(int n, int*q, int i, int j) = { S,P,sigma };
 
-
 /* This function does all isometries that normalized the node, but in the reverse order, so that original momentum is achieved */
 void goBack(int**steps, int* nodes, int*q, int step, int length)
 {
@@ -416,7 +414,6 @@ int* newNode(int n, int**steps)
 		++step;
 	}
 
-
 	int* nodes;
 	//class 12
 	if (q[0] == 0)
@@ -489,7 +486,6 @@ int* newNode(int n, int**steps)
 		nodes[12] = S(nodes[12], q, 4, 0);
 
 		goBack(steps, nodes, q, step, length);
-
 	}
 	//class 11
 	else if (q[1] == 0)
@@ -524,9 +520,7 @@ int* newNode(int n, int**steps)
 		nodes[6] = S(nodes[6], q, 2, 0);
 		nodes[6] = S(nodes[6], q, 4, 0);
 		
-
 		goBack(steps, nodes, q, step, length);
-
 	}
 	//class 10
 	else if (q[2] == 0 && q[0]==q[1])
@@ -632,7 +626,6 @@ int* newNode(int n, int**steps)
 			nodes[4] = S(nodes[4], q, 4, 0);
 
 			goBack(steps, nodes, q, step, length);
-
 		}
 		//class 7
 		else
@@ -646,8 +639,7 @@ int* newNode(int n, int**steps)
 			nodes[1] = S(nodes[1], q, 4, 0);
 
 			goBack(steps, nodes, q, step, length);
-		}
-		
+		}		
 	}
 	//class 5
 	else if (q[0]==q[1] && q[1]>q[2] && q[2] > q[3] && q[4] == 0)
@@ -680,7 +672,6 @@ int* newNode(int n, int**steps)
 			nodes[2] = S(nodes[2], q, 4, 0);
 
 			goBack(steps, nodes, q, step, length);
-
 		}
 		//class 4
 		else
@@ -744,8 +735,7 @@ void fillTable(int** table)
 \end{lstlisting}
 
 \section{Algorithm for collision}
-Once we have the table specifying optimal isometrical states ready (by the function \textit{fillTable} above),
-the algorithm for collision is to implement. The only non-trivial task is to achieve uniform distribution of chosen isometries without generation of the random numbers, as it is expensive on CPU time.
+Once we have the table specifying optimal isometrical states ready (by the function \textit{fillTable} above), the collision reduces to randomly choosing an optimal state from the table. To avoid an expensive generation of random numbers, we are alternating isometries one by one and so we cover all final states uniformly.
 
 \begin{lstlisting}
 /* For all nodes 'n' on the grid, this function looks in the table and choose from optimal final states */
@@ -780,13 +770,13 @@ void Collision(int***grid, int**table, int t, int X, int Y, int Z)
 \end{lstlisting}
 
 \section{Propagation in FCHC}
-Although the collisions are resolved in the four dimensional space (and the particles are the four dimensional objects), for the purpose of propagation, we can simply 'forget' its four-dimensional nature.
-
-The nodes and particles are sitting on the three dimensional grid and propagate along the 3D projection of lattice vectors \ref{fchc}.
+Although the collisions are resolved in the four dimensional space (and the particles are the four dimensional objects), the propagation is performed on the 3D projection of FCHC lattice \ref{fchc}.
+%for the purpose of propagation, we can simply 'forget' its four-dimensional nature.
 
 \begin{lstlisting}
-/* The propagation is happening in all the nodes at once, but in the computer simulation, it is happening sequentially, so we need to use to grids (propagation happening on the one grid would overwrite some nodes by new particles before the old particles propagated away). */
-/* Hence, we are using the two grids, 'int***even' and 'int***odd'. 'Even' grid is occupied at even times, 'Odd' grid is occupied at odd times. For example, in odd time, first parameter of Propagation (int***from) will be 'Odd' and second parameter (int***to) will be 'Even' */
+/* The propagation is supposed to happen simultaneously in all nodes at once. Because it is performed sequentially in the simulation, so we need to propagate particles from the current array to the second one, so that nodes are not overwritten before update. Every time steps, these two arrays alternate.
+These arrays are denoted 'int***even' and 'int***odd', that are occupied at even and odd timesteps respectively. is occupied at even times, 'Odd' grid is occupied at odd times. 
+In the odd timestep, first parameter of Propagation (int***from) will be 'Odd' and second parameter (int***to) will be 'Even' */
 
 void Propagation(int***from, int***to, int**table, int X, int Y, int Z)
 {

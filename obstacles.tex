@@ -3,22 +3,19 @@
 In previous chapter, we explained microdynamics of FCHC and PI, that is non-physical.
 However, if we avarage velocities of the particles over sufficiently large region, we obtain physical velocity field.
 
+
 The function that implements computation of velocity from LGCA lattice is simple and similar for FCHC and PI, so we comment only on FCHC implementation.
 
 \begin{lstlisting}
-
 void compute_velocity(int***grid, double****v, int X, int Y, int Z, int side, int I, int J, int K)
 {
 	// We compute mean velocity over the cube with the side of length 'side'.
 	// N is the number nodes in this cube.
 	double N = side*side*side;
-
 	int i, j, k, l, m, n;
-
 	int x, y, z;
 
 #pragma omp parallel for private (i,j,k,l,m,n,x,y,z)
-
 	for (i = 0; i < I; ++i)
 	{
 		for (j = 0; j < J; ++j)
@@ -79,10 +76,8 @@ if (n & C[i])
 }
 \end{lstlisting}
 
-\section{Flow around the sphere}
-
-We emphasize that the vector field is the physical velocity field. 
-Each velocity vector is computed over $N = 80^3 / 8 = 64000$ nodes for PI and $N = 80^3 = 521 000$ for FCHC (by the function $compute_velocity$ above).
+\section{Flow around the sphere} 
+Each velocity vector is computed over $N = 80^3 / 8 = 64000$ nodes for PI and $N = 80^3 = 521 000$ for FCHC (by the function $compute_velocity$ that we presented).
 
 \begin{figure}[htbp]
  \centering 
