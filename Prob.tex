@@ -1,5 +1,6 @@
 \chapter{Probabilistic tools in turbulence}
-In this chapter, we will remind basic concepts of probability and statistics, and introduce more advanced tools, that are frequently used in probabilistic description of turbulence. 
+In this chapter, we will remind basic concepts of probability and statistics \cite{turb} that we will use for the description of turbulent flow in the practical part.
+%are frequently used in probabilistic description of turbulence. 
 
 
 %So far, the most successful approach in turbulence research is by the means of statistical analysis.
@@ -19,36 +20,30 @@ In this chapter, we will remind basic concepts of probability and statistics, an
 %
 %Following text requires prior knowledge of some probability and statistics. Basic concepts will be slightly reminded and will explain more interesting and advanced stuff in detail.
 \section{Random variable}
+A typical example of continuous random variable is an x-component of velocity in the turbulent flow.
 
-Let us define random variable as a map
+Formally, random variable is defined as a map
 \begin{align}
 v: \Omega \rightarrow \mathbb{R}
 \end{align}
 from the probability space to the real numbers.
-
-A good example of random variable is the x-component of a velocity at the specific point, in the specific time. This is example of continuous random variable. In the whole section, we will consider only continuous variables and functions, as all the physical quantities of our interest are continuous.
-
-\bigskip
-To define the central concept of \textit{probability density function}.
-
-It is useful to define a cumulative probability function
+%
+%A good example of random variable is the x-component of a velocity at the specific point, in the specific time. This is example of continuous random variable. In the whole section, we will consider only continuous variables and functions, as all the physical quantities of our interest are continuous.
+Let us define the \textbf{cumulative probability function}
 \begin{align}
 F(x) = \mathrm{Prob}\left\{v(\omega) < x\right\}
 \end{align}
-which describes the probability that random variable $v$ takes a value smaller than $x$. Since probability is non-negative measure, $F(x)$ is non-decreasing function. 
+which describes the probability that random variable $v$ takes a value smaller than $x$. 
 
-The famous \textit{probability density
-Hence, its derivative is a non-negative function,
+Then, we can define \textbf{probability density function} as the derivative of cumulative probability function
 \begin{align}
 p(x) = \frac{\dd F(x)}{\dd x} \geq 0.
 \end{align}
-
-The famous 
-And it happens to be the famous $probability~density~function$
+The inequality follows from the non-decreasing property of $F(x)$. 
 
 Loosely speaking, $p(x)dx$ is the probability that random variable takes value between $x$ and $x+dx$.
 
-Of course, probability is normalized to one:
+Because the probability is normalized to one, we have
 \begin{align}
 \int_{\mathbb{R}} p(x) \, dx = 1.
 \end{align}
@@ -66,110 +61,91 @@ or any other statistical moment of $v$
 \langle v^m \rangle = \int_{\mathbb{R}} x^m \, p(x) \, dx.
 \end{align}
 
-The centered
-In the following text, we suppose that
+In the following text, we suppose that the statistical moments are centered
 \begin{align*}
-\langle v \rangle = 0,
+\langle v \rangle = 0.
 \end{align*}
-so the statistical moments are actually central statistical moments
-\begin{align*}
-\langle v^m_{central} \rangle = \langle v^m - \langle v \rangle \rangle = \langle v^m \rangle
-\end{align*}
+%so the statistical moments are centered
+%\begin{align*}
+%\langle v^m_{central} \rangle = \langle v^m - \langle v \rangle \rangle = \langle v^m \rangle
+%\end{align*}
+For non-centered variables $v'$, all statements will be valid for $v = v' - \langle v' \rangle$.
 
-For non-centered variables $w$, all statements will be valid for $w' = w - \langle w \rangle$.
+\subsection{Characteristic function}
 
-\section{Characteristic function}
-
-Of special interest is the Fourier transform of $probability~density~function$
+Of the special interest is the \textbf{characteristic function} of variable $v$. It is obtained by the Fourier transform of $probability~density~function$
 \begin{align*}
 K(z) = \int_{\mathbb{R}} e^{izv} p(x) dx = \langle e^{izv} \rangle.
 \end{align*}
-It is called $characteristic~function$ of variable $v$.
 
-It is interesting for couple of reasons. For example, if we consider sum of two random variables $u+v$, corresponding $p.d.f.$ would be convolution of their respective $p.d.f.s$. But its characteristic function is product of respective characteristic functions. Hooray!
+Let us consider random variables $v$ and $u$ with respective probability densities $f_v$ and $f_u$ and characteristic functions $K_v$ and $K_u$. The $f_{v+u}$ of the sum is given by convolution of $f_v$ and $f_u$. On the other hand, the characteristic function of the sum $K_{u+v}$ is give by product of $f_u$ and $f_v$.
 
 \bigskip
 
-But for Guassian random variables, characteristic function leads us to various useful formulas.
+Using characteristic function for Gaussian random variables, we will obtain several useful formulas.
 
-\section{Gaussian random variables}
-Gaussian random variable can be characterized by - the characteristic function.
-Because its characteristic function can be simplified to
+\subsection{Gaussian random variables}
+Gaussian random variable can be simply characterized by the \textit{characteristic function}, which simplifies to
 \begin{align*}
 K(z) = \langle e^{izv} \rangle = e^{-\frac{1}{2} \sigma^2 \, v^2}
 \end{align*}
-
+for the Gaussian variable.
 
 \section{Vector random variable}
-Let us go back to the example of random variable - the x-coordinate of velocity at specific time $t$ and specific position $\bm{r}$ in turbulent flow $v_x$.
+An example of the vector random variable is the velocity vector $\bm{v} = (v_x,v_y,v_z)$ of the turbulent flow.
 
-Not surprisingly, vector random variable would be velocity vector $\bm{v} = (v_x,v_y,v_z)$ in turbulent flow.
+Most of the definitions from previous section are easily generalized to vector variables, but several definitions need to be restated.
 
-Some definitions from previous sections are easy to generalize to vector variables and we omit them, but sometimes we need to redefine them.
-
-In general, moments of the vector random variables are tensors
+The statistical moments of the vector random variables are tensors
 \begin{align}
-\langle v_{i_1}, v_{i_2}, ..., v_{i_n} \rangle
+\langle v_{i_1}, v_{i_2}, ..., v_{i_n} \rangle,
 \end{align}
-
-The most important among them is the covariance
+the most important among them being the covariance
 \begin{align}
-\Gamma_{ij} = \langle v_i v_j \rangle
+\Gamma_{ij} = \langle v_i v_j \rangle.
 \end{align}
-
 \bigskip
-Another definition worth of commentary is the definition of Gaussian random variables.
-Vector random variable $\bm{v}$ is Gaussian, if scalar product $\bm{v}.\bm{c}$ is Gaussian (in the sense of previous definition) for every $\bm{c} \in R^n$.
-
-And if $\bm{v}$ is Gaussian, its characteristic function takes simple form
+%Another definition worth of commentar is the definition of Gaussian random variables.
+Vector random variable $\bm{v}$ is Gaussian, if scalar product $\bm{v}.\bm{c}$ if its characteristic function takes the simple form
 \begin{align}
-K(\bm{z}) = \langle e^{i\bm{z}.\bm{v}} \rangle = e^{-\frac{1}{2} z_i z_j \Gamma_{ij}}
+K(\bm{z}) = \langle e^{i\bm{z}.\bm{v}} \rangle = e^{-\frac{1}{2} z_i z_j \Gamma_{ij}}.
 \end{align}
 
-We see that characteristic function $K(\bm{z})$ depends only on the covariance tensor $\Gamma_{ij}$.
-
-\bigskip
-
-
-Starting from that, we could show that any statistical moment of $\bm{v}$ can be expressed as function of covariance. For example
+As we see, $K(\bm{z})$ depends only on the covariance tensor $\Gamma_{ij}$.
+Starting from that, it can be shown that statistical moment of any order can be expressed as the function of covariance. For example
 \begin{align}
 \langle v_i v_j v_k v_l \rangle = \Gamma_{ij}\Gamma_{kl} + \Gamma_{il}\Gamma_{jk} + \Gamma_{ik}\Gamma_{jl}.
 \end{align}
 
-We state it without proof, as it would require too much paper.
-
 \section{Random function}
-Random function can be defined as "the family of random variables" - sequence that is indexed by continuous time and spatial variables (vector random variable is sequence of random variables indexed by enumerable and finite set, e.g. $I=\big\{1,2,..N\big\}$.
-
-Going back to our velocity example, random function would be the whole velocity field in turbulent flow
+Concluding our velocity example, random function is the whole velocity field of the turbulent flow
 $\bm{v}(t,\bm{r})$.
+
+Formally, random function is the family of (scalar of vector-valued) random variables -- sequences indexed by continuous time and spatial variables.
+% (vector random variable is sequence of random variables indexed by enumerable and finite set, e.g. $I=\big\{1,2,..N\big\}$.
 
 \bigskip
 
-Definitions from the previous sections are easy to upgrade from random functions.
-Just bear in mind, that scalar product of random functions $u$ and $v$ means
+Previous definitions are easy to upgrade to random functions, if we redefine the scalar product of random functions $u$ and $v$ as
 \begin{align}
 \int_{\Omega} u \, v \, dx.
 \end{align}
-This definition of scalar product is correct under assumption that random functions are real and square-integrable (from $L^2$ space).
-
 
 \section{Stationary random variable}
 Loosely said, $v(t)$ is stationary if $v(t)$ and $v(t+h)$ have same statistical properties.
+For example, for stationary random variable $v$, we have
+\begin{align*}
+\langle v(t_1+h) v(t_2 + h) \rangle = \langle v(t_1) v(t_2) \rangle = \Gamma(t_1 - t_2),
+\end{align*}
+It implies that variance $\langle v(t)^2 \rangle = \Gamma(0)$ is time-independent.
 
-For example, for correlation function we have
-\begin{align}
-\langle v(t_1+h) v(t_2 + h) \rangle = \langle v(t_1) v(t_2) \rangle = \Gamma(t_1 - t_2).
-\end{align}
-
-Hence, variance $\langle v(t)^2 \rangle = \Gamma(0)$ does not depend on time at all.
-But be careful, difference of stationary function is not necessarily stationary. 
+Interestingly, difference of stationary functions is not necessarily stationary. 
 For example, if $v(t)$ is stationary, then $v(2t)$ is also stationary, because its variance
-
-%\begin{align}
-%\langle v(2t)^2 \rangle = \Gamma(2t - 2t) = \Gamma(0)
-%\end{align}
+\begin{align*}
+\langle v(2t)^2 \rangle = \Gamma(2t - 2t) = \Gamma(0)
+\end{align*}
 does not depend on time.
+
 However, their difference
 \begin{align}
 \langle (v(2t) - v(t))^2 \rangle = \langle v^2(t) \rangle + \langle v^2(2t) \rangle + 2\langle v(t)\,v(2t) \rangle = 2\Gamma(0) + \Gamma(2t - t)
@@ -178,70 +154,56 @@ does depend on time.
 
 \section{Spectrum of stationary random functions}
 
-To analyze stationary random function, we have very powerful tool at our reach - the expansion of a random variable into Fourier harmonics:
+To analyze stationary random function, we can expand it in the Fourier harmonics
 \begin{align}
-v(t,\omega) = \int_{R} e^{itf} \hat{v}(f,\omega) df
+v(t,\omega) = \int_{R} e^{itf} \hat{v}(f,\omega) df,
 \end{align}
 where $f$ denotes frequency.
 
-To filter-out temporal scales greater than $F^{-1}$ from the function $v$, we define
+We introduce the low-pass filter function
 \begin{align}
-v_F^{<}(t) = \int_{|f| \leq F} e^{itf} \hat{v}(f,\omega) df
+v_F^{<}(t) = \int_{|f| \leq F} e^{itf} \hat{v}(f,\omega) df,
 \end{align} 
+where we filtered-out temporal scales greater than $F^{-1}$ from the function $v$.
 
-\bigskip
-
-Let us define mean kinetic energy of random function 
-\begin{align}
-E = \frac{1}{2} \langle v^2 \rangle
-\end{align}
-
-Energy of harmonics with frequencies lower than $F$ are then
-\begin{align}
-\mathcal{E}(F) = \frac{1}{2} \langle (v_F^{<}(t))^2 \rangle
-\end{align}
-
-and energy spectrum E(f) is than defined as
-\begin{align}
+Using the $v_F^{<}(t)$, we define the \textit{cumulative energy spectrum} as
+\begin{align*}
+\mathcal{E}(F) = \frac{1}{2} \langle (v_F^{<}(t))^2 \rangle.
+\end{align*}
+Its derivation is the \textit{energy spectrum}
+\begin{align*}
 E(f) = \frac{d\mathcal{E}(f)}{df}.
-\end{align}
-
-Since $\mathcal{E}(f)$ is non-decreasing, we have $E(f) \geq 0$.
-
-\bigskip
-
-Now we can express mean kinetic energy as
+\end{align*}
+Since $\mathcal{E}(f)$ is non-decreasing, we have
+\begin{align*}
+E(f) \geq 0.
+\end{align*}
+Integrating  $E(f)$ over all frequencies gives the total mean kinetic energy
 \begin{align}
-E = \int_0^{\infty} E(f)
+\int_0^{\infty} E(f) = \lim_{F \to \infty} \frac{1}{2} \langle (v_F^{<})^2 \rangle = \frac{1}{2} \langle v^2 \rangle.
 \end{align}
 
-It could be also shown that energy spectrum $E(f)$ is the Fourier transform of correlation function
-\begin{align} 
-E(f)  = \frac{1}{2\pi} \int_{R} e^{ifs} \Gamma(s) \,ds,
-\end{align}
-%what is known as \textit{Wiener-Khinchin formula} (that Einstein already used in 1914).
+It can be shown that energy spectrum $E(f)$ is the Fourier transform of correlation function
+\begin{align*} 
+E(f)  = \frac{1}{2 \pi} \int_{R} e^{ifs} \Gamma(s) \,ds,
+\end{align*}
+which is known as Wiener-Khinchin formula.
 
-Direct consequence of this formula is an expression for the \textit{second order structure function}
+It directly implies an expression for the \textit{second order structure function}
 \begin{align}\label{structf}
 \langle (v(t') - v(t))^2 \rangle = 2 \, \int_{R} (1 - e^{if(t' - t)}) \, E(f) \, df.
 \end{align}
-
-\bigskip
 
 As Kolmogorov proved in 1940, a power-law holds for energy harmonics in turbulent case:
 \begin{align}
 E(f) = C |f|^{-n}, ~~ C>0
 \end{align}
 
-If we substitute this expression into the structure function \ref{structf}, after tedious and hideous calculation we get
-
+Plugging the last expression in the structure function \ref{structf} leads to
 \begin{align} \label{Brown}
 \begin{split}
 \langle (v(t') - v(t))^2 \rangle &= C\,A_n |t' - t|^{n-1}, \\
 A_n &= \int_R (1-e^{ix}) |x|^{-n} dx
 \end{split}
 \end{align}
-for $1 < n < 3$, else the structure function diverges. For n = 2, we recover Brownian motion (formulation from the Frisch).
-
-
-
+for $1 < n < 3$, else the structure function diverges. For n = 2, we recover Brownian motion \cite{turb}.
