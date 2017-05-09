@@ -27,7 +27,7 @@ Languages C and C++ offer three widely used interfaces for parallelization:
 
 \bigskip
 
-MPI was our hot candidate from the beginning, we have even used it on the cellular automaton not included in this thesis. 
+MPI was our hot candidate from the beginning, we have even used it on the $1D$ cellular automaton with range 2. 
 %But after consulting the experienced colleague, we concluded that OpenMP would be more appropriate choice.
 But in the end, we concluded that OpenMP would be more appropriate choice.
 Since we have opporunity to use clusters at Metacenter (the network of academic clusters all over the Czech republic) we expected we could employ huge amount of processors, if we use MPI and compute on various clusters parallely. But we learnt that in the practice we can hardly employ more then two hundreds of processors.
@@ -72,7 +72,7 @@ On the graph below, we plotted time--length of the last $1000$ steps against the
  \includegraphics[width=1\textwidth]{./img/strongscalingg}
 \end{figure}
 
-For the weak scaling, the diameter of the sphere varied, so that the volume of lattice was increasing proportionally to the number of threads. However, side of the lattice must be multiple of $10$, because macroscopic velocity is computed over the cube with side of $10$. Therefore, the number of nodes per one thread slightly differs -- but no more then $5\%$.
+For the weak scaling, the diameter of the sphere varied, so that the volume of lattice was increasing proportionally to the number of threads. However, side of the lattice must be multiple of $10$, because macroscopic velocity is computed over the cube with side of $10$. Therefore, the number of nodes per one thread differs, but no more then by $5\%$.
 
 \begin{tabular}{ |p{2cm}|p{4cm}|p{4cm}| }
  \hline

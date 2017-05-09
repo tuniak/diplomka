@@ -1,5 +1,5 @@
 \chapter{Probabilistic tools in turbulence}
-In this chapter, we will remind basic concepts of probability and statistics \cite{turb} that we will use for the description of turbulent flow in the practical part.
+In this chapter, we will establish the basic concepts of probability and statistics \cite{tur} that we will use for the description of turbulent flow in the practical part.
 %are frequently used in probabilistic description of turbulence. 
 
 
@@ -22,11 +22,11 @@ In this chapter, we will remind basic concepts of probability and statistics \ci
 \section{Random variable}
 A typical example of continuous random variable is an x-component of velocity in the turbulent flow.
 
-Formally, random variable is defined as a map
+Formally, \textbf{random variable} is defined as a map
 \begin{align}
 v: \Omega \rightarrow \mathbb{R}
 \end{align}
-from the probability space to the real numbers.
+from the probability space $\Omega$ to the real numbers.
 %
 %A good example of random variable is the x-component of a velocity at the specific point, in the specific time. This is example of continuous random variable. In the whole section, we will consider only continuous variables and functions, as all the physical quantities of our interest are continuous.
 Let us define the \textbf{cumulative probability function}
@@ -47,7 +47,6 @@ Because the probability is normalized to one, we have
 \begin{align}
 \int_{\mathbb{R}} p(x) \, dx = 1.
 \end{align}
-
 Using $probability~density~function$, we can express mean value of $v$
 \begin{align}
 \langle v \rangle = \int_{\mathbb{R}} x \, p(x) \, dx ,
@@ -60,7 +59,6 @@ or any other statistical moment of $v$
 \begin{align}
 \langle v^m \rangle = \int_{\mathbb{R}} x^m \, p(x) \, dx.
 \end{align}
-
 In the following text, we suppose that the statistical moments are centered
 \begin{align*}
 \langle v \rangle = 0.
@@ -73,16 +71,15 @@ For non-centered variables $v'$, all statements will be valid for $v = v' - \lan
 
 \subsection{Characteristic function}
 
-Of the special interest is the \textbf{characteristic function} of variable $v$. It is obtained by the Fourier transform of $probability~density~function$
+Of the special interest is the \textbf{characteristic function} of variable $v$. It is obtained by the Fourier transform of the probability density function
 \begin{align*}
 K(z) = \int_{\mathbb{R}} e^{izv} p(x) dx = \langle e^{izv} \rangle.
 \end{align*}
-
-Let us consider random variables $v$ and $u$ with respective probability densities $f_v$ and $f_u$ and characteristic functions $K_v$ and $K_u$. The $f_{v+u}$ of the sum is given by convolution of $f_v$ and $f_u$. On the other hand, the characteristic function of the sum $K_{u+v}$ is give by product of $f_u$ and $f_v$.
+Let us consider random variables $v$ and $u$ with probability densities $f_v$ and $f_u$ and characteristic functions $K_v$ and $K_u$. The $f_{v+u}$ of the sum is given by convolution of $f_v$ and $f_u$. On the other hand, the characteristic function of the sum $K_{u+v}$ is give by the product of $f_u$ and $f_v$.
 
 \bigskip
 
-Using characteristic function for Gaussian random variables, we will obtain several useful formulas.
+Using characteristic function for the Gaussian random variables, we will obtain several useful formulas.
 
 \subsection{Gaussian random variables}
 Gaussian random variable can be simply characterized by the \textit{characteristic function}, which simplifies to
@@ -112,7 +109,7 @@ K(\bm{z}) = \langle e^{i\bm{z}.\bm{v}} \rangle = e^{-\frac{1}{2} z_i z_j \Gamma_
 \end{align}
 
 As we see, $K(\bm{z})$ depends only on the covariance tensor $\Gamma_{ij}$.
-Starting from that, it can be shown that statistical moment of any order can be expressed as the function of covariance. For example
+Starting from that, it can be shown that statistical moment of any even order can be expressed as the function of covariance. For example
 \begin{align}
 \langle v_i v_j v_k v_l \rangle = \Gamma_{ij}\Gamma_{kl} + \Gamma_{il}\Gamma_{jk} + \Gamma_{ik}\Gamma_{jl}.
 \end{align}
@@ -121,14 +118,14 @@ Starting from that, it can be shown that statistical moment of any order can be 
 Concluding our velocity example, random function is the whole velocity field of the turbulent flow
 $\bm{v}(t,\bm{r})$.
 
-Formally, random function is the family of (scalar of vector-valued) random variables -- sequences indexed by continuous time and spatial variables.
+Formally, it is the family of (scalar of vector-valued) random variables -- sequences indexed by continuous time and spatial variables.
 % (vector random variable is sequence of random variables indexed by enumerable and finite set, e.g. $I=\big\{1,2,..N\big\}$.
 
 \bigskip
 
 Previous definitions are easy to upgrade to random functions, if we redefine the scalar product of random functions $u$ and $v$ as
 \begin{align}
-\int_{\Omega} u \, v \, dx.
+\int_{\Omega} u \,. v \, dx.
 \end{align}
 
 \section{Stationary random variable}
@@ -206,4 +203,4 @@ Plugging the last expression in the structure function \ref{structf} leads to
 A_n &= \int_R (1-e^{ix}) |x|^{-n} dx
 \end{split}
 \end{align}
-for $1 < n < 3$, else the structure function diverges. For n = 2, we recover Brownian motion \cite{turb}.
+for $1 < n < 3$, otherwise the structure function diverges. For n = 2, we recover Brownian motion \cite{tur}.

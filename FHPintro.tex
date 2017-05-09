@@ -258,9 +258,9 @@ We see that for $\rho= b/2$, the coefficient $G(\rho)$ vanishes.
 %\end{equation}
 
 \section{Chapman-Enskog expansion}
-Because relaxation towards equilibrium values happens in a few updates of the automaton, it is standard procedure to expand the occupation numbers $N_i(t,r)$ around the equilibrium occupation numbers $N_i^{eq}(\rho,\bm{u})$:
+Because relaxation towards equilibrium values happens in a few updates of the automaton, it is standard procedure to expand the occupation numbers $N_i(t,\bm{r})$ around the equilibrium occupation numbers $N_i^{eq}(\rho,\bm{u})$:
 \begin{equation} \label{chap}
-N_i(t,r) = N_i^0(t,r) + \epsilon N_i^1(t,r) + \mathcal{O}(\epsilon^2) 
+N_i(t,\bm{r}) = N_i^0(t,\bm{r}) + \epsilon N_i^1(t,\bm{r}) + \mathcal{O}(\epsilon^2) 
 \end{equation} 
 %Following formulas
 %\begin{equation}
@@ -326,7 +326,7 @@ Using the rescaled length and time, we deduce the rescaled differential operator
 \end{split}
 \end{equation}
 
-Now, we are ready to expand the conservation laws \ref{macro_m} and \ref{macro_p} in Chapman-Enskog series. We insert expansion \ref{rozvoj t+1} of $N_i(t+1,r+c_i)$, then we insert expansion of $N_i(t,r)$ according to \ref{chap}. Finally, we substitute differential operators according to \ref{oper}.
+Now, we are ready to expand the conservation laws \ref{macro_m} and \ref{macro_p} in Chapman-Enskog series. We insert expansion \ref{rozvoj t+1} of $N_i(t+1,\bm{r}+\bm{c_i})$, then we insert expansion of $N_i(t,\bm{r})$ according to \ref{chap}. Finally, we substitute differential operators according to \ref{oper}.
 
 From the expansion, we present only the terms of order $\epsilon$, that we are interested in.
 
@@ -387,7 +387,7 @@ For low values of $\bm{u}^2$, pressure $p$ is given by isothermal relation $p = 
 
 What about $g(\rho)$?  
 
-The disease of FHP, FCHC and all the lattice-gas cellular automata to follow is that $g(\rho)$ is never equal to 1, as it is in Navier-Stokes equations.
+This is the disease of FHP, FCHC and all the lattice-gas cellular automata to follow, that $g(\rho)$ is never equal to 1, as it is in Navier-Stokes equations.
 
 The reason lies in the broken \textit{Galilei invariance} in these automata as they all have discrete rotational symmetry (by $60 \degree$ in FHP and between $60 \degree$ and $45 \degree$ in FCHC).
 

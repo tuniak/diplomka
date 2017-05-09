@@ -27,6 +27,7 @@
 
 %% Character encoding: usually latin2, cp1250 or utf8:
 \usepackage{float}
+\usepackage{epigraph}
 \usepackage{CJKutf8}
 \usepackage[utf8]{inputenc}
 \usepackage{physics}
@@ -54,6 +55,16 @@
 %for source code documentation
 \usepackage{listings}
 \usepackage{color}
+
+\makeatletter
+\renewcommand{\@chapapp}{}% Not necessary...
+\newenvironment{chapquote}[2][2em]
+  {\setlength{\@tempdima}{#1}%
+   \def\chapquote@author{#2}%
+   \parshape 1 \@tempdima \dimexpr\textwidth-2\@tempdima\relax%
+   \itshape}
+  {\par\normalfont\hfill--\ \chapquote@author\hspace*{\@tempdima}\par\bigskip}
+\makeatother
 
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
@@ -175,9 +186,10 @@ The scientifically most relevant part concerns statistical properties of the tur
 \include{Practical}
 %\include{Paral}
 \include{Implementation}
-\include{FCHCimplem}
 \include{PIImplem}
 \include{nonPI}
+\include{tgv}
+\include{FCHCimplem}
 \include{obstacles}
 \include{turbo}
 %\include{Documentation}
@@ -217,7 +229,12 @@ Complex Systems 15, 1-40, 2004.
    \emph{ Lattice Gas Hydrodynamics in Two and Three Dimensions}.
    Complex Systems 1, 1987
    
- \bibitem{turb}
+ \bibitem{lbm}
+   {\sc Timm Krüger, Halim Kusumaatmaja, Alexandr Kuzmin, Orest Shardt, Goncalo Silva, Erlend Magnus Viggen}:
+   \emph{ The Lattice Boltzmann Method Principles and Practice}.
+   Springer I, 2017   
+   
+ \bibitem{tur}
    {\sc Frisch,} Uriel:
    \emph{ Turbulence: The Legacy of A. N. Kolmogorov}.
    Cambridge University Press, 1995  
@@ -233,11 +250,22 @@ Complex Systems 15, 1-40, 2004.
    \emph{ A Cellular-Automaton Fluid Model with Simple Rules in Arbitrarily Many Dimensions}.
    Journal of Statistical Physics, Vol. 65, Nos. 1/2, 1991
 
+
+\bibitem{mars}
+   {\sc Marsaglia,} George:
+   \emph{ Random Numbers for C: End at last?}.
+   http://www.cse.yorku.ca/~oz/marsaglia-rng.html
+
+
+\bibitem{tgvref}
+   {\sc Bull,} J.R., {\sc Jameson,} A.:
+   \emph{ Simulation of the Compressible Taylor Green Vortex using High-Order Flux Reconstruction Schemes}.
+      7th AIAA Theoretical Fluid Mechanics Conference, June 2014
+
+
  \bibitem{scholtz}
    {\sc Scholtz,} Martin:
-   \emph{ Vplyv anizotropie na stabilitu skalovacich
-rezimov v modeli advekcie pasivnej
-vektorovej primesi}.
+   \emph{ Vplyv anizotropie na stabilitu skalovacich rezimov v modeli advekcie pasivnej vektorovej primesi}.
    Kosice, 2007
    
 
