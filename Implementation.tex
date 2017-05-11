@@ -27,18 +27,18 @@ Languages C and C++ offer three widely used interfaces for parallelization:
 
 \bigskip
 
-MPI was our hot candidate from the beginning, we have even used it on the $1D$ cellular automaton with range 2. 
+MPI was our hot candidate from the beginning and we have even used it on the $1D$ cellular automaton with range 2. 
 %But after consulting the experienced colleague, we concluded that OpenMP would be more appropriate choice.
 But in the end, we concluded that OpenMP would be more appropriate choice.
-Since we have opporunity to use clusters at Metacenter (the network of academic clusters all over the Czech republic) we expected we could employ huge amount of processors, if we use MPI and compute on various clusters parallely. But we learnt that in the practice we can hardly employ more then two hundreds of processors.
+Since we have opporunity to use clusters at Metacenter (the network of academic clusters in the Czech republic) we expected we could employ huge amount of processors, if we use MPI and compute on various clusters parallely. But we learnt that in the practice we can hardly employ more then two hundreds of processors.
 Using OpenMP, we can run the computation on SMP machine with 64 processors, which is not significantly lower.
 
-The drawbacks of MPI are obvious, it requires vast modification of the code, comparing to OpenMP, that usually requires only several lines of code to add.
+The drawbacks of MPI are obvious, it requires vast modification of the code, contrary to OpenMP that usually requires only several lines of code to add.
 
-Moreover, parallelization with OpenMP can be easily included to Python extension module, in case we decide to develop it.
+Moreover, parallelization with OpenMP can be easily included to Python extension module.
 
 In the following section, we provide a useful measure of our parallel implementation, the \textit{scaling efficiency}. It indicates the speedup of the computation with the increasing number of processing units employed.
-We use two distinct ideas of scaling efficiency.
+We applied two distinct concepts of scaling efficiency.
 
 \section{Strong scaling}
 In strong scaling measurement, we vary the number of processing units, while the problem size stays fixed.

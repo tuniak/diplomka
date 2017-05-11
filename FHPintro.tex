@@ -1,13 +1,13 @@
 \chapter{FHP}
-Again, this enhanced lattice gas cellular automaton is named after its inventors -- Frisch, Humpfrey and Pomeu. 
-They proposed it in 1986 together with its three dimensional variant - the FCHC. 
+This enhanced lattice gas cellular automaton is also named after its inventors -- Frisch, Humpfrey and Pomeu. 
+They proposed it in 1986 \cite{fhp} together with its three dimensional variant - the FCHC. 
 %Comparing it to HPP, we have a lattice with better rotational symmetry and nodes with richer  set of collisions.
 %
 %Now that we presented the setting of FHP in two dimensions rather intuitively, let us explore the microdynamics of FHP in a more formal way. The formal treatment provides that the hydrodynamic equations that we derive are valid for FHP in arbitrary dimension (although finding an appropriate multidimensional lattice is non-trivial and possible only in 4 dimensions, as we will see).
 In following section, we will graphically explain the basic principles of FHP, the later sections will be more general and the obtained results will be valid for arbitrary dimensional FHP-like automaton (most importantly FCHC).
 
 \section{The lattice of FHP}
-The whole improvement of FHP lies in a simple change - instead of the rectangular grid, FHP builds on a hexagonal grid. 
+The whole improvement of FHP lies in a simple change - instead of the square grid, FHP builds on a hexagonal grid. 
 %The two dimensional plane can be uniformly covered by squares, but also by hexagon, that . This is the main improvement of FHP, 
 All other properties are implied by the increased symmetry of the lattice.
 
@@ -95,7 +95,7 @@ n_i(t+1,r+c_i) = n_i(t,r) + \Delta_i(t,r)
 \end{align}
 where $\Delta_i$ is
 \begin{enumerate}
-\item $\Delta_i = 0$ if no collision is happening in $n(t,r)$. Then state of the cell $n_i(t,r)$ only propagates to $n_i(t+1,r+c_i)$.
+\item $\Delta_i = 0$ if no collision is happening in $n(t,r)$. The state of the cell $n_i(t,r)$ only propagates to $n_i(t+1,r+c_i)$.
 \item $\Delta_i = 1$ if there is not particle in $n_i(t,r)$ yet, but gets there after collision. 
 \item $\Delta_i = -1$ if there is particle in the $n_i(t,r)$, but after the collision, cell gets empty.
 \end{enumerate}
@@ -108,7 +108,7 @@ where $\Delta_i$ is
 %\end{equation*}
 %As there are only 2 collision configuration in HPP, $\Delta_i$ has 2 terms.
 
-By this reasoning, we obtain the form of collision operator for FHP-I model
+By this reasoning, we obtain the collision operator for FHP-I model
 \begin{align} \label{colop}
 \begin{split}
 \Delta_i = n_{i+1}n_{i+3}n_{i+5}(1-n_i)(1-n_{i+2})(1-n_{i+4})\\

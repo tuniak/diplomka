@@ -1,21 +1,19 @@
 
 
 \chapter{Practical part}
-
 %Short review of what follows:
-In the theoretical part of the thesis, we have introduced the notion of cellular automaton and basic models of lattice-gas cellular automata by which it is possible to mimic the flow of physical fluids governed by the Euler equations and, to certain extent, the Navier-Stokes equations.
+In the theoretical part of the thesis, we have introduced the notion of cellular automaton and basic models of lattice-gas cellular automata that mimic the flow of physical fluids governed by the Euler equations and, to certain extent, the Navier-Stokes equations.
 We have described the algorithms behind the microdynamics of these models and emphasized the importance of the symmetries of the lattice for reproducing correct macroscopic behavior.
 
-In this part, we implement the aforementioned algorithms in the language C++ and visualize the results using the \textit{GNU}plot software. The original results of this thesis are summarized in the points to follow.
-
-
+In this part, we implement the aforementioned algorithms in the language C++ and visualize the results using the \textit{Matplotlib}, \textit{Mathematica} and \textit{GNU}plot. The original results of this thesis are summarized in the points to follow.
 
 \begin{enumerate}
-\item To motivate the applications of cellular automata in physics, we implemented 1D and 2D cellular automata that exhibit wide range of behavior. These results were already included in the theoretical part and will not be discussed further.
-\item We implement FCHC and PI -- the two distinct 3D LGCA introduced in theoretical part. These implementations are original, based only on the schemes presented in theoretical part.
-\item We inspect 3D flow around obstacles of various shapes.
-\item We study fully-developed turbulent flow and compare its statistical pro\-perties to the Kolmogorov--Obuchov K41 theory. \cite{wolf}.
+\item To motivate the applications of cellular automata, we implemented 1D and 2D cellular automata that exhibit wide range of behavior. These results were already included in the theoretical part and will not be discussed further.
+\item We implement FCHC and PI -- the two distinct 3D LGCA introduced in theoretical part. These implementations are based only on the schemes presented in theoretical part.
+\item We propose and implement Pair-interaction automaton with non-determi\-nistic collision rule. We compare it with its classical variant on the "exploding cube", Taylor-Green vortex decay and simulation of the fully developed turbulence.
+\item We inspect the flow around the obstacles.
+\item We measure parallel scaling performance of our implementation.
+\item We study fully-developed turbulent flow and compare its statistical pro\-perties to the Kolmogorov--Obuchov K41 theory \cite{turb}.
 
-Unfortunately, this most original and scientifically most interesting part is not concluded, but it provides the basis for future research. 
-
+%Unfortunately, this most original and scientifically most interesting part is not concluded, but it provides the basis for future research. 
 \end{enumerate}

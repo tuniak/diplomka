@@ -3,7 +3,7 @@
 In two dimensions, we are lucky to find hexagon -- a symmetric polygon that covers whole 2D plane and possesses sufficient rotational symmetry to make a good lattice for FHP.
 
 In three dimensions, we have five symmetric candidates for LGCA, so--called Plato solids, but none of them works.
-Dodecahedron and icosahedron might have sufficient rotational symmetry (interestingly, they share the group of symmetries)
+Dodecahedron and icosahedron might have sufficient rotational symmetry (interestingly, they share the group of symmetry)
 but they do not cover whole 3D space uniformly. Only the cube does but LGCA build on a rectangular lattice would suffer from the same diseases as HPP -- insufficient rotational symmetry and insufficient degrees of freedom in the nodes.
 
 Short analysis \cite{wolf} shows that in 5 and more dimensions, we have only three symmetric solids -- simplex, hypercube and its dual solid. None of them fits.
@@ -57,10 +57,10 @@ Each node is connected to 18 neighbors by the lattice vectors of Fig.\ \ref{fchc
 
 \section{Collision rules for FCHC}
 
-The FCHC lattice that we have just described was proposed already by Frisch et.\ al.\ in 1986.
-However, they did not propose any recipe for a collision step. It is easy to understand why it is not a simple task.
+The FCHC lattice was proposed already by Frisch et.\ al.\ in 1986.
+However, they did not propose any recipe for collision. It is easy to understand why it is not a simple task.
 
-There are 24 cells in each node, so the node can acquire $2^{24} = 16~777~216$ different states (that can be represented by 24 bits). It was easy to specify the collision rule for FHP in one simple table, but how do you specify rules for millions of states?
+There are 24 cells in each node, so the node can acquire $2^{24} = 16~777~216$ different states. It was easy to specify the collision rule for FHP in one simple table, but how do you specify rules for millions of states?
 
 In the subsequent section we will show how Henon answered to this challenge in his famous article \cite{henon}.
 
@@ -149,7 +149,7 @@ Another isometry $\Sigma_1$ is reflection over plane $x_1 + x_4 = x_2 + x_3$ rep
 \end{array}\right].
 \end{align}
 
-The last generating isometry $\Sigma_2$ is reflection over plane $x_1 = x_2 + x_3 + x_4$.
+The last generating isometry $\Sigma_2$ is reflection over plain $x_1 = x_2 + x_3 + x_4$.
 In matrix representation it reads
 \begin{align}
 \Sigma_2 = \frac{1}{2}
@@ -158,7 +158,7 @@ In matrix representation it reads
 1 & 1 & -1 & -1 \\
 1 & -1 & 1 & -1 \\
 1 & -1 & -1 & 1
-\end{array}\right]
+\end{array}\right].
 \end{align}
 
 Any isometry of FCHC can be composed from these 12 isometries,

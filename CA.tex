@@ -14,11 +14,11 @@ and layed basis for the "New kind of science" \cite{wolfram}.
 
 \section{Game of Life}
 
-John Conway, by significant simplification of von Neumann ideas, introduced the Game of Life in 1970 that renewed general interest in cellular automata.
+John Conway, by significant simplification of von Neumann ideas, introduced Game of Life in 1970 that renewed general interest in cellular automata.
 
 Depending on the initial conditions, evolution of this automaton can be chaotic, periodic or it can lead to the stable configurations.
 
-The underlying reason for this complexity lies in the Turing-completeness of Game of Life - in principle it can simulate any computer program and thus various behavior can be observed.
+The reason for this complexity is that Game of Life is Turing-complete -- in principle it can simulate any computer program and thus various behavior can be observed.
 
 For the purposes of this thesis, we have written a simple desktop application implementing this game, since we can easily explain the basic principles of cellular automata on it.
 
@@ -65,8 +65,8 @@ We see that the rule involves only the state of \textbf{the cell} and the states
 \bigskip
 
 
-Let us proceed from this simple example to a more general setting.
-In the next section, we will generalize main features of 'Life' and formally define the cellular automaton.
+Let us proceed from this simple example.
+In the next section, we will gene\-ralize main features of 'Life' and formally define the cellular automaton.
 %In the next chapter, we will generalize main feature of 'Life'
 %Let us generalize this example into formal definition of cellular automaton.
 
@@ -111,7 +111,7 @@ Stephen Wolfram and his assistants were performing unusual computer experiments.
 
 The most basic, one dimensional cellular automaton we can imagine, is the two state automaton with range $r=1$.
 
-One dimensional indicates that the cells are arranged in the row (figure \ref{1d}), range $r=1$ indicates that the update rule involves only three cells.
+One dimensional indicates that the cells are arranged in the row (figure \ref{1d}), range $r=1$ indicates that the update rule for a cell involves only its next neighbors.
 An example of an update rule is shown the table~\ref{rule90}.
 
 \begin{figure}[htbp]
@@ -133,7 +133,7 @@ An example of an update rule is shown the table~\ref{rule90}.
 The three columns represent the state of a cell $a_t^i$ and its left and right neighbor, $a_t^{i-1}$ and $a_t^{i+1}$ respectively. A living cell is denoted by 1, a dead cell is denoted by 0. The last column denotes the state of the middle cell $a_i$ in the next step $t+1$. The sequence of $one$s and $zero$s in the last column is the binary representation of a rule. In this particular case, it represents Rule 90.
 Since there is $2^8=256$ combinations for the last columns, there is $256$ rules for this most basic cellular automaton.
 
-The update rule that we have just described by the table can be formally written as
+The update rule that we have just described can be formally written as
 %The alternative formulation of the update rule that we just described can be written as \cite{wolf}
 \begin{align} \label{rule1}
 a_i^{(t)} = f \big[ \sum_{j=-r}^{j=r} \alpha_j a_{i+j}^{(t-1)} \big]
@@ -142,7 +142,7 @@ where $a_i$ refer to the state of the $j^{th}$ cell, $\alpha_k$ are the integer 
 
 \section{Classification of 1D cellular automata}
 
-According to Wofram \cite{wolf}, these automata can be classified by their correspondence to the dynamical systems:
+According to Wofram \cite{wolf}, these automata can be classified analogously to the dynamical systems.
 \begin{enumerate}
 \item \textbf{Limit point:}
 
@@ -170,8 +170,8 @@ Rules number $2,6,10,12,14,18,22,26,28,30,34,38,42,44,46,50$.
 \end{enumerate}
 The rule $110$ is special among them -- as Cook has proved \cite{cook},this rule is equivalent to the Turing machine, so depending on the initial conditions, it could be classified in any of the three classes above.
 
-Below, we present figures capturing the evolution of several of the mentioned rules.
-They were obtained by our own implementation of 1D cellular automata (on https://github.com/tuniak/1d).
+Below, we present figures capturing the evolution of several of the mentioned rules, that were obtained by our implementation of 1D cellular automata.
+
 All of them were initialized by the row of dead cells, only the middle cell was alive.
 
 \end{enumerate}
@@ -233,7 +233,7 @@ All of them were initialized by the row of dead cells, only the middle cell was 
 \section{Cellular automata in physics}
 In his visionary book New kind of Science \cite{wolf}, Wolfram suggest possibility, that in the infinitely large world of cellular automata, there is an automaton that constitute a unified theory of the physics.
 Although the details of his idea met with rejection(see \cite{aaronson}),
-many notable physicists are attempting to construct such cellular automaton \cite{hooft}).
+many notable physicists are attempting to construct such cellular automaton \cite{hooft}.
 %
 %Some of the basic construction principles for such automata are relevant also for our models, but mostly, we would diverge too far by further exploration.
 %However, in the field of computational physics, cellular automata have already recorded success. And the focus of our 
@@ -249,8 +249,8 @@ By discretization forward in time, it is transformed to
 \begin{align*}
 C_i^{(t)} = f\big[\sum_{j=-1}^{j=1}\alpha_j \, C_{i+j}^{(t-1)} \big]
 \end{align*}
-Formally, this equation corresponds to the rule of the one dimensional cellular automaton \ref{rule1}. However, in case of these equation, $C_i$ is a continuous value, not discrete, the $\alpha_i$ are reals, not integers, which would cause instability of cellular automaton, as discussed in \cite{wolf} and the similarity is only formal.
+Formally, this equation corresponds to the rule of the one dimensional cellular automaton \ref{rule1}. However, in case of these equation, $C_i$ is a continuous value, not discrete, the $\alpha_i$ are reals, not integers, which would cause instability of cellular automaton, as discussed in \cite{wolf} and thus the similarity is only formal.
 
-The connection of the cellular automata with the fluid mechanics is not this straight-forward, but it is grounded in the symmetries and conservation laws found in the hydrodynamic equations and the special class of cellular automata alike.
+The connection of cellular automata with the fluid mechanics is not this straight-forward, but it is grounded in the symmetries and conservation laws found in the hydrodynamic equations and in the special class of cellular automata alike.
 
 In these symmetries lies not only beauty of this method and their attractiveness for physicists, but their principal advantage over the better-established CFD methods.

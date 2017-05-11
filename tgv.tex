@@ -2,20 +2,20 @@
 
 Taylor-Green vortex decay is standard benchmark problem used for evaluation of accuracy of CFD methods. We shall see how deterministic and non-deterministic PI fare on this problem.
 
-The lattice was set-up with periodic boundary conditions, and with initial velocity field
+The lattice was set-up with the periodic boundary conditions, and with initial velocity field
 \begin{align} \label{tginit}
 \begin{split}
 v_x &= \sin(\frac{2\pi}{I} \, x)\, \cos(\frac{2\pi}{I} \, y)\, \cos(\frac{2\pi}{I} \, z), \\
 v_y &= -\cos(\frac{2\pi}{I} \, x)\, \sin(\frac{2\pi}{I} \, y)\, \cos(\frac{2\pi}{I} \, z), \\
-v_z &= 0.
+v_z &= 0,
 \end{split}
 \end{align}
-We can see that the above setup obeys the continuity equation
+that obeys the continuity equation
 \begin{align*}
-\nabla \times \bm{v} = 0.
+\nabla \cdot \bm{v} = 0.
 \end{align*}
 
-Functions below implements the Taylor-Green vortex with the initial conditions \ref{tginit}.
+Functions below set-up the Taylor-Green vortex with the initial conditions \ref{tginit}.
 \begin{lstlisting}
 //sets macroscopic velocity (vx,vy,vz) at (i,j,k)
 void set_speed(Node***a, int i, int j, int k, int dx, int dy, int dz, double vx, double vy, double vz)
@@ -209,35 +209,26 @@ void taylor_green_vortex(Node***a, int I, int J, int K, int X, int Y, int Z, int
  \caption{Time 108 -- NON-deterministic PI}
 \end{figure}
 
-\section{Kinetic energy}
-As the diagnostic quantity of our model, we computed mean kinetic energy 
+\section{Dissipation of kinetic energy}
+As the diagnostic quantity of our model, we computed mean kinetic energy of the vortex
 \begin{align*}
-E_k = \int_V \frac{1}{2}\rho u^2 \dd V.	
+E_k = \int_V \frac{1}{2}\rho u^2 \dd V
 \end{align*}
 and followed its time evolution.
-Our results can be compared with reference solution computed by nodal Discontinuous Galerkin and Spectral difference methods presented in \cite{tgvref}.
+Our results can be compared with the reference solutions computed by nodal Discontinuous Galerkin and Spectral difference methods presented in \cite{tgvref}, that used same initial conditions.
+
+The size of the lattice that we used was  $1000 \times 1000 \times 1000$ nodes.
 
 \begin{figure}[H]
  \centering 
- \includegraphics[width=1\textwidth]{./img/tgv_none}
+ \includegraphics[width=0.9\textwidth]{./img/tgv_nonex}
 \end{figure}
 
 \begin{figure}[H]
  \centering 
- \includegraphics[width=1\textwidth]{./img/tgv_dete}
+ \includegraphics[width=0.9\textwidth]{./img/tgv_detox}
 \end{figure}
 
-In non-deterministic model, kinetic energy descends faster and more consistently, which agrees with our hypotheses that non-deterministic collision changes free paths of the particles more frequently.
+In non-deterministic model, kinetic energy descends faster and more consistently, which agrees with our hypotheses that non-deterministic collision changes free path of the particles more frequently.
 
-\section{Computation speed and scaling}
-
-
-
-
-
-
-
-
-
-
-
+\section{Computation speed and scaling efficiency}

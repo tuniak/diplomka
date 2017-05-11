@@ -9,9 +9,9 @@
 
 
 %We followed best practices of in \cite{},
-Inspired by this quote of Donald and Knuth and best programming practice presented in \cite{lbm} on Lattice-Boltzmann implementation, we attempted to implement critical functions \textit{collision} and \textit{propagations} efficiently.
+Inspired by this quote and best programming practice presented in \cite{lbm} on Lattice-Boltzmann implementation, we did our best to implement functions \textit{collision} and \textit{propagations} efficiently, since they are the core of the simulation and overall performance depends largely on them.
 
-The parts of the code that we present is already parallelized by OpenMP.
+Excerpts of the source code that we present are already parallelized by OpenMP.
 
 \section{Implementation of the collision algorithm}
 \begin{lstlisting}
@@ -36,7 +36,7 @@ typedef struct
 } Node;
 // We access the bits of the of the node by bitwise AND opperation
 //e.g. node.m & A == 1 means there is particle in the cell A
-// 		node.p[1] & A == 0 means that these particle has no momentum in Y-direction
+// 		node.p[1] & A == 0 means that this particle has no momentum in Y-direction
 
 // 3 directions (X, Y, Z), 4 pair-interactions in each direction, 2 cells in each pair 
 unsigned char Pair[3][4][2] = 
@@ -185,15 +185,15 @@ void Collision(Node***array, int X, int Y, int Z, int start)
 
 As we explained in the teoretical part, the PI-3D lattice splits into 4 sub-lattices, that are not connected. We are using only one of these sub-lattices. At even times $t=2,4,...$ only nodes with even indices are populated, and at odd times, nodes with odd indices are populated.
 
-Theoretically, this setting provides that spurious Zannetti's invariants are not present (\cite{nasilowski}), practically, we can use single data structure for the lattice before and after propagation. Comparing to other lattices, this provides additional speed-up by lowering memory bandwidth and saving other resources.
+Theoretically, this setting guarantees that spurious Zannetti's invariants are not present (\cite{nasilowski}), practically, we can use single data structure to store the lattice before and after propagation. Comparing to other lattices (FHP, FCHC, DdQq), this provides additional speed-up by lowering memory bandwidth and saving other resources.
 
-The excerpts of the code governing Propagation follows. 
+The excerpts of the source code governing Propagation follows. 
 \begin{lstlisting}
 /* Group of cells that propagates in positive X-direction, Y-direction and Z-direction. */
 #define dirX (B+D+F+H)
 #define dirY (E+F+G+H)
 #define dirZ (A+B+E+F)
-/* For example, because A & dirX == 0, particle from A propagates in negative X direction,
+/* For example, A & dirX == 0, so particle from A propagates in negative X direction,
     but A & dirZ == 1, so it propagates in positive Z direction. */
 
 /* At start == 0, particles are streamed from even nodes ([0,2,124]...) to odd nodes([1,1,123]...) 
@@ -214,11 +214,9 @@ void Propagation(Node***array, int X, int Y, int Z, int start)
 					//if there is particle in the cell, we propagate it
 					if (array[x][y][z].m & k)
 					{
-						// if particle from cell[c] propagates in positive direction of X
 						int xN = k & dirX ? (x + 1) % X : (x - 1 + X) % X;
 						int yN = k & dirY ? (y + 1) % Y : (y - 1 + Y) % Y;
 						int zN = k & dirZ ? (z + 1) % Z : (z - 1 + Z) % Z;
-						// else particle propagates in negative direction of x
 
 #pragma omp atomic
 						array[xN][yN][zN].m |= k & array[x][y][z].m;
@@ -230,7 +228,7 @@ void Propagation(Node***array, int X, int Y, int Z, int start)
 						array[xN][yN][zN].p[2] |= k & array[x][y][z].p[2];
 					}
 				}
-				//in the old array, we set the node to 0
+				//we set the old node to 0
 				array[x][y][z].m = 0;
 				array[x][y][z].p[0] = 0;
 				array[x][y][z].p[1] = 0;

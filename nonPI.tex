@@ -1,6 +1,9 @@
 \chapter{Non-deterministic PI}
 
-Pair-Interaction that Nasilowski proposed is deterministic, and it might be considered to be its advantage. 
+Pair-Interaction automaton that Nasilowski proposed is deterministic, and it might be considered to be its advantage.
+
+The pair-interaction leads 
+
 The collisions usually lead to the maximal change of the state, which minimizes the viscosity, as we previously discussed.
 Moreover, it offers theoretical ground for using Gibbs distribution \ref{gibbs} in derivation of hydrodynamic equations.
 
@@ -44,9 +47,9 @@ Even better example is the node with two particles with momenta in X direction.
  \caption{Node before collision, and after deterministic collision}
 \end{figure}
 
-The deterministic collision do not change its state (pair interaction in Y direction, followed by pair interaction in Z direction leads to the same state for this particular example).
+Deterministic collision do not change its state (pair interaction in Y direction, followed by pair interaction in Z direction leads to the same state for this particular example).
 
-However, collision that would be non-deterministic (let's say that pair interaction happens with probability $1/2$) can lead to the following state
+However, collision that would be non-deterministic can lead to the following state
 \begin{figure}[htbp]
  \centering 
  \includegraphics[width=0.28\textwidth]{../nonPInode/mom2}
@@ -55,15 +58,16 @@ However, collision that would be non-deterministic (let's say that pair interact
 \end{figure}
 
 where both particles gained additional momenta, one in Z, and other in -Z direction.
-We could continue with the examples showing that deterministic PI do not realize all available states, although some of them are more desirable. 
+We could continue with the examples showing deterministic PI do not realize all available states, although some of them are more desirable. 
 
-Also, by chosing one of the many available states by non-deterministic PI, we believe that statistical avareging might work faster and lead to better results when statistical properties of the flow are inspected.
+
+%Also, we believe that relaxation towards equilibrium might work faster and lead to better results when statistical properties of the flow are inspected.
 
 \bigskip
 
-On the other hand, non-deterministic model, has an obvious drawback. Generation of random numbers is costy process and slows down the collisions.
+On the other hand, non-deterministic model, has an obvious drawback. Generation of the random numbers significantly slows the collisions.
 
-To speed up the generation of random number, we hard-coded \textit{Marsaglia's xorshift} generator \cite{mars}, that significantly improved performance comparing to $rand()$ function of C.
+To speed up the generation of random number, we hard-coded \textit{Marsaglia's xorshift} generator \cite{mars}, which significantly improved performance comparing to $rand()$ function of C. It may not be appropriate for serious Monte-Carlo simulations, but it is more then enough for our purpose.
 
 \begin{lstlisting}
 static unsigned long x=123456789, y=362436069, z=521288629;
@@ -83,8 +87,8 @@ unsigned long xorshf96(void) {
 \end{lstlisting}
 
 \section{Non-deterministic collision}
-At the beginning of collision we generate random $long$ by $xorshf96()$.
-Before each pair-interaction, we bit-wise shift this number ($rand >>= 1$) , and read the first bit. If it is 1, pair-interaction is performed, if it is 0, pair-interaction is skipped.
+At the beginning of collision we generate random number by \lstinline|long rand = xorshf96()|.
+Before each pair-interaction, we bit-wise shift this number \lstinline|rand >>= 1| , and read the first bit. If it is 1, pair-interaction is performed, otherwise it is skipped.
 \begin{lstlisting}
 void collision(Node &node)
 {
@@ -100,7 +104,6 @@ void collision(Node &node)
 		u = (i + 2) % 3;
 		for (int j = 0; j < 4; ++j)
 		{
-
 			l = Pair[i][j][0];
 			r = Pair[i][j][1];
 
@@ -219,12 +222,10 @@ void collision(Node &node)
 \section{Exploding cube}
 To demonstrate the difference of deterministic and non-deterministic automaton in the crystal form, we simulated the "explosion of the cube". 
 
-The simulations were performed on the lattice $240 \cross 240 \cross 240$ nodes for deterministic PI, and for the slower non-deterministic PI, size of the domain was $120 \cross 120 \cross 120$. Periodic boundary conditions were used.
-
-Into the cube with the side of the length 3 times smaller then the lattice (hence the volume of the cube was $1/27$ of the lattice), we put particles into all available cells, with maximal momenta in all directions. Therefore, the total momentum of the particles is 0.
+The simulations were performed on the lattice $240 \cross 240 \cross 240$ with periodic boundary conditions.
+Into the cube with side 3 times smaller then the size of lattice (thus containing $1/27$ of all nodes), we put particles with zero momentum in all available cells.
 
 The evolution of the system for both versions of PI is to be seen on the following pictures.
-\newpage
 \begin{figure}[H]
  \centering 
  \includegraphics[width=0.9\textwidth]{../cubedeter/velocity_0}
@@ -369,7 +370,7 @@ The evolution of the system for both versions of PI is to be seen on the followi
  \caption{Non-deterministic PI - time 0}
 \end{figure}
 
-
-The is only short excerpt of the evolution of deterministic PI, but the patterns you see were repeating in the infinite loop. We performed simulation up to 9000 steps and the pattern did not change.
+%The is only short excerpt of the evolution of deterministic PI. 
+The patterns that you see for deterministic PI were repeating in the infinite loop. We performed simulation up to 9000 steps and the pattern did not change.
 
 On the other hand, the pattern in the non-deterministic PI broke after the first explosion already and exhibits the realistic "spilling" of the particles, in contrast to the perfect periodic evolution of deterministic automaton.

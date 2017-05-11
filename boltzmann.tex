@@ -1,22 +1,20 @@
 \chapter{From Boltzmann to Navier-Stokes}
+In the previous chapter we have derived the hydrodynamic equation for lattice-gas cellular automata. Unfortunately, 
+Treatment of the symptoms resulting from this flaw is imperfect.
+As we will show in this chapter, microdynamics of the physical fluid leads to Boltzmann distribution, and starting there, we will derive Navier-Stokes equations in its most general form.
 
-Because microdynamics of LGCA lead to equilibrium occupation numbers given by Fermi-Dirac distribution, there is no way to improve them substantionally u
+Because microdynamics of FHP and FCHC lead to equilibrium occupation numbers given by Fermi-Dirac distribution, and there is no way to improve them substantionally
+
+
+Indeed, the new generation of LGCA, the Lattice-Boltzmann models, were pushed one ladder of abstraction higher to meet the Boltzmann distribution of real fluids.
+
+Model - which have learnt both from the lattice-gas cellular automata and 
+ u
 
 In previous chapter we saw that microdynamics of LGCA lead to equilibrium occupation numbers give by Fermi-Dirac distribution.
-Treatment of the symptoms resulting from this flaw is imperfect.
 
-In this chapter we will show what statistical properties would be desirable for better computational model.
-We will show that microdynamics of physical fluid lead to Boltzmann distribution, and starting there, we will derive Navier-Stokes equations in its most general form.
- 
-Indeed, the new generation of LGCA, the Lattice-Boltzmann models, were pushed one ladder of abstraction higher to meet the Boltzmann distribution of real fluids.
-But since these models do not have discrete microdynamics anymore, they are not CA in its true sense, and they are beyond the scope of this thesis.
-However, we would like to show some light at the tunnel and motivate the method, that is an efficient competitor to other CFD methods.
-
-\bigskip
-The name of the chapter is shamelessly stollen from \cite{wolf}. In the original piece, it precedes chapter on Lattice-Boltzman model and is full of technicalities (we have seen Chapman - Enskog expansion already), we rather follow approach of \cite{astro}, that offers better physical insight.
-
-In Wolf-Gladrow, the derivation of Navier-Stokes is performed by the means of Chapman-Enskog expansion.
-We chose approach from \cite{astro}, as it offers us better physical insight with less technicalities then \cite{wolf}, where the derivation of Navier-Stokes is performed by the means of Chapman-Enskog expansion.
+Although these models do not have discrete microdynamics anymore, they are not CA in its true sense, and they are beyond the scope of this thesis, they should be considered
+to conclude the story of LGCA.
 
 \section{Boltzmann equation}
 

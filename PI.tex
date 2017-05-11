@@ -1,20 +1,19 @@
 \chapter{Pair Interaction LGCA}
 Pair-interaction automata (PI) constitute another branch that successfully evolved from HPP model, somewhat in contrast to FHP.
-To put it in a nutshell, FHP changed the rectangular grid for hexagonal, and thus obtained better rotational symmetry, increased the degree of freedom of the nodes and added new collision states. 
+To put it in a nutshell, FHP switched from the rectangular grid to hexagonal, and thus obtained better rotational symmetry, increased the degree of freedom of the nodes and added new collision states. 
 
-The pair-interaction model preserves the HPP rectangular lattice, but the degrees of freedom in the node are incremented by the artificial definition of momentum.
+The Pair-interaction model preserves the HPP rectangular lattice, but the degrees of freedom in the node are incremented by the artificial definition of momentum.
 %In FHP and HPP, momentum of the particle corresponds to its lattice velocity, or equivalently, to the cell that the particle occupies.
 Momenta has no longer same direction as the lattice velocities, but they constitute an inner degree of freedom of the particle, that might change in the collision, independently of the lattice velocity.
-Although the differentiation in momentum and velocity might seem odd at the first glance, we will show that it leads to the physically correct microdynamics and offers us very efficient algorithm for implementation.
+Although the differentiation in momentum and velocity might seem odd at the first glance, we will show that it leads to the physically plausible microdynamics and offers us very efficient algorithm for implementation.
 
-\bigskip
 We will explore theory of Pair Interaction automaton in arbitrary dimension later on, but to get good understanding of the pair-interactions, we start with its $2$D version, so we can explain the theory graphically.
 
 \section{User-friendly guide to Pair interactions}
 
 \subsection{Pair-interactions automaton in two dimensions}
 
-Geometry of the lattice is same as for HPP model. It consists of nodes arranged in the rectangular grid:
+Geometry of the lattice is same as for HPP model. It consists of nodes arranged in a rectangular grid.
 
 \begin{figure}[htbp]
  \centering 
@@ -24,14 +23,15 @@ Geometry of the lattice is same as for HPP model. It consists of nodes arranged 
 \end{figure}
 
 %Every node (the cirlce on the picture above) is connected to 4 diagonal neighbors.
-Let us consider that in the time-step $t$ only the black nodes are occupied (e.g. with odd Cartesian idices). Then in the next step $t+1$, only the white nodes (with even indices) are occupied. 
-So the set of occupied points alternate with every time step, which offers very efficient implementation, because we can perform propagation on the single data-structure.
+Let us assume that in the time-step $t$ only the black nodes are occupied (e.g. with odd Cartesian idices). Then in the next step $t+1$, only the white nodes (with even indices) are occupied. 
+So the set of occupied nodes alternate with every time step, which offers very efficient implementation, because we can perform propagation on the single data-structure.
+What is more important, Pair-interaction model is free of Zanetti's staggered invariants (\cite{wolf}, page 132) due to this alternating lattice.
 
 \bigskip
 
 \subsection{Node in detail}
 
-Let us look at the node in a more detail
+Let us look at the node in a more detail.
 %If we look on the node in more detail, it looks like this:
 \begin{figure}[H]
  \centering 
@@ -122,8 +122,7 @@ In total, there is only 17 possible configurations of the pairs, so the pair-int
 \end{figure}
 
 \section{Propagation:}
-Same as for HPP, particles propagates from a node along $4$ lattice vectors to the neighboring nodes. Of course, all the bits from the cell propagates with the particle (the mass and momentum bits alike)
-
+Same as for HPP, particles propagates from a node along $4$ lattice vectors to the neighboring nodes. In case of Pair-interaction, it carries its mass and momentum bits to the new node.
 
 \section{Pair-interaction cellular automaton in arbitrary dimension D}
 \begin{center}
@@ -254,7 +253,7 @@ that immediately implies conservation of the Gibbs probability
 \begin{equation}
 P^E(t+2,\mathcal{E}^2n(.)) = P^E(t,n(.)).
 \end{equation}.
-So the $P^E(t,(n.))$ is the stationary solution of \ref{cp}, which means it is the equilibrium distribution for our model. However, the Gibbs distribution represents only one class of the stationary solutions. If there were additional extensive dynamical invariants independent of momenta and mass (e.g. Zanetti's invariants for FHP and FCHC bmodel), there would arise conjugated intensive parameters, corresponding to other equilibrium distributions. However, due t	o the alternating lattice, this model is free of Zanetti's invariants.
+So the $P^E(t,(n.))$ is the stationary solution of \ref{cp}, which means it is the equilibrium distribution for our model. However, the Gibbs distribution represents only one class of the stationary solutions. If there were additional extensive dynamical invariants independent of momenta and mass (e.g. Zanetti's invariants for FHP and FCHC model), there would arise conjugated intensive parameters, corresponding to other equilibrium distributions. However, due to the alternating lattice, this model is free of Zanetti's invariants.
 
 \bigskip
 
@@ -422,16 +421,16 @@ This hydrodynamic velocity can be interpreted as the momentum convection velocit
 %\end{align*}
 %depending on the density.
 
-The reason behind this difference is the broken Galilean invariance due to discrete symmetry of our model.
-The ratio between the velocities is called the "g-factor" ($g(\rho$), and for our special case $\rho=\frac{1}{2}$, it is equal to
+The difference is caused by the broken Galilean invariance due to discrete symmetry of our model.
+The ratio between the velocities is called the "g-factor" ($g(\rho)$), and for our special case $\rho=\frac{1}{2}$, it is equal to $2/3$:
 \begin{align}
 \bm{w} = \frac{4}{3} \bm{q} = \frac{2}{3} \bm{u}.
 \end{align}
-It already arised in the FHP and FCHC model (where $g(\rho) \sim 1/2$ for small $\rho$).
+It already arised in FHP and FCHC model (where $g(\rho) \sim 1/2$ for small $\rho$).
 
 \section{Navier-Stokes equations}
 For most applications, the inviscid incompressible approximation is too much idealized,
-and we would like to find an analogous equations to the Navier-Stokes
+and we would like to find analogous equations to the Navier-Stokes
 \begin{align} \label{nst}
 \begin{split}
 \bm{\nabla . u} = 0, \\
@@ -456,7 +455,7 @@ T_{00km} &= \frac{1}{9} \delta_{kl}, \\
 T_{jklm} &= \frac{1}{6} (3 \delta_{jl}\delta_{km} + \delta_{jm} \delta_{lk}(1 + \gamma_{mk}) - 2 \delta_{jklm}).
 \end{split}
 \end{align}
-To prove that the tensor is not isotropic, we consider a simple example of two-dimensional flow in $x_1$-direction
+To prove that the tensor is not isotropic, we consider a simple example of two-dimensional flow in $x_1$-direction:
 \begin{align}
 q_1 = q_1(t,x_2), \qquad q_2 = 0.
 \end{align}
@@ -470,7 +469,7 @@ If we rotate the flow by the angle $\alpha$, the equation changes to
 \begin{equation}
 \pd_t q'_1 = \nu' (\nabla'_2)^2 q'_1,
 \end{equation}
-where the prime quantities are obtained by rotation 
+The prime quantities above were obtained by rotation 
 \begin{equation}
 \begin{split}
 \bm{x} &= R \, \bm{ x'}, \\
@@ -490,10 +489,10 @@ The shear viscosity transformed into rotated coordinate system reads
 \begin{align} \label{rotvis}
 \begin{split}
 \nu' = T'_{1122} = T_{1122} cos^4(\alpha) + T_{2211} sin^4(\alpha) \\
-+ (T_{1111} + T_{2222} - T_{1212} - T_{2121} - T_{1221} - T_{2112})cos^2(\alpha) sin^2(\alpha).
++ (T_{1111} + T_{2222} - T_{1212} - T_{2121} - T_{1221} - T_{2112})cos^2(\alpha) sin^2(\alpha)
 \end{split}
 \end{align}
-The viscosity tensor in original coordinate system reads
+Into this equation, we plug the viscosity tensor in original coordinate system
 \begin{align}
 \begin{split}
 T_{1122} = T_{2211} &= \frac{1}{2}, \\
@@ -503,12 +502,11 @@ T_{1221} &= \frac{1}{6}, \\
 T_{2112} &= \frac{1}{2}. 
 \end{split}
 \end{align}
-
-Inserting these components into \ref{rotvis}yields
+and find out that
 \begin{align}
-\nu' = \frac{1}{2}(cos^4(\alpha) + sin^4(\alpha)),
+\nu' = \frac{1}{2}(cos^4(\alpha) + sin^4(\alpha)).
 \end{align}
-which clearly shows that the shear viscosity is angle-dependent in contrast with the physical fluid and proves anisotropy of the viscosity tensor \ref{vistens}.
+It clearly shows that the shear viscosity is angle-dependent and proves aniso\-tropy of the viscosity tensor \ref{vistens}.
 
 
 %Now, let us examine momentum flux tensor $Q_{\alpha k}^0$ in a more detail.

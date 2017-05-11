@@ -1,4 +1,36 @@
-\chapter{From Boltzmann to Navier-Stokes}
+\chapter{From Liouville to Navier-Stokes}
+In the previous chapters, we derived hydrodynamic equations for LGCA to find out that they do not match the Eulear and Navier-Stokes equation precisely. This flaw is caused by discrete microdynamics of LGCA, which leads to the Fermi-Dirac distribution.
+To treat this flaw, the Lattice-Boltzmann models have emerged.
+
+We may say that Lattice-Boltzmann method stands on the two pillars -- Lattice gas cellular automata are the first pillar, and in this chapter we will establish the second one -- kinetic theory of gasses \cite{tong}.	
+%
+%Moreover, good understanding of the kinetic theory is a first step to understand the theory of lattice-gas cellular automata.
+
+%
+%Lattice-gas cellular automata are the first pillar supporting the Lattice-Boltzmann model.
+%In this chapter, we will establish the second pillar -- kinetic theory of gasses \cite{tong}.
+
+
+%
+%On these two pillars -- the Lattice-gas cellular automata and kinetic theory, we will explain the Lattice-Boltzmann model in the subsequent chapter.
+%
+%As we will show in this chapter, microdynamics of the physical fluid leads to Boltzmann distribution, and starting there, we will derive correct hydrodynamic equations.
+%
+%The will help us to explain Lattice-Boltzmann model clearly and briefly in the subsequent chapter.
+%
+%
+%
+%
+%Indeed, were pushed one ladder of abstraction higher to meet the Boltzmann distribution of real fluids.
+%
+%Model - which have learnt both from the lattice-gas cellular automata and 
+% u
+%
+%In previous chapter we saw that microdynamics of LGCA lead to equilibrium occupation numbers give by Fermi-Dirac distribution.
+%
+%Although these models do not have discrete microdynamics anymore, they are not CA in its true sense, and they are beyond the scope of this thesis, they should be considered
+%to conclude the story of LGCA.
+
 	
 \section{Liouville's equation}
 Let us start by invoking the Hamiltonian for the $N$ particle system
@@ -126,14 +158,18 @@ so most of the time, $f_1$ follows the Hamiltonian evolution, with occasional, b
 
 What is the rate at which the collision happens?
 
-Let the two particle with momenta $\bm{p_1}$ and $\bm{p_2}$ collide at the point $\bm{r}$, and during the collision, they gain velocities $\bm{p'_1}$ and $\bm{p'_2}$.
+Let the two particles with momenta $\bm{p_1}$ and $\bm{p_2}$ collide at the point $\bm{r}$, and during the collision, they gain velocities $\bm{p'_1}$ and $\bm{p'_2}$.
 We can define the rate of the collision by
 \begin{align*}
 Rate = \omega(\bm{p_1},\bm{p_2} | \bm{p'_1}, \bm{p'_2}) f_2(\bm{r},\bm{r},\bm{p_1},\bm{p_2}),
 \end{align*}
-where $\omega$ carries information of the about the dynamics of the collision, and can be computed from the inter-atomic potential $U$.
+where $\omega$ carries information about the dynamics of the collision, and can be computed from the inter-atomic potential $U$ \cite{tong}.
 
-Next, we focus on the collisions where one particle has specific momentum $\bm{p_1}$ before collision, and gains some unspecified momentum $\bm{p'_1}$ in the collision, or the particle had unspecified momentum $\bm{p'_1}$ before the collision, but gains the specific momentum $\bm{p_1}$ in the collision.
+Next, we focus on the collisions where
+\begin{enumerate}
+\item one of the particles has specific momentum $\bm{p_1}$ before collision, and gains some unspecified momentum $\bm{p'_1}$ in the collision, or
+\item the particle had unspecified momentum $\bm{p'_1}$ before the collision, but gains the specific momentum $\bm{p_1}$ in the collision.
+\end{enumerate}
 The collision integral governing these collisions contains two terms:
 \begin{align*}
 \Big( \frac{\pd f_1}{\pd t} \Big)_{coll}= \int \big[ \omega(\bm{p'_1},\bm{p'_2} | \bm{p_1}, \bm{p_2}) f_2(\bm{p'_1},\bm{p'_2}) - \omega(\bm{p_1},\bm{p_2} | \bm{p'_1}, \bm{p'_2}) f_2(\bm{p_1}, \bm{p_2}) \big] \dd \bm{p_2} \dd \bm{p'_1} \dd \bm{p'_2}.
@@ -187,7 +223,7 @@ or equivalently
 
 According to this equation, the sum of logarithms is conserved in the collision.
 
-As we know, such quantities are either momenta or energy, hence the logarithms are the linear combination of energy and momenta
+As we know, such quantities are either momenta or energy, hence the logarithms are the linear combinations of energy and momenta
 \begin{align*}
 log(f_1^{eq}(\bm{r},\bm{p})) = \beta(\mu - E(\bm{p}) + \bm{u} \cdot \bm{p}),
 \end{align*}
@@ -196,7 +232,7 @@ where
 E(\bm{p}) = \frac{1}{2m} p^2
 \end{align*}
 and $\beta,\mu$ and $\bm{u}$ are constants.
-We need to set the constant $\mu$ such that normalization of $f_1$ is satisfied, that gives us
+We need to set the constant $\mu$ such that $f_1$ is normalized, which gives us
 \begin{align} \label{mbt}
 f_1^{eq} = \frac{N}{V}\big(\frac{\beta}{2\pi m}\big)^{3/2} e^{-\beta m (\bm{v} - \bm{u})^2/2}.
 \end{align}
@@ -207,7 +243,7 @@ If we forget about the streaming term $\big\{ H_1, f_1 \big\}$, then the detaile
 f_1^{loc}(\bm{r},\bm{p},t) = n(\bm{r},t) \Big(\frac{\beta(\bm{r},t)}{2\pi m}\Big)^{3/2} \exp \big(-\beta(\bm{r},t)\frac{m}{2}[\bm{v} - \bm{u}(\bm{r},t)]^2 \big)
 \end{align}
 where $n,\beta$ and $\bm{u}$ are promoted to the functions.
-Inserting these distributions into the Boltzmann equation, the collision integral vanishes, but the streaming term stays.
+By inserting these distributions into the Boltzmann equation, the collision integral vanishes, but the streaming term stays.
 
 \section{Hydrodynamics}
 On the most coarse-grained level, the system in local equilibrium is described by hydrodynamics, with the parameters that do not relax to their equilibrium values immediately, but vary slowly in space and time.
@@ -216,7 +252,7 @@ On the most coarse-grained level, the system in local equilibrium is described b
 In this section we will show that these parameters are density $\rho(\bm{r},t)$, temperature $T(\bm{r},t)$ and velocity $\bm{u}(\bm{r},t)$ (thus showing that the functions in \ref{localequil} have their usual meaning).
 
 Let us have an arbitrary function $A(\bm{r},\bm{u})$.
-To see how does the function $A$ vary in space, let us integrate over the momentum space
+To see how does the function $A$ vary in space, we integrate over the momentum space
 \begin{align} \label{averg}
 \langle A(\bm{r},t) \rangle = \frac{\int A(\bm{r},\bm{p}) f_1(\bm{r},\bm{p},t) \dd \bm{p}}{\int f_1(\bm{r},\bm{p},t) \dd \bm{p}}.
 \end{align}
@@ -440,7 +476,7 @@ but due to the non-diagonal stress tensor \ref{stresst}, the momentum equation t
 %\begin{align*}
 %aa
 %\end{align*}
-Although our derivation relied on the dilute gas approximation, the Navier-Stokes equation are more general then that and can be considered to be the most general expression for the momentum transport.
+Although our derivation relied on the dilute gas approximation, the Navier-Stokes equation are more general then that and can be considered to be the most general expression for the momentum transport \cite{tong}.
 
 %This force K will be neglected in the subsequent text, because external force is not supposed to influence dynamics of collisions.
 %The right hand side of Boltzmann equation, the $Q(f,f)$, is the collision integral.

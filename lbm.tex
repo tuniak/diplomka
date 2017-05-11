@@ -5,7 +5,7 @@ In the previous chapter, we showed that Boltzmann equation is superior to the Na
 But since the distribution $f(\bm{x},\bm{u},t)$ is the function of seven variables, it is difficult equation to solve analytically.
 Surprisingly, the numerical method for the Boltzmann equation turns out to be quiet simple -- both to implement and parallelise, and it results in the exact advection (as opposed to NSE solvers, that have major difficulty with the advection term). 
 
-This numerical scheme evolved from the lattice-gas cellular automata that are the focus of our thesis, so we will explain it along the lines with LGCA, although explanations from the various perspectives are possible.
+This numerical scheme evolved from the lattice-gas cellular automata that are the focus of our thesis, so we will explain it along the lines of LGCA, although explanation from various perspectives is possible.
 
 % Hence, we will explain it along the lines of LGCA, although it can be explained on its own just fine.
 
@@ -47,19 +47,19 @@ The Boltzmann equation, discretized in space, time and velocity space \ref{Boltz
 \begin{align} \label{updt}
 f_i(\bm{x} + \bm{c_i}\Delta t, t + \Delta t) = f_i(\bm{x},t) + \Omega_i(\bm{x},t),
 \end{align}
-which states that particles from the population $f_i(\bm{x},t)$ with the velocity $\bm{c_i}$ move to the point $\bm{x + c_i}$ at the next time step. Before that, the particles are affected by the collision operator $\Omega$ that redistributes particles among the populations $f_i$.
+which states that particles from the population $f_i(\bm{x},t)$ move to the point $\bm{x + c_i}$ at the next time step. Before that, particles are affected by the collision operator $\Omega$ that redistributes particles among the populations $f_i$.
 Notice that this corresponds to the equation \ref{withcol} with one major difference -- in FHP the respective quantities were boolean (empty cell or particle inside), in LBM, these are continuous values of particle densities that collide and propagate.
 
 The LBM version of the BGK collision operator \ref{bgk} is
-\begin{align*}
+\begin{align} \label{collar}
 \Omega_i(f) = - \frac{f_i - f_i^{eq}}{\tau} \Delta t,
-\end{align*}
+\end{align}
 and gives us a good intuition about what collisions do -- the population numbers relax towards the equilibrium values at a rate given by $\tau$.
 The equilibrium distribution is given by
 \begin{align} \label{mbcomp}
-f_i^{eq}(\bm{x},t) = 
+f_i^{eq}(\bm{x},t) = w_i \rho \Big( 1 + \frac{\bm{u} \cdot \bm{c_i}}{c_s^2} + \frac{(\bm{u} \cdot \bm{c_i})^2}{2 c_s^4} - \frac{\bm{u} \cdot \bm{u}}{c_s^2}\Big),
 \end{align}
-where $w_i$ are the weights specific to the LBM lattice used, $\bm{u} = \bm{j} / \rho$ with $\rho$ and $\bm{j}$ are given by \ref{rho} and \ref{dzej}.
+where $w_i$ are the weights specific to the LBM lattice used, $\bm{u} = \frac{\bm{j}}{\rho}$ with $\rho$ and $\bm{j}$ given by \ref{rho} and \ref{dzej}.
 
 \bigskip
 
@@ -73,12 +73,12 @@ and
 \end{align*}
 
 \section{Collision and propagation}
-Analogously to lattice-gas cellular automata, the update given by the Boltzmann equation \ref{updt} can be decomposed in two subsequent steps:
+Analogously to lattice-gas cellular automata, the update given by the Boltzmann equation \ref{updt} can be decomposed to
 \begin{enumerate}
 \item \textbf{Collision}
-\begin{align*}
+\begin{align}
 f_i^*(\bm{x},t) = f_i(\bm{x},t) - \frac{\Delta t}{\tau}\big( f_i(\bm{x},t) - f_i^{eq}(\bm{x},t) \big)
-\end{align*}
+\end{align}
 where $f_i^*$ is the particle distribution after the collision.
 \item \textbf{Propagation}
 \begin{align*}
@@ -86,7 +86,7 @@ f_i(\bm{x} + \bm{c_i} \Delta t, t + \Delta t) = f_i^*(\bm{x},t).
 \end{align*}
 \end{enumerate}
 
-Less formally, the update step, which is the essence of the LBM computation, can be described in the few points:
+Less formally, the update step can be described in the few points:
 \begin{enumerate}
 \item Use $f_i$ to compute $\rho$ and $\bm{j}$ via \ref{rho} and \ref{dzej}.
 %\begin{align*}
@@ -98,3 +98,8 @@ Less formally, the update step, which is the essence of the LBM computation, can
 \item Compute Maxwell-Boltzmann distribution $f_i^{eq}$ via \ref{mbcomp}.
 \item Carry out the collision and the propagation.
 \end{enumerate}
+
+\section{Conclusion}
+We are tempted to say that LBM is the the lattice-gas cellular automaton with continuous values of the cells and collision operator given by \ref{collar}.
+Physically, however, this is a huge leap and they are not cellular automata in the true sense. The lattice-gas cellular automata are the microscopic toy models of the fluid, but due to their symmetries, realistic behavior emerges on the macroscopic level, while Lattice-Boltzmann method should be viewed as a numerical scheme for solving the Boltzmann equation. Thus it is beyond the scope of this thesis, and concludes our introduction to cellular automata.
+%Thus, our story of cellular automata is in the end.

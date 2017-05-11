@@ -1,16 +1,16 @@
-\chapter{Study of the flow around the obstacles}
+\chapter{Simulation of the flow around the obstacles}
 
-In previous chapter, we explained microdynamics of FCHC and PI, that is non-physical.
-However, if we avarage velocities of the particles over sufficiently large region, we obtain physical velocity field.
+The microdynamics of the lattice-gas cellular automata is non-physical, and to obtain the physical velocity, we need to compute its mean value over thousands of nodes.
+%
+%In previous chapter, we explained microdynamics of FCHC and PI, that is non-physical.
+%However, if we compute the mean velocity over thousands of nodes, we obtain physical velocity.
 
-
-The function that implements computation of velocity from LGCA lattice is simple and similar for FCHC and PI, so we comment only on FCHC implementation.
+Functions that compute velocity are trivial and similar for Pair-interaction and FCHC alike, so we comment only on FCHC implementation.
 
 \begin{lstlisting}
 void compute_velocity(int***grid, double****v, int X, int Y, int Z, int side, int I, int J, int K)
 {
-	// We compute mean velocity over the cube with the side of length 'side'.
-	// N is the number nodes in this cube.
+	// The mean velocity is computed over 'side'*'side'*'side' nodes..
 	double N = side*side*side;
 	int i, j, k, l, m, n;
 	int x, y, z;
@@ -22,6 +22,11 @@ void compute_velocity(int***grid, double****v, int X, int Y, int Z, int side, in
 		{
 			for (k = 0; k < K; ++k)
 			{
+				// Null the velocities from previous time-step				
+				v[i][j][k][0] = 0;
+				v[i][j][k][1] = 0;
+				v[i][j][k][2] = 0;
+				
 				for (x = i*side; x < (i + 1)*side; ++x)
 				{
 					for (y = j*side; y < (j + 1)*side; ++y)
@@ -42,44 +47,46 @@ void compute_velocity(int***grid, double****v, int X, int Y, int Z, int side, in
 						}
 					}
 				}
-				for (l = 0; l < 3; l++)
-					v[i][j][k][l] /= N;
+				v[i][j][k][0] /= 0;
+				v[i][j][k][1] /= 0;
+				v[i][j][k][2] /= 0;
 			}
 		}
 	}
 }
 \end{lstlisting}
 
-In the following section, we present the simulation of the flow around the spherical obstacle and round plate.
+In the next section, we will present the simulation of the flow around the spherical obstacle and round plate.
+Particles with velocity in Z direction are flowing from the plain $z=1$, and they propagate freely out of the tunnel from $z = max - 1$. 
 
-\bigskip
-
-Particles with velocity in positive Z direction are created on a plain $z=1$, and at the plain $z = Z - 1$ they propagate freely out of the tunnel. 
-
-The flow is actually happening in the tunnel with the square intersection. This tunnel is made of same 'material' as the obstacle, meaning that same no-slip condition holds at the tunnel and obstacle.
-
-That no-slip condition holds at the obstacles can be seen from following excerpt of Propagation function (from FCHC, but same principle is applied in PI).
+The flow is enclosed in the tunnel with the square intersection. 
+The no-slip condition is imposed on the tunnel and obstacles alike, and it is guided by the Propagation function.
 \begin{lstlisting}
-
-/* Particle at the cell C[i] propagates along the lattice vector c[i] to a new node.  */
-if (n & C[i])
+void Propagation(int***from, int***to, int**table, int X, int Y, int Z)
 {
-	new_x = PeriodicBC(x + c[i][0], X);
-	new_y = PeriodicBC(y + c[i][1], Y);
-	new_z = PeriodicBC(z + c[i][2], Z);
-	if (to[new_x][new_y][new_z] & OBS)	
-	/* However, if there is obstacle in that node, it gets to the cell Reverse[i], that is cell diagonal to the C[i]. Let's say it had velocity v1 = [1,0,-1,0], by reflection it gained velocity v2 = [-1,0,1,0]. In the next step, particle propagates back to the node where it came from. */
-	/* Hence, the velocity at the obstacle is v1 + v2 = 0, so we really fulfilled no-slip condition. */	
-		to[new_x][new_y][new_z] |= Reverse[i];
-	else
-		to[new_x][new_y][new_z] |= C[i];
+....
+....
+....
+....
+						// If there is an obstacle in the node, particle's velocity is reversed.
+						// e.g. particle with velocity [1,0,-1,0] gains velocity [-1,0,1,0] by the reflection from the obstacle
+						// Hence, in the next step, it propagates to the node where it come from
+						if (to[new_x][new_y][new_z] & OBS)
+							to[new_x][new_y][new_z] |= Reverse[i];
+						else
+							to[new_x][new_y][new_z] |= C[i];
+					}
+....
+....
+....
+....
 }
 \end{lstlisting}
 
 \section{Flow around the sphere} 
-Each velocity vector is computed over $N = 80^3 / 8 = 64000$ nodes for PI and $N = 80^3 = 521 000$ for FCHC (by the function $compute_velocity$ that we presented).
+Each velocity vector is computed as a mean over $N = 80^3 / 8 = 64000$ nodes for PI and $N = 80^3 = 521 000$ for FCHC.
 
-\begin{figure}[htbp]
+\begin{figure}[H]
  \centering 
  \includegraphics[width=0.9\textwidth]{../PI_sphere_80/velocity_70}
  \label{transitions}
@@ -87,7 +94,7 @@ Each velocity vector is computed over $N = 80^3 / 8 = 64000$ nodes for PI and $N
 \end{figure}
 
 
-\begin{figure}[htbp]
+\begin{figure}[H]
  \centering 
  \includegraphics[width=0.9\textwidth]{../PI_sphere_80/velocity_170}
  \label{transitions}
@@ -95,7 +102,7 @@ Each velocity vector is computed over $N = 80^3 / 8 = 64000$ nodes for PI and $N
 \end{figure}
 
 
-\begin{figure}[htbp]
+\begin{figure}[H]
  \centering 
  \includegraphics[width=0.9\textwidth]{../PI_sphere_80/velocity_320}
  \label{transitions}
@@ -103,7 +110,7 @@ Each velocity vector is computed over $N = 80^3 / 8 = 64000$ nodes for PI and $N
 \end{figure}
 
 
-\begin{figure}[htbp]
+\begin{figure}[H]
  \centering 
  \includegraphics[width=0.9\textwidth]{../PI_sphere_80/velocity_460}
  \label{transitions}
@@ -111,7 +118,7 @@ Each velocity vector is computed over $N = 80^3 / 8 = 64000$ nodes for PI and $N
 \end{figure}
 
 
-\begin{figure}[htbp]
+\begin{figure}[H]
  \centering 
  \includegraphics[width=0.9\textwidth]{../PI_sphere_80/velocity_700}
  \label{transitions}
@@ -119,7 +126,7 @@ Each velocity vector is computed over $N = 80^3 / 8 = 64000$ nodes for PI and $N
 \end{figure}
 
 
-\begin{figure}[htbp]
+\begin{figure}[H]
  \centering 
  \includegraphics[width=0.9\textwidth]{../PI_sphere_80/velocity_1000}
  \label{transitions}
@@ -127,7 +134,7 @@ Each velocity vector is computed over $N = 80^3 / 8 = 64000$ nodes for PI and $N
 \end{figure}
 
 
-\begin{figure}[htbp]
+\begin{figure}[H]
  \centering 
  \includegraphics[width=0.9\textwidth]{../PI_sphere_80/velocity_1500}
  \label{transitions}
@@ -135,7 +142,7 @@ Each velocity vector is computed over $N = 80^3 / 8 = 64000$ nodes for PI and $N
 \end{figure}
 
 
-\begin{figure}[htbp]
+\begin{figure}[H]
  \centering 
  \includegraphics[width=0.9\textwidth]{../PI_sphere_80/velocity_2300}
  \label{transitions}
